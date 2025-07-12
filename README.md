@@ -44,4 +44,19 @@ This program is intended to expand with new features, including loyalty incentiv
 
 - As a user, I want to delete my account to remove all my data.
 
+### Shopping & Checkout
+
+- As a user, I want to browse products by category so I can easily find what I’m looking for.
+
+- As a user, I want to search for products using a search bar so I can quickly find specific items.
+
+- As a user, I want to view detailed product information before buying.
+
+- As a user, I want to add products to my basket and update quantities.
+
+- As a user, I want to remove items from my basket.
+
+- As a user, I want to proceed to checkout and make a payment securely.
+
+- As a user, I want to receive confirmation after placing an order.
 
