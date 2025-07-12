@@ -67,3 +67,12 @@ This program is intended to expand with new features, including loyalty incentiv
 - As a user, I want to view my loyalty stamp progress in my profile.
 
 - As a user, I want to be notified when I unlock a reward.
+
+### Wishlist
+
+- As a user, I want to add items to my wishlist to save them for later.
+
+- As a user, I want to view and manage my wishlist from my profile.
+
+- As a user, I want to remove items I no longer want from my wishlist.
+
