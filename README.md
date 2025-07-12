@@ -100,14 +100,14 @@ This program is intended to expand with new features, including loyalty incentiv
 - Secure password handling
 - User profile page with order history
 
-###  Shopping Experience
+### Shopping Experience
 - Browse products by category
 - Search bar for product lookup
 - Detailed product pages with images and descriptions
 - Add to basket and update quantities
 - Full checkout process with confirmation
 
-###  Wishlist
+### Wishlist
 - Add or remove items from wishlist
 - View saved products in user profile
 
@@ -118,3 +118,7 @@ This program is intended to expand with new features, including loyalty incentiv
 ### Admin Management
 - Add, update, and delete products
 - Manage categories and orders from admin dashboard
+
+### Static Pages
+- About Me page to share the creator's story
+- Contact Me form for customer queries
