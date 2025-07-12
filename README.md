@@ -110,3 +110,7 @@ This program is intended to expand with new features, including loyalty incentiv
 ###  Wishlist
 - Add or remove items from wishlist
 - View saved products in user profile
+
+### Loyalty Card
+- Users earn a stamp after every successful order
+- Track stamps and rewards on profile
