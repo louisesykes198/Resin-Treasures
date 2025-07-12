@@ -114,3 +114,7 @@ This program is intended to expand with new features, including loyalty incentiv
 ### Loyalty Card
 - Users earn a stamp after every successful order
 - Track stamps and rewards on profile
+
+### Admin Management
+- Add, update, and delete products
+- Manage categories and orders from admin dashboard
