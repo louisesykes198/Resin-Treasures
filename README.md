@@ -76,3 +76,8 @@ This program is intended to expand with new features, including loyalty incentiv
 
 - As a user, I want to remove items I no longer want from my wishlist.
 
+### Static Pages & Contact
+
+- As a user, I want to visit the About page to learn about the store and its owner.
+
+- As a user, I want to use a Contact form to ask questions or request custom orders.
