@@ -18,3 +18,13 @@ This program is intended to expand with new features, including loyalty incentiv
 
 - Ensure smooth category filtering and product search
 
+### Target Users
+
+- Shoppers looking for unique handmade resin gifts
+
+- Users who want to track their purchases and loyalty progress
+
+- Customers who prefer saving items for later using wishlists
+
+- The shop owner who manages the inventory and orders
+
