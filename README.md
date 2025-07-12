@@ -122,3 +122,65 @@ This program is intended to expand with new features, including loyalty incentiv
 ### Static Pages
 - About Me page to share the creator's story
 - Contact Me form for customer queries
+
+# Wireframes
+
+Wireframes were built during the planning stage to show the structure and layout of Resin Treasures' essential pages. 
+These low-fidelity designs assisted in visualising user flow, prioritising critical elements, and ensuring a consistent and user-friendly experience throughout the site. 
+Each wireframe depicts a key aspect of the application, such as the home page, product listing, product detail view, user profile, Wishlist, basket, checkout, and contact pages. 
+The wireframes served as the foundation for creating easy navigation, clear calls-to-action, and a clean, accessible design that appealed to both new and returning customers.
+
+<details>
+<summary>Login Page - Desktop</summary>
+<img src="doc/rt-login.png" alt="Login Page">
+</details>
+
+<details>
+<summary>Registration Page - Desktop</summary>
+<img src="doc/rt-register.png" alt="Registration Page">
+</details>
+
+<details>
+<summary>Home Page - Desktop</summary>
+<img src="doc/rt-home.png" alt="Home Page">
+</details>
+
+<details>
+<summary>About Page - Desktop</summary>
+<img src="doc/rt-about.png" alt="About Page">
+</details>
+
+<details>
+<summary>Category Page - Desktop</summary>
+<img src="doc/rt-category.png" alt="Category Page">
+</details>
+
+<details>
+<summary>Basket Page - Desktop</summary>
+<img src="doc/rt-basket.png" alt="Basket Page">
+</details>
+
+<details>
+<summary>Profile Page - Desktop</summary>
+<img src="doc/rt-profile.png" alt="Profile Page">
+</details>
+
+<details>
+<summary>Checkout Page - Desktop</summary>
+<img src="doc/rt-checkout.png" alt="Checkout Page">
+</details>
+
+<details>
+<summary>Payment Page - Desktop</summary>
+<img src="doc/rt-payment.png" alt="Payment Page">
+</details>
+
+<details>
+<summary>Complete Page - Desktop</summary>
+<img src="doc/rt-complete.png" alt="Complete Page">
+</details>
+
+<details>
+<summary>Contact Page - Desktop</summary>
+<img src="doc/rt-contact.png" alt="Contact Page">
+</details>
