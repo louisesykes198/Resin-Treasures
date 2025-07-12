@@ -27,4 +27,21 @@ This program is intended to expand with new features, including loyalty incentiv
 - Customers who prefer saving items for later using wishlists
 
 - The shop owner who manages the inventory and orders
+  
+- Customers who prefer saving items for later using wishlists
+
+- The shop owner who manages the inventory and orders
+
+## User Stories
+
+### Authentication & User Profiles
+
+- As a new user, I want to register for an account so I can make purchases and access my profile.
+
+- As a returning user, I want to log in and out securely to protect my account.
+
+- As a user, I want to view and edit my profile so I can keep my information up to date.
+
+- As a user, I want to delete my account to remove all my data.
+
 
