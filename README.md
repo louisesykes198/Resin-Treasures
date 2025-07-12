@@ -76,6 +76,16 @@ This program is intended to expand with new features, including loyalty incentiv
 
 - As a user, I want to remove items I no longer want from my wishlist.
 
+### Admin & Store Management
+
+- As the site owner, I want to add, update, or delete product listings to manage my store inventory.
+
+- As the site owner, I want to create and manage product categories to keep the store organized.
+
+- As the site owner, I want to view and fulfill customer orders.
+
+- As the site owner, I want to receive and respond to messages from the Contact form.
+
 ### Static Pages & Contact
 
 - As a user, I want to visit the About page to learn about the store and its owner.
