@@ -106,3 +106,7 @@ This program is intended to expand with new features, including loyalty incentiv
 - Detailed product pages with images and descriptions
 - Add to basket and update quantities
 - Full checkout process with confirmation
+
+###  Wishlist
+- Add or remove items from wishlist
+- View saved products in user profile
