@@ -100,3 +100,9 @@ This program is intended to expand with new features, including loyalty incentiv
 - Secure password handling
 - User profile page with order history
 
+###  Shopping Experience
+- Browse products by category
+- Search bar for product lookup
+- Detailed product pages with images and descriptions
+- Add to basket and update quantities
+- Full checkout process with confirmation
