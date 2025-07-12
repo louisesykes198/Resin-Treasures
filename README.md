@@ -60,3 +60,10 @@ This program is intended to expand with new features, including loyalty incentiv
 
 - As a user, I want to receive confirmation after placing an order.
 
+### Loyalty Card System
+
+- As a user, I want to earn a stamp each time I place an order.
+
+- As a user, I want to view my loyalty stamp progress in my profile.
+
+- As a user, I want to be notified when I unlock a reward.
