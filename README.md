@@ -130,6 +130,8 @@ These low-fidelity designs assisted in visualising user flow, prioritising criti
 Each wireframe depicts a key aspect of the application, such as the home page, product listing, product detail view, user profile, Wishlist, basket, checkout, and contact pages. 
 The wireframes served as the foundation for creating easy navigation, clear calls-to-action, and a clean, accessible design that appealed to both new and returning customers.
 
+### Desktop View
+
 <details>
 <summary>Login Page - Desktop</summary>
 <img src="doc/rt-login.png" alt="Login Page">
@@ -180,7 +182,61 @@ The wireframes served as the foundation for creating easy navigation, clear call
 <img src="doc/rt-complete.png" alt="Complete Page">
 </details>
 
+### Mobile View
+
 <details>
-<summary>Contact Page - Desktop</summary>
-<img src="doc/rt-contact.png" alt="Contact Page">
+<summary>Login Page - Mobile</summary>
+<img src="doc/rt-login-mobile.png" alt="Login Page">
 </details>
+
+<details>
+<summary>Registration Page - Mobile</summary>
+<img src="doc/rt-register-mobile.png" alt="Registration Page">
+</details>
+
+<details>
+<summary>Home Page - Mobile</summary>
+<img src="doc/rt-home-mobile.png" alt="Home Page">
+</details>
+
+<details>
+<summary>About Page - Mobile</summary>
+<img src="doc/rt-about-mobile.png" alt="About Page">
+</details>
+
+<details>
+<summary>Category Page - Mobile</summary>
+<img src="doc/rt-category-mobile.png" alt="Category Page">
+</details>
+
+<details>
+<summary>Basket Page - Mobile</summary>
+<img src="doc/rt-basket-mobile.png" alt="Basket Page">
+</details>
+
+<details>
+<summary>Profile Page - Mobile</summary>
+<img src="doc/rt-profile-mobile.png" alt="Profile Page">
+</details>
+
+<details>
+<summary>Checkout Page - Mobile</summary>
+<img src="doc/rt-checkout-mobile.png" alt="Checkout Page">
+</details>
+
+<details>
+<summary>Payment Page - Mobile</summary>
+<img src="doc/rt-payment-mobile.png" alt="Payment Page">
+</details>
+
+<details>
+<summary>Complete Page - Mobile</summary>
+<img src="doc/rt-complete-mobile.png" alt="Complete Page">
+</details>
+
+<details>
+<summary>Contact Page - Mobile</summary>
+<img src="doc/rt-contact-mobile.png" alt="Contact Page">
+</details>
+
+
