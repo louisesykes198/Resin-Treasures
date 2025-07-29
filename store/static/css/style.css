@@ -1,0 +1,15 @@
+/* style.css */
+.navbar {
+  background-color: #fff8f0 !important; /* Soft peach background */
+  border-bottom: 1px solid #f2d6c2;
+}
+
+.navbar-brand, .nav-link {
+  color: #c97e6b !important; /* Warm peach text */
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #a35c4d !important;
+  text-decoration: underline;
+}
