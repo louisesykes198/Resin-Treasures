@@ -13,3 +13,8 @@
   color: #a35c4d !important;
   text-decoration: underline;
 }
+
+.logo {
+  height: 75px;
+  width: 150px;
+}
