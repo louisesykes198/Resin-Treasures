@@ -1,28 +1,33 @@
 /* style.css */
 .navbar {
-  background-color: #fff8f0 !important; /* Soft peach background */
-  border-bottom: 1px solid #f2d6c2;
+  background-color: white !important;
+  border-bottom: black;
+  border-bottom-width: 10px;
 }
 
-.navbar-brand, .nav-link {
-  color: #c97e6b !important; /* Warm peach text */
+.navbar-brand,
+.nav-link {
+  color: #db4f2c !important;
   font-weight: 500;
 }
 
 .nav-link:hover {
-  color: #a35c4d !important;
+  color: #a35848 !important;
   text-decoration: underline;
 }
 
 .logo {
-  height: 75px;
-  width: 150px;
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  padding: 5px 10px;
 }
 
+/* HERO SECTION */
 .hero-image {
   position: relative;
   width: 100%;
-  height: 100vh; /* Full screen height */
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -48,8 +53,8 @@
 }
 
 .hero-text button {
-  font-size: 1.2rem; /* Bigger text in button */
-  padding: 12px 25px; /* More padding inside the button */
+  font-size: 1.2rem;
+  padding: 12px 25px;
   border: none;
   background-color: peachpuff;
   color: #000;
@@ -61,6 +66,115 @@
 
 .hero-text button:hover {
   background-color: #fdd9b5;
+}
+
+/* General layout */
+.about-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Headings */
+.about-section h1 {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+
+.about-section h2 {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+/* Paragraphs */
+.about-section p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+/* Lists */
+.about-section ul {
+  padding-left: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-section li {
+  margin-bottom: 0.5rem;
+}
+
+/* Images */
+.about-section img {
+  display: block;
+  max-width: 700px;     /* ⬅️ adjust this to control image width */
+  width: 100%;
+  height: auto;
+  margin: 0 auto 2rem auto;  /* ⬅️ centers image and adds spacing */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Link Styling */
+.about-section a {
+  color: #1e88e5;
+  text-decoration: none;
+}
+
+.about-section a:hover {
+  text-decoration: underline;
+}
+
+.contact-section {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+form input.form-input,
+form textarea.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #1e88e5;
+  box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+form button {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .about-section h1 {
+    font-size: 2rem;
+  }
+
+  .about-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .about-section p {
+    font-size: 1rem;
+  }
 }
 
 

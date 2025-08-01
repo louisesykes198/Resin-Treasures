@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="about-section container mx-auto py-12 px-4 lg:px-12">
+  <h1 class="text-4xl font-bold mb-6 text-center">About Resin Treasures</h1>
+
+  <!-- IMAGE: Your home studio or workspace -->
+  <img src="{% static 'images/workshop.jpg' %}" alt="Resin Treasures Studio" class="w-full rounded-xl shadow mb-8">
+
+  <p class="text-lg leading-relaxed mb-6">
+    Welcome to <strong>Resin Treasures</strong> — a one-woman creative studio where handmade resin art comes to life. Every piece you’ll find here is designed, poured, and polished with care from a small home studio in the UK.
+  </p>
+
+  <p class="text-lg leading-relaxed mb-6">
+    Resin Treasures is a new and growing passion project, built from a love of crafting and a desire to create beautiful, meaningful keepsakes. As a solo maker, I handle everything — from design and production to packing your orders. It’s a true labour of love, and your support means everything.
+  </p>
+
+  <!-- IMAGE: Mixed product display -->
+  <img src="{% static 'images/hands.png' %}" alt="Assorted Resin Items" class="w-full rounded-xl shadow mb-8">
+
+  <h2 class="text-2xl font-semibold mt-10 mb-4">What I Make</h2>
+  <p class="text-lg mb-6">
+    I specialize in:
+  </p>
+  <ul class="list-disc list-inside text-lg mb-6">
+    <li>Handmade jewellery – earrings and necklaces</li>
+    <li>Unique keyrings for all occasions</li>
+    <li>Thoughtful gifts for teachers and new parents</li>
+    <li>Custom animal and reptile-themed décor</li>
+    <li>Resin wall art and festive holiday decorations</li>
+  </ul>
+
+  <!-- IMAGE: Optional – show a close-up of a signature piece -->
+  <img src="{% static 'images/polar-bear.png' %}" alt="Custom Resin Animal Decor" class="w-full rounded-xl shadow mb-8">
+
+  <h2 class="text-2xl font-semibold mt-10 mb-4">Why Resin?</h2>
+  <p class="text-lg leading-relaxed mb-6">
+    Resin allows for incredible creativity — from shimmering finishes to embedded details like glitter, flowers, or custom colour blends. No two pieces are ever alike, which makes each item from Resin Treasures truly one-of-a-kind.
+  </p>
+
+  <h2 class="text-2xl font-semibold mt-10 mb-4">Looking Ahead</h2>
+  <p class="text-lg leading-relaxed mb-6">
+    This is just the beginning. I’m always experimenting with new ideas, techniques, and designs — and I love hearing from people who want to bring their own ideas to life. Whether you’re shopping for a gift or treating yourself, I hope you find something that brings you joy.
+  </p>
+
+  <p class="text-lg font-medium mt-8">
+    Thank you for supporting small, handmade business. You’re helping turn a dream into something real — and I couldn’t be more grateful.
+  </p>
+</section>
+{% endblock %}
+
