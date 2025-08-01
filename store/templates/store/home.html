@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h2>Welcome to Resin Treasures</h2>
-    <p>Elegant handmade resin pieces and unique creations</p>
+<section class="hero">
+  <div class="hero-image">
+    <img src="{% static 'images/hero-image.jpg' %}" alt="Handcrafted Resin Art" class="hero-img">
+    <div class="hero-text">
+      <h1>Handcrafted Resin Art</h1>
+      <button>Shop Now</button>
+    </div>
+  </div>
+</section>
 {% endblock %}
+
+
+
+
+
