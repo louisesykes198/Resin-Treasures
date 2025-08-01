@@ -148,7 +148,7 @@ form textarea.form-textarea {
 
 form input:focus,
 form textarea:focus {
-  border-color: #1e88e5;
+  border-color: peachpuff;
   box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
 }
 
@@ -160,6 +160,17 @@ form label {
 form button {
   font-weight: 500;
   cursor: pointer;
+  background-color: peachpuff;
+  color: #000;
+  border: 1px solid #f2c9a5; /* soft light-peach border */
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+form button:hover {
+  background-color: #ffd9b3; /* slightly darker on hover */
+  border-color: #e8b98c;     /* slightly darker border on hover */
 }
 
 
