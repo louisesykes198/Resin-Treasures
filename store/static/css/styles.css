@@ -173,6 +173,10 @@ form button:hover {
   border-color: #e8b98c;     /* slightly darker border on hover */
 }
 
+.img-thumbnail:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
 
 @media (max-width: 768px) {
   .about-section h1 {
