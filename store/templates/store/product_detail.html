@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row">
+
+    <!-- Thumbnails and Main Image -->
+    <div class="col-md-6">
+      <div class="row">
+        <!-- Thumbnails -->
+        <div class="col-3">
+          {% for variant in variants %}
+            {% if variant.image %}
+              <img 
+                src="{{ variant.image.url }}" 
+                class="img-thumbnail mb-2 thumb" 
+                style="cursor: pointer;" 
+                onclick="switchVariant('{{ variant.image.url }}', '{{ variant.price }}', '{{ variant.description|escapejs }}')"
+                alt="Thumbnail for {{ variant.color }}"
+              >
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <!-- Main Image -->
+        <div class="col-9 text-center">
+          {% if variants and variants.0.image %}
+            <img id="main-image" src="{{ variants.0.image.url }}" class="img-fluid rounded shadow" style="max-height: 400px;" alt="{{ product.name }}">
+          {% else %}
+            <img id="main-image" src="{% static 'images/no-image.png' %}" class="img-fluid rounded shadow" style="max-height: 400px;" alt="No image">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Details -->
+    <div class="col-md-6">
+      <h1 class="mb-3">{{ product.name }}</h1>
+
+      <!-- Color Swatch Selection -->
+      <div class="mb-4">
+        <strong>Select Color:</strong>
+        <div class="d-flex flex-wrap gap-2 mt-2">
+          {% for variant in variants %}
+            {% if variant.image %}
+              <button 
+                class="border rounded-circle" 
+                style="
+                  width: 32px; 
+                  height: 32px; 
+                  background-color: {{ variant.color|default:'#ccc' }};
+                  border: 2px solid #aaa;
+                " 
+                title="{{ variant.color }}" 
+                onclick="switchVariant('{{ variant.image.url }}', '{{ variant.price }}', '{{ variant.description|escapejs }}')"
+              ></button>
+            {% else %}
+              <button 
+                class="border rounded-circle" 
+                style="
+                  width: 32px; 
+                  height: 32px; 
+                  background-color: {{ variant.color|default:'#ccc' }};
+                  border: 2px solid #aaa;
+                " 
+                title="{{ variant.color }}" 
+                onclick="switchVariant('', '{{ variant.price }}', '{{ variant.description|escapejs }}')"
+              ></button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Price -->
+      {% if variants and variants.0.price %}
+        <h3 id="variant-price" class="text-success mb-4">£{{ variants.0.price }}</h3>
+      {% else %}
+        <h3 class="text-success mb-4">Price not available</h3>
+      {% endif %}
+
+      <!-- Description -->
+      {% if variants.0.description %}
+        <p id="variant-description" class="mb-4">{{ variants.0.description }}</p>
+      {% endif %}
+
+      {% if product.categories.all %}
+        <p>
+          <strong>Categories:</strong>
+          {% for category in product.categories.all %}
+            <span class="badge bg-secondary">{{ category.name }}</span>
+          {% endfor %}
+        </p>
+      {% endif %}
+
+      <div class="d-grid gap-2 mt-4">
+        <button class="btn btn-primary btn-lg">Buy it now</button>
+        <button class="btn btn-outline-primary">Add to basket</button>
+        <button class="btn btn-outline-secondary">♡ Add to Wishlist</button>
+      </div>
+
+      <a href="{% url 'shop' %}" class="btn btn-link mt-4">&larr; Back to Shop</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function switchVariant(imageUrl, price, description) {
+    if (imageUrl) {
+      document.getElementById('main-image').src = imageUrl;
+    }
+    document.getElementById('variant-price').innerText = '£' + parseFloat(price).toFixed(2);
+    document.getElementById('variant-description').innerText = description;
+  }
+</script>
+{% endblock %}
+
+
+
+
