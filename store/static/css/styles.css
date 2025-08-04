@@ -20,8 +20,7 @@
 .logo {
   height: 50px;
   width: auto;
-  object-fit: contain;
-  
+  object-fit: contain; 
 }
 
 /* HERO SECTION */
@@ -178,6 +177,36 @@ form button:hover {
 .img-thumbnail:hover {
   transform: scale(1.05);
   transition: transform 0.2s ease;
+}
+
+.text-peach {
+  color: #db4f2c; /* Adjust for your preferred peach tone */
+}
+
+.border-peach {
+  border-color: peachpuff !important;
+}
+
+.form-select.text-peach {
+  background-color: #fffaf7;
+  border-radius: 5px;
+}
+
+.card-img-top {
+  border-radius: 0;
+  height: 250px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.btn-outline-peach {
+  border: 1px solid peachpuff;
+  color: peachpuff;
+}
+
+.btn-outline-peach:hover {
+  background-color: peachpuff;
+  color: #000;
 }
 
 @media (max-width: 768px) {
