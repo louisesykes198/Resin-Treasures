@@ -84,21 +84,11 @@
         <p id="variant-description" class="mb-4">{{ variants.0.description }}</p>
       {% endif %}
 
-      {% if product.categories.all %}
-        <p>
-          <strong>Categories:</strong>
-          {% for category in product.categories.all %}
-            <span class="badge bg-secondary">{{ category.name }}</span>
-          {% endfor %}
-        </p>
-      {% endif %}
-
       <div class="d-grid gap-2 mt-4">
         <button class="btn btn-primary btn-lg">Buy it now</button>
         <button class="btn btn-outline-primary">Add to basket</button>
         <button class="btn btn-outline-secondary">♡ Add to Wishlist</button>
       </div>
-
       <a href="{% url 'shop' %}" class="btn btn-link mt-4">&larr; Back to Shop</a>
     </div>
 

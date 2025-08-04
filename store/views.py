@@ -13,6 +13,7 @@ def contact(request):
 
 def shop(request):
     sort = request.GET.get('sort', '')
+    products = Product.objects.all()
     categories = Category.objects.all()
 
     # Prefetch variants ordered by id and attach to each product as 'all_variants'
