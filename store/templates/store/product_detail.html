@@ -82,7 +82,10 @@
 
       <div class="d-grid gap-2 mt-4">
         <button class="btn btn-primary btn-lg">Buy it now</button>
-        <button class="btn btn-outline-primary">Add to basket</button>
+        <form action="{% url 'add_to_basket' product.id %}" method="post" class="d-grid gap-2 mt-4">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-outline-success btn-lg">Add to Basket</button>
+</form>
         <button class="btn btn-outline-secondary">♡ Add to Wishlist</button>
       </div>
       <a href="{% url 'shop' %}" class="btn btn-link mt-4">&larr; Back to Shop</a>
