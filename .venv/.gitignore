@@ -1,1 +1,52 @@
-*.venv
+# Virtual environment folders
+*.venv/
+venv/
+env/
+ENV/
+
+# Environment variables file
+.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django migrations
+**/migrations/*.pyc
+**/migrations/*.py~
+**/migrations/__pycache__/
+
+# Django static files (collected static files)
+staticfiles/
+static/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# IDE/editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Mac OS files
+.DS_Store
+
+# Windows thumbnail cache files
+Thumbs.db
+

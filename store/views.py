@@ -45,6 +45,16 @@ def shop(request):
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     variants = product.variants.all()
+
+    # Process color into a list
+    for variant in variants:
+        if variant.color:
+            # Replace " and " with "," and split
+            color_str = variant.color.lower().replace(' and ', ',')
+            variant.color_list = [c.strip() for c in color_str.split(',') if c.strip()]
+        else:
+            variant.color_list = []
+
     return render(request, 'store/product_detail.html', {
         'product': product,
         'variants': variants
