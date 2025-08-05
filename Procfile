@@ -1,1 +1,2 @@
-web: gunicorn ResinTreasures.wsgi --log-file -
+web: gunicorn resin_treasures.wsgi --log-file -
+
