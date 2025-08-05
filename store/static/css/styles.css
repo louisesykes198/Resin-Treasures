@@ -245,15 +245,15 @@ form button:hover {
   color: #000;
 }
 
-/* + and - buttons style */
+/* + and - buttons style - smaller version */
 .basket-item-controls form button {
   background-color: white;
-  color: #db4f2c; /* same as links */
+  color: #db4f2c;
   border: 2px solid #db4f2c;
   border-radius: 4px;
-  padding: 6px 12px;
+  padding: 4px 8px; /* reduced padding */
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.9rem; /* smaller font */
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -261,19 +261,20 @@ form button:hover {
 .basket-item-controls form button:hover {
   background-color: #db4f2c;
   color: white;
-  border-color: #a33a22; /* darker shade on hover */
+  border-color: #a33a22;
   box-shadow: 0 2px 6px rgba(219, 79, 44, 0.3);
 }
 
-/* Quantity number style */
+/* Quantity number style - smaller */
 .basket-item-controls span {
-  font-weight: 700;
-  font-size: 1.1rem;
-  min-width: 25px;
+  font-weight: 600;
+  font-size: 0.95rem; /* slightly smaller */
+  min-width: 20px;
   text-align: center;
-  color: #6b3a2a; /* Darker warm brown */
+  color: #6b3a2a;
   user-select: none;
 }
+
 
 /* Empty Basket button styling */
 form[action$="empty_basket"] button,
@@ -294,9 +295,50 @@ button.empty-basket-btn:hover {
   color: #000 !important;
 }
 
+/* Add to Basket button: peachpuff with black text */
+.add-to-basket-btn {
+  background-color: peachpuff;
+  color: #000;
+  border: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+}
+
+.add-to-basket-btn:hover {
+  background-color: #fdd9b5;
+  color: #000;
+}
+
+/* View Product button: like + / - buttons */
+.view-product-btn {
+  background-color: white;
+  color: #db4f2c;
+  border: 2px solid #db4f2c;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.view-product-btn:hover {
+  background-color: #db4f2c;
+  color: white;
+  border-color: #a33a22;
+  box-shadow: 0 2px 6px rgba(219, 79, 44, 0.3);
+}
+
 /* === Responsive === */
 
-/* Mobile & Tablet Styles */
+/* --- Mobile & Tablet Styles (up to 768px) --- */
 @media (max-width: 768px) {
   .about-section h1 {
     font-size: 2.5rem;
@@ -322,10 +364,8 @@ button.empty-basket-btn:hover {
     flex-direction: column;
     gap: 0.5rem;
   }
-}
 
-/* === Responsive Hero Text === */
-@media (max-width: 768px) {
+  /* --- Responsive Hero Text --- */
   .hero-text {
     left: 50%;
     width: 90%;
@@ -341,4 +381,73 @@ button.empty-basket-btn:hover {
     font-size: 1rem;
     padding: 10px 20px;
   }
+
+  /* --- Responsive Basket Page Layout --- */
+  .list-group-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .list-group-item > .d-flex.align-items-center {
+    flex-direction: column;
+    align-items: flex-start !important;
+    width: 100%;
+  }
+
+  .list-group-item img {
+    width: 80px;
+    margin-bottom: 10px;
+  }
+
+  .basket-item-controls span {
+    margin: 0 10px;
+  }
 }
+
+/* --- Small Devices (up to 576px) --- */
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  /* Quantity buttons & text */
+  .basket-item-controls form button {
+    font-size: 0.8rem;
+    padding: 3px 6px;
+  }
+
+  .basket-item-controls span {
+    font-size: 0.85rem;
+  }
+
+  /* Adjust layout for total and empty button */
+  .d-flex.justify-content-between.align-items-center {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 1rem;
+  }
+
+  /* === Responsive Empty Basket Button === */
+  form[action$="empty_basket"] button,
+  button.empty-basket-btn {
+    width: auto;            /* prevents stretching full width */
+    font-size: 0.9rem;      /* slightly smaller font */
+    padding: 6px 12px;      /* reduced padding for smaller screens */
+    align-self: flex-start; /* aligns nicely with total */
+  }
+}
+
+/* Mobile tweaks */
+@media (max-width: 576px) {
+  .add-to-basket-btn,
+  .view-product-btn {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+}
+
