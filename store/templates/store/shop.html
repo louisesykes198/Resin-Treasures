@@ -26,13 +26,15 @@
           <div class="col">
             <div class="card h-100 text-center border-0 shadow" style="background-color: #fffaf7; font-family: 'Poppins', sans-serif;">
               
-              {% if variant and variant.image %}
-                <img src="{{ variant.image.url }}" class="card-img-top" alt="{{ product.name }}"
-                     style="height: 250px; object-fit: cover; border-bottom: 3px solid peachpuff;">
-              {% else %}
-                <img src="{% static 'images/no-image.png' %}" class="card-img-top" alt="No image"
-                     style="height: 250px; object-fit: cover; border-bottom: 3px solid peachpuff;">
-              {% endif %}
+{% if variant and variant.image %}
+  <img src="{{ variant.image.url|add:'?c_fill,g_auto,w_300,h_300' }}" class="card-img-top" alt="{{ product.name }}"
+       style="height: 250px; object-fit: cover; border-bottom: 3px solid peachpuff;">
+{% else %}
+  <img src="{% static 'images/no-image.png' %}" class="card-img-top" alt="No image"
+       style="height: 250px; object-fit: cover; border-bottom: 3px solid peachpuff;">
+{% endif %}
+
+
               
               <div class="card-body d-flex flex-column">
                 <h6 class="fw-bold text-dark">{{ product.name }}</h6>

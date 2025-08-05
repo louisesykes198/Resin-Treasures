@@ -38,39 +38,35 @@
     <div class="col-md-6">
       <h1 class="mb-3">{{ product.name }}</h1>
 
-      <!-- Color Swatch Selection -->
-      <div class="mb-4">
-        <strong>Select Color:</strong>
-        <div class="d-flex flex-wrap gap-2 mt-2">
-          {% for variant in variants %}
-            {% if variant.image %}
-              <button 
-                class="border rounded-circle" 
-                style="
-                  width: 32px; 
-                  height: 32px; 
-                  background-color: {{ variant.color|default:'#ccc' }};
-                  border: 2px solid #aaa;
-                " 
-                title="{{ variant.color }}" 
-                onclick="switchVariant('{{ variant.image.url }}', '{{ variant.price }}', '{{ variant.description|escapejs }}')"
-              ></button>
-            {% else %}
-              <button 
-                class="border rounded-circle" 
-                style="
-                  width: 32px; 
-                  height: 32px; 
-                  background-color: {{ variant.color|default:'#ccc' }};
-                  border: 2px solid #aaa;
-                " 
-                title="{{ variant.color }}" 
-                onclick="switchVariant('', '{{ variant.price }}', '{{ variant.description|escapejs }}')"
-              ></button>
-            {% endif %}
-          {% endfor %}
-        </div>
-      </div>
+<!-- Color Swatch Selection -->
+<div class="mb-4">
+  <strong>Select Color:</strong>
+  <div class="d-flex flex-wrap gap-2 mt-2">
+    {% for variant in variants %}
+      {% if variant.color_list %}
+        <button 
+          class="border rounded-circle" 
+          style="
+            width: 32px; 
+            height: 32px; 
+            background:
+              {% if variant.color_list|length > 1 %}
+                linear-gradient(to right, {{ variant.color_list.0 }}, {{ variant.color_list.1 }});
+              {% else %}
+                {{ variant.color_list.0 }};
+              {% endif %}
+            border: 2px solid #aaa;
+          " 
+          title="{{ variant.color }}" 
+          onclick="switchVariant(
+            {% if variant.image %}'{{ variant.image.url }}'{% else %}''{% endif %},
+            '{{ variant.price }}',
+            '{{ variant.description|escapejs }}')"
+        ></button>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
 
       <!-- Price -->
       {% if variants and variants.0.price %}

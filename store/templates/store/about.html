@@ -2,52 +2,77 @@
 {% load static %}
 
 {% block content %}
-<section class="about-section container mx-auto py-12 px-4 lg:px-12">
-  <h1 class="text-4xl font-bold mb-6 text-center">About Resin Treasures</h1>
+<section class="about-section container py-5">
 
-  <!-- IMAGE: Your home studio or workspace -->
-  <img src="{% static 'images/workshop.jpg' %}" alt="Resin Treasures Studio" class="w-full rounded-xl shadow mb-8">
+  <h1 class="text-center mb-5 display-5 fw-bold text-peach">About Resin Treasures</h1>
 
-  <p class="text-lg leading-relaxed mb-6">
-    Welcome to <strong>Resin Treasures</strong> — a one-woman creative studio where handmade resin art comes to life. Every piece you’ll find here is designed, poured, and polished with care from a small home studio in the UK.
-  </p>
+  <!-- Section 1: Text Left, Image Right -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6">
+      <p class="text-lg">
+        Welcome to <strong>Resin Treasures</strong> — a one-woman creative studio where handmade resin art comes to life.
+        Every piece you’ll find here is designed, poured, and polished with care from a small home studio in the UK.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <img src="{% static 'images/workshop.jpg' %}" alt="..." class="img-fluid w-75 mx-auto d-block rounded shadow-sm">
+    </div>
+  </div>
 
-  <p class="text-lg leading-relaxed mb-6">
-    Resin Treasures is a new and growing passion project, built from a love of crafting and a desire to create beautiful, meaningful keepsakes. As a solo maker, I handle everything — from design and production to packing your orders. It’s a true labour of love, and your support means everything.
-  </p>
+  <!-- Section 2: Image Left, Text Right -->
+  <div class="row align-items-center mb-5 flex-md-row-reverse">
+    <div class="col-md-6">
+      <p class="text-lg">
+        Resin Treasures is a new and growing passion project, built from a love of crafting and a desire to create beautiful,
+        meaningful keepsakes. As a solo maker, I handle everything — from design and production to packing your orders.
+        It’s a true labour of love, and your support means everything.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <img src="{% static 'images/hands.png' %}" alt="..." class="img-fluid w-75 mx-auto d-block rounded shadow-sm">
+    </div>
+  </div>
 
-  <!-- IMAGE: Mixed product display -->
-  <img src="{% static 'images/hands.png' %}" alt="Assorted Resin Items" class="w-full rounded-xl shadow mb-8">
+  <!-- Section 3: Text Left, Image Right -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6">
+      <h2 class="h4 fw-semibold mb-3">What I Make</h2>
+      <p class="text-lg mb-3">I specialize in:</p>
+      <ul class="list-unstyled ps-3">
+        <li>• Handmade jewellery – earrings and necklaces</li>
+        <li>• Unique keyrings for all occasions</li>
+        <li>• Thoughtful gifts for teachers and new parents</li>
+        <li>• Custom animal and reptile-themed décor</li>
+        <li>• Resin wall art and festive holiday decorations</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <img src="{% static 'images/polar-bear.png' %}" alt="..." class="img-fluid w-75 mx-auto d-block rounded shadow-sm">
+    </div>
+  </div>
 
-  <h2 class="text-2xl font-semibold mt-10 mb-4">What I Make</h2>
-  <p class="text-lg mb-6">
-    I specialize in:
-  </p>
-  <ul class="list-disc list-inside text-lg mb-6">
-    <li>Handmade jewellery – earrings and necklaces</li>
-    <li>Unique keyrings for all occasions</li>
-    <li>Thoughtful gifts for teachers and new parents</li>
-    <li>Custom animal and reptile-themed décor</li>
-    <li>Resin wall art and festive holiday decorations</li>
-  </ul>
+  <!-- Section 4: Full-width Paragraph -->
+  <div class="row mb-4">
+    <div class="col">
+      <h2 class="h4 fw-semibold mb-3">Why Resin?</h2>
+      <p class="text-lg mb-4">
+        Resin allows for incredible creativity — from shimmering finishes to embedded details like glitter, flowers,
+        or custom colour blends. No two pieces are ever alike, which makes each item from Resin Treasures truly one-of-a-kind.
+      </p>
 
-  <!-- IMAGE: Optional – show a close-up of a signature piece -->
-  <img src="{% static 'images/polar-bear.png' %}" alt="Custom Resin Animal Decor" class="w-full rounded-xl shadow mb-8">
+      <h2 class="h4 fw-semibold mb-3">Looking Ahead</h2>
+      <p class="text-lg mb-4">
+        This is just the beginning. I’m always experimenting with new ideas, techniques, and designs — and I love hearing from
+        people who want to bring their own ideas to life. Whether you’re shopping for a gift or treating yourself, I hope you find
+        something that brings you joy. <a href="{% url 'contact' %}" class="text-blue-600 text-decoration-underline">Contact Me</a>
+      </p>
 
-  <h2 class="text-2xl font-semibold mt-10 mb-4">Why Resin?</h2>
-  <p class="text-lg leading-relaxed mb-6">
-    Resin allows for incredible creativity — from shimmering finishes to embedded details like glitter, flowers, or custom colour blends. No two pieces are ever alike, which makes each item from Resin Treasures truly one-of-a-kind.
-  </p>
+      <p class="text-lg fw-medium">
+        Thank you for supporting small, handmade business. You’re helping turn a dream into something real — and I couldn’t be more grateful.
+      </p>
+    </div>
+  </div>
 
-  <h2 class="text-2xl font-semibold mt-10 mb-4">Looking Ahead</h2>
-  <p class="text-lg leading-relaxed mb-6">
-    This is just the beginning. I’m always experimenting with new ideas, techniques, and designs — and I love hearing from people who want to bring their own ideas to life. Whether you’re shopping for a gift or treating yourself, I hope you find something that brings you joy.
-    <a href="{% url 'contact' %}" class="text-blue-600 underline">Contact Me</a>
-  </p>
-
-  <p class="text-lg font-medium mt-8">
-    Thank you for supporting small, handmade business. You’re helping turn a dream into something real — and I couldn’t be more grateful.
-  </p>
 </section>
 {% endblock %}
 
