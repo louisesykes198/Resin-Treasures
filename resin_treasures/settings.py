@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'imagekit',
     'cloudinary',
     'cloudinary_storage',
+    'basket',
 ]
 
 MIDDLEWARE = [
