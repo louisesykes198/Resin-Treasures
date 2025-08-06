@@ -374,6 +374,23 @@ button.empty-basket-btn:hover {
   border-color: peachpuff !important;
 }
 
+.btn-outline-secondary {
+  background-color: peachpuff !important;
+  color: black !important;
+  border-color: peachpuff !important;
+}
+
+.peach-btn {
+  background-color: peachpuff !important;
+  color: black !important;
+  border-color: peachpuff !important;;
+}
+
+.peach-btn:hover {
+  background-color: peachpuff;
+  color: black;
+}
+
 /* === Responsive === */
 
 /* --- Mobile & Tablet Styles (up to 768px) --- */
