@@ -2,6 +2,53 @@
 {% load static %}
 
 {% block content %}
+
+<style>
+  .category-scroll {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .category-scroll::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .category-pill {
+    white-space: nowrap;
+    padding: 6px 12px;
+    margin-right: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid #db4f2c;
+    border-radius: 999px;
+    background-color: white;
+    color: #db4f2c;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+
+  .category-scroll {
+    scroll-snap-type: x mandatory;
+  }
+
+  .category-pill.active,
+  .category-pill:hover {
+    background-color: #db4f2c;
+    color: white;
+    border-color: #a33a22;
+    box-shadow: 0 2px 6px rgba(219, 79, 44, 0.3);
+  }
+
+  /* === Navbar === */
+  .navbar {
+    background-color: white !important;
+    ...
+  }
+</style>
+
 <div class="container py-5">
 
   <!-- Page Title & Sort Dropdown -->
@@ -18,14 +65,16 @@
     </form>
   </div>
 <!-- Category Filter Menu -->
-<div class="mb-4 d-flex flex-wrap gap-2 align-items-center">
-  <span class="fw-semibold me-2">Filter by category:</span>
-  {% for category in categories %}
-    <a href="{% url 'shop' %}?category={{ category.slug }}"
-       class="btn btn-sm {% if selected_category == category.slug %}btn-primary{% else %}btn-outline-primary{% endif %}">
-      {{ category.name }}
-    </a>
-  {% endfor %}
+<div class="mb-4">
+  <span class="fw-semibold mb-2 d-block">Filter by category:</span>
+  <div class="category-scroll d-flex flex-nowrap overflow-auto">
+    <a href="{% url 'shop' %}" class="category-pill {% if not selected_category %}active{% endif %}">All Products</a>
+    {% for category in categories %}
+      <a href="{% url 'shop' %}?category={{ category.slug }}" class="category-pill {% if selected_category == category.slug %}active{% endif %}">
+        {{ category.name }}
+      </a>
+    {% endfor %}
+  </div>
 </div>
   <!-- Product Grid -->
   {% if products %}
