@@ -391,6 +391,37 @@ button.empty-basket-btn:hover {
   color: black;
 }
 
+.category-pill {
+  white-space: nowrap;
+  padding: 6px 12px;
+  margin-right: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid #db4f2c;
+  border-radius: 999px;
+  background-color: white;
+  color: #db4f2c;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.category-pill.active,
+.category-pill:hover {
+  background-color: #db4f2c;
+  color: white;
+  border-color: #a33a22;
+  box-shadow: 0 2px 6px rgba(219, 79, 44, 0.3);
+}
+
+.category-scroll {
+  scroll-snap-type: x mandatory;
+}
+
+.category-pill {
+  scroll-snap-align: start;
+}
+
 /* === Responsive === */
 
 /* --- Mobile & Tablet Styles (up to 768px) --- */
