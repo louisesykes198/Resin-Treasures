@@ -4,12 +4,17 @@ from .models import Category, Product, ProductVariant
 class ProductVariantInline(admin.TabularInline):
     model = ProductVariant
     extra = 1
-    fields = ('image', 'description', 'color', 'price')  # add price here
-    # or if you want all fields automatically, you can use 'fields' or 'readonly_fields' as needed
+    fields = ('image', 'description', 'color_name', 'price')
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductVariantInline]
 
-admin.site.register(Category)
+# ✅ Add this to auto-fill slug
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'order')        # ✅ Show name and order in admin list
+    list_editable = ('order',)              # ✅ Make order editable inline
+    prepopulated_fields = {"slug": ("name",)}
+
 
