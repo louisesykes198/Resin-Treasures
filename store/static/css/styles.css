@@ -1,7 +1,7 @@
 /* === Navbar === */
 .navbar {
   background-color: white !important;
-  border-bottom: 2px solid black;
+  border-bottom: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -334,6 +334,44 @@ button.empty-basket-btn:hover {
   color: white;
   border-color: #a33a22;
   box-shadow: 0 2px 6px rgba(219, 79, 44, 0.3);
+}
+
+/* === Category Buttons (Home Page) === */
+.category-link {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+.category-link-container {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.btn-primary {
+  background-color: peachpuff !important;
+  border-color: peachpuff !important;
+  color: black !important;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #fcd8b9 !important;
+  border-color: #fcd8b9 !important;
+  color: black !important;
+}
+
+.btn-outline-primary {
+  color: peachpuff !important;
+  border-color: peachpuff !important;
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:focus {
+  background-color: peachpuff !important;
+  color: black !important;
+  border-color: peachpuff !important;
 }
 
 /* === Responsive === */

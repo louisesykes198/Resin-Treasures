@@ -17,7 +17,7 @@
                 class="img-thumbnail mb-2 thumb" 
                 style="cursor: pointer;" 
                 onclick="switchVariant('{{ variant.image.url }}', '{{ variant.price }}', '{{ variant.description|escapejs }}')"
-                alt="Thumbnail for {{ variant.color }}"
+                alt="Thumbnail for {{ variant.color_name }}"
               >
             {% endif %}
           {% endfor %}
@@ -49,15 +49,14 @@
           style="
             width: 32px; 
             height: 32px; 
-            background:
-              {% if variant.color_list|length > 1 %}
-                linear-gradient(to right, {{ variant.color_list.0 }}, {{ variant.color_list.1 }});
-              {% else %}
-                {{ variant.color_list.0 }};
-              {% endif %}
+            {% if variant.color_list|length > 1 %}
+              background: linear-gradient(to right, {% for color in variant.color_list %}{{ color }}{% if not forloop.last %}, {% endif %}{% endfor %});
+            {% else %}
+              background-color: {{ variant.color_list.0 }};
+            {% endif %}
             border: 2px solid #aaa;
           " 
-          title="{{ variant.color }}" 
+          title="{{ variant.color_name }}" 
           onclick="switchVariant(
             {% if variant.image %}'{{ variant.image.url }}'{% else %}''{% endif %},
             '{{ variant.price }}',
