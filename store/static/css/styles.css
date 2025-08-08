@@ -1,16 +1,25 @@
 /* === Navbar === */
+#delivery-banner {
+  position: relative;
+  z-index: 800;
+}
+
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   background-color: white !important;
-  border-bottom: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  padding: 10px 40px; /* reduced top/bottom padding from 20px → 10px */
+  border-bottom: 1px solid #eee;
+  flex-direction: row;
+  align-items: right;
 }
 
 .navbar-nav {
-  margin-left: auto;
-  padding: 20px;
+  display: flex;       /* make sure nav is flex */
+  gap: 0.5rem;         /* space between nav links */
+  padding: 0;          /* no padding */
+  align-items: center; /* keep vertical centering */
 }
 
 .navbar-brand,
@@ -18,6 +27,7 @@
   color: #db4f2c !important;
   font-weight: 500;
   font-size: 18px !important;
+  padding: 0.5rem 1rem;
 }
 
 .nav-link:hover {
@@ -25,12 +35,62 @@
   text-decoration: underline;
 }
 
-.logo {
-  height: 70px;
-  width: auto;
-  object-fit: contain; 
-  margin-right: 20px;
+.navbar-toggler {
+  position: relative;
+  right: 10px;
+  z-index: 1003;
 }
+
+.fixed-logo {
+  position: fixed;
+  top: 5px;
+  left: 0px;
+  z-index: 1003;
+  background-color: transparent;
+  padding: 0px;
+}
+
+.fixed-logo .logo {
+  max-height: 60px;
+  width: auto;
+}
+
+.search-bar input {
+  min-width: 200px;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+/* Basket badge */
+.basket-badge {
+  position: absolute;
+  top: 25px;
+  right: 0.5;
+  background-color: #f57656;
+  color: white;
+  font-size: 0.75rem;
+  padding: 4px, 6px;
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+}
+
+/* Dropdown animation */
+.dropdown-menu {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1050;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
 
 /* === Hero Section === */
 .hero-image {
@@ -245,6 +305,65 @@ form button:hover {
   color: #000;
 }
 
+.product-filter {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.all-products-btn {
+  padding: 8px 16px;
+  background-color: #db4f2c;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.categories-dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  padding: 8px 16px;
+  background-color: white;
+  border: 1px solid #db4f2c;
+  color: #db4f2c;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 4px;
+  list-style: none;
+  padding: 8px 0;
+  min-width: 180px;
+  z-index: 1000;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f5f5f5;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
 /* + and - buttons style - smaller version */
 .basket-item-controls form button {
   background-color: white;
@@ -391,41 +510,10 @@ button.empty-basket-btn:hover {
   color: black;
 }
 
-.category-pill {
-  white-space: nowrap;
-  padding: 6px 12px;
-  margin-right: 8px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: 1px solid #db4f2c;
-  border-radius: 999px;
-  background-color: white;
-  color: #db4f2c;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.category-pill.active,
-.category-pill:hover {
-  background-color: #db4f2c;
-  color: white;
-  border-color: #a33a22;
-  box-shadow: 0 2px 6px rgba(219, 79, 44, 0.3);
-}
-
-.category-scroll {
-  scroll-snap-type: x mandatory;
-}
-
-.category-pill {
-  scroll-snap-align: start;
-}
-
 /* === Responsive === */
-
-/* --- Mobile & Tablet Styles (up to 768px) --- */
+/* === Mobile & Tablet Styles (up to 768px) === */
 @media (max-width: 768px) {
+  /* --- About Section --- */
   .about-section h1 {
     font-size: 2.5rem;
   }
@@ -438,6 +526,7 @@ button.empty-basket-btn:hover {
     font-size: 1rem;
   }
 
+  /* --- Navbar Adjustments --- */
   .navbar-nav {
     margin-top: 1rem;
   }
@@ -451,7 +540,7 @@ button.empty-basket-btn:hover {
     gap: 0.5rem;
   }
 
-  /* --- Responsive Hero Text --- */
+  /* --- Hero Section --- */
   .hero-text {
     left: 50%;
     width: 90%;
@@ -468,7 +557,7 @@ button.empty-basket-btn:hover {
     padding: 10px 20px;
   }
 
-  /* --- Responsive Basket Page Layout --- */
+  /* --- Basket Page Layout --- */
   .list-group-item {
     flex-direction: column;
     align-items: flex-start !important;
@@ -488,10 +577,20 @@ button.empty-basket-btn:hover {
   .basket-item-controls span {
     margin: 0 10px;
   }
+
+  /* --- Empty Basket Button --- */
+  form[action$="empty_basket"] button,
+  button.empty-basket-btn {
+    width: auto;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    align-self: flex-start;
+  }
 }
 
-/* --- Small Devices (up to 576px) --- */
+/* === Small Devices (up to 576px) === */
 @media (max-width: 576px) {
+  /* --- Headings --- */
   h1 {
     font-size: 1.75rem;
     text-align: center;
@@ -501,7 +600,7 @@ button.empty-basket-btn:hover {
     font-size: 1.2rem;
   }
 
-  /* Quantity buttons & text */
+  /* --- Basket Controls --- */
   .basket-item-controls form button {
     font-size: 0.8rem;
     padding: 3px 6px;
@@ -511,29 +610,88 @@ button.empty-basket-btn:hover {
     font-size: 0.85rem;
   }
 
-  /* Adjust layout for total and empty button */
+  /* --- Basket Totals Layout --- */
   .d-flex.justify-content-between.align-items-center {
     flex-direction: column;
     align-items: stretch !important;
     gap: 1rem;
   }
 
-  /* === Responsive Empty Basket Button === */
-  form[action$="empty_basket"] button,
-  button.empty-basket-btn {
-    width: auto;            /* prevents stretching full width */
-    font-size: 0.9rem;      /* slightly smaller font */
-    padding: 6px 12px;      /* reduced padding for smaller screens */
-    align-self: flex-start; /* aligns nicely with total */
-  }
-}
-
-/* Mobile tweaks */
-@media (max-width: 576px) {
+  /* --- Product Buttons --- */
   .add-to-basket-btn,
   .view-product-btn {
     font-size: 0.8rem;
     padding: 5px 10px;
   }
 }
+
+/* Large screens (default Bootstrap md and up) already work fine */
+
+/* Tablets and smaller (max-width: 991px) */
+@media (max-width: 991px) {
+  .thumb {
+    max-width: 60px;
+  }
+
+  #main-image {
+    max-height: 300px;
+  }
+
+  .product-details h1 {
+    font-size: 1.8rem;
+  }
+
+  .product-details h3 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Mobile screens (max-width: 576px) */
+@media (max-width: 576px) {
+  /* Stack thumbnails above the main image */
+  .col-3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .col-9 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  #main-image {
+    max-height: 250px;
+  }
+
+  /* Reduce padding around the container */
+  .container.py-5 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* Smaller buttons for mobile */
+  .btn-lg {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Make all buttons smaller on mobile */
+  .btn-lg {
+    font-size: 1rem;       /* smaller font */
+    padding: 0.4rem 0.8rem; /* less padding */
+  }
+  
+  /* Optional: reduce padding on specific buttons if needed */
+  .btn-primary.btn-lg {
+    padding: 0.5rem 1rem;
+  }
+}
+
 
