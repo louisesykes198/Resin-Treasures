@@ -3,6 +3,7 @@
 
 {% block content %}
 
+
 <style>
   .category-scroll {
     -webkit-overflow-scrolling: touch;
@@ -65,15 +66,26 @@
     </form>
   </div>
 <!-- Category Filter Menu -->
-<div class="mb-4">
-  <span class="fw-semibold mb-2 d-block">Filter by category:</span>
-  <div class="category-scroll d-flex flex-nowrap overflow-auto">
-    <a href="{% url 'shop' %}" class="category-pill {% if not selected_category %}active{% endif %}">All Products</a>
-    {% for category in categories %}
-      <a href="{% url 'shop' %}?category={{ category.slug }}" class="category-pill {% if selected_category == category.slug %}active{% endif %}">
-        {{ category.name }}
-      </a>
-    {% endfor %}
+<!-- Category Filter Dropdown -->
+<div class="mb-4 product-filter">
+  <a href="{% url 'shop' %}" class="all-products-btn">All Products</a>
+
+  <div class="categories-dropdown">
+    <button class="dropdown-toggle" type="button" id="categoryToggle">
+      Categories
+    </button>
+    <ul class="dropdown-menu" id="categoryMenu">
+      {% for category in categories %}
+        <li>
+          <a href="{% url 'shop' %}?category={{ category.slug }}"
+             class="{% if selected_category == category.slug %}active{% endif %}">
+            {{ category.name }}
+          </a>
+        </li>
+      {% empty %}
+        <li><span>No categories found</span></li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
   <!-- Product Grid -->
@@ -126,6 +138,8 @@
 
 </div>
 {% endblock %}
+
+
 
 
 
