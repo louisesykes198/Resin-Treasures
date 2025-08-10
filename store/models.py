@@ -2,7 +2,7 @@ from django.db import models
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 from django.utils.text import slugify
-
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -45,8 +45,16 @@ class ProductVariant(models.Model):
         options={'quality': 85}
     )
 
+class Basket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    variant = models.ForeignKey('ProductVariant', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
     def __str__(self):
-        return f"{self.product.name} - {self.color_name or 'Variant'}"
+        return f"{self.user.username} - {self.variant} x {self.quantity}"
+
+    def get_total_price(self):
+        return self.variant.price * self.quantity
 
 
 

@@ -20,7 +20,7 @@
   </div>
 <!-- Category Filter Menu -->
 <!-- Category Filter Dropdown -->
-<div class="mb-4 product-filter">
+<div class="mb-4 product-filter d-flex flex-wrap gap-2 align-items-center">
   <a href="{% url 'shop' %}" class="btn btn-outline-primary">All Products</a>
 
   <div class="dropdown d-inline-block">
@@ -41,6 +41,10 @@
       {% endfor %}
     </ul>
   </div>
+
+  <!-- Search Bar -->
+  <form method="get" action="{% url 'shop' %}" class="d-flex ms-auto" style="max-width: 300px;">
+   </form>      
 </div>
 
   <!-- Product Grid -->

@@ -37,7 +37,7 @@
 
           <!-- Centered Search Bar (desktop only) -->
           <form class="d-none d-lg-flex mx-auto search-bar" method="get" action="{% url 'shop' %}">
-            <input class="form-control me-2" type="search" placeholder="Search" name="q" value="{{ request.GET.q }}">
+            <input class="form-control me-2" type="search" placeholder="Search" name="q" >
             <button class="btn btn-outline-secondary" type="submit">Search</button>
           </form>
 
@@ -64,11 +64,12 @@
             <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
 
-            <!-- Basket -->
+ <!-- Basket -->
             <li class="nav-item position-relative">
               <a class="nav-link" href="{% url 'basket_summary' %}">
                 <i class="bi bi-basket" style="font-size: 1.5rem;"></i>
                 <span class="basket-badge">{{ basket|length }}</span>
+                <span class="basket-badge">{{ basket_quantity }}</span>
               </a>
             </li>
           </ul>
