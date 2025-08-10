@@ -20,32 +20,33 @@
   </div>
 <!-- Category Filter Menu -->
 <!-- Category Filter Dropdown -->
-<div class="mb-4 product-filter d-flex flex-wrap gap-2 align-items-center">
-  <a href="{% url 'shop' %}" class="btn btn-outline-primary">All Products</a>
+<div class="mb-4 product-filter">
+  <div class="d-flex flex-wrap gap-2 mb-3">
+    <a href="{% url 'shop' %}" class="btn btn-outline-primary">All Products</a>
 
-  <div class="dropdown d-inline-block">
-    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoryToggle"
-            data-bs-toggle="dropdown" aria-expanded="false">
-      Categories
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="categoryToggle">
-      {% for category in categories %}
-        <li>
-          <a class="dropdown-item {% if selected_category == category.slug %}active{% endif %}"
-             href="{% url 'shop' %}?category={{ category.slug }}">
-            {{ category.name }}
-          </a>
-        </li>
-      {% empty %}
-        <li><span class="dropdown-item-text">No categories found</span></li>
-      {% endfor %}
-    </ul>
+    <div class="dropdown d-inline-block">
+      <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoryToggle"
+              data-bs-toggle="dropdown" aria-expanded="false">
+        Categories
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="categoryToggle">
+        {% for category in categories %}
+          <li>
+            <a class="dropdown-item {% if selected_category == category.slug %}active{% endif %}"
+               href="{% url 'shop' %}?category={{ category.slug }}">
+              {{ category.name }}
+            </a>
+          </li>
+        {% empty %}
+          <li><span class="dropdown-item-text">No categories found</span></li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 
   <!-- Search Bar -->
-  <form method="get" action="{% url 'shop' %}" class="d-flex ms-auto" style="max-width: 300px;">
-   </form>      
-</div>
+<form method="get" action="{% url 'shop' %}" class="d-flex ms-auto" style="max-width: 300px;"></form>
+
 
   <!-- Product Grid -->
   {% if products %}

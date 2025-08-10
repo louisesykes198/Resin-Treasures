@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Prefetch
 from .models import Product, Category, ProductVariant
 from .models import Basket
+from django.db.models import Q
 
 def home(request):
     categories = Category.objects.all()
@@ -25,18 +26,32 @@ def shop(request):
     query = request.GET.get('q', '')
     categories = Category.objects.all()
 
-    products = Product.objects.all()
+    products = Product.objects.all()  # ✅ Make sure this is defined early
 
-    # Filter by category if selected
+    # Filter by category
     if selected_category_slug:
         category = get_object_or_404(Category, slug=selected_category_slug)
         products = products.filter(categories=category)
     else:
         category = None
 
-    # Filter by search query if provided
+    # Filter by search query
+    from django.db.models import Q
+    from django.db.models.functions import Lower
+
     if query:
-        products = products.filter(name__icontains=query)
+        products = products.filter(
+        Q(name__iregex=rf'\b{query}\b') |
+        Q(categories__name__iregex=rf'\b{query}\b') |
+        Q(variants__description__iregex=rf'\b{query}\b') |
+        Q(variants__color_name__iregex=rf'\b{query}\b')
+    ).distinct()
+
+    import re
+
+    query = request.GET.get('q', '')
+    query = re.escape(query.strip())
+
 
     # Prefetch variants
     variants_prefetch = Prefetch(
@@ -46,16 +61,8 @@ def shop(request):
     )
     products = products.prefetch_related(variants_prefetch)
 
-    # Sorting
-    if sort == 'name_asc':
-        products = products.order_by('name')
-    elif sort == 'name_desc':
-        products = products.order_by('-name')
-    elif sort == 'price_asc':
-        # Since price is on variants, sorting by price requires a workaround
-        products = sorted(products, key=lambda p: p.all_variants[0].price if p.all_variants else 0)
-    elif sort == 'price_desc':
-        products = sorted(products, key=lambda p: p.all_variants[0].price if p.all_variants else 0, reverse=True)
+    # Sorting logic...
+    # (keep your existing sorting code here)
 
     context = {
         'products': products,
