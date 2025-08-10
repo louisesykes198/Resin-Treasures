@@ -3,53 +3,6 @@
 
 {% block content %}
 
-
-<style>
-  .category-scroll {
-    -webkit-overflow-scrolling: touch;
-    overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
-  }
-
-  .category-scroll::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
-  }
-
-  .category-pill {
-    white-space: nowrap;
-    padding: 6px 12px;
-    margin-right: 8px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border: 1px solid #db4f2c;
-    border-radius: 999px;
-    background-color: white;
-    color: #db4f2c;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-    scroll-snap-align: start;
-  }
-
-  .category-scroll {
-    scroll-snap-type: x mandatory;
-  }
-
-  .category-pill.active,
-  .category-pill:hover {
-    background-color: #db4f2c;
-    color: white;
-    border-color: #a33a22;
-    box-shadow: 0 2px 6px rgba(219, 79, 44, 0.3);
-  }
-
-  /* === Navbar === */
-  .navbar {
-    background-color: white !important;
-    ...
-  }
-</style>
-
 <div class="container py-5">
 
   <!-- Page Title & Sort Dropdown -->
@@ -68,26 +21,28 @@
 <!-- Category Filter Menu -->
 <!-- Category Filter Dropdown -->
 <div class="mb-4 product-filter">
-  <a href="{% url 'shop' %}" class="all-products-btn">All Products</a>
+  <a href="{% url 'shop' %}" class="btn btn-outline-primary">All Products</a>
 
-  <div class="categories-dropdown">
-    <button class="dropdown-toggle" type="button" id="categoryToggle">
+  <div class="dropdown d-inline-block">
+    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoryToggle"
+            data-bs-toggle="dropdown" aria-expanded="false">
       Categories
     </button>
-    <ul class="dropdown-menu" id="categoryMenu">
+    <ul class="dropdown-menu" aria-labelledby="categoryToggle">
       {% for category in categories %}
         <li>
-          <a href="{% url 'shop' %}?category={{ category.slug }}"
-             class="{% if selected_category == category.slug %}active{% endif %}">
+          <a class="dropdown-item {% if selected_category == category.slug %}active{% endif %}"
+             href="{% url 'shop' %}?category={{ category.slug }}">
             {{ category.name }}
           </a>
         </li>
       {% empty %}
-        <li><span>No categories found</span></li>
+        <li><span class="dropdown-item-text">No categories found</span></li>
       {% endfor %}
     </ul>
   </div>
 </div>
+
   <!-- Product Grid -->
   {% if products %}
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
@@ -138,7 +93,6 @@
 
 </div>
 {% endblock %}
-
 
 
 

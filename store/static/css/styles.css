@@ -139,27 +139,22 @@
 
 /* === Search Bar === */
 .search-bar {
-  max-width: 500px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .search-bar input[type="search"] {
   border-radius: 50px;
-  padding: 8px 20px;
+  padding: 8px 30px;
   flex-grow: 1;
-}
+  }
 
 .search-bar button {
   border-radius: 20px;
   background-color: #4A90E2; /* button blue */
   color: #FFFFFF; /* white */
   border: none;
-  padding: 8px 20px;
-}
-
-.search-bar button:hover {
-  background-color: #2B65D9; /* darker blue */
 }
 
 /* === General Layout === */
@@ -176,29 +171,49 @@
 }
 
 /* === Contact Section === */
-/* Focus and button colors changed to blue */
+.contact-section {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+form input.form-input,
+form textarea.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+}
 
 form input:focus,
 form textarea:focus {
-  border-color: #4A90E2; /* blue focus */
-  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2); /* blue shadow */
+  border-color: #4A90E2; /* Blue */
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 form button {
   font-weight: 500;
   cursor: pointer;
-  background-color: #4A90E2; /* blue button */
-  color: #FFFFFF;
-  border: 1px solid #2B65D9;
+  background-color: #4A90E2; /* Blue */
+  color: #fff;
+  border: 1px solid #357ABD; /* Darker blue */
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 form button:hover {
-  background-color: #2B65D9; /* darker blue hover */
-  border-color: #1f4a8d;
+  background-color: #357ABD; /* Darker blue hover */
+  border-color: #2B65D9;
 }
+
 
 /* === Product Cards === */
 .btn-outline-peach {
@@ -305,6 +320,7 @@ button.empty-basket-btn:hover {
   background-color: #4A90E2 !important;
   border-color: #4A90E2 !important;
   color: #FFFFFF !important;
+  min-width: 180px;
 }
 
 .btn-primary:hover, .btn-primary:focus {
@@ -316,6 +332,7 @@ button.empty-basket-btn:hover {
 .btn-outline-primary {
   color: #4A90E2 !important;
   border-color: #4A90E2 !important;
+  min-width: 180px;
 }
 
 .btn-outline-primary:hover, .btn-outline-primary:focus {
@@ -328,7 +345,8 @@ button.empty-basket-btn:hover {
   background-color: #4A90E2 !important;
   color: #FFFFFF !important;
   border-color: #4A90E2 !important;
-}
+  min-width: 180px;
+  }
 
 .peach-btn {
   background-color: #4A90E2 !important;
@@ -341,74 +359,67 @@ button.empty-basket-btn:hover {
   color: #FFFFFF;
 }
 
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+  .navbar-nav {
+    flex-direction: column;
+    gap: 0;
+  }
+  .navbar-toggler {
+    display: block;
+  }
+  .navbar-nav {
+    display: none; /* hidden by default on mobile */
+  }
+  .navbar-nav.show {
+    display: flex; /* show when toggled */
+  }
+}
 
-/* Large screens (default Bootstrap md and up) already work fine */
-
-/* Tablets and smaller (max-width: 991px) */
+/* Mobile search bar style */
 @media (max-width: 991px) {
-  .thumb {
-    max-width: 60px;
+  form.search-bar.d-lg-none {
+    flex-direction: column; /* stack input and button */
+    gap: 0.5rem;             /* space between them */
   }
 
-  #main-image {
-    max-height: 300px;
-  }
-
-  .product-details h1 {
-    font-size: 1.8rem;
-  }
-
-  .product-details h3 {
-    font-size: 1.3rem;
+  form.search-bar.d-lg-none input,
+  form.search-bar.d-lg-none button {
+    width: 50%;             /* full width elements */
   }
 }
 
-/* Mobile screens (max-width: 576px) */
-@media (max-width: 576px) {
-  /* Stack thumbnails above the main image */
-  .col-3 {
-    flex: 0 0 100%;
-    max-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 1rem;
+/* Only affect the desktop search bar button */
+@media (min-width: 992px) {
+  .search-bar.d-lg-flex button {
+    min-width: 100px; /* smaller button on desktop */
+    padding: 8px 16px; /* smaller padding */
+  }
+}
+
+  /* Keep input a bit longer for balance */
+  form.search-bar.d-lg-flex input {
+    max-width: 300px;
   }
 
-  .col-9 {
-    flex: 0 0 100%;
-    max-width: 100%;
-    text-align: center;
+  /* === Responsive Hero Text === */
+@media (max-width: 768px) {
+  .hero-text {
+    left: 50%;
+    width: 90%;
+    padding: 0 1rem;
   }
 
-  #main-image {
-    max-height: 250px;
+  .hero-text h1 {
+    font-size: 2rem;
+    line-height: 1.3;
   }
 
-  /* Reduce padding around the container */
-  .container.py-5 {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
-  }
-
-  /* Smaller buttons for mobile */
-  .btn-lg {
+  .hero-text a {
     font-size: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 10px 20px;
   }
 }
-
-@media (max-width: 576px) {
-  /* Make all buttons smaller on mobile */
-  .btn-lg {
-    font-size: 1rem;       /* smaller font */
-    padding: 0.4rem 0.8rem; /* less padding */
-  }
-  
-  /* Optional: reduce padding on specific buttons if needed */
-  .btn-primary.btn-lg {
-    padding: 0.5rem 1rem;
-  }
-}
-
-

@@ -79,15 +79,18 @@
         <p id="variant-description" class="mb-4">{{ variants.0.description }}</p>
       {% endif %}
 
-      <div class="d-grid gap-2 mt-4">
-        <button class="btn btn-primary btn-lg">Buy it now</button>
-        <form action="{% url 'add_to_basket' product.id %}" method="post" class="d-grid gap-2 mt-4">
-  {% csrf_token %}
-  <button type="submit" class="view-product-btn">Add to Basket</button>
-</form>
-        <button class="btn btn-outline-secondary">♡ Add to Wishlist</button>
-      </div>
-      <a href="{% url 'shop' %}" class="btn btn-link mt-4">&larr; Back to Shop</a>
+<div class="mt-4 text-start">
+  <button class="btn btn-primary btn-lg w-auto">Buy it now</button>
+  
+  <form action="{% url 'add_to_basket' product.id %}" method="post" class="mt-2">
+    {% csrf_token %}
+    <button type="submit" class="view-product-btn btn btn-outline-primary w-auto">Add to Basket</button>
+  </form>
+  
+  <button class="btn btn-outline-secondary w-auto mt-2">♡ Add to Wishlist</button>
+</div>
+<a href="{% url 'shop' %}" class="btn btn-link mt-4">&larr; Back to Shop</a>
+
     </div>
 
   </div>
