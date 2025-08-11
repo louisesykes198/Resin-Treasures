@@ -1,8 +1,8 @@
+from django.db.models import Prefetch, Min, Q
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Prefetch
 from .models import Product, Category, ProductVariant
 from .models import Basket
-from django.db.models import Q
+import re
 
 def home(request):
     categories = Category.objects.all()
@@ -16,17 +16,13 @@ def about(request):
 def contact(request):
     return render(request, 'store/contact.html')
 
-from django.db.models import Prefetch
-
-from django.shortcuts import get_object_or_404
-
 def shop(request):
     sort = request.GET.get('sort', '')
     selected_category_slug = request.GET.get('category', '')
     query = request.GET.get('q', '')
     categories = Category.objects.all()
 
-    products = Product.objects.all()  # ✅ Make sure this is defined early
+    products = Product.objects.all()
 
     # Filter by category
     if selected_category_slug:
@@ -35,25 +31,22 @@ def shop(request):
     else:
         category = None
 
-    # Filter by search query
-    from django.db.models import Q
-    from django.db.models.functions import Lower
-
-    if query:
-        products = products.filter(
-        Q(name__iregex=rf'\b{query}\b') |
-        Q(categories__name__iregex=rf'\b{query}\b') |
-        Q(variants__description__iregex=rf'\b{query}\b') |
-        Q(variants__color_name__iregex=rf'\b{query}\b')
-    ).distinct()
-
-    import re
-
-    query = request.GET.get('q', '')
+    # Escape regex special chars for safe search
     query = re.escape(query.strip())
 
+    # Filter by search query
+    if query:
+        products = products.filter(
+            Q(name__iregex=rf'\b{query}\b') |
+            Q(categories__name__iregex=rf'\b{query}\b') |
+            Q(variants__description__iregex=rf'\b{query}\b') |
+            Q(variants__color_name__iregex=rf'\b{query}\b')
+        ).distinct()
 
-    # Prefetch variants
+    # Annotate with min_price from variants
+    products = products.annotate(min_price=Min('variants__price'))
+
+    # Prefetch variants (keeping your all_variants)
     variants_prefetch = Prefetch(
         'variants',
         queryset=ProductVariant.objects.order_by('id'),
@@ -61,8 +54,15 @@ def shop(request):
     )
     products = products.prefetch_related(variants_prefetch)
 
-    # Sorting logic...
-    # (keep your existing sorting code here)
+    # Sorting logic
+    if sort == 'price_asc':
+        products = products.order_by('min_price')
+    elif sort == 'price_desc':
+        products = products.order_by('-min_price')
+    elif sort == 'name_asc':
+        products = products.order_by('name')
+    elif sort == 'name_desc':
+        products = products.order_by('-name')
 
     context = {
         'products': products,
@@ -70,7 +70,7 @@ def shop(request):
         'sort': sort,
         'selected_category': selected_category_slug,
         'selected_category_obj': category,
-        'search_query': '',
+        'search_query': query,
     }
 
     return render(request, 'store/shop.html', context)
