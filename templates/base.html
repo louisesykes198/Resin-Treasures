@@ -36,10 +36,21 @@
         <div class="collapse navbar-collapse" id="navbarNav">
 
           <!-- Centered Search Bar (desktop only) -->
-          <form class="d-none d-lg-flex mx-auto search-bar" method="get" action="{% url 'shop' %}">
-            <input class="form-control me-2" type="search" placeholder="Search" name="q" >
-            <button class="btn btn-outline-secondary" type="submit">Search</button>
-          </form>
+<form class="d-none d-lg-flex mx-auto search-bar" method="get" action="{% url 'shop' %}" style="max-width: 500px; width: 100%;">
+  <input 
+    class="form-control me-2" 
+    type="search" 
+    placeholder="Search" 
+    name="q" 
+    style="flex-grow: 1; min-width: 0;"
+  >
+  <button 
+    class="btn btn-outline-secondary" 
+    type="submit" 
+    style="height: 38px; width: 80px; min-width: 80px; padding: 0; font-size: 1rem;"
+  >Go</button>
+</form>
+
 
           <!-- ✅ Wrap nav links inside UL -->
           <ul class="navbar-nav ms-auto d-flex align-items-center">
@@ -80,25 +91,24 @@
         <h4 class="logo-font my-1">Free delivery on orders over £{{ free_delivery_threshold }}!</h4>
       </div>
     </div>
-<!-- ✅ MOBILE SEARCH BAR FIX -->
+<!-- ✅ MOBILE SEARCH BAR WITH MATCHING HEIGHT BUTTON -->
 <div class="d-sm-none px-3 mt-2">
   <form class="w-100 d-flex align-items-center" method="get" action="{% url 'shop' %}">
     <input 
       type="search" 
       class="form-control form-control-sm me-2" 
       placeholder="Search" 
-      name="q"
-      value="{{ request.GET.q }}"
+      name="q"      
       style="height: 38px; flex-grow: 1;"
     >
     <button 
-      class="btn btn-sm btn-primary d-flex justify-content-center align-items-center" 
+      class="btn btn-primary btn-sm" 
       type="submit"
-      style="height: 38px; padding: 0 12px;"
+      style="height: 38px; width: 80px; min-width: 80px; padding: 0; font-size: 0.75rem;"
     >Go</button>
   </form>
 </div>
-  <!-- === MAIN CONTENT === -->
+<!-- === MAIN CONTENT === -->
   <main>
     {% block content %}
     {% endblock %}
@@ -120,6 +130,16 @@
   document.addEventListener('click', function(e) {
     if (!document.querySelector('.categories-dropdown').contains(e.target)) {
       document.getElementById('categoryMenu').classList.remove('show');
+    }
+  });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const searchForm = document.querySelector("form[action='{% url 'shop' %}']");
+    if (searchForm) {
+      searchForm.addEventListener("submit", function () {
+        const input = searchForm.querySelector("input[name='q']");
+        if (input) input.value = "";
+      });
     }
   });
 </script>
