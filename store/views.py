@@ -1,12 +1,13 @@
 from django.db.models import Prefetch, Min, Q
-from django.shortcuts import render, get_object_or_404
-from .models import Product, Category, ProductVariant
+from django.shortcuts import redirect, render, get_object_or_404
+from .models import Product, Category, ProductVariant, Wishlist
 from .models import Basket
 import re
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from django.contrib import messages
 from .forms import ContactForm
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     categories = Category.objects.all()
@@ -91,6 +92,11 @@ def shop(request):
         products = products.order_by('name')
     elif sort == 'name_desc':
         products = products.order_by('-name')
+        
+        # Get wishlist IDs for authenticated users
+    wishlist_ids = []
+    if request.user.is_authenticated:
+        wishlist_ids = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
 
     context = {
         'products': products,
@@ -98,10 +104,12 @@ def shop(request):
         'sort': sort,
         'selected_category': selected_category_slug,
         'selected_category_obj': category,
-        'search_query': query,
+        'search_query': query,  # use original query here
+        'wishlist_ids': wishlist_ids,
     }
 
     return render(request, 'store/shop.html', context)
+
 
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -128,8 +136,6 @@ def basket_context(request):
         basket = []
     return {'basket': basket}
 
-from django.shortcuts import redirect
-
 def add_to_basket(request, variant_id):
     basket = request.session.get('basket', {})
 
@@ -138,5 +144,21 @@ def add_to_basket(request, variant_id):
 
     request.session['basket'] = basket
     return redirect('basket_summary')  # or wherever you want to go
+
+@login_required
+def add_to_wishlist(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    Wishlist.objects.get_or_create(user=request.user, product=product)
+    return redirect('wishlist')
+
+@login_required
+def remove_from_wishlist(request, product_id):
+    Wishlist.objects.filter(user=request.user, product_id=product_id).delete()
+    return redirect('wishlist')
+
+@login_required
+def wishlist_view(request):
+    wishlist_items = Wishlist.objects.filter(user=request.user)
+    return render(request, 'store/wishlist.html', {'wishlist_items': wishlist_items})
 
 

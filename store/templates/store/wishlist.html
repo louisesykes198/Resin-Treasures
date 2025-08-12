@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+
+  <!-- Back to Shop Button -->
+  <div class="mb-3">
+    <a href="{% url 'shop' %}" class="btn btn-outline-secondary">&larr; Back to Shop</a>
+  </div>
+
+  <h1 class="mb-4">My Wishlist</h1>
+
+  {% if wishlist_items %}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      {% for item in wishlist_items %}
+        <div class="col">
+          <div class="card h-100 text-center border-0 shadow" style="background-color: #fffaf7;">
+
+            {% with variant=item.product.variants.first %}
+              <!-- Product Image -->
+              {% if variant and variant.image %}
+                <img src="{{ variant.image.url }}" 
+                     alt="{{ item.product.name }}"
+                     class="card-img-top"
+                     style="height: 250px; object-fit: cover;">
+              {% else %}
+                <img src="{% static 'images/no-image.png' %}" 
+                     alt="No image"
+                     class="card-img-top"
+                     style="height: 250px; object-fit: cover;">
+              {% endif %}
+
+              <div class="card-body d-flex flex-column">
+                <h6 class="fw-bold">{{ item.product.name }}</h6>
+                {% if variant %}
+                  <p class="text-peach fw-semibold mb-2">£{{ variant.price }}</p>
+                {% endif %}
+
+                <!-- View Product -->
+                <a href="{% url 'product_detail' item.product.id %}" class="btn btn-outline-primary mb-2">
+                  View Product
+                </a>
+
+                <!-- Remove from Wishlist -->
+                <form action="{% url 'remove_from_wishlist' item.product.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-outline-danger">Remove</button>
+                </form>
+              </div>
+            {% endwith %}
+
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Your wishlist is empty.</p>
+  {% endif %}
+
+</div>
+{% endblock %}
+
+

@@ -38,34 +38,34 @@
     <div class="col-md-6">
       <h1 class="mb-3">{{ product.name }}</h1>
 
-<!-- Color Swatch Selection -->
-<div class="mb-4">
-  <strong>Select Color:</strong>
-  <div class="d-flex flex-wrap gap-2 mt-2">
-    {% for variant in variants %}
-      {% if variant.color_list %}
-        <button 
-          class="border rounded-circle" 
-          style="
-            width: 32px; 
-            height: 32px; 
-            {% if variant.color_list|length > 1 %}
-              background: linear-gradient(to right, {% for color in variant.color_list %}{{ color }}{% if not forloop.last %}, {% endif %}{% endfor %});
-            {% else %}
-              background-color: {{ variant.color_list.0 }};
+      <!-- Color Swatch Selection -->
+      <div class="mb-4">
+        <strong>Select Color:</strong>
+        <div class="d-flex flex-wrap gap-2 mt-2">
+          {% for variant in variants %}
+            {% if variant.color_list %}
+              <button 
+                class="border rounded-circle" 
+                style="
+                  width: 32px; 
+                  height: 32px; 
+                  {% if variant.color_list|length > 1 %}
+                    background: linear-gradient(to right, {% for color in variant.color_list %}{{ color }}{% if not forloop.last %}, {% endif %}{% endfor %});
+                  {% else %}
+                    background-color: {{ variant.color_list.0 }};
+                  {% endif %}
+                  border: 2px solid #aaa;
+                " 
+                title="{{ variant.color_name }}" 
+                onclick="switchVariant(
+                  {% if variant.image %}'{{ variant.image.url }}'{% else %}''{% endif %},
+                  '{{ variant.price }}',
+                  '{{ variant.description|escapejs }}')"
+              ></button>
             {% endif %}
-            border: 2px solid #aaa;
-          " 
-          title="{{ variant.color_name }}" 
-          onclick="switchVariant(
-            {% if variant.image %}'{{ variant.image.url }}'{% else %}''{% endif %},
-            '{{ variant.price }}',
-            '{{ variant.description|escapejs }}')"
-        ></button>
-      {% endif %}
-    {% endfor %}
-  </div>
-</div>
+          {% endfor %}
+        </div>
+      </div>
 
       <!-- Price -->
       {% if variants and variants.0.price %}
@@ -79,18 +79,29 @@
         <p id="variant-description" class="mb-4">{{ variants.0.description }}</p>
       {% endif %}
 
-<div class="mt-4 text-start">
-  <button class="btn btn-primary btn-lg w-auto">Buy it now</button>
-  
-  <form action="{% url 'add_to_basket' product.id %}" method="post" class="mt-2">
-    {% csrf_token %}
-    <button type="submit" class="view-product-btn btn btn-outline-primary w-auto">Add to Basket</button>
-  </form>
-  
-  <button class="btn btn-outline-secondary w-auto mt-2">♡ Add to Wishlist</button>
-</div>
-<a href="{% url 'shop' %}" class="btn btn-link mt-4">&larr; Back to Shop</a>
+      <!-- Action Buttons -->
+      <div class="mt-4 text-start">
+        <button class="btn btn-primary btn-lg w-auto">Buy it now</button>
+        
+        <form action="{% url 'add_to_basket' product.id %}" method="post" class="mt-2 d-inline-block">
+          {% csrf_token %}
+          <button type="submit" class="view-product-btn btn btn-outline-primary w-auto">Add to Basket</button>
+        </form>
 
+        <!-- Wishlist Button -->
+        <form action="{% url 'add_to_wishlist' product.id %}" method="post" class="mt-2 d-inline-block">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-secondary w-auto">
+            {% if request.user.is_authenticated and product.id in wishlist_ids %}
+              ❤️ In Wishlist
+            {% else %}
+              ♡ Add to Wishlist
+            {% endif %}
+          </button>
+        </form>
+      </div>
+
+      <a href="{% url 'shop' %}" class="btn btn-link mt-4">&larr; Back to Shop</a>
     </div>
 
   </div>
@@ -101,11 +112,18 @@
     if (imageUrl) {
       document.getElementById('main-image').src = imageUrl;
     }
-    document.getElementById('variant-price').innerText = '£' + parseFloat(price).toFixed(2);
-    document.getElementById('variant-description').innerText = description;
+    if (price) {
+      document.getElementById('variant-price').innerText = '£' + parseFloat(price).toFixed(2);
+    }
+    if (description) {
+      document.getElementById('variant-description').innerText = description;
+    }
   }
 </script>
 {% endblock %}
+
+
+
 
 
 

@@ -369,6 +369,15 @@ button.empty-basket-btn:hover {
   padding: 0.3rem 0.6rem;
 }
 
+.wishlist-icon {
+    font-size: 1.5rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+.wishlist-icon:hover {
+    transform: scale(1.2);
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
