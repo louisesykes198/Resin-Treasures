@@ -3,6 +3,10 @@ from django.shortcuts import render, get_object_or_404
 from .models import Product, Category, ProductVariant
 from .models import Basket
 import re
+from django.core.mail import send_mail
+from django.core.mail import EmailMessage
+from django.contrib import messages
+from .forms import ContactForm
 
 def home(request):
     categories = Category.objects.all()
@@ -13,8 +17,32 @@ def home(request):
 def about(request):
     return render(request, 'store/about.html')
 
+
 def contact(request):
-    return render(request, 'store/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            full_message = f"Message from {name} ({email}):\n\n{message}"
+
+            email_message = EmailMessage(
+                subject=f"Contact Form Submission from {name}",
+                body=full_message,
+                from_email='store@resintreasures.co.uk',  # fake From
+                to=['resintreasures5@gmail.com'],  # your sister's email
+                headers={'Reply-To': email},  # replies go to customer email
+            )
+            email_message.send(fail_silently=False)
+
+            messages.success(request, "Your message has been sent successfully!")
+            return redirect('contact')
+    else:
+        form = ContactForm()
+
+    return render(request, 'store/contact.html', {'form': form})
 
 def shop(request):
     sort = request.GET.get('sort', '')
