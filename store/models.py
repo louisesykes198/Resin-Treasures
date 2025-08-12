@@ -4,7 +4,7 @@ from imagekit.processors import ResizeToFill
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.conf import settings
-from django.db import models
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -47,9 +47,13 @@ class ProductVariant(models.Model):
         options={'quality': 85}
     )
 
+    def __str__(self):
+        return f"{self.product.name} - {self.color_name or 'No Color'}"
+
+
 class Basket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    variant = models.ForeignKey('ProductVariant', on_delete=models.CASCADE)
+    variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
@@ -57,16 +61,8 @@ class Basket(models.Model):
 
     def get_total_price(self):
         return self.variant.price * self.quantity
+
     
-class Wishlist(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    product = models.ForeignKey('Product', on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ('user', 'product')  # Prevent duplicates
-
-    def __str__(self):
-        return f"{self.user.username} - {self.product.name}"
 
 
 

@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'basket',
+    'wishlist'
 ]
 
 MIDDLEWARE = [
