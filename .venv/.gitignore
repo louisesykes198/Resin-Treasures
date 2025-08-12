@@ -1,7 +1,7 @@
 # Virtual environment folders
 *.venv/
 venv/
-env/
+.env/
 ENV/
 
 # Environment variables file
