@@ -9,5 +9,6 @@ urlpatterns = [
     path('my-account/', views.my_account, name='my_account'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('account/settings/', views.account_settings, name='account_settings'),
+    path('profile/', views.profile, name='profile'),
 ]
 
