@@ -77,3 +77,6 @@ def profile(request):
         # Add any other context info you want on the profile page
     }
     return render(request, 'accounts/profile.html', context)
+
+    return render(request, 'accounts/settings.html')
+
