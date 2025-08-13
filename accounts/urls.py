@@ -10,5 +10,8 @@ urlpatterns = [
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('account/settings/', views.account_settings, name='account_settings'),
     path('profile/', views.profile, name='profile'),
+    path('profile/details/', views.personal_details, name='personal_details'),
+    path('profile/orders/', views.order_history, name='order_history'),
+    path('profile/orders/<int:order_id>/', views.order_detail, name='order_detail'),
 ]
 
