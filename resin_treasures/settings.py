@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'basket',
-    'wishlist'
+    'wishlist',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -166,3 +167,9 @@ CLOUDINARY_STORAGE = {
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Where to send users after login
+LOGIN_REDIRECT_URL = 'home'  # or a path name from your urls.py
+
+# Optional: Where to send users if they are not logged in and try to visit a protected page
+LOGIN_URL = 'login'
