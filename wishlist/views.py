@@ -19,4 +19,4 @@ def remove_from_wishlist(request, product_id):
 @login_required
 def wishlist_view(request):
     wishlist_items = Wishlist.objects.filter(user=request.user)
-    return render(request, 'store/wishlist.html', {'wishlist_items': wishlist_items})
+    return render(request, 'wishlist.html', {'wishlist_items': wishlist_items})
