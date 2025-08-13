@@ -18,23 +18,30 @@
     <!-- Order History (Optional) -->
     {# Uncomment if you have orders in context #}
     
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Order History</h5>
-            {% if orders %}
-                <ul class="list-group list-group-flush">
-                    {% for order in orders %}
-                        <li class="list-group-item">
-                            Order #{{ order.id }} - {{ order.date|date:"F j, Y" }}
-                            <span class="float-end">{{ order.total|floatformat:2 }} £</span>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p class="text-muted">You have no orders yet.</p>
-            {% endif %}
-        </div>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">Order History</h5>
+        {% if orders %}
+            <ul class="list-group list-group-flush">
+                {% for order in orders %}
+                    <li class="list-group-item">
+                        <strong>Order #{{ order.id }}</strong> - {{ order.date|date:"F j, Y" }}
+                        <span class="badge bg-info text-dark">{{ order.status|title }}</span>
+                        <span class="float-end">£{{ order.total|floatformat:2 }}</span>
+                        <br>
+                        <small>Items:</small>
+                        <ul class="mb-0">
+                            {% for item in order.items.all %}
+                                <li>{{ item.product_name }} (x{{ item.quantity }}) - £{{ item.price|floatformat:2 }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">You have no orders yet.</p>
+        {% endif %}
     </div>
-    
 </div>
+
 {% endblock %}
