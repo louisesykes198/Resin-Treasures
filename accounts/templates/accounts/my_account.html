@@ -2,11 +2,39 @@
 
 {% block content %}
 <div class="container my-5">
-    <h2>Welcome, {{ user.username }}!</h2>
-    <p>Email: {{ user.email }}</p>
+    <h2 class="mb-4">My Account</h2>
 
-    <div class="mt-4">
-        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+    <!-- Profile Info -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Profile Information</h5>
+            <p><strong>Username:</strong> {{ username }}</p>
+            <p><strong>Full Name:</strong> {{ full_name|default:"Not set" }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Member Since:</strong> {{ date_joined|date:"F j, Y" }}</p>
+        </div>
     </div>
+
+    <!-- Order History (Optional) -->
+    {# Uncomment if you have orders in context #}
+    
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">Order History</h5>
+            {% if orders %}
+                <ul class="list-group list-group-flush">
+                    {% for order in orders %}
+                        <li class="list-group-item">
+                            Order #{{ order.id }} - {{ order.date|date:"F j, Y" }}
+                            <span class="float-end">{{ order.total|floatformat:2 }} £</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">You have no orders yet.</p>
+            {% endif %}
+        </div>
+    </div>
+    
 </div>
 {% endblock %}
