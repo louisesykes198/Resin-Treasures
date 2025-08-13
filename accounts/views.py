@@ -80,3 +80,40 @@ def profile(request):
 
     return render(request, 'accounts/settings.html')
 
+@login_required
+def personal_details(request):
+    if request.method == 'POST':
+        # Get data from form
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        
+        # Update user
+        user = request.user
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.save()
+        
+        messages.success(request, 'Your personal details have been updated.')
+        return redirect('personal_details')
+
+    return render(request, 'accounts/personal_details.html')
+
+@login_required
+def order_history(request):
+    user_orders = Order.objects.filter(user=request.user).order_by('-date')
+    return render(request, 'accounts/order_history.html', {'orders': user_orders})
+
+from django.shortcuts import get_object_or_404
+
+@login_required
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    order_items = order.items.all()  # assuming a related name 'items' for order products
+    return render(request, 'accounts/order_detail.html', {
+        'order': order,
+        'order_items': order_items
+    })
+
+
