@@ -54,7 +54,7 @@ def signup(request):
             return redirect('login')
     else:
         form = UserCreationForm()
-    return render(request, 'account/signup.html', {'form': form})
+    return render(request, 'accounts/signup.html', {'form': form})
 
 class CustomLogoutView(LogoutView):
     next_page = 'home'
@@ -62,3 +62,6 @@ class CustomLogoutView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
         messages.success(request, "You have successfully logged out.")
         return super().dispatch(request, *args, **kwargs)
+    
+def account_settings(request):
+    return render(request, 'accounts/settings.html')
