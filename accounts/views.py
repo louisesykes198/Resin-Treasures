@@ -65,3 +65,15 @@ class CustomLogoutView(LogoutView):
     
 def account_settings(request):
     return render(request, 'accounts/settings.html')
+
+@login_required
+def profile(request):
+    """
+    Display the user's profile page.
+    """
+    user = request.user
+    context = {
+        'user': user,
+        # Add any other context info you want on the profile page
+    }
+    return render(request, 'accounts/profile.html', context)
