@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Order History</h2>
+    {% if orders %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.created_at|date:"M d, Y" }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>${{ order.total }}</td>
+                    <td><a href="{% url 'order_detail' order.id %}" class="btn btn-sm btn-primary">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You have no orders yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
