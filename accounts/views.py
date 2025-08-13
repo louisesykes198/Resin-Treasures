@@ -6,6 +6,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.timezone import localtime
 from store.models import Order
+from django.contrib import messages
+from django.contrib.auth.views import LogoutView
 
 def register(request):
     if request.method == 'POST':
@@ -42,3 +44,21 @@ def my_account(request):
         "orders": orders,
     }
     return render(request, "accounts/my_account.html", context)
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Account created successfully!")
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'account/signup.html', {'form': form})
+
+class CustomLogoutView(LogoutView):
+    next_page = 'home'
+
+    def dispatch(self, request, *args, **kwargs):
+        messages.success(request, "You have successfully logged out.")
+        return super().dispatch(request, *args, **kwargs)

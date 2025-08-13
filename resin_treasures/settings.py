@@ -17,6 +17,7 @@ from dotenv import load_dotenv
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+from django.contrib.messages import constants as messages
 
 
 load_dotenv()
@@ -173,3 +174,11 @@ LOGIN_REDIRECT_URL = 'home'  # or a path name from your urls.py
 
 # Optional: Where to send users if they are not logged in and try to visit a protected page
 LOGIN_URL = 'login'
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}

@@ -51,44 +51,59 @@
   >Go</button>
 </form>
 
+<!-- ✅ Wrap nav links inside UL -->
+<ul class="navbar-nav ms-auto d-flex align-items-center">
+    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
 
-          <!-- ✅ Wrap nav links inside UL -->
-          <ul class="navbar-nav ms-auto d-flex align-items-center">
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">All Products</a></li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button"
-                 data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
-              <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                {% for category in all_categories %}
-                  <li>
-                    <a class="dropdown-item" href="{% url 'shop' %}?category={{ category.slug }}">
-                      {{ category.name }}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button"
+           data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+        <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+            <li>
+                <a class="dropdown-item" href="{% url 'shop' %}">All Products</a>
             </li>
+            <li><hr class="dropdown-divider"></li>
+            {% for category in all_categories %}
+            <li>
+                <a class="dropdown-item" href="{% url 'shop' %}?category={{ category.slug }}">
+                    {{ category.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
 
-            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
-            {% if user.is_authenticated %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'my_account' %}">My Account</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-    </li>
-{% else %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'login' %}">Login</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
-    </li>
-{% endif %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
 
+    {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'my_account' %}">My Account</a>
+        </li>
+        <li class="nav-item">
+            <form method="post" action="{% url 'logout' %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn nav-link btn-link" style="padding: 0; border: none;">
+                    Logout
+                </button>
+            </form>
+        </li>
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+        </li>
+        <li class="nav-item">
+    <form method="post" action="{% url 'logout' %}" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="btn nav-link btn-link" style="padding: 0; border: none;">
+            Logout
+        </button>
+    </form>
+</li>
+    {% endif %}
  <!-- Basket -->
             <li class="nav-item position-relative">
               <a class="nav-link" href="{% url 'basket_summary' %}">
@@ -99,6 +114,17 @@
             </li>
           </ul>
   </header>
+      <!-- Messages -->
+<div class="container mt-3">
+  {% if messages %}
+      {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      {% endfor %}
+  {% endif %}
+</div>
       <!-- === DELIVERY BANNER === -->
     <div id="delivery-banner" class="row text-center">
       <div class="col bg-black text-white">
