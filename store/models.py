@@ -4,7 +4,9 @@ from imagekit.processors import ResizeToFill
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.conf import settings
-
+from cloudinary.models import CloudinaryField
+import json
+from django.contrib import admin
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -31,24 +33,62 @@ class Product(models.Model):
         return self.name
 
 
+import re
+from django.core.exceptions import ValidationError
+
 class ProductVariant(models.Model):
     product = models.ForeignKey(Product, related_name='variants', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='variants/')
+    image = CloudinaryField('image')
     description = models.TextField()
-    color_name = models.CharField(max_length=50, blank=True)
-    color_code = models.CharField(max_length=7, blank=True)
+    color_name = models.CharField(max_length=50, blank=False)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    color_codes = models.JSONField(default=list, blank=True, null=True)
 
-    # Thumbnail
-    thumbnail = ImageSpecField(
-        source='image',
-        processors=[ResizeToFill(250, 250)],
-        format='JPG',
-        options={'quality': 85}
-    )
+    class Meta:
+        unique_together = ('product', 'color_name')
 
     def __str__(self):
         return f"{self.product.name} - {self.color_name or 'No Color'}"
+
+    @property
+    def color_list(self):
+        """Returns a list of hex colors."""
+        return self.color_codes or []
+
+    @property
+    def swatch_background(self):
+        if isinstance(self.color_codes, list) and self.color_codes:
+            if len(self.color_codes) == 1:
+                return self.color_codes[0]
+            else:
+                return f"linear-gradient(to right, {', '.join(self.color_codes)})"
+        return '#ffffff'
+
+    def clean(self):
+        """Validate that color_codes contains proper hex colors."""
+        hex_pattern = re.compile(r'^#(?:[0-9a-fA-F]{3}){1,2}$')
+        if self.color_codes:
+            if not isinstance(self.color_codes, list):
+                raise ValidationError("color_codes must be a list of hex strings.")
+            for color in self.color_codes:
+                if not isinstance(color, str) or not hex_pattern.match(color.strip()):
+                    raise ValidationError(f"Invalid hex color: {color}")
+
+    def save(self, *args, **kwargs):
+        self.clean()  # Ensure validation before saving
+        super().save(*args, **kwargs)
+
+class ProductVariantImage(models.Model):
+    variant = models.ForeignKey(
+        'ProductVariant',
+        related_name='extra_images',
+        on_delete=models.CASCADE
+    )
+    image = CloudinaryField('image')
+    description = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return f"Image for {self.variant} ({self.description})"
 
 
 class Basket(models.Model):
@@ -89,6 +129,11 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.product_name} (x{self.quantity})"
+
+
+
+
+
 
     
 

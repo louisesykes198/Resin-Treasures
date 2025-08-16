@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load cloudinary_extras %}
+
 
 {% block content %}
-
 <div class="container py-5">
 
   <!-- Page Title & Sort Dropdown -->
@@ -43,61 +44,64 @@
         </ul>
       </div>
     </div>
-  <!-- Search Bar -->
-<form method="get" action="{% url 'shop' %}" class="d-flex ms-auto" style="max-width: 300px;"></form>
+  </div>
 
   <!-- Product Grid -->
   {% if products %}
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
       {% for product in products %}
-        {% with variant=product.all_variants.0 %}
-        <div class="col">
-          <div class="card h-100 text-center border-0 shadow position-relative" 
-               style="background-color: #fffaf7; font-family: 'Poppins', sans-serif;">
+{% with variant=product.all_variants.0 %}
+  <div class="col">
+    <div class="card h-100 text-center border-0 shadow position-relative" 
+         style="background-color: #fffaf7; font-family: 'Poppins', sans-serif;">
 
-            <!-- Wishlist Heart -->
-            <a href="{% url 'add_to_wishlist' product.id %}" 
-               class="wishlist-icon position-absolute top-0 end-0 m-2 text-danger">
-              {% if request.user.is_authenticated and product.id in wishlist_ids %}
-                ❤️
-              {% else %}
-                🤍
-              {% endif %}
-            </a>
+      <!-- Wishlist Heart -->
+      <a href="{% url 'add_to_wishlist' product.id %}" 
+         class="wishlist-icon position-absolute top-0 end-0 m-2 text-danger">
+        {% if request.user.is_authenticated and product.id in wishlist_ids %}
+          ❤️
+        {% else %}
+          🤍
+        {% endif %}
+      </a>
 
-            <!-- Product Image -->
-            {% if variant and variant.image %}
-              <img src="{{ variant.image.url|add:'?c_fill,g_auto,w_300,h_300' }}" 
-                   class="card-img-top" alt="{{ product.name }}"
-                   style="height: 250px; object-fit: cover; border-bottom: 3px solid peachpuff;">
-            {% else %}
-              <img src="{% static 'images/no-image.png' %}" 
-                   class="card-img-top" alt="No image"
-                   style="height: 250px; object-fit: cover; border-bottom: 3px solid peachpuff;">
-            {% endif %}
+      <!-- Product Image -->
+      {% if variant and variant.image %}
+        <img 
+          src="{{ variant.image|cloudinary_url:'w_300,h_300,c_fill' }}" 
+          class="card-img-top" 
+          alt="{{ product.name }}"
+          style="height: 250px; object-fit: cover; border-bottom: 3px solid peachpuff;"
+        >
+      {% else %}
+        <img src="{% static 'images/no-image.png' %}" 
+             class="card-img-top" alt="No image"
+             style="height: 250px; object-fit: cover; border-bottom: 3px solid peachpuff;">
+      {% endif %}
 
-            <div class="card-body d-flex flex-column">
-              <h6 class="fw-bold text-dark">{{ product.name }}</h6>
-              {% if variant %}
-                <p class="text-peach fw-semibold mb-2">£{{ variant.price }}</p>
-                <p class="text-muted small">{{ variant.description|truncatewords:20 }}</p>
-              {% else %}
-                <p class="text-peach fw-semibold mb-2">Price not available</p>
-                <p class="text-muted small">No description available</p>
-              {% endif %}
+      <div class="card-body d-flex flex-column">
+        <h6 class="fw-bold text-dark">{{ product.name }}</h6>
+        {% if variant %}
+          <p class="text-peach fw-semibold mb-2">£{{ variant.price }}</p>
+          <p class="text-muted small">{{ variant.description|truncatewords:20 }}</p>
+        {% else %}
+          <p class="text-peach fw-semibold mb-2">Price not available</p>
+          <p class="text-muted small">No description available</p>
+        {% endif %}
 
-              <!-- View Product Button -->
-              <a href="{% url 'product_detail' product.id %}" class="view-product-btn mx-auto mb-2">View Product</a>
+        <!-- View Product Button -->
+        <a href="{% url 'product_detail' product.id %}" class="view-product-btn mx-auto mb-2">View Product</a>
 
-              <!-- Add to Basket Button -->
-              <form action="{% url 'add_to_basket' product.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="peach-btn mx-auto">Add to Basket</button>
-              </form>
-            </div>
-          </div>
-        </div>
-        {% endwith %}
+        <!-- Add to Basket Button -->
+        <form action="{% url 'add_to_basket' product.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="peach-btn mx-auto">Add to Basket</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endwith %}
+
       {% endfor %}
     </div>
   {% else %}
@@ -107,10 +111,9 @@
       <img src="{% static 'images/coming-soon.svg' %}" class="img-fluid" style="max-width: 300px;" alt="Coming Soon">
     </div>
   {% endif %}
-
 </div>
-
 {% endblock %}
+
 
 
 

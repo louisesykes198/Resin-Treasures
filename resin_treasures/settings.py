@@ -14,17 +14,16 @@ import dj_database_url
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / '.env')
+
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+from cloudinary_storage.storage import MediaCloudinaryStorage
+from cloudinary_storage.storage import RawMediaCloudinaryStorage
 from django.contrib.messages import constants as messages
-
-
-load_dotenv()
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -34,13 +33,7 @@ SECRET_KEY = 'django-insecure-ddc*id7g-t(($2=nqf9fw((_#74e+6%3=26ty1xwsn$0o#)i44
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = [
-    'resin-treasures-2025-f7167892b201.herokuapp.com',
-    '127.0.0.1',
-    'localhost',
-]
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -58,6 +51,7 @@ INSTALLED_APPS = [
     'basket',
     'wishlist',
     'accounts',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -167,6 +161,7 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Where to send users after login
