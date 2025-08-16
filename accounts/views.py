@@ -8,16 +8,24 @@ from django.utils.timezone import localtime
 from store.models import Order
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
+from .forms import CustomUserCreationForm
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            # Set password using set_password to hash it properly
+            user.set_password(form.cleaned_data['password1'])
+            user.save()
             login(request, user)
-            return redirect('home')  # change 'home' to your homepage name
+            messages.success(request, "Account created successfully!")
+            return redirect('home')  # Change 'home' if needed
+        else:
+            messages.error(request, "Please correct the errors below.")
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
+
     return render(request, 'accounts/register.html', {'form': form})
 
 class CustomLoginView(LoginView):

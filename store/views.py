@@ -9,6 +9,7 @@ from django.contrib import messages
 from .forms import ContactForm
 from django.contrib.auth.decorators import login_required
 
+
 def home(request):
     categories = Category.objects.all()
     return render(request, 'store/home.html', {
@@ -60,7 +61,7 @@ def shop(request):
     else:
         category = None
 
-    # Escape regex special chars for safe search
+    # Escape regex special chars
     query = re.escape(query.strip())
 
     # Filter by search query
@@ -70,59 +71,43 @@ def shop(request):
             Q(categories__name__iregex=rf'\b{query}\b') |
             Q(variants__description__iregex=rf'\b{query}\b') |
             Q(variants__color_name__iregex=rf'\b{query}\b')
-        ).distinct()
+        )
 
-    # Annotate with min_price from variants
-    products = products.annotate(min_price=Min('variants__price'))
+    # Prefetch variants + add min_price
+    products = products.prefetch_related(
+        Prefetch('variants', queryset=ProductVariant.objects.order_by('id'), to_attr='all_variants')
+    ).annotate(min_price=Min('variants__price')).distinct()
 
-    # Prefetch variants (keeping your all_variants)
-    variants_prefetch = Prefetch(
-        'variants',
-        queryset=ProductVariant.objects.order_by('id'),
-        to_attr='all_variants'
-    )
-    products = products.prefetch_related(variants_prefetch)
-
-    # Sorting logic
-    if sort == 'price_asc':
-        products = products.order_by('min_price')
-    elif sort == 'price_desc':
-        products = products.order_by('-min_price')
-    elif sort == 'name_asc':
-        products = products.order_by('name')
-    elif sort == 'name_desc':
-        products = products.order_by('-name')
-        
-    context = {
+    return render(request, 'store/shop.html', {
         'products': products,
         'categories': categories,
-        'sort': sort,
-        'selected_category': selected_category_slug,
-        'selected_category_obj': category,
-        'search_query': query,  # use original query here
-    }
+        'selected_category': category,
+    })
 
-    return render(request, 'store/shop.html', context)
+
+from django.db.models import Prefetch
+from django.shortcuts import get_object_or_404, render
+from .models import Product, ProductVariant, ProductVariantImage
 
 
 def product_detail(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    variants = product.variants.all()
+    variants_prefetch = Prefetch(
+        'variants',
+        queryset=ProductVariant.objects.prefetch_related(
+            Prefetch('extra_images', queryset=ProductVariantImage.objects.all(), to_attr='all_images')
+        ),
+        to_attr='all_variants'
+    )
 
-    # Process color into a list
-    for variant in variants:
-        if variant.color_name:
-            # Replace " and " with "," and split
-            color_str = variant.color_name.lower().replace(' and ', ',')
-            variant.color_list = [c.strip() for c in color_str.split(',') if c.strip()]
-        else:
-            variant.color_list = []
+    product = Product.objects.prefetch_related(variants_prefetch).get(pk=pk)
+    variants = product.all_variants
 
     return render(request, 'store/product_detail.html', {
         'product': product,
         'variants': variants
     })
 
+    
 def basket_context(request):
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
