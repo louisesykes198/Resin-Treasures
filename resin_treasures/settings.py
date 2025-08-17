@@ -18,6 +18,12 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / '.env')
 
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+DATABASES = {
+    "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
+}
+
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -91,16 +97,25 @@ WSGI_APPLICATION = 'resin_treasures.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# Database
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'squid_elope_virus_497459',
+        'USER': 'neondb_owner',
+        'PASSWORD': 'npg_ihxwj4mlAR0p',
+        'HOST': 'ep-dark-butterfly-a2k08c50.eu-central-1.aws.neon.tech',
+        'PORT': '5432',
     }
 }
 
-# If DATABASE_URL is set (e.g., on Heroku), override the default database settings
-if os.environ.get('DATABASE_URL'):
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# Optional: fallback for tests
+import sys
+if 'test' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+    DATABASES['default']['NAME'] = os.path.join(BASE_DIR, 'test_db.sqlite3')
+
     
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
