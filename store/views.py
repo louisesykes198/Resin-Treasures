@@ -67,11 +67,11 @@ def shop(request):
     # Filter by search query
     if query:
         products = products.filter(
-            Q(name__iregex=rf'\b{query}\b') |
-            Q(categories__name__iregex=rf'\b{query}\b') |
-            Q(variants__description__iregex=rf'\b{query}\b') |
-            Q(variants__color_name__iregex=rf'\b{query}\b')
-        )
+            Q(name__icontains=query) |
+            Q(categories__name__icontains=query) |
+            Q(variants__description__icontains=query) |
+            Q(variants__color_name__icontains=query)
+    )
 
     # Prefetch variants + add min_price
     products = products.prefetch_related(

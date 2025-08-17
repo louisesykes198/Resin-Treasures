@@ -129,6 +129,13 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.product_name} (x{self.quantity})"
+    
+class NumberItem(models.Model):
+    value = models.IntegerField()
+
+    def __str__(self):
+        return str(self.value)
+
 
 
 
