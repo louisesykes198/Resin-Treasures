@@ -71,19 +71,29 @@ def shop(request):
             Q(categories__name__icontains=query) |
             Q(variants__description__icontains=query) |
             Q(variants__color_name__icontains=query)
-    )
+        )
 
     # Prefetch variants + add min_price
     products = products.prefetch_related(
         Prefetch('variants', queryset=ProductVariant.objects.order_by('id'), to_attr='all_variants')
     ).annotate(min_price=Min('variants__price')).distinct()
 
+    # --- Sorting ---
+    if sort == 'price_asc':
+        products = products.order_by('min_price')
+    elif sort == 'price_desc':
+        products = products.order_by('-min_price')
+    elif sort == 'name_asc':
+        products = products.order_by('name')
+    elif sort == 'name_desc':
+        products = products.order_by('-name')
+
     return render(request, 'store/shop.html', {
         'products': products,
         'categories': categories,
         'selected_category': category,
+        'sort': sort,
     })
-
 
 from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404, render
