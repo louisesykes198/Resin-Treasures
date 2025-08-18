@@ -129,3 +129,6 @@ def delivery_info(request):
 
 def returns(request):
     return render(request, 'store/returns.html')
+
+def help_faqs(request):
+    return render(request, 'store/help_faqs.html')
