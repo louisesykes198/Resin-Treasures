@@ -10,7 +10,7 @@ urlpatterns = [
     path('basket/', include('basket.urls')),
     path('wishlist/', include('wishlist.urls')),
     path("newsletter/", include("newsletter.urls")),
-]
+    ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

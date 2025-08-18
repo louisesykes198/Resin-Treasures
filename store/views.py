@@ -124,4 +124,5 @@ def add_to_basket(request, variant_id):
     request.session['basket'] = basket
     return redirect('basket_summary')  # or wherever you want to go
 
-
+def delivery_info(request):
+    return render(request, 'store/delivery_info.html')
