@@ -9,6 +9,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')), 
     path('basket/', include('basket.urls')),
     path('wishlist/', include('wishlist.urls')),
+    path("newsletter/", include("newsletter.urls")),
 ]
 
 if settings.DEBUG:
