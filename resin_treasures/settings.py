@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'wishlist',
     'accounts',
     'widget_tweaks',
+    'newsletter',
 ]
 
 MIDDLEWARE = [
