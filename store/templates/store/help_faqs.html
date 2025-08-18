@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="display-5 fw-bold mb-4 text-peach">Help & FAQs</h1>
+
+  <p>Here you’ll find answers to some of the most common questions about Resin Treasures. If you can’t find what you’re looking for, please <a href="{% url 'contact' %}">contact us</a>.</p>
+
+  <div class="accordion" id="faqAccordion">
+
+    <!-- Ordering -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Ordering
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          <ul>
+            <li>How do I place an order? – Browse our shop, select your items, add to basket, and checkout using your preferred payment method.</li>
+            <li>Can I change my order after placing it? – Unfortunately, once an order is submitted we cannot guarantee changes. Please contact us immediately if you need adjustments.</li>
+            <li>Do you offer gift wrapping? – Yes! You can select gift wrapping at checkout for an additional fee.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shipping & Delivery -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Shipping & Delivery
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          <ul>
+            <li>What delivery options are available? – See our <a href="{% url 'delivery_info' %}">Delivery Info</a> page for full details and costs.</li>
+            <li>How long will delivery take? – Standard delivery usually takes 2–5 business days. You will receive tracking updates.</li>
+            <li>Can I track my order? – Yes, we provide tracking information for all deliveries via email.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payments -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Payments
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          <ul>
+            <li>What payment methods do you accept? – We accept major debit/credit cards and PayPal.</li>
+            <li>Is my payment information safe? – Yes, all payments are processed securely via Stripe/PayPal.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Returns & Refunds -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFour">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Returns & Refunds
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          <ul>
+            <li>How do I return an item? – See our <a href="{% url 'returns' %}">Returns & Refunds</a> page for step-by-step instructions.</li>
+            <li>Can I return personalised items? – Only if they arrive broken or damaged.</li>
+            <li>How long do refunds take? – Refunds are usually processed within 7 working days after we receive the returned item.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFive">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          Other Questions
+        </button>
+      </h2>
+      <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          <ul>
+            <li>Do you ship internationally? – Yes, please contact us for shipping costs to your country.</li>
+            <li>Can I cancel my subscription? – Yes, unsubscribe at any time from our newsletters link.</li>
+            <li>How can I contact customer service? – Email <a href="mailto:resintreasures5@gmail.com">resintreasures5@gmail.com</a> or use the contact form.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
