@@ -245,6 +245,49 @@ form button:hover {
   color: #000;
 }
 
+.wishlist-icon {
+  font-size: 1.5rem;          /* make it stand out */
+  color: hotpink !important;  /* always pink */
+  text-decoration: none !important; /* remove underline */
+}
+
+.wishlist-icon:hover {
+  color: deeppink !important; /* darker pink when hovered */
+}
+
+/* Pastel background for footer */
+.bg-pastel {
+  background-color: #fdf6f9; /* very pale pink */
+}
+
+/* Pastel button */
+.btn-pastel {
+  background-color: #a8d8ea; /* soft light blue */
+  color: #fff;
+  border: none;
+}
+.btn-pastel:hover {
+  background-color: #7fc1d6; /* darker blue on hover */
+}
+
+/* Footer links */
+.footer-link {
+  color: #444;
+  text-decoration: none;
+}
+.footer-link:hover {
+  color: #a855f7; /* soft purple hover */
+}
+
+/* Social icons */
+.footer-social {
+  color: #444;
+  transition: color 0.3s;
+}
+.footer-social:hover {
+  color: #e75480; /* pastel pink hover */
+}
+
 /* === Responsive === */
 
 /* Mobile & Tablet Styles */

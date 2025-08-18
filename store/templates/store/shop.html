@@ -55,24 +55,24 @@
     <div class="card h-100 text-center border-0 shadow position-relative" 
          style="background-color: #fffaf7; font-family: 'Poppins', sans-serif;">
 
-      <!-- Wishlist Heart -->
-      <a href="{% url 'add_to_wishlist' product.id %}" 
-         class="wishlist-icon position-absolute top-0 end-0 m-2 text-danger">
-        {% if request.user.is_authenticated and product.id in wishlist_ids %}
-          ❤️
-        {% else %}
-          🤍
-        {% endif %}
-      </a>
+<a href="{% url 'add_to_wishlist' product.id %}" 
+   class="wishlist-icon position-absolute top-0 end-0 m-2">
+  {% if request.user.is_authenticated and product.id in wishlist_ids %}
+    ❤️
+  {% else %}
+    🤍
+  {% endif %}
+</a>
 
       <!-- Product Image -->
       {% if variant and variant.image %}
-        <img 
-          src="{{ variant.image|cloudinary_url:'w_300,h_300,c_fill' }}" 
-          class="card-img-top" 
-          alt="{{ product.name }}"
-          style="height: 250px; object-fit: cover; border-bottom: 3px solid peachpuff;"
-        >
+      <img 
+        src="{{ variant.image|cloudinary_url:'w_300,h_300,c_fit' }}" 
+        class="card-img-top" 
+        alt="{{ product.name }}"
+        style="height: 250px; object-fill: contain; border-bottom: 2px solid peachpuff; background:#fff;"
+>
+
       {% else %}
         <img src="{% static 'images/no-image.png' %}" 
              class="card-img-top" alt="No image"
