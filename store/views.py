@@ -126,3 +126,6 @@ def add_to_basket(request, variant_id):
 
 def delivery_info(request):
     return render(request, 'store/delivery_info.html')
+
+def returns(request):
+    return render(request, 'store/returns.html')
