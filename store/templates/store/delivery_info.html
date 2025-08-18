@@ -1,26 +1,85 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
 <div class="container py-5">
-    <h1 class="mb-4">Delivery Information</h1>
+  <h1 class="mb-4">Delivery Information</h1>
 
-    <h4>Shipping Methods & Times</h4>
-    <p>We offer standard and express shipping:</p>
-    <ul>
-        <li><strong>Standard Shipping:</strong> 3-5 business days</li>
-        <li><strong>Express Shipping:</strong> 1-2 business days</li>
-    </ul>
+  <!-- InPost Locker or Shop -->
+  <div class="mb-5">
+    <h3>Sending to an InPost Locker or Shop</h3>
+    <p>Drop off your parcel at an InPost Point, and we’ll deliver it to your recipient’s chosen point! They’ll get updates from us and once it arrives, they have 3 days to collect.</p>
+    
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Parcel Size</th>
+            <th>Dimensions (cm / in)</th>
+            <th>Max Weight</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Small</td>
+            <td>8 x 38 x 64 cm / 3 x 15 x 25 in</td>
+            <td>15kg</td>
+            <td>£1.99</td>
+          </tr>
+          <tr>
+            <td>Medium</td>
+            <td>19 x 38 x 64 cm / 7.5 x 15 x 25 in</td>
+            <td>15kg</td>
+            <td>£2.59</td>
+          </tr>
+          <tr>
+            <td>Large</td>
+            <td>41 x 38 x 64 cm / 16 x 15 x 25 in</td>
+            <td>15kg</td>
+            <td>£3.99</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-    <h4>Shipping Costs</h4>
-    <p>Shipping costs are calculated at checkout based on your location and chosen delivery method.</p>
+  <!-- Home Address -->
+  <div>
+    <h3>Sending to a Home Address</h3>
+    <p>Drop off your parcel at any of our InPost Points, and we’ll deliver it to your recipient’s home address. We'll send you and them updates along the way.</p>
 
-    <h4>International Delivery</h4>
-    <p>We ship worldwide. International delivery times vary depending on the destination.</p>
-
-    <h4>Order Tracking</h4>
-    <p>Once your order is shipped, you will receive a tracking number by email.</p>
-
-    <h4>Returns & Refunds</h4>
-    <p>Please visit our <a href="#">Returns & Refunds</a> page for full details.</p>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Parcel Size</th>
+            <th>Dimensions (cm / in)</th>
+            <th>Max Weight</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Small</td>
+            <td>8 x 38 x 64 cm / 3 x 15 x 25 in</td>
+            <td>15kg</td>
+            <td>£2.89</td>
+          </tr>
+          <tr>
+            <td>Medium</td>
+            <td>19 x 38 x 64 cm / 7.5 x 15 x 25 in</td>
+            <td>15kg</td>
+            <td>£3.99</td>
+          </tr>
+          <tr>
+            <td>Large</td>
+            <td>41 x 38 x 64 cm / 16 x 15 x 25 in</td>
+            <td>15kg</td>
+            <td>£5.99</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 {% endblock %}
