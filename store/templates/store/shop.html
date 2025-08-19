@@ -64,18 +64,18 @@
               {% endif %}
             </a>
 
-            <!-- Product Image -->
-            {% if variant and variant.image %}
-              <img src="{{ variant.image|cloudinary_url:'w_300,h_300,c_fit' }}" 
-                   class="card-img-top" 
-                   alt="{{ product.name }}" 
-                   style="height: 250px; object-fill: contain; border-bottom: 2px solid peachpuff; background:#fff;">
-            {% else %}
-              <img src="{% static 'images/no-image.png' %}" 
-                   class="card-img-top" 
-                   alt="No image" 
-                   style="height: 250px; object-fit: cover; border-bottom: 3px solid peachpuff;">
-            {% endif %}
+<div class="product-image-wrapper">
+  {% if variant and variant.image %}
+<img src="{{ variant.image|cloudinary_url:'w_300,h_300,c_fill' }}" 
+     class="product-image" 
+     alt="{{ product.name }}">
+
+  {% else %}
+    <img src="{% static 'images/no-image.png' %}" 
+         class="product-image" 
+         alt="No image">
+  {% endif %}
+</div>
 
             <!-- Card Body -->
             <div class="card-body d-flex flex-column">
@@ -132,6 +132,7 @@
 
 </div> <!-- container -->
 {% endblock %}
+
 
 
 
