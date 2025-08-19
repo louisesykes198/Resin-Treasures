@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from store.models import Product
+from store.models import Product, ProductVariant
 from django.views.decorators.http import require_POST
 
 def basket_summary(request):
@@ -7,55 +7,93 @@ def basket_summary(request):
     basket_items = []
     total = 0
 
-    for item_id, quantity in basket.items():
-        product = get_object_or_404(Product, id=item_id)
-        variant = product.variants.first()  # Adjust if needed
-        price = variant.price if variant else 0
+    for key, quantity in basket.items():
+        if key.startswith("variant_"):
+            variant_id = int(key.split("_")[1])
+            variant = get_object_or_404(ProductVariant, id=variant_id)
+            product = variant.product
+            price = variant.price
+        else:
+            product_id = int(key.split("_")[1])
+            product = get_object_or_404(Product, id=product_id)
+            variant = None
+            price = getattr(product, 'min_price', 0)
+
         subtotal = price * quantity
         total += subtotal
 
         basket_items.append({
-            'product': product,
-            'variant': variant,
-            'quantity': quantity,
-            'subtotal': subtotal
+            "key": key,
+            "product": product,
+            "variant": variant,
+            "quantity": quantity,
+            "subtotal": subtotal,
         })
 
-    return render(request, 'basket/basket.html', {
-        'basket_items': basket_items,
-        'total': total
+    return render(request, "basket/basket.html", {
+        "basket_items": basket_items,
+        "total": total,
     })
+
 
 @require_POST
 def add_to_basket(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)
-    basket = request.session.get('basket', {})
+    variant_id = request.POST.get("variant_id")
+    basket = request.session.get("basket", {})
 
-    basket[str(product_id)] = basket.get(str(product_id), 0) + 1
+    if variant_id:
+        key = f"variant_{variant_id}"
+    else:
+        key = f"product_{product_id}"
 
-    request.session['basket'] = basket
+    basket[key] = basket.get(key, 0) + 1
+    request.session["basket"] = basket
+    return redirect("basket_summary")
 
-    return redirect('basket_summary')
+
+@require_POST
+def remove_one_from_basket(request, product_id):
+    variant_id = request.POST.get("variant_id")
+    basket = request.session.get("basket", {})
+
+    if variant_id:
+        key = f"variant_{variant_id}"
+    else:
+        key = f"product_{product_id}"
+
+    if key in basket:
+        if basket[key] > 1:
+            basket[key] -= 1
+        else:
+            del basket[key]
+
+    request.session["basket"] = basket
+    return redirect("basket_summary")
+
 
 @require_POST
 def remove_from_basket(request, product_id):
-    basket = request.session.get('basket', {})
+    """Remove the item completely, regardless of quantity"""
+    variant_id = request.POST.get("variant_id")
+    basket = request.session.get("basket", {})
 
-    if str(product_id) in basket:
-        # Option 1: reduce quantity by 1
-        if basket[str(product_id)] > 1:
-            basket[str(product_id)] -= 1
-        else:
-            # Option 2: remove entirely if quantity is 1
-            del basket[str(product_id)]
-        request.session['basket'] = basket
+    if variant_id:
+        key = f"variant_{variant_id}"
+    else:
+        key = f"product_{product_id}"
 
-    return redirect('basket_summary')
+    if key in basket:
+        del basket[key]
+
+    request.session["basket"] = basket
+    return redirect("basket_summary")
+
 
 @require_POST
 def empty_basket(request):
     request.session['basket'] = {}
     return redirect('basket_summary')
+
 
 
 

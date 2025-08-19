@@ -54,6 +54,7 @@
           <div class="card h-100 text-center border-0 shadow position-relative" 
                style="background-color: #fffaf7; font-family: 'Poppins', sans-serif;">
 
+            <!-- Wishlist Icon -->
             <a href="{% url 'add_to_wishlist' product.id %}" 
                class="wishlist-icon position-absolute top-0 end-0 m-2">
               {% if request.user.is_authenticated and product.id in wishlist_ids %}
@@ -65,23 +66,23 @@
 
             <!-- Product Image -->
             {% if variant and variant.image %}
-              <img 
-                src="{{ variant.image|cloudinary_url:'w_300,h_300,c_fit' }}" 
-                class="card-img-top" 
-                alt="{{ product.name }}"
-                style="height: 250px; object-fill: contain; border-bottom: 2px solid peachpuff; background:#fff;"
-              >
+              <img src="{{ variant.image|cloudinary_url:'w_300,h_300,c_fit' }}" 
+                   class="card-img-top" 
+                   alt="{{ product.name }}" 
+                   style="height: 250px; object-fill: contain; border-bottom: 2px solid peachpuff; background:#fff;">
             {% else %}
               <img src="{% static 'images/no-image.png' %}" 
-                   class="card-img-top" alt="No image"
+                   class="card-img-top" 
+                   alt="No image" 
                    style="height: 250px; object-fit: cover; border-bottom: 3px solid peachpuff;">
             {% endif %}
 
+            <!-- Card Body -->
             <div class="card-body d-flex flex-column">
               <h6 class="fw-bold text-dark">{{ product.name }}</h6>
 
               {% if product.min_price %}
-                <p class="text-peach fw-semibold mb-2"> £{{ product.min_price }}</p>
+                <p class="text-peach fw-semibold mb-2">£{{ product.min_price }}</p>
               {% else %}
                 <p class="text-peach fw-semibold mb-2">Price not available</p>
               {% endif %}
@@ -92,29 +93,49 @@
                 <p class="text-muted small">No description available</p>
               {% endif %}
 
-              <!-- View Product Button -->
-              <a href="{% url 'product_detail' product.id %}" class="view-product-btn mx-auto mb-2">View Product</a>
+<form method="post" action="{% url 'add_to_basket' product.pk %}" class="d-flex flex-column gap-2">
+  {% csrf_token %}
+  {% with variant=product.all_variants.0 %}
+    {% if variant %}
+      <input type="hidden" name="variant_id" value="{{ variant.id }}">
+    {% endif %}
+  {% endwith %}
 
-              <!-- Add to Basket Button -->
-              <form action="{% url 'add_to_basket' product.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="peach-btn mx-auto">Add to Basket</button>
-              </form>
-            </div>
-          </div>
-        </div>
+  <!-- View Product Button -->
+  <a href="{% url 'product_detail' product.pk %}" class="btn btn-sm btn-primary">
+    View Product
+  </a>
+
+  <!-- Add to Basket Button -->
+  <button type="submit" class="btn btn-outline-primary w-auto">Add to Basket</button>
+</form>
+
+
+            </div> <!-- card-body -->
+          </div> <!-- card -->
+        </div> <!-- col -->
         {% endwith %}
       {% endfor %}
-    </div>
+    </div> <!-- row -->
+
   {% else %}
+    <!-- Empty State -->
     <div class="text-center text-muted mt-5">
       <h3>No products available</h3>
       <p>We’re adding more products soon. Stay tuned!</p>
-      <img src="{% static 'images/coming-soon.svg' %}" class="img-fluid" style="max-width: 300px;" alt="Coming Soon">
+      <img src="{% static 'images/coming-soon.svg' %}" 
+           class="img-fluid" 
+           style="max-width: 300px;" 
+           alt="Coming Soon">
     </div>
   {% endif %}
-</div>
+
+</div> <!-- container -->
 {% endblock %}
+
+
+
+
 
 
 

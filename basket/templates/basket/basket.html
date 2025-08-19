@@ -8,52 +8,115 @@
     <div class="list-group mb-4">
       {% for item in basket_items %}
         <div class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-          <div class="d-flex align-items-center">
-            {% if item.variant.image %}
-              <img src="{{ item.variant.image.url }}" alt="{{ item.product.name }}" class="img-thumbnail me-3" style="width: 100px; height: auto;">
-            {% endif %}
-            <div>
-              <h5>{{ item.product.name }}</h5>
-              <p class="mb-1 text-muted">Price: £{{ item.variant.price }}</p>
-              <p class="mb-1">Subtotal: £{{ item.subtotal }}</p>
-            </div>
-          </div>
-          <div class="d-flex align-items-center">
-<div class="basket-item-controls">
-  <form action="{% url 'remove_from_basket' item.product.id %}" method="post" class="d-inline-block me-2">
-    {% csrf_token %}
-    <button type="submit">-</button>
-  </form>
 
-  <span>{{ item.quantity }}</span>
+<!-- Product Info -->
+<div class="d-flex align-items-center">
+  {% if item.variant and item.variant.image %}
+    <img src="{{ item.variant.image.url }}" alt="{{ item.product.name }}" class="img-thumbnail me-3" style="width: 100px; height: auto;">
+  {% elif item.product.image %}
+    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-thumbnail me-3" style="width: 100px; height: auto;">
+  {% endif %}
 
-  <form action="{% url 'add_to_basket' item.product.id %}" method="post" class="d-inline-block ms-2">
-    {% csrf_token %}
-    <button type="submit">+</button>
-  </form>
+  <div>
+    <h5>{{ item.product.name }}</h5>
+    <p class="mb-1 text-muted">
+      Price: £
+      {% if item.variant %}
+        {{ item.variant.price }}
+      {% else %}
+        {{ item.product.min_price }}
+      {% endif %}
+    </p>
+    <p class="mb-1">Subtotal: £{{ item.subtotal }}</p>
+  </div>
 </div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
+          <!-- Quantity Controls & Remove -->
+          <div class="d-flex align-items-center gap-2">
 
+             <!-- Decrease Quantity (-) -->
+<form action="{% url 'remove_from_basket' item.product.id %}" method="post" class="d-inline-block">
+  {% csrf_token %}
+  {% if item.variant %}
+    <input type="hidden" name="variant_id" value="{{ item.variant.id }}">
+  {% endif %}
+  <button type="submit" class="btn btn-outline-primary btn-sm">-</button>
+</form>
+
+            <!-- Current Quantity -->
+            <span class="mx-2">{{ item.quantity }}</span>
+
+            <!-- Increase Quantity (+) -->
+            <form action="{% url 'add_to_basket' item.product.id %}" method="post" class="d-inline-block">
+              {% csrf_token %}
+              {% if item.variant %}
+                <input type="hidden" name="variant_id" value="{{ item.variant.id }}">
+              {% endif %}
+              <button type="submit" class="btn btn-outline-primary btn-sm">+</button>
+            </form>
+
+<!-- Remove Item Completely (Small Red Bin) -->
+<form action="{% url 'remove_from_basket' item.product.id %}" method="post" class="d-inline-block">
+  {% csrf_token %}
+  {% if item.variant %}
+    <input type="hidden" name="variant_id" value="{{ item.variant.id }}">
+  {% endif %}
+  <button type="submit" class="btn btn-outline-danger btn-sm" title="Remove item">🗑️</button>
+</form>
+
+</div>
+</div>
+{% endfor %}
+</div>
+
+<!-- Total & Actions -->
 <div class="d-flex justify-content-between align-items-center">
   <h4 class="fw-bold">Total: £{{ total }}</h4>
-
   <div class="d-flex gap-2">
     <a href="{% url 'shop' %}" class="btn btn-outline-secondary">Continue Shopping</a>
-
     <form action="{% url 'empty_basket' %}" method="post" class="mb-0">
       {% csrf_token %}
-      <button type="submit" class="empty-basket-btn btn btn-outline-danger">Empty Basket</button>
+      <button type="submit" class="btn btn-outline-primary">Empty Basket</button>
     </form>
   </div>
 </div>
 
-  {% else %}
-    <p class="text-center text-muted">Your basket is currently empty.</p>
-  {% endif %}
+{% else %}
+  <p class="text-center text-muted">Your basket is currently empty.</p>
+  
+  <div class="text-center">
+    <a href="{% url 'shop' %}" class="btn btn-link mt-4">&larr; Back to Shop</a>
+  </div>
+{% endif %}
 </div>
+
+<!-- Custom CSS -->
+<style>
+.btn-sm {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.list-group-item {
+  flex-wrap: wrap;
+}
+
+.list-group-item img {
+  object-fit: cover;
+}
+
+.d-flex.gap-2 form {
+  margin: 0;
+}
+</style>
+
 {% endblock %}
+
+
 
 
