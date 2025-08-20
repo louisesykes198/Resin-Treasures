@@ -117,15 +117,24 @@ class Order(models.Model):
         ],
         default='pending'
     )
+    
+    full_name = models.CharField(max_length=200, default='')
+    email = models.EmailField(default='')
+    address = models.CharField(max_length=255, default='')
+    city = models.CharField(max_length=100, default='')
+    postcode = models.CharField(max_length=20, default='')
+    country = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return f"Order #{self.id} by {self.user.username}"
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
-    product_name = models.CharField(max_length=255)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product_variant = models.ForeignKey(ProductVariant, null=True, blank=True, on_delete=models.SET_NULL)
+    product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
     quantity = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+
 
     def __str__(self):
         return f"{self.product_name} (x{self.quantity})"

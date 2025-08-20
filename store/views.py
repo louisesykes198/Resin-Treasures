@@ -134,6 +134,17 @@ def add_to_basket(request, variant_id):
     request.session['basket'] = basket
     return redirect('basket_summary')  # or wherever you want to go
 
+@login_required
+def basket_view(request):
+    basket_items = Basket.objects.filter(user=request.user)  # get from DB
+
+    total = sum(item.get_total_price() for item in basket_items)
+
+    return render(request, "basket/basket.html", {
+        "basket_items": basket_items,
+        "total": total,
+    })
+
 def delivery_info(request):
     return render(request, 'store/delivery_info.html')
 

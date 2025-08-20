@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'accounts',
     'widget_tweaks',
     'newsletter',
+    'checkout',
+
 ]
 
 MIDDLEWARE = [
@@ -196,3 +198,11 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.ERROR: 'danger',
 }
+
+STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
+STRIPE_WH_SECRET = os.getenv("STRIPE_WH_SECRET")
+STRIPE_CURRENCY = os.getenv("STRIPE_CURRENCY", "usd")
+
+FREE_DELIVERY_THRESHOLD = int(os.getenv("FREE_DELIVERY_THRESHOLD", 50))
+STANDARD_DELIVERY_PERCENTAGE = int(os.getenv("STANDARD_DELIVERY_PERCENTAGE", 10))

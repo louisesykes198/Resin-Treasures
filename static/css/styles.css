@@ -1,4 +1,9 @@
 /* === Navbar === */
+body {
+  padding-left: 2rem;
+  padding-right: 1rem;
+}
+
 .navbar {
   background-color: white !important;
   display: flex;
@@ -24,16 +29,13 @@
   text-decoration: none;    
 }
 
-.fixed-logo {
-  height: 60px;
+.logo {
+  height: 70px;
   width: auto;
   object-fit: contain;
   margin-right: 20px;
 }
 
-.container {
-  padding-left: 0 !important;
-}  
 /* === Hero Section === */
 .hero-image {
   position: relative;
@@ -338,9 +340,8 @@ form button:hover {
 @media (max-width: 768px) {
   .hero-text {
     left: 50%;
-    width: 90%;
-    padding: 0 1rem;
-  }
+    width: 90%;   
+}
 
   .hero-text h1 {
     font-size: 2rem;
@@ -385,3 +386,6 @@ form button:hover {
     font-size: 0.9rem;
   }
 }
+
+
+

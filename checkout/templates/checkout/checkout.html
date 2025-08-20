@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+  <h2>Checkout</h2>
+
+{% if basket %}
+  <ul class="list-group mb-3">
+    {% for item in basket %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {% if item.variant and item.variant.image %}
+          <img src="{{ item.variant.image.url }}" alt="{{ item.variant.product.name }}" style="width: 60px;">
+        {% elif item.product.image %}
+          <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 60px;">
+        {% endif %}
+        <span>
+          {% if item.variant %}
+            {{ item.variant.product.name }} ({{ item.variant.color_name }})
+          {% else %}
+            {{ item.product.name }}
+          {% endif %}
+        </span>
+        <span>£{{ item.subtotal }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+  <h4>Total: £{{ total }}</h4>
+{% else %}
+  <p>Your basket is empty.</p>
+{% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <input type="text" name="full_name" placeholder="Full Name" required class="form-control mb-2">
+    <input type="email" name="email" placeholder="Email" required class="form-control mb-2">
+    <input type="text" name="address" placeholder="Address" required class="form-control mb-2">
+    <input type="text" name="city" placeholder="City" required class="form-control mb-2">
+    <input type="text" name="postcode" placeholder="Postcode" required class="form-control mb-2">
+    <input type="text" name="country" placeholder="Country" required class="form-control mb-2">
+    <button type="submit" class="btn btn-primary">Pay with Stripe</button>
+  </form>
+</div>
+{% endblock %}
+
