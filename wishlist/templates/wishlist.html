@@ -6,7 +6,7 @@
 
   <!-- Back to Shop Button -->
   <div class="mb-3">
-    <a href="{% url 'shop' %}" class="btn btn-outline-primary">&larr; Back to Shop</a>
+    <a href="{% url 'shop' %}" class="btn btn-outline-primary btn-sm">&larr; Back to Shop</a>
   </div>
 
   <h1 class="mb-4">My Wishlist</h1>
@@ -38,14 +38,14 @@
                 {% endif %}
 
                 <!-- View Product -->
-                <a href="{% url 'product_detail' item.product.id %}" class="btn btn-outline-primary mb-2">
+                <a href="{% url 'product_detail' item.product.id %}" class="btn btn-outline-primary btn-sm mb-2">
                   View Product
                 </a>
 
                 <!-- Remove from Wishlist -->
                 <form action="{% url 'remove_from_wishlist' item.product.id %}" method="post">
                   {% csrf_token %}
-                  <button type="submit" class="btn btn-outline-danger">Remove</button>
+                  <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
                 </form>
               </div>
             {% endwith %}
