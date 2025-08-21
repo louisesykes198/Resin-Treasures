@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from store.models import Product  # we need to fetch product info
 from .models import Order, OrderItem
 from store.models import Product, ProductVariant, Basket
+from .forms import OrderForm
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -27,19 +28,25 @@ def checkout_view(request):
     if request.method == "POST":
         full_name = request.POST.get("full_name")
         email = request.POST.get("email")
-        address = request.POST.get("address")
-        city = request.POST.get("city")
+        phone_number = request.POST.get("phone_number")
+        street_address1 = request.POST.get("street_address1")
+        street_address2 = request.POST.get("street_address2")
+        town_or_city = request.POST.get("town_or_city")
         postcode = request.POST.get("postcode")
+        county = request.POST.get("county")
         country = request.POST.get("country")
 
-        # Create the order
+        # Create the order with updated field names
         order = Order.objects.create(
             user=request.user,
             full_name=full_name,
             email=email,
-            address=address,
-            city=city,
+            phone_number=phone_number,
+            street_address1=street_address1,
+            street_address2=street_address2,
+            town_or_city=town_or_city,
             postcode=postcode,
+            county=county,
             country=country,
             total=total,
         )
@@ -80,16 +87,27 @@ def checkout_view(request):
 
         # Clear basket
         basket_items.delete()
+        
+        request.session['order_id'] = order.id
 
         return redirect(session.url, code=303)
 
+    else:
+        order_form = OrderForm()
+
     return render(request, "checkout/checkout.html", {
         "basket_items": basket_items,
-        "total": total
+        "total": total,
+        "order_form": order_form,
     })
 
 def success_view(request):
-    return render(request, "checkout/success.html")
+    order_id = request.session.get('order_id')
+    order = Order.objects.get(id=order_id) if order_id else None
+
+    return render(request, "checkout/success.html", {
+        "order": order,
+    })
 
 def cancel_view(request):
     return render(request, "checkout/cancel.html")

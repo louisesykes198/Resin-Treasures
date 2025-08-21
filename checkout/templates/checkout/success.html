@@ -1,8 +1,40 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container py-5 text-center">
-  <h2>✅ Payment Successful</h2>
-  <p>Thank you for your order!</p>
-  <a href="{% url 'shop' %}" class="btn btn-outline-primary mt-3">Back to Shop</a>
+<div class="overlay"></div>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8">
+            <hr>
+            <h2 class="logo-font mb-4 text-success">
+                <i class="fas fa-check-circle"></i> Payment Successful
+            </h2>
+            <hr>
+            <p class="lead text-muted">Thank you for your order, {{ user.first_name }}.</p>
+
+            {% if order %}
+                <p class="mb-2">Your order number is <strong>#{{ order.id }}</strong>.</p>
+                <p class="mb-4">Delivery to:<br>
+                    {{ order.full_name }}<br>
+                    {{ order.street_address1 }}{% if order.street_address2 %}, {{ order.street_address2 }}{% endif %}<br>
+                    {{ order.town_or_city }}, {{ order.county }}<br>
+                    {{ order.postcode }}<br>
+                    {{ order.country }}
+                </p>
+            {% else %}
+                <p class="text-danger">We couldn’t retrieve your order details. Please check your email for confirmation.</p>
+            {% endif %}
+
+<a href="{% url 'home' %}" class="btn btn-outline-primary btn-sm">
+    <i class="fas fa-arrow-left"></i> Back to Home
+</a>
+    </div>
 </div>
 {% endblock %}
+
+
