@@ -13,25 +13,34 @@
             <div class="card-body">
               <div class="row align-items-center">
 
-                <!-- LEFT: Image + Details -->
-                <div class="col-md-8 d-flex align-items-center gap-3">
-                  {% if item.variant and item.variant.image %}
-                    <img src="{{ item.variant.image.url }}" alt="{{ item.product.name }}" class="rounded" style="width: 100px; height: auto;">
-                  {% elif item.product.image %}
-                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="rounded" style="width: 100px; height: auto;">
-                  {% endif %}
+<!-- LEFT: Image + Details -->
+<div class="col-md-8 d-flex gap-3">
+  {% if item.variant and item.variant.image %}
+    <img src="{{ item.variant.image.url }}" alt="{{ item.product.name }}" class="rounded" style="width: 100px; height: 100%;">
+  {% elif item.product.image %}
+    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="rounded" style="width: 100px; height: 100%;">
+  {% endif %}
 
-                  <div>
-                    <h5 class="mb-1">{{ item.product.name }}</h5>
-                    {% if item.variant %}
-                      <p class="mb-1 text-muted small">{{ item.variant.color_name }}</p>
-                      <p class="mb-1 text-muted">Price: £{{ item.variant.price|floatformat:2 }}</p>
-                    {% else %}
-                      <p class="mb-1 text-muted">Price: £{{ item.product.price|floatformat:2 }}</p>
-                    {% endif %}
-                    <p class="fw-bold mb-0">{{ item.subtotal|floatformat:2 }}</p>
-                  </div>
-                </div>
+  <!-- Details stacked vertically -->
+  <div class="d-flex flex-column">
+    <!-- Product Name -->
+    <h5 class="mb-1">
+      {% if item.variant %}
+        {{ item.variant.product.name }}
+      {% else %}
+        {{ item.product.name }}
+      {% endif %}
+    </h5>
+
+    <!-- Variant Color -->
+    {% if item.variant %}
+      <p class="mb-1 text-muted small">Color: {{ item.variant.color_name }}</p>
+      <p class="mb-0 fw-bold">Price: £{{ item.variant.price|floatformat:2 }}</p>
+    {% else %}
+      <p class="mb-0 fw-bold">Price: £{{ item.product.price|floatformat:2 }}</p>
+    {% endif %}
+  </div>
+</div>
 
                 <!-- RIGHT: Quantity Controls -->
                 <div class="col-md-4 d-flex justify-content-end align-items-center gap-2">
@@ -74,20 +83,25 @@
       {% endfor %}
     </div>
 
-    <!-- Total & Actions -->
-    <div class="card shadow-sm border-0 rounded-3 mt-4">
-      <div class="card-body d-flex justify-content-between align-items-center flex-wrap">
-        <h4 class="fw-bold mb-2 mb-md-0">Total: £{{ total }}</h4>
-        <div class="d-flex gap-2">
-          <a href="{% url 'shop' %}" class="btn btn-outline-primary btn-sm">Continue Shopping</a>
-          <form action="{% url 'empty_basket' %}" method="post" class="mb-0">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-outline-danger btn-sm">Empty Basket</button>
-          </form>
-          <a href="{% url 'checkout' %}" class="btn btn-primary btn-sm">Proceed to Checkout</a>
-        </div>
-      </div>
+<!-- Total & Actions -->
+<div class="card shadow-sm border-0 rounded-3 mt-4">
+  <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-center">
+    
+    <!-- Total -->
+    <h4 class="fw-bold mb-3 mb-md-0">Total: £{{ total }}</h4>
+    
+    <!-- Actions -->
+    <div class="d-flex gap-2">
+      <a href="{% url 'shop' %}" class="btn btn-outline-primary btn-sm">Continue Shopping</a>
+      <form action="{% url 'empty_basket' %}" method="post" class="mb-0">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-danger btn-sm">Empty Basket</button>
+      </form>
+      <a href="{% url 'checkout' %}" class="btn btn-primary btn-sm">Proceed to Checkout</a>
     </div>
+  </div>
+</div>
+
 
   {% else %}
     <p class="text-center text-muted">Your basket is currently empty.</p>
