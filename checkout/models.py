@@ -1,6 +1,5 @@
 from django.db import models
 from store.models import Order, OrderItem
-from django.db import models
 
 
 
