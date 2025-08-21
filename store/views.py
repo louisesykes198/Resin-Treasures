@@ -8,6 +8,7 @@ from django.core.mail import EmailMessage
 from django.contrib import messages
 from .forms import ContactForm
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 
 def home(request):
@@ -143,7 +144,8 @@ def basket_view(request):
     return render(request, "basket/basket.html", {
         "basket_items": basket_items,
         "total": total,
-    })
+        "free_delivery_threshold": settings.FREE_DELIVERY_THRESHOLD,
+})
 
 def delivery_info(request):
     return render(request, 'store/delivery_info.html')

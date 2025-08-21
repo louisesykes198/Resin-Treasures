@@ -1,13 +1,13 @@
 import stripe
+from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-from store.models import Product  # we need to fetch product info
-from .models import Order, OrderItem
 from store.models import Product, ProductVariant, Basket
+from .models import Order, OrderItem
 from .forms import OrderForm
-
+from .delivery import DELIVERY_OPTIONS
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -26,6 +26,7 @@ def checkout_view(request):
     total = sum(item.subtotal for item in basket_items)
 
     if request.method == "POST":
+        # Get form data
         full_name = request.POST.get("full_name")
         email = request.POST.get("email")
         phone_number = request.POST.get("phone_number")
@@ -35,8 +36,25 @@ def checkout_view(request):
         postcode = request.POST.get("postcode")
         county = request.POST.get("county")
         country = request.POST.get("country")
+        delivery_method = request.POST.get("delivery_method")
 
-        # Create the order with updated field names
+        # Automatically determine parcel size
+        if total < 20:
+            parcel_size = "Small"
+        elif total < 50:
+            parcel_size = "Medium"
+        else:
+            parcel_size = "Large"
+
+        # Calculate delivery price
+        if total >= settings.FREE_DELIVERY_THRESHOLD:
+            delivery_price = Decimal("0.00")
+        else:
+            delivery_price = Decimal(str(DELIVERY_OPTIONS[delivery_method][parcel_size]))
+
+        grand_total = total + delivery_price
+
+        # Create order
         order = Order.objects.create(
             user=request.user,
             full_name=full_name,
@@ -48,7 +66,11 @@ def checkout_view(request):
             postcode=postcode,
             county=county,
             country=country,
+            delivery_method=delivery_method,
+            delivery_size=parcel_size,
+            delivery=delivery_price,
             total=total,
+            grand_total=grand_total,
         )
 
         # Create order items and Stripe line items
@@ -87,20 +109,42 @@ def checkout_view(request):
 
         # Clear basket
         basket_items.delete()
-        
         request.session['order_id'] = order.id
 
         return redirect(session.url, code=303)
 
     else:
+        # GET request — show form and calculate delivery if method is selected
         order_form = OrderForm()
+        delivery_method = request.GET.get("delivery_method")
+
+        if delivery_method:
+            if total < 20:
+                parcel_size = "Small"
+            elif total < 50:
+                parcel_size = "Medium"
+            else:
+                parcel_size = "Large"
+
+            if total >= settings.FREE_DELIVERY_THRESHOLD:
+                delivery_price = Decimal("0.00")
+            else:
+                delivery_price = Decimal(str(DELIVERY_OPTIONS[delivery_method][parcel_size]))
+
+            grand_total = total + delivery_price
+        else:
+            delivery_price = None
+            grand_total = total
 
     return render(request, "checkout/checkout.html", {
         "basket_items": basket_items,
         "total": total,
         "order_form": order_form,
+        "free_delivery_threshold": settings.FREE_DELIVERY_THRESHOLD,
+        "delivery_price": delivery_price,
+        "grand_total": grand_total,
     })
-
+    
 def success_view(request):
     order_id = request.session.get('order_id')
     order = Order.objects.get(id=order_id) if order_id else None
@@ -109,6 +153,9 @@ def success_view(request):
         "order": order,
     })
 
-def cancel_view(request):
+def cancel_view(request): 
     return render(request, "checkout/cancel.html")
+
+
+
 

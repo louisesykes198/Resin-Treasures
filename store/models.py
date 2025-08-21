@@ -108,6 +108,10 @@ class Order(models.Model):
     stripe_payment_intent = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
     total = models.DecimalField(max_digits=10, decimal_places=2)
+    delivery_method = models.CharField(max_length=50, default='locker')  # or blank=True
+    delivery_size = models.CharField(max_length=20, default='Medium')    # or blank=True
+    delivery = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
+    grand_total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     status = models.CharField(
         max_length=20,
         choices=[

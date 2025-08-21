@@ -1,19 +1,21 @@
 from django import forms
 from .models import Order
 
+DELIVERY_METHOD_CHOICES = [
+    ("locker", "InPost Locker or Shop"),
+    ("home", "Home Address"),
+]
+
 class OrderForm(forms.ModelForm):
+    delivery_method = forms.ChoiceField(choices=DELIVERY_METHOD_CHOICES)
+    
     class Meta:
         model = Order
         fields = (
-            'full_name',
-            'email',
-            'phone_number',
-            'street_address1',
-            'street_address2',
-            'town_or_city',
-            'postcode',
-            'county',
-            'country',
+            'full_name', 'email', 'phone_number',
+            'street_address1', 'street_address2', 'town_or_city',
+            'postcode', 'county', 'country',
+            'delivery_method',
         )
 
     def __init__(self, *args, **kwargs):
@@ -38,3 +40,4 @@ class OrderForm(forms.ModelForm):
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
             self.fields[field].label = False
+

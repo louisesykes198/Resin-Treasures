@@ -127,11 +127,12 @@
       {% endfor %}
   {% endif %}
 </div>
+
 <!-- === DELIVERY BANNER === -->
 <div id="delivery-banner" class="bg-black text-white">
   <div class="container text-center">
     <h4 class="logo-font my-0 py-2">
-      Free delivery on orders over £{{ free_delivery_threshold }}!
+      Free delivery on orders over £{{ free_delivery_threshold|default:"50" }}!
     </h4>
   </div>
 </div>
