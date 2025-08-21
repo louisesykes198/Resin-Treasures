@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'newsletter',
     'checkout',
+    'crispy_forms',
+    'crispy_bootstrap5',
 
 ]
 
@@ -206,3 +208,6 @@ STRIPE_CURRENCY = os.getenv("STRIPE_CURRENCY", "usd")
 
 FREE_DELIVERY_THRESHOLD = int(os.getenv("FREE_DELIVERY_THRESHOLD", 50))
 STANDARD_DELIVERY_PERCENTAGE = int(os.getenv("STANDARD_DELIVERY_PERCENTAGE", 10))
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

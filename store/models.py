@@ -105,7 +105,7 @@ class Basket(models.Model):
     
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    stripe_payment_intent = models.CharField(max_length=255)
+    stripe_payment_intent = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(
@@ -119,14 +119,15 @@ class Order(models.Model):
         ],
         default='pending'
     )
-    
-    stripe_payment_intent = models.CharField(max_length=255, blank=True, null=True)
-    
+
     full_name = models.CharField(max_length=200, default='')
     email = models.EmailField(default='')
-    address = models.CharField(max_length=255, default='')
-    city = models.CharField(max_length=100, default='')
+    phone_number = models.CharField(max_length=20, default='')  # ← Add this
+    street_address1 = models.CharField(max_length=255, default='')  # ← Add this
+    street_address2 = models.CharField(max_length=255, blank=True, default='')  # ← Add this
+    town_or_city = models.CharField(max_length=100, default='')  # ← Add this
     postcode = models.CharField(max_length=20, default='')
+    county = models.CharField(max_length=100, blank=True, default='')  # ← Add this
     country = models.CharField(max_length=100, default='')
 
     def __str__(self):
