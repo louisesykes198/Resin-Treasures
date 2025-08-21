@@ -127,12 +127,15 @@
       {% endfor %}
   {% endif %}
 </div>
-      <!-- === DELIVERY BANNER === -->
-    <div id="delivery-banner" class="row text-center">
-      <div class="col bg-black text-white">
-        <h4 class="logo-font my-1">Free delivery on orders over £{{ free_delivery_threshold }}!</h4>
-      </div>
-    </div>
+<!-- === DELIVERY BANNER === -->
+<div id="delivery-banner" class="bg-black text-white">
+  <div class="container text-center">
+    <h4 class="logo-font my-0 py-2">
+      Free delivery on orders over £{{ free_delivery_threshold }}!
+    </h4>
+  </div>
+</div>
+
 <!-- ✅ MOBILE SEARCH BAR WITH MATCHING HEIGHT BUTTON -->
 <div class="d-sm-none px-3 mt-2">
   <form class="w-100 d-flex align-items-center" method="get" action="{% url 'shop' %}">
