@@ -13,5 +13,9 @@ urlpatterns = [
     path('profile/details/', views.personal_details, name='personal_details'),
     path('profile/orders/', views.order_history, name='order_history'),
     path('profile/orders/<int:order_id>/', views.order_detail, name='order_detail'),
+    path('delete-account/', views.delete_account, name='delete_account'),
+    path('add-payment/', views.add_payment_method, name='add_payment_method'),
+    path('delete-card/<str:card_id>/', views.delete_payment_method, name='delete_payment_method'),
+    path('set-default-card/<str:card_id>/', views.set_default_card, name='set_default_card'),
 ]
 

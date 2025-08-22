@@ -138,7 +138,7 @@ class Order(models.Model):
         return f"Order #{self.id} by {self.user.username}"
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     product_variant = models.ForeignKey(ProductVariant, null=True, blank=True, on_delete=models.SET_NULL)
     product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
     quantity = models.PositiveIntegerField()

@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Resin Journal Styling -->
+<style>
+  body {
+    background-color: #fdfaf6;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .review-block {
+    animation: fadeIn 0.8s ease-in;
+    background-color: #fffdf9;
+    border: 1px solid #e2dcd5;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .review-block .stars {
+    font-size: 1.2rem;
+    color: gold;
+  }
+
+  .creator-response {
+    background-color: #f8f3ec;
+    border-left: 4px solid #d6cfc7;
+    padding: 0.75rem 1rem;
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #5a4e42;
+  }
+
+  .review-block.border-primary {
+    background-color: #f0f8ff;
+    border-color: #a3c4dc;
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Page Header -->
+<div class="container mt-5">
+  <h2 class="mb-2">Gallery of Reflections</h2>
+  <p class="text-muted fst-italic">Each review is a ripple in the resin — a quiet tribute to beauty, meaning, and connection.</p>
+
+  <!-- Filter Form -->
+  <form method="GET" class="mb-4 d-flex gap-3">
+    <select name="product" class="form-select" style="max-width: 200px;">
+      <option value="">All Products</option>
+      {% for product in products %}
+        <option value="{{ product.id }}" {% if product.id|stringformat:"s" == selected_product %}selected{% endif %}>
+          {{ product.name }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <select name="rating" class="form-select" style="max-width: 150px;">
+      <option value="">All Ratings</option>
+      {% for i in "12345" %}
+        <option value="{{ forloop.counter }}" {% if forloop.counter|stringformat:"s" == selected_rating %}selected{% endif %}>
+          {{ forloop.counter }} Stars
+        </option>
+      {% endfor %}
+    </select>
+
+    <button type="submit" class="btn btn-outline-primary">Filter</button>
+  </form>
+
+  <!-- Review Blocks -->
+  {% for review in reviews %}
+    <div class="review-block {% if review.user == request.user %}border-primary{% endif %}">
+      <h5>{{ review.product.name }}</h5>
+      <div class="stars">
+        {% for i in "12345" %}
+          {% if forloop.counter <= review.rating %}
+            ★
+          {% else %}
+            ☆
+          {% endif %}
+        {% endfor %}
+      </div>
+      <p class="fst-italic text-muted">“What did this piece mean to you?”</p>
+      <p>{{ review.comment }}</p>
+      <small class="text-muted">— {{ review.user.username }}</small>
+
+      {% if review.user == request.user %}
+        <span class="badge bg-info text-dark">Your Review</span>
+      {% endif %}
+
+      {% if review.creator_response %}
+        <div class="creator-response">
+          {{ review.creator_response }}
+        </div>
+      {% endif %}
+
+      {% if request.user.is_staff %}
+        <form method="POST" action="{% url 'respond_to_review' review.id %}" class="mt-2">
+          {% csrf_token %}
+          <textarea name="creator_response" rows="2" class="form-control" placeholder="Write a response...">{{ review.creator_response }}</textarea>
+          <button type="submit" class="btn btn-sm btn-outline-primary mt-2">Respond</button>
+        </form>
+      {% endif %}
+    </div>
+  {% empty %}
+    <p>No reviews yet. Your gallery awaits its first reflection.</p>
+  {% endfor %}
+
+  <!-- Navigation Buttons -->
+  <div class="d-flex justify-content-between mt-5">
+    <a href="{% url 'shop' %}" class="btn btn-outline-primary">← Back to Shop</a>
+    <a href="{% url 'my_reviews' %}" class="btn btn-outline-primary">View My Reflections</a>
+  </div>
+</div>
+
+{% endblock %}
+

@@ -4,10 +4,13 @@ from django.core.exceptions import ValidationError
 import re
 
 class CustomUserCreationForm(forms.ModelForm):
+    first_name = forms.CharField(max_length=30, required=True)
+    last_name = forms.CharField(max_length=30, required=True)
+    email = forms.EmailField(required=True)
     password1 = forms.CharField(
         label='Password',
         widget=forms.PasswordInput,
-        help_text='Password must meet the requirements below.'  # generic help text
+        help_text='Password must meet the requirements below.'
     )
     password2 = forms.CharField(
         label='Confirm Password',
@@ -24,7 +27,7 @@ class CustomUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['first_name', 'last_name', 'email']
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -43,7 +46,7 @@ class CustomUserCreationForm(forms.ModelForm):
             errors.append("a lowercase letter")
         if not re.search(r'[0-9]', password):
             errors.append("a number")
-        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+        if not re.search(r'[!@#$%^&*(),.?\":{}|<>]', password):
             errors.append("a symbol")
         if len(password) < 8:
             errors.append("at least 8 characters")
@@ -58,6 +61,3 @@ class CustomUserCreationForm(forms.ModelForm):
         password2 = cleaned_data.get('password2')
         if password1 and password2 and password1 != password2:
             raise ValidationError("Passwords do not match.")
-
-
-

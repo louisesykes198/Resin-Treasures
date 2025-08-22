@@ -97,6 +97,20 @@
   </div>
 </div>
 
+<a href="{% url 'add_review' product.id %}" class="btn btn-outline-primary">
+  Leave a Review
+</a>
+<h4 class="mt-4">Reviews</h4>
+{% for review in product.reviews.all %}
+  <div class="border p-3 mb-2">
+    <strong>{{ review.user.username }}</strong> 
+    <span class="text-muted">rated {{ review.rating }}/5</span>
+    <p>{{ review.comment }}</p>
+  </div>
+{% empty %}
+  <p>No reviews yet. Be the first to share your thoughts.</p>
+{% endfor %}
+
 <script>
 function switchVariant(imageUrl, price, description, variantId) {
   if (imageUrl) {

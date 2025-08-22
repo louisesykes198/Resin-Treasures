@@ -9,23 +9,32 @@ from store.models import Order
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
 from .forms import CustomUserCreationForm
+from django.utils.text import slugify
+from django.contrib.auth.models import User
+import stripe
+from django.conf import settings
+from .models import Profile
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            # Set password using set_password to hash it properly
+            first = form.cleaned_data['first_name']
+            last = form.cleaned_data['last_name']
+            user.username = generate_unique_username(first, last)
             user.set_password(form.cleaned_data['password1'])
             user.save()
-            login(request, user)
-            messages.success(request, "Account created successfully!")
-            return redirect('home')  # Change 'home' if needed
-        else:
-            messages.error(request, "Please correct the errors below.")
+            login(request, user)  # optional: log them in immediately
+            messages.success(request, "Welcome! Your account has been created.")
+            return redirect('home')  # or wherever you want to send them
     else:
         form = CustomUserCreationForm()
-
     return render(request, 'accounts/register.html', {'form': form})
 
 class CustomLoginView(LoginView):
@@ -33,12 +42,18 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('home')
-    
-@login_required
-def my_account(request):
-    return render(request, 'accounts/my_account.html')
+        return reverse_lazy('home')  
 
+
+def generate_unique_username(first, last):
+    base_username = slugify(f"{first}_{last}")
+    username = base_username
+    counter = 1
+    while User.objects.filter(username=username).exists():
+        username = f"{base_username}_{counter}"
+        counter += 1
+    return username
+    
 @login_required
 def my_account(request):
     # If you have orders linked to the user:
@@ -71,8 +86,26 @@ class CustomLogoutView(LogoutView):
         messages.success(request, "You have successfully logged out.")
         return super().dispatch(request, *args, **kwargs)
     
+@login_required
 def account_settings(request):
-    return render(request, 'accounts/settings.html')
+    user = request.user
+    profile, _ = Profile.objects.get_or_create(user=user)
+
+    cards = []
+    if profile.stripe_customer_id:
+        sources = stripe.Customer.list_sources(
+            profile.stripe_customer_id,
+            object="card"
+        )
+        cards = sources.data
+
+    return render(request, 'accounts/settings.html', {
+        "cards": cards,
+        "full_name": f"{user.first_name} {user.last_name}".strip(),
+        "email": user.email,
+        "username": user.username,
+        "date_joined": localtime(user.date_joined),
+    })
 
 @login_required
 def profile(request):
@@ -85,8 +118,6 @@ def profile(request):
         # Add any other context info you want on the profile page
     }
     return render(request, 'accounts/profile.html', context)
-
-    return render(request, 'accounts/settings.html')
 
 @login_required
 def personal_details(request):
@@ -123,5 +154,67 @@ def order_detail(request, order_id):
         'order': order,
         'order_items': order_items
     })
+
+@login_required
+def delete_account(request):
+    if request.method == 'POST':
+        user = request.user
+        user.delete()
+        messages.success(request, "Your account has been permanently deleted.")
+        return redirect('home')  # or a gentle goodbye page
+
+
+@login_required
+def add_payment_method(request):
+    user = request.user
+
+    # Ensure profile exists
+    profile, created = Profile.objects.get_or_create(user=user)
+
+    if request.method == 'POST':
+        token = request.POST.get('stripeToken')
+
+        # Create Stripe customer if needed
+        if not profile.stripe_customer_id:
+            customer = stripe.Customer.create(email=user.email)
+            profile.stripe_customer_id = customer.id
+            profile.save()
+
+        # Attach card to customer
+        stripe.Customer.create_source(profile.stripe_customer_id, source=token)
+
+        messages.success(request, "Your card has been saved securely.")
+        return redirect('account_settings')
+
+    return render(request, 'accounts/add_payment.html', {
+        'STRIPE_PUBLIC_KEY': settings.STRIPE_PUBLIC_KEY
+    })
+    
+@login_required
+def delete_payment_method(request, card_id):
+    profile = Profile.objects.get(user=request.user)
+
+    if profile.stripe_customer_id:
+        stripe.Customer.delete_source(
+            profile.stripe_customer_id,
+            card_id
+        )
+        messages.success(request, "Your card has been removed.")
+    return HttpResponseRedirect(reverse('account_settings') + '?tab=payment')
+
+@login_required
+def set_default_card(request, card_id):
+    profile = Profile.objects.get(user=request.user)
+
+    if profile.stripe_customer_id:
+        stripe.Customer.modify(
+            profile.stripe_customer_id,
+            default_source=card_id
+        )
+        messages.success(request, "Your default card has been updated.")
+            
+        return HttpResponseRedirect(reverse('account_settings') + '?tab=payment')
+
+
 
 
