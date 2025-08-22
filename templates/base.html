@@ -160,17 +160,6 @@
     {% endblock %}
   </main>
 
-  {% if messages %}
-  <div class="container mt-2">
-    {% for message in messages %}
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
-
 <!-- Footer -->
 <footer class="bg-light text-dark mt-5 pt-3 pb-2 shadow-sm">
   <div class="container">
@@ -233,21 +222,21 @@
 </div>
 
 <!-- Bottom -->
-    <div class="text-center mt-3 border-top pt-2 small text-muted">
-      <p class="mb-0">&copy; {{ year }} Resin Treasures. All rights reserved.</p>
-    </div>
-  </div>
+<div class="text-center mt-3 border-top pt-2 small text-muted">
+  <p class="mb-0">&copy; {{ year }} Resin Treasures. All rights reserved.</p>
+</div>
+</div>
 </footer>
 
 {% if request.resolver_match.url_name != 'wishlist' %}
-<a href="{% url 'wishlist' %}" 
-   class="btn btn-danger rounded-circle shadow"
-   style="position: fixed; bottom: 20px; right: 20px; 
-          width: 50px; height: 50px; display: flex; 
-          align-items: center; justify-content: center; 
-          z-index: 1000;">
-   <i class="bi bi-heart-fill"></i>
-</a>
+  <a href="{% url 'wishlist' %}" 
+     class="btn btn-danger rounded-circle shadow"
+     style="position: fixed; bottom: 20px; right: 20px; 
+            width: 50px; height: 50px; display: flex; 
+            align-items: center; justify-content: center; 
+            z-index: 1000;">
+     <i class="bi bi-heart-fill"></i>
+  </a>
 {% endif %}
 
 <!-- Scripts -->

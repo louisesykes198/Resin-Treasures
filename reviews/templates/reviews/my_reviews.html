@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2>Your Reflections</h2>
+  {% for review in reviews %}
+    <div class="border p-3 mb-3">
+      <h5>{{ review.product.name }}</h5>
+      <div>
+        {% for i in "12345" %}
+          {% if forloop.counter <= review.rating %}
+            <span style="color: gold;">★</span>
+          {% else %}
+            <span style="color: #ccc;">☆</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <p>{{ review.comment }}</p>
+      <div class="d-flex gap-2">
+        <a href="{% url 'edit_review' review.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+        <form method="POST" action="{% url 'delete_review' review.id %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  {% empty %}
+    <p>You haven’t left any reviews yet. Your gallery awaits.</p>
+  {% endfor %}
+</div>
+
+<a href="{% url 'shop' %}" class="btn btn-outline-primary mt-3">← Back to Shop</a>
+
+{% endblock %}
