@@ -17,5 +17,6 @@ urlpatterns = [
     path('add-payment/', views.add_payment_method, name='add_payment_method'),
     path('delete-card/<str:card_id>/', views.delete_payment_method, name='delete_payment_method'),
     path('set-default-card/<str:card_id>/', views.set_default_card, name='set_default_card'),
+    path('verify/', views.verify_account, name='verify_account'),
 ]
 

@@ -9,6 +9,8 @@ from .models import Order, OrderItem
 from .forms import OrderForm
 from .delivery import DELIVERY_OPTIONS
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -96,6 +98,17 @@ def checkout_view(request):
                 "quantity": item.quantity,
             })
 
+        # Add delivery as a separate line item
+        if delivery_price > 0:
+            line_items.append({
+                "price_data": {
+                    "currency": "gbp",
+                    "product_data": {"name": "Delivery"},
+                    "unit_amount": int(delivery_price * 100),
+                },
+                "quantity": 1,
+            })
+       
         # Create Stripe session
         session = stripe.checkout.Session.create(
             payment_method_types=["card"],
@@ -103,8 +116,8 @@ def checkout_view(request):
             mode="payment",
             success_url=request.build_absolute_uri("/checkout/success/"),
             cancel_url=request.build_absolute_uri("/checkout/cancel/"),
-        )
-
+            metadata={"order_id": str(order.id)},  # ✅ this sends the order ID to your webhook
+    )
         order.stripe_payment_intent = session.payment_intent
         order.save()
 
@@ -161,7 +174,7 @@ def cancel_view(request):
 def stripe_webhook(request):
     payload = request.body
     sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
-    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+    endpoint_secret = settings.STRIPE_WH_SECRET  # ✅ correct
 
     try:
         event = stripe.Webhook.construct_event(
@@ -177,12 +190,49 @@ def stripe_webhook(request):
         if order_id:
             try:
                 order = Order.objects.get(id=order_id)
+                print("Order items in webhook:", order.items.all())
                 order.status = "paid"
                 order.save()
+                
+                notify_seller_of_order(order)
+                send_order_confirmation_email(order)
+                
             except Order.DoesNotExist:
                 pass
 
     return HttpResponse(status=200)
+
+def send_order_confirmation_email(order):
+    subject = f"Your Resin Treasures Order #{order.id}"
+    message = render_to_string('checkout/order_confirmation_email.html', {
+        'order': order,
+        'full_name': order.full_name,
+    })
+    send_mail(
+        subject,
+        message,
+        settings.DEFAULT_FROM_EMAIL,
+        [order.email],
+        fail_silently=False,
+    )
+       
+def notify_seller_of_order(order):
+    print(f"📦 Seller email sent for order #{order.id}")
+    subject = f"New Order Received: #{order.id}"
+    message = render_to_string('checkout/seller_notification_email.txt', {
+        'order': order,
+        'full_name': order.full_name,
+        'email': order.email,
+        'grand_total': order.grand_total,
+    })
+    send_mail(
+        subject,
+        message,
+        settings.DEFAULT_FROM_EMAIL,
+        ['resintreasures5@gmail.com'],  # your business email
+        fail_silently=False,
+    )
+
 
 
 

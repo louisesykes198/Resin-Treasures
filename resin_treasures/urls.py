@@ -3,6 +3,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from checkout import views as checkout_views
+from accounts.views import CustomLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,6 +15,8 @@ urlpatterns = [
     path('checkout/', include('checkout.urls')),
     path("webhooks/stripe/", checkout_views.stripe_webhook, name="stripe-webhook"),
     path('reviews/', include('reviews.urls')),
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('accounts/', include('accounts.urls')),
 ]
 
 if settings.DEBUG:

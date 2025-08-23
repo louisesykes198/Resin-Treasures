@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
+from django.contrib.auth.forms import AuthenticationForm
 
 class CustomUserCreationForm(forms.ModelForm):
     first_name = forms.CharField(max_length=30, required=True)
@@ -61,3 +62,9 @@ class CustomUserCreationForm(forms.ModelForm):
         password2 = cleaned_data.get('password2')
         if password1 and password2 and password1 != password2:
             raise ValidationError("Passwords do not match.")
+
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(
+        label="Name",  # This changes the label from "Username" to "Name"
+        widget=forms.TextInput(attrs={'autofocus': True})
+    )

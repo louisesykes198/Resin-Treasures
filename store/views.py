@@ -9,6 +9,7 @@ from django.contrib import messages
 from .forms import ContactForm
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from .models import Product, ProductVariant, ProductVariantImage
 
 
 def home(request):
@@ -95,11 +96,6 @@ def shop(request):
         'selected_category': category,
         'sort': sort,
     })
-
-from django.db.models import Prefetch
-from django.shortcuts import get_object_or_404, render
-from .models import Product, ProductVariant, ProductVariantImage
-
 
 def product_detail(request, pk):
     variants_prefetch = Prefetch(

@@ -126,13 +126,14 @@ class Order(models.Model):
 
     full_name = models.CharField(max_length=200, default='')
     email = models.EmailField(default='')
-    phone_number = models.CharField(max_length=20, default='')  # ← Add this
+    house_name_or_number = models.CharField(max_length=100, blank=True)
     street_address1 = models.CharField(max_length=255, default='')  # ← Add this
     street_address2 = models.CharField(max_length=255, blank=True, default='')  # ← Add this
     town_or_city = models.CharField(max_length=100, default='')  # ← Add this
     postcode = models.CharField(max_length=20, default='')
     county = models.CharField(max_length=100, blank=True, default='')  # ← Add this
     country = models.CharField(max_length=100, default='')
+    phone_number = models.CharField(max_length=20, default='')
 
     def __str__(self):
         return f"Order #{self.id} by {self.user.username}"
@@ -143,11 +144,15 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
     quantity = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-
-
-    def __str__(self):
-        return f"{self.product_name} (x{self.quantity})"
     
+    def __str__(self):
+        if self.product_variant:
+            return f"{self.product_variant.product.name} ({self.product_variant.color_name}) × {self.quantity}"
+        elif self.product:
+            return f"{self.product.name} × {self.quantity}"
+        else:
+            return f"Unknown product × {self.quantity}"
+
 class NumberItem(models.Model):
     value = models.IntegerField()
 
