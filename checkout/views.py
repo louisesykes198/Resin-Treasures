@@ -114,8 +114,8 @@ def checkout_view(request):
             payment_method_types=["card"],
             line_items=line_items,
             mode="payment",
-            success_url=request.build_absolute_uri("/checkout/success/"),
-            cancel_url=request.build_absolute_uri("/checkout/cancel/"),
+            success_url="https://resin-treasures-2025-f7167892b201.herokuapp.com/checkout/success/",
+            cancel_url="https://resin-treasures-2025-f7167892b201.herokuapp.com/checkout/cancel/",
             metadata={"order_id": str(order.id)},  # ✅ this sends the order ID to your webhook
     )
         order.stripe_payment_intent = session.payment_intent
