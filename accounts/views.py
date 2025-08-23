@@ -19,6 +19,7 @@ from django.http import HttpResponseRedirect
 from .forms import CustomLoginForm
 import random
 from django.core.mail import send_mail
+from .utils import generate_unique_username 
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -40,18 +41,28 @@ def register(request):
             # Create profile and store code
             profile = Profile.objects.create(user=user, verification_code=code)
 
-            # Send verification email
+            # Send welcome email with username and verification code
             send_mail(
-                'Verify your Resin Treasures account',
-                f'Welcome to Resin Treasures 🌿\n\nYour verification code is: {code}\n\nEnter this to complete your registration and begin your journey.',
+                'Welcome to Resin Treasures 🌿',
+                f"""Hello {user.first_name},
+
+Your account has been created successfully.
+
+🪄 Your login username: {user.username}  
+🔐 Your verification code: {code}
+
+Enter this code on the verification page to complete your registration.
+
+Warmly,  
+Resin Treasures""",
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email],
                 fail_silently=False,
             )
 
-            login(request, user)  # optional: log them in immediately
+            login(request, user)
             messages.success(request, "Welcome! Your account has been created.")
-            return redirect('verify_account')  # redirect to verification page
+            return redirect('verify_account')
     else:
         form = CustomUserCreationForm()
 
