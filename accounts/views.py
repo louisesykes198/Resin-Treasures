@@ -16,6 +16,9 @@ from django.conf import settings
 from .models import Profile
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from .forms import CustomLoginForm
+import random
+from django.core.mail import send_mail
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -30,16 +33,34 @@ def register(request):
             user.username = generate_unique_username(first, last)
             user.set_password(form.cleaned_data['password1'])
             user.save()
+
+            # Generate verification code
+            code = str(random.randint(100000, 999999))
+
+            # Create profile and store code
+            profile = Profile.objects.create(user=user, verification_code=code)
+
+            # Send verification email
+            send_mail(
+                'Verify your Resin Treasures account',
+                f'Welcome to Resin Treasures 🌿\n\nYour verification code is: {code}\n\nEnter this to complete your registration and begin your journey.',
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+                fail_silently=False,
+            )
+
             login(request, user)  # optional: log them in immediately
             messages.success(request, "Welcome! Your account has been created.")
-            return redirect('home')  # or wherever you want to send them
+            return redirect('verify_account')  # redirect to verification page
     else:
         form = CustomUserCreationForm()
+
     return render(request, 'accounts/register.html', {'form': form})
 
 class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
     redirect_authenticated_user = True
+    authentication_form = CustomLoginForm
 
     def get_success_url(self):
         return reverse_lazy('home')  
@@ -214,6 +235,20 @@ def set_default_card(request, card_id):
         messages.success(request, "Your default card has been updated.")
             
         return HttpResponseRedirect(reverse('account_settings') + '?tab=payment')
+
+@login_required
+def verify_account(request):
+    if request.method == 'POST':
+        code = request.POST.get('code')
+        profile = request.user.profile
+        if profile.verification_code == code:
+            profile.is_verified = True
+            profile.save()
+            messages.success(request, "Your account is now verified 🌿")
+            return redirect('home')
+        else:
+            messages.error(request, "Incorrect code. Please try again.")
+    return render(request, 'accounts/verify.html')
 
 
 

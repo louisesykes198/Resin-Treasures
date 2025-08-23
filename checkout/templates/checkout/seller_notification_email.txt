@@ -1,0 +1,19 @@
+A new order has been placed on Resin Treasures 🌿
+
+Order ID: {{ order.id }}
+Customer: {{ full_name }}
+Email: {{ email }}
+Total: £{{ grand_total }}
+
+Items Ordered:
+{% for item in order.items.all %}
+  {% if item.product_variant %}
+    - {{ item.product_variant.product.name }} ({{ item.product_variant.color_name }}) × {{ item.quantity }}
+  {% else %}
+    - {{ item.product.name }} × {{ item.quantity }} — £{{ item.price }}
+  {% endif %}
+{% endfor %}
+
+You can view and prepare the order in your dashboard.
+
+
