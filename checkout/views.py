@@ -193,10 +193,7 @@ def stripe_webhook(request):
                 print("Order items in webhook:", order.items.all())
                 order.status = "paid"
                 order.save()
-                
-                notify_seller_of_order(order)
-                send_order_confirmation_email(order)
-                
+                              
             except Order.DoesNotExist:
                 pass
 
