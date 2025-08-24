@@ -118,6 +118,7 @@ def checkout_view(request):
             cancel_url="https://resin-treasures-2025-f7167892b201.herokuapp.com/checkout/cancel/",
             metadata={"order_id": str(order.id)},  # ✅ this sends the order ID to your webhook
     )
+            
         order.stripe_payment_intent = session.payment_intent
         order.save()
 
@@ -174,28 +175,37 @@ def cancel_view(request):
 def stripe_webhook(request):
     payload = request.body
     sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
-    endpoint_secret = settings.STRIPE_WH_SECRET  # ✅ correct
+    endpoint_secret = settings.STRIPE_WH_SECRET
 
     try:
         event = stripe.Webhook.construct_event(
             payload, sig_header, endpoint_secret
         )
-    except Exception:
+    except ValueError as e:
+        # Invalid payload
+        print("⚠️ Invalid payload:", e)
         return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        print("⚠️ Signature verification failed:", e)
+        return HttpResponse(status=400)
+
+    print("🔔 Received event:", event["type"])
 
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
 
         order_id = session.get("metadata", {}).get("order_id")
+        print("✅ Checkout session completed for order:", order_id)
+
         if order_id:
             try:
                 order = Order.objects.get(id=order_id)
-                print("Order items in webhook:", order.items.all())
+                print("🛒 Order items in webhook:", order.items.all())
                 order.status = "paid"
                 order.save()
-                              
             except Order.DoesNotExist:
-                pass
+                print("⚠️ Order not found:", order_id)
 
     return HttpResponse(status=200)
 
