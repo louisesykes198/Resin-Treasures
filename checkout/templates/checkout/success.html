@@ -17,22 +17,22 @@
             <hr>
             <p class="lead text-muted">Thank you for your order, {{ user.first_name }}.</p>
 
-            {% if order %}
-                <p class="mb-2">Your order number is <strong>#{{ order.id }}</strong>.</p>
-<p class="mb-4">Delivery to:<br>
-    {{ order.full_name }}<br>
-    {{ order.street_address1 }}{% if order.street_address2 %}, {{ order.street_address2 }}{% endif %}<br>
-    {{ order.town_or_city }}, {{ order.county }}<br>
-    {{ order.postcode }}<br>
-    {{ order.country }}<br><br>
+{% if order %}
+    <p class="lead text-muted">Thank you for your order, {{ order.full_name }}.</p>
+    <p class="mb-2">Your order number is <strong>#{{ order.id }}</strong>.</p>
+    <p class="mb-4">Delivery to:<br>
+        {{ order.street_address1 }}{% if order.street_address2 %}, {{ order.street_address2 }}{% endif %}<br>
+        {{ order.town_or_city }}, {{ order.county }}<br>
+        {{ order.postcode }}<br>
+        {{ order.country }}<br><br>
 
-    <strong>Delivery Method:</strong> {{ order.delivery_method|title }}<br>
-    <strong>Parcel Size:</strong> {{ order.delivery_size }}<br>
-    <strong>Delivery Cost:</strong> £{{ order.delivery|floatformat:2 }}
-</p>
-            {% else %}
-                <p class="text-danger">We couldn’t retrieve your order details. Please check your email for confirmation.</p>
-            {% endif %}
+        <strong>Delivery Method:</strong> {{ order.delivery_method|title }}<br>
+        <strong>Parcel Size:</strong> {{ order.delivery_size }}<br>
+        <strong>Delivery Cost:</strong> £{{ order.delivery|floatformat:2 }}
+    </p>
+{% else %}
+    <p class="text-danger">We couldn’t retrieve your order details. Please check your email for confirmation.</p>
+{% endif %}
 
 <a href="{% url 'home' %}" class="btn btn-outline-primary btn-sm">
     <i class="fas fa-arrow-left"></i> Back to Home
