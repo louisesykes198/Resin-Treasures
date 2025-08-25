@@ -122,14 +122,26 @@ def basket_context(request):
         basket = []
     return {'basket': basket}
 
+@login_required
 def add_to_basket(request, variant_id):
-    basket = request.session.get('basket', {})
+    variant = get_object_or_404(ProductVariant, pk=variant_id)
 
-    # Increment quantity or set to 1
-    basket[str(variant_id)] = basket.get(str(variant_id), 0) + 1
+    basket_item, created = Basket.objects.get_or_create(user=request.user, variant=variant)
+    basket_item.quantity += 1
+    basket_item.save()
 
-    request.session['basket'] = basket
-    return redirect('basket_summary')  # or wherever you want to go
+    messages.success(request, "Added to basket. You can continue shopping or view your basket.")
+    return redirect(request.META.get('HTTP_REFERER', 'shop'))
+
+@login_required
+def buy_now(request, variant_id):
+    variant = get_object_or_404(ProductVariant, pk=variant_id)
+
+    basket_item, created = Basket.objects.get_or_create(user=request.user, variant=variant)
+    basket_item.quantity += 1
+    basket_item.save()
+
+    return redirect('basket')
 
 @login_required
 def basket_view(request):

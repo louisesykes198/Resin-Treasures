@@ -14,6 +14,7 @@ from django.template.loader import render_to_string
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+
 @login_required
 def checkout_view(request):
     basket_items = Basket.objects.filter(user=request.user)
@@ -108,17 +109,17 @@ def checkout_view(request):
                 },
                 "quantity": 1,
             })
-       
-        # Create Stripe session
+
+        # ✅ Stripe session creation (correctly indented inside POST)
         session = stripe.checkout.Session.create(
             payment_method_types=["card"],
             line_items=line_items,
             mode="payment",
-            success_url="https://resin-treasures-2025-f7167892b201.herokuapp.com/checkout/success/",
-            cancel_url="https://resin-treasures-2025-f7167892b201.herokuapp.com/checkout/cancel/",
-            metadata={"order_id": str(order.id)},  # ✅ this sends the order ID to your webhook
-    )
-            
+            success_url=f"https://resin-treasures-2025-f7167892b201.herokuapp.com/checkout/success/?order_id={order.id}",
+            cancel_url=f"https://resin-treasures-2025-f7167892b201.herokuapp.com/checkout/cancel/?order_id={order.id}",
+            metadata={"order_id": str(order.id)},
+        )
+
         order.stripe_payment_intent = session.payment_intent
         order.save()
 
@@ -159,14 +160,31 @@ def checkout_view(request):
         "delivery_price": delivery_price,
         "grand_total": grand_total,
     })
-    
-def success_view(request):
-    order_id = request.session.get('order_id')
-    order = Order.objects.get(id=order_id) if order_id else None
 
-    return render(request, "checkout/success.html", {
+
+def success_view(request):
+    order_id = request.session.get("order_id") or request.GET.get("order_id")
+
+    if not order_id:
+        return render(request, "checkout/order_not_found.html", {
+            "message": "We couldn't find your order. If you completed a purchase, please check your email or contact support."
+        })
+
+    order = Order.objects.filter(id=order_id).first()
+
+    if not order:
+        return render(request, "checkout/order_not_found.html", {
+            "message": "We couldn’t find your order. It may still be processing. Please check your email or try again shortly."
+        })
+
+    context = {
         "order": order,
-    })
+        "user": order.user,
+    }
+
+    request.session.pop("order_id", None)
+
+    return render(request, "checkout/success.html", context)
 
 def cancel_view(request): 
     return render(request, "checkout/cancel.html")
@@ -239,9 +257,6 @@ def notify_seller_of_order(order):
         ['resintreasures5@gmail.com'],  # your business email
         fail_silently=False,
     )
-
-
-
 
 
 
