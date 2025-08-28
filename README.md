@@ -266,11 +266,9 @@ Open Sans: A clean, versatile sans-serif font that’s friendly and highly legib
 
 Together, these fonts strike a balance between elegance and ease — one expressive and craft-inspired, the other smooth and practical — enhancing the user experience with both emotional resonance and functional clarity.
 
-![image](doc\home-page.png)
+![image](doc/home-page.png)
 
-![image](docs/navbar.png)
-
-### **Layout**
+##### Page Layout & Features:
 
 The page layout for *Resin Treasures* is calm, curated, and visually inviting, designed to guide users gently through the shopping experience. It features a responsive, grid-based structure with generous spacing and soft visual cues.
 
@@ -418,7 +416,7 @@ The navigation bar isn’t just a menu—it’s a moment of orientation. It refl
 
 ![image](doc/desktop-nav.png)
 
-### 🖥️ Logged-In Desktop Navigation Bar
+### Logged-In Desktop Navigation Bar
 
 The *Resin Treasures* desktop navigation for logged-in users is designed to feel personal, polished, and emotionally intuitive—offering returning customers a seamless way to explore, manage, and shop with confidence.
 
@@ -532,548 +530,227 @@ The logged-in mobile navigation reflects *Resin Treasures’* commitment to user
 
 ![image](doc/mob-nav-in.png)
 
-#### **Home Page**
+### Home Page
 
-The Welcome Page of The Crochet Files invites users into a cozy, colorful space to explore different crochet project categories. The layout features a friendly greeting at the top, followed by a prompt to select a category.
+The *Resin Treasures* home page is a gentle invitation into a world of handcrafted beauty. Designed to evoke calm, curiosity, and trust, it blends visual elegance with intuitive navigation—welcoming users into a curated shopping experience.
 
-Displayed in a 2-row, 3-column grid, each category is represented with:
+#### **Header & Navigation**
 
-A vibrant, high-quality photo of a crocheted item
+- A clean top navigation bar includes:
+  - Logo with brand initials
+  - Search bar with `"Search"` placeholder and soft blue **Go** button (`#4C90DA`)
+  - Links to: Home, About Us, Categories ⌄, Contact, Login, and Sign Up
+  - A shopping cart icon for quick access to basket contents
 
-A label beneath each image's name indicates the category
+- Above the navigation bar, a banner reads:  
+  **"Free delivery on orders over £50!"**  
+  This sets a friendly, value-driven tone at first glance.
 
-Categories include:
+#### **Hero Section**
 
-- Blankets – Warm, textured throws for cozy vibes
+- A full-width promotional area featuring:
+  - A pink resin art piece shaped like bunny ears, adorned with a golden ribbon
+  - Soft floral accents to enhance the handcrafted aesthetic
+  - Headline: **"Handcrafted Resin Art"** in elegant serif typography
+  - A “Shop Now” button in soft blue (`#4C90DA`) with rounded corners and white text  
+    - Hover effect darkens to `#3571B8` for gentle interactivity
 
-- Cardigans – Stylish, handmade wearables
+#### **Design Principles**
 
-- Amigurumi – Adorable stuffed animals and characters
+- **Color Palette:** Pastel tones and soft blues create a calm, welcoming atmosphere
+- **Typography:** A blend of serif and sans-serif fonts for emotional clarity and readability
+- **Layout:** Generous spacing and visual breathing room guide users gently through the experience
 
-- Scarves – Colorful, snug accessories
+The home page isn’t just a storefront—it’s a sanctuary. Every element is crafted to reflect *Resin Treasures’* values: care, creativity, and emotional clarity. It invites users to explore, connect, and discover the beauty of handmade resin art.
 
-- Hats – Beanies and pom-pom-topped headwear
+![image](doc/home-page.png)
 
-- Dishcloths – Functional and decorative essentials
+### About Page
 
-The entire layout sits on a soft blue background, reflecting the calm and creative spirit of the crochet community. Each card is spaced evenly and bordered in white, making navigation both intuitive and visually inviting.
+The *Resin Treasures* About Page is a heartfelt introduction to the soul behind the studio—a one-woman creative space where resin art is crafted with care, intention, and emotional depth.
 
-![image](docs/landing-page.png)
+#### **Introduction**
 
-#### **Add Pattern Page**
+> *"Welcome to Resin Treasures — a one-woman creative studio where handmade resin art comes to life."*
 
-The “Add a New Pattern” page on The Crochet Files allows users to share their crochet creations by submitting detailed pattern entries. The page features a clean form layout with labeled fields for user input.
+This opening sets the tone for the entire brand: personal, artisanal, and rooted in quiet craftsmanship. Visitors are invited into a small home studio in the UK, where every piece is designed, poured, and polished with love.
 
-##### Form Fields Include:
+#### **About the Creator**
 
-Pattern Name – A single-line text field to title the pattern.
+> *"Resin Treasures is a new and growing passion project, built from a love of crafting and a desire to create beautiful, meaningful keepsakes."*
 
-Description – A larger text area for an overview or story behind the pattern.
+This section shares the story of a solo maker who handles every step—from design and production to packing orders. It’s a labor of love, and the message is clear: every purchase supports a dream, not just a business.
 
-Skill Level – A dropdown menu to select difficulty (e.g., Beginner).
+#### **What I Make**
 
-Materials Needed – A field to list yarn types, hook sizes, and other supplies.
+A curated list of offerings highlights the diversity and emotional intention behind each creation:
 
-Category – Dropdown to categorize the pattern (e.g., Blanket, Hat, Amigurumi).
+- Handmade jewellery — earrings and necklaces  
+- Unique keyrings for all occasions  
+- Thoughtful gifts for teachers and new parents  
+- Custom animal and reptile-themed décor  
 
-Notes – Optional space for tips, modifications, or personal thoughts.
+Each item is designed to be more than a product—it’s a keepsake, a gesture, a story.
 
-##### File Uploads:
+#### **Visuals**
 
-Upload Pattern (PDF) – Attach a pattern file to share with others.
+Three images showcase the resin-making process: molds, tools, and works-in-progress. These visuals reinforce the handmade nature of the brand and offer a glimpse into the quiet magic of creation.
 
-Upload Image – Upload a photo of the finished project for inspiration.
+The About Page isn’t just informational—it’s relational. It builds trust, invites connection, and reflects *Resin Treasures’* core values: care, creativity, and emotional clarity.
 
-At the bottom, a rounded “Save Project” button allows users to submit their pattern once complete.
+![image](doc/about-page.png)
 
-The page uses a soft blue background with a simple, welcoming aesthetic, keeping the focus on creativity and contribution.
+### Product Page
 
-![image](docs/add-page.png)
+The *Resin Treasures* product page is a curated gallery of handcrafted resin art—each item presented with care, clarity, and emotional resonance. It’s designed to feel like browsing a boutique, where every piece tells a story.
 
-#### **Pattern Page**
+#### **Top Navigation**
 
-The Crochet Files page is a beautifully laid-out collection of user-added crochet patterns. It serves as a gallery where each pattern is presented with a preview, allowing users to browse, view, edit, or delete their creations.
+- Buttons for quick access:
+  - **All Products**
+  - **Categories**
+  - **View All Reviews**
+- A **Sort by...** dropdown on the right allows users to organize items by preference (e.g., price, popularity, or newest).
 
-##### Page Layout & Features:
+#### **Product Listings**
 
-##### Add New Pattern Button:
+Each product is displayed in a clean, card-style layout with:
 
-Located at the top, this button allows users to quickly navigate to the form for submitting a new crochet pattern.
+- **Image**: A high-quality photo showcasing the resin piece
+- **Name**: Clear, descriptive titles
+- **Description**: A short poetic summary that highlights the emotional and artistic qualities of the item
+- **Price**: Displayed in GBP (£), reinforcing the handmade value
+- **Buttons**:
+  - **View Product** — for detailed information and close-up images
+  - **Add to Basket** — styled in soft blue (`#4C90DA`) with white text and rounded corners
 
-##### Pattern Cards:
+#### **Featured Items**
 
-Each pattern is displayed within an individual, color-bordered card.
+Examples include:
 
-Image Preview: A photo representing the crochet project.
+- **Rose Figurine** — A sculpted pink resin rose, romantic and delicate  
+- **Dog and Girl Puzzle** — A 3-piece figurine capturing a tender moment  
+- **Heart on Wheels Car** — A whimsical pink glittered car  
+- **Glimmer Gills Axolotl** — A translucent pink axolotl with shimmering details
 
-Pattern Title: Clearly stated at the top of the card.
+Each item is unique, reflecting the brand’s commitment to one-of-a-kind artistry.
 
-Short Description: A summary of the pattern’s charm and purpose (truncated for quick browsing).
+#### **Design Principles**
 
-Skill Level: Shows the required experience: Beginner, Intermediate, and Advanced.
+- **Layout**: Multi-column grid for desktop, responsive stacking for mobile
+- **Typography**: Serif headings for elegance, sans-serif body text for clarity
+- **Color Palette**: Soft pastels and blues to evoke calm and trust
 
-Category: Organizes the pattern type: Blankets, Cardigans, Amigurumi, Hats, Scarves, and Dishcloths.
+The product page isn’t just a catalogue—it’s a celebration of craft. It invites users to explore, connect, and discover pieces that feel personal, meaningful, and joyfully handmade.
 
-##### Action Buttons:
+![image](doc/product-page.png)
 
-View Pattern: Takes the user to the full pattern description and downloadable resources.
+### Contact Page
 
-Edit: Allows the user to update any pattern details.
+The *Resin Treasures* contact page is designed to feel personal, approachable, and emotionally safe—inviting visitors to reach out with curiosity, kindness, or creative ideas.
 
-Delete: Removes the pattern from the list.
+#### **Header Message**
 
-Design: Uses soft pastel colors and a dotted border for each card to give a handcrafted, friendly vibe.
+> *"We’d love to hear from you — whether you’re shopping for a gift, requesting a custom piece, or simply saying hello."*
 
-Clear layout promotes easy navigation and interaction with each pattern.
+This gentle introduction sets the tone for open, heartfelt communication.
 
-![image](docs/project-page.png)
+#### **Contact Form**
 
-#### **View/Download Button** 
+A clean, centered form includes:
 
-The View/Download Button is an essential feature on the site, enabling users to either view or download crochet patterns. This button opens the pattern in a new window, ensuring the user experience remains smooth and uninterrupted while browsing the site.
+- **Name** — text input  
+- **Email Address** — text input  
+- **Message** — large textarea for inquiries, feedback, or custom requests  
+- **Submit Button** — soft blue (`#4C90DA`) with white text and rounded corners  
+  - Hover effect: darkens to `#3571B8` for subtle interactivity
 
-##### Features:
+#### **Additional Info**
 
-Text: The button is clearly labeled with either "View Pattern" or "Download Pattern", depending on the action it performs.
+- **Response Time:** Typically within 1–2 business days  
+- **Custom Requests:** Encouraged and welcomed—users can describe their ideas, themes, or preferred colours  
+- **Support Tone:** Friendly, patient, and emotionally attuned
 
-##### Action:
+#### **Design Principles**
 
-View Pattern: When users click this option, the pattern opens in a new window or tab. This allows users to view the full pattern without navigating away from the current page, keeping them engaged with the website.
+- **Color Palette:** Light blue background with soft accents for calm and clarity  
+- **Typography:** Sans-serif fonts for readability and warmth  
+- **Layout:** Generous spacing and mobile responsiveness ensure ease of use across devices
 
-Download Pattern: Clicking this option opens the pattern file for download, typically in PDF format, so users can save it to their devices for offline use.
+The contact page isn’t just a form—it’s a doorway. It reflects *Resin Treasures’* commitment to connection, care, and co-creation. Every message is received with gratitude and intention.
 
-##### Design:
+![image](doc/contact-page.png)
 
-The button is styled with a soft blue background and black text, ensuring it blends seamlessly with the overall pastel color palette of the site.
+#### **Confirmation Message**
 
-Rounded corners create a friendly, approachable look, fitting the overall aesthetic of the site.
+After submission, users receive a gentle green notification box:
 
-A hover effect is applied to the button, darkening the background color slightly to indicate interactivity and enhance the visual appeal.
+> ✅ **Your message has been sent successfully!**
 
-Placement: Positioned below the pattern’s description or image, the button is easily visible and accessible for users looking to view or download the pattern.
+This reinforces trust and emotional clarity, letting users know their voice has been heard.
 
-Responsive: The button is fully responsive, ensuring that it functions correctly across all devices (desktop, tablet, and mobile). On mobile, the button remains large enough to be easily clicked or tapped.
+#### **Design Principles**
 
-##### Design Highlights:
+- **Color Palette:** Light blue background with soft accents for calm and clarity  
+- **Typography:** Sans-serif fonts for readability and warmth  
+- **Layout:** Generous spacing and mobile responsiveness ensure ease of use across devices
 
-Consistent pastel color scheme that complements the rest of the site.
+The contact page isn’t just a form—it’s a doorway to connection. It reflects *Resin Treasures’* values of care, creativity, and gratitude—making every message feel personal and appreciated.
 
-Clear, intuitive functionality that allows users to either view or download patterns without leaving the current page or tab.
+![image](doc/contact-sub-page.png)
 
-Smooth hover transition effect for added interactivity and visual feedback.
+### Contact Form Submission – Seller View
 
-![image](docs/down-button.png)
+When a customer submits the contact form on *Resin Treasures*, the message is delivered directly to the seller’s inbox—ensuring prompt, personal communication.
 
-#### **Download View** 
+#### **Email Notification**
 
-When the user clicks on the View/Download Pattern button, the action is designed to open the crochet pattern in a new browser window or tab, allowing users to view the full pattern without leaving the current page they’re on.
+- **Sender:** The message appears from the customer’s name and email address  
+- **Subject Line:** `"Contact Form Submission from [Customer Name]"`  
+- **Preview Text:** Displays a snippet of the message content for quick reference  
+- **Status:** Marked as unread and highlighted for visibility
 
-The user can click on the download arrow so they can save it to there device. 
+#### **Message Contents**
 
-![image](docs/downlaod-pattern.png)
+The email includes:
 
-#### **View, Edit and Delete Buttons**
+- **Customer Name**  
+- **Email Address**  
+- **Message Body** — whether it’s a question, custom request, or note of appreciation
 
-#### View Button
+This format ensures the seller has all the necessary details to respond with care and clarity.
 
-Purpose: The View button allows users to open the full details of a crochet pattern.
+#### **Tone & Experience**
 
-How it Works: When clicked, it takes the user to a dedicated page where they can see the full pattern information — including materials, skill level, notes, images, and download links.
+Receiving a contact form is more than just a notification—it’s a moment of connection.  
+Each message is treated with gratitude and intention, reflecting *Resin Treasures’* values of emotional clarity, handcrafted care, and personal attention.
 
-Design: It’s usually styled with a soft blue outline to match the site’s pastel theme.
+Behind every submission is a person reaching out with curiosity, creativity, or kindness. The inbox becomes a quiet bridge between maker and admirer—turning digital contact into heartfelt conversation.
 
-User Experience: Users can explore the complete pattern without accidentally editing or deleting anything, making it safe for viewing only.
+![image](doc/contact-email.png)
 
-#### Edit Button
+### Contact Form Submission – Email Example
 
-Purpose: The Edit button allows users to update or correct details of a pattern they have created.
+When a customer submits a message through the *Resin Treasures* contact form, the seller receives an email notification with all relevant details. Below is a sample structure of the email content:
 
-How it Works: When clicked, it navigates the user to an editable form pre-filled with the pattern’s current information. The user can change text, replace images, or upload a new file.
+**Subject:**  
+`Contact Form Submission from Louise Sykes`
 
-Design: Often styled slightly differently (such as using a pencil icon or a colored border) to visually indicate its function.
+**From:**  
+`resintreasures5@gmail.com`  
+*(on behalf of)* `louisestead@yahoo.co.uk`
 
-User Experience: Users can quickly make adjustments — like fixing a typo, updating materials, or adding extra notes — without needing to recreate the whole pattern.
+**Message Body:**  
+> *This is a message.*
 
-#### Delete Button
+**Buttons:**  
+- **Reply** — to respond directly to the sender  
+- **Forward** — to share the message with collaborators or support
 
-Purpose: The Delete button allows users to permanently remove a pattern they have posted.
+Each email is a moment of connection—whether it’s a custom request, a kind note, or a question. The format ensures the seller can respond with care, clarity, and gratitude, continuing *Resin Treasures’* commitment to personal, emotionally attuned communication.
 
-How it Works:
+![image](doc/contact-email-open.png)
 
-When clicked, a confirmation prompt usually appears asking the user if they are sure they want to delete the pattern (to prevent accidents).
-
-Once confirmed, the pattern is removed from the database and no longer appears on the site.
-
-Design: Typically styled in a color that signals caution (like a soft red or orange outline) to make users aware that it's a destructive action.
-
-User Experience: The deletion process is designed to be quick but careful, ensuring users don’t lose content by mistake.
-
-![image](docs/view-buttons.png)
-
-#### Project Detail Page Description (View Project Page)
-
-This page displays the full details of a single crochet project, combining both visual and textual elements in a clean, user-friendly layout that matches the site's soft, pastel design.
-
-##### Page Layout:
-Background: Light pastel blue, maintaining the calming, cohesive theme across the site.
-
-Card Design: A large white rounded card with subtle shadows, keeping the focus on the project content.
-
-##### Content Sections:
-##### Project Image:
-
-Positioned on the left side of the card.
-
-Large and clear, showing a detailed view of the crochet project (in this case, two adorable penguin plushies).
-
-Helps users immediately see what the project looks like, inspiring interest and creativity.
-
-##### Project Information (on the right side):
-
-Project Title: Displayed prominently at the top in bold, large text (e.g., "Penguin").
-
-Category: A smaller label showing the type of project (e.g., "Amigurumi").
-
-Description: A friendly, inviting paragraph that introduces the project, its features, and suggestions for use. It sets a warm, helpful tone.
-
-Skill Level: Listed to help users quickly understand the difficulty (e.g., "Intermediate").
-
-Materials Needed: A practical list of supplies like yarn type, hook size, and accessories needed to complete the project.
-
-##### Action Buttons:
-##### View/Download Pattern Button:
-
-Located under the materials list.
-
-Styled with a soft blue outline and rounded edges to stay on-brand.
-
-When clicked, the pattern opens in a new browser tab or window, allowing users to view or download the pattern without losing their place on the site.
-
-##### Like Button:
-
-Soft pink button beneath the download button.
-
-Allows users to like the project, with a visible counter showing how many likes it has received (e.g., "2 Likes").
-
-##### Navigation:
-##### Navbar at the top includes:
-
-Home | Add Pattern | Patterns | Logout
-
-It provides users with easy access to different parts of the site while keeping them logged in and engaged.
-
-##### Overall Feel:
-This page is bright, organized, and welcoming, making it easy for users to enjoy viewing crochet projects, quickly find important project information, and interact with patterns through likes and downloads.
-
-![image](docs/view-pattern.png)
-
-#### **Comment Section**
-
-The Comment Section allows users to engage with crochet patterns by sharing their thoughts, feedback, and experiences. It fosters a sense of community where users can ask questions, offer tips, or simply express appreciation for a pattern. This section is placed beneath the pattern’s description or image, encouraging interaction among users.
-
-##### Features:
-
-Text Input Area: Users can type and submit their comments about the crochet pattern. The input field is designed to be simple and easy to use, encouraging participation from both beginners and experienced crocheters.
-
-Submit Button: Once the user has typed their comment, they can click the Submit button to post it. The button is typically styled with a soft color to match the site's pastel theme.
-
-##### Comment Display:
-
-Each comment is displayed underneath the input field, in a clear, organized layout.
-
-User Information: The user’s name or username is displayed next to their comment to identify the poster.
-
-Timestamp: Each comment is accompanied by a timestamp indicating when it was posted, adding context to the conversation.
-
-Reply Feature: Users can respond to other comments, allowing for threaded discussions. This makes it easier for users to engage in specific conversations about the pattern, technique, or tips shared.
-
-Delete/Modify Option: Users can edit or delete their own comments if needed, ensuring control over their input. (Optional feature)
-
-##### Design Highlights:
-
-The comment section is designed with a clean, minimalist layout that integrates seamlessly with the rest of the site’s aesthetic.
-
-Soft pastel color scheme: The background and borders of the comment section are in soft pastel tones, keeping the atmosphere light and welcoming.
-
-Easy Navigation: The comment input area and buttons are designed to be simple and intuitive, encouraging users to contribute without confusion.
-
-Mobile Responsive: The comment section adjusts for smaller screens, ensuring users can easily comment from mobile devices.
-
-##### User Experience:
-
-Engagement: This section creates a space for users to engage with the pattern, ask questions, share modifications, or simply express gratitude.
-
-Community Building: By allowing users to interact with each other, the comment section helps build a sense of community, with people learning from one another and sharing their experiences.
-
-![image](docs/no-comment.png)
-
-##### **Comment Section With a Comment**
-
-![image](docs/with-comment.png)
-
-#### **Blanket Pattern Page** 
-
-This page is a "Blanket Patterns" section from a crochet-themed website, likely part of The Crochet Files or My Crochet Page. It displays six crochet blanket pattern cards in a visually appealing grid layout, using a soft, pastel color palette with a light blue background. Each card includes:
-
-Pattern Name: Bunny Blanket, Baby Blanket, and more.
-
-Image of the blanket
-
-Brief Description of the pattern
-
-A "View Pattern" button styled with a blue border and hover effect
-
-The six featured blanket patterns are:
-
-Bunny Blanket – A cozy blanket with an adorable bunny theme.
-
-Baby Blanket – A simple, soothing baby blanket ideal for beginners.
-
-Granny Square Blanket – A vibrant, colorful take on a traditional granny square design.
-
-Lattice Blanket – Elegant with a textured design, great for home decor.
-
-Shell Blanket – Features pastel shell stitch patterns, soft and elegant.
-
-Cat and Mouse Blanket – Whimsical and fun, featuring cat and mouse motifs.
-
-Each pattern is likely clickable for more details. The layout and card style are consistent and user-friendly, making it easy to browse.
-
-![image](docs/blanket-page.png)
-
-#### **Cardigan Pattern Page**
-
-This page is the "Cardigan Patterns" section of your crochet-themed website. It follows the same clean, pastel-toned design as the “Blanket Patterns” page, with a light blue background, rounded white cards, and consistent card layout.
-
-Each card includes:
-
-A project image
-
-Pattern title in bold
-
-A brief description of the pattern
-
-A blue-bordered "View Pattern" button
-
-The featured cardigan patterns are:
-
-Adult Crew Neck Sweater – A timeless and versatile casual sweater.
-
-Matinee Jacket – A warm and elegant jacket, ideal for babies or special occasions.
-
-Gathering Leaves Cardigan – A charming, fall-themed cardigan with swirling leaf motifs.
-
-Iris Cardigan – A long, elegant cardigan perfect for layering, featuring a classic design.
-
-Peggy Cardigan – A red cardigan with a relaxed fit, adding subtle elegance to casual outfits.
-
-Baby Cardigan – A soft and stylish option for babies, with matching booties in the image.
-
-##### Design Notes:
-
-The cards have consistent sizing and styling.
-
-The descriptions are concise and inviting.
-
-Button design matches the “Blanket Patterns” section, ensuring visual harmony.
-
-![image](docs/cardigan-page.png)
-
-#### **Amigurumi Pattern Page**
-
-This is the "Amigurumi Patterns" section of your crochet website, showcasing cute and creative crocheted characters and toys. It follows the same consistent and visually cohesive design as the other pattern sections, with a pastel blue background and clean white pattern cards.
-
-##### Each card includes:
-
-An image of the amigurumi character
-
-A pattern title
-
-A short description
-
-A "View Pattern" button with a blue outline
-
-The featured Amigurumi patterns:
-
-Barnyard Friends Collection – A group of adorable farm animals including a pig, chick, and lamb.
-
-Bumble Bee Keyring – Small, cheerful bee keychains to brighten your day.
-
-Octopus – A soft, stackable octopus plushie with wiggly legs and friendly faces.
-
-Penguin – A cute, chubby penguin plushie with flipper wings and a tiny beak.
-
-Pikachu – A crocheted version of the beloved Pokémon character, full of energy and fun.
-
-Disney Stitch – A playful Stitch plushie, full of mischief and charm.
-
-##### Design Highlights:
-
-The layout is neatly arranged in two rows of three cards.
-
-The images are vibrant and engaging, perfect for grabbing attention.
-
-The tone is whimsical and lighthearted, matching the amigurumi theme well.
-
-![image](docs/ami-page.png)
-
-#### **Scarf Pattern Page**
-
-This is the "Scarves Patterns" section of your crochet website, dedicated to stylish and cozy accessories perfect for any season. It keeps the same cohesive design as the rest of the site, featuring a soft pastel blue background and crisp white pattern cards.
-
-##### Each card includes:
-
-An image of the scarf
-
-A pattern title
-
-A short, catchy description
-
-A "View Pattern" button with a soft blue outline
-
-##### The featured Scarf patterns:
-
-Bow Scarf – A chic scarf with a playful bow detail, blending style and whimsy.
-
-Infinity Scarf – An endlessly looped scarf for effortless layering and warmth.
-
-Mouse Snoody – A cute, critter-themed snoody with cozy character and charm.
-
-Racer Wrap – A bold, modern wrap with clean lines and sleek design.
-
-Straight Up Scarf – A minimal and timeless scarf that pairs with anything.
-
-Zepplin Scarf – Airy and modern, this scarf adds elevated simplicity to your look.
-
-##### Design Highlights:
-
-Patterns are displayed in a clean two-row, three-column grid for easy browsing.
-
-Each image showcases the scarf clearly, inviting users to explore further.
-
-The tone is cozy, stylish, and inviting — just like the scarves themselves.
-
-![image](docs/scarf-page.png)
-
-#### **Hat Pattern Page**
-
-This is the "Hats Patterns" section of your crochet website, showcasing cozy and creative headwear for all styles and seasons. The design remains consistent with the rest of the site — a soft pastel blue background with clean, white pattern cards that make each item pop.
-
-##### Each card includes:
-
-An image of the crochet hat
-
-A pattern title
-
-A short, engaging description
-
-A "View Pattern" button outlined in soft blue
-
-##### The featured Hat patterns:
-
-Cinnamon Swirl Hat and Scarf Set – A warm, coordinating set inspired by cozy cinnamon tones and classic style.
-
-Beginner Beanie – A simple and approachable pattern, perfect for first-time crocheters or relaxing weekend projects.
-
-Candy Cap – Bright, sweet, and full of fun — this playful hat brings a splash of color to any outfit.
-
-Elegant Hat – A refined accessory with timeless charm, perfect for dressing up or down.
-
-Fox Hat – A woodland-inspired design featuring fox ears and adorable detailing for a whimsical touch.
-
-Pebbled Hat – A textured beanie with a stylish “pebbled” surface, offering both warmth and visual interest.
-
-##### Design Highlights:
-
-Patterns are arranged neatly in a two-row, three-column grid for easy browsing.
-
-Each hat is presented with a vibrant image to capture its unique flair.
-
-The tone is playful, stylish, and cozy, matching the warm and creative vibe of the hat category.
-
-![image](docs/hat-page.png)
-
-#### **Dishcloth Pattern Page**
-
-This is the "Dishcloth Patterns" section of your crochet website, featuring a collection of functional and decorative crochet patterns for the kitchen and home. Staying true to the site’s aesthetic, the section is presented with a soft pastel blue background and clean white pattern cards for a cohesive, inviting look.
-
-##### Each card includes:
-
-An image of the dishcloth or coaster
-
-A pattern title
-
-A short, friendly description
-
-A "View Pattern" button outlined in blue
-
-##### The featured Dishcloth patterns:
-
-Dishcloth and Tea Towel – A simple and elegant set that blends style and function for your daily kitchen needs.
-
-Corgi Butts Coasters – Playful and adorable, these coasters bring a smile with every fluffy-tailed corgi design.
-
-Fantasy Naturale – A bright and practical dishcloth that highlights natural cotton yarn in bold, fun colors.
-
-Holi Inspired Dishcloth – A festive and colorful design inspired by the joyful hues of the Holi celebration.
-
-Sunburst Coaster – Radiating texture and cheer, this sunny coaster adds handmade warmth to any table.
-
-Snowflake Coaster – Delicate and elegant, this winter-themed design adds a touch of seasonal magic to your décor.
-
-##### Design Highlights:
-
-All pattern cards are arranged in a neat two-row, three-column grid.
-
-Images are bright and showcase the texture and shape of each dishcloth.
-
-The tone is cheerful and homey, matching the comforting, everyday nature of dishcloths and coasters.
-
-![image](docs/dish-page.png)
-
-#### **Edit Project Page**
-
-This is the "Edit Pattern" section of your crochet website, where you can easily update or refine the details of your crochet patterns. The page has been designed to ensure a smooth and intuitive editing process, all while keeping in line with the clean, inviting aesthetic of the site.
-
-##### Each section includes:
-
-Pattern Title: Edit the name of your crochet creation.
-
-Category: Choose the most fitting category for your pattern, such as Blankets, Scarves, or Dishcloths.
-
-Description: Add or update a friendly, short description that highlights the details of your pattern.
-
-Skill Level: Adjust the difficulty level to guide crocheters of all abilities.
-
-Materials Needed: List the yarns, hooks, and any additional supplies required.
-
-Notes: Include any important tips or special instructions for makers.
-
-Pattern File: Attach or change the pattern if available for download or printing.
-
-Image: Update or upload an image that showcases your pattern.
-
-##### Design Highlights:
-
-The page is clean and minimalist, with fields clearly outlined for easy editing.
-
-All updates are immediately visible, with an option to preview changes before finalizing.
-
-The soft pastel theme creates a welcoming, user-friendly interface that aligns with the overall aesthetic of the site.
-
-Once you’ve made your changes, don’t forget to save and share your updated creation with the crochet community!
-
-![image](docs/edit-page.png)
-
-#### **Logout**
-
-The Logout button is located in the top-right corner of the navigation bar.
-When clicked, it securely logs the user out of their account and redirects them back to the Home page.
-This ensures users leave their session safely while returning to a welcoming, public view of the site.
-
-The button is styled to match the site's design, with a soft, rounded appearance and subtle hover effect.
-
-![image](docs/logged-out.png)
 
 ### **Accessibility**  
 
@@ -1356,6 +1033,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
