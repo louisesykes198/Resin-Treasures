@@ -996,6 +996,330 @@ The privacy page isn’t just a setting—it’s a promise. It reflects *Resin T
 
 ![image](doc/privacy.png)
 
+### Categories Dropdown Menu
+
+The *Resin Treasures* categories dropdown offers users a calm, curated way to explore the full range of handcrafted resin creations. Designed for emotional clarity and ease of navigation, it gently guides users toward the pieces that speak to them.
+
+#### **Dropdown Options**
+
+When users hover over or tap **Categories**, a vertical menu appears with the following options:
+
+- **All Products** — View the complete collection  
+- **Animals** — Figurines and décor inspired by beloved creatures  
+- **Baby Gifts** — Gentle keepsakes for new parents and little ones  
+- **Christmas** — Festive resin art for seasonal joy  
+- **Decor** — Home accents with handcrafted charm  
+- **Gifts** — Thoughtful pieces for birthdays, milestones, and surprises  
+- **Jars and Pots** — Functional art with a whimsical twist  
+- **Teacher Gifts** — Heartfelt tokens of appreciation for educators
+
+Each item is styled in soft blue (`#0000FF`) with hover effects in muted indigo (`rgb(107, 126, 235)`), offering gentle visual feedback.
+
+#### **Design Principles**
+
+- **Color Palette:** Light background with blue accents for calm and clarity  
+- **Typography:** Medium-weight sans-serif for readability and warmth  
+- **Layout:** Vertical stack with generous spacing for touch-friendly interaction
+
+The categories dropdown isn’t just a menu—it’s a map. It reflects *Resin Treasures’* commitment to emotional clarity, handcrafted storytelling, and user-centered design—making exploration feel like discovery.
+
+![image](doc/cat-dropdown.png)
+
+### Product Card – Rose Figurine
+
+Each product card on *Resin Treasures* is designed to feel like a quiet invitation—presenting handcrafted pieces with clarity, warmth, and emotional resonance.
+
+#### **Visual Layout**
+
+- **Image**  
+  A high-quality photo of the resin piece, centered and softly lit.  
+  Example: A red resin rose with green stem and leaves, placed on a dark surface for contrast.
+
+- **Title**  
+  **Rose Figurine** — displayed in bold, medium-weight serif font for elegance
+
+- **Price**  
+  **£5.00** — clearly shown beneath the title in readable, calm typography
+
+- **Description**  
+  🌹 *Red Resin Rose Figurine*  
+  > *This exquisite red resin rose captures timeless romance in sculptural form. Its delicately molded petals …*
+
+  A short poetic summary that evokes the emotional and artistic qualities of the piece.
+
+#### **Buttons**
+
+- **View Product** — soft blue (`#4C90DA`) with white text and rounded corners  
+  - Hover effect: darkens to `#3571B8` for gentle interactivity  
+  - Leads to a detailed product page with more images and full description
+
+- **Add to Basket** — styled similarly, offering a clear path to purchase  
+  - Button placement ensures ease of use without visual clutter
+
+#### **Design Principles**
+
+- **Color Palette:** Pastel tones and soft blues to evoke calm and trust  
+- **Typography:** Serif for titles, sans-serif for descriptions—balancing elegance and readability  
+- **Spacing:** Generous padding around elements for emotional clarity and breathing room
+
+Each product card is more than a listing—it’s a moment of storytelling. It reflects *Resin Treasures’* commitment to handcrafted beauty, emotional clarity, and a shopping experience that feels personal and poetic.
+
+![image](doc/full-product.png)
+
+### View Product Page – Rose Figurine
+
+The *Resin Treasures* product detail page transforms browsing into storytelling. Each handcrafted item is presented with emotional clarity, inviting users to pause, admire, and connect.
+
+#### **Visual Layout**
+
+- **Left Side:**  
+  A high-resolution image of the resin piece, centered and softly lit.  
+  Example: A red resin rose with green stem and leaves, placed on a dark surface to highlight its sculptural texture and romantic tones.
+
+- **Right Side:**  
+  - **Title:** *Rose Figurine*  
+  - **Price:** **£5.00**  
+  - **Color Selected:** Red  
+  - **Description:**  
+    > *This exquisite red resin rose captures timeless romance in sculptural form. Its delicately modeled petals unfurl with lifelike grace, each one etched in rich crimson tones that evoke passion and elegance. The stem and leaves—cast in vibrant green with textured detailing—anchor the rose in realism while adding contrast and depth. Whether gifted as a symbol of love or displayed as a decorative keepsake, this handcrafted bloom radiates enduring beauty and heartfelt sentiment.*
+
+#### **Action Buttons**
+
+- **Buy It Now** — soft blue (`#4C90DA`) with white text and rounded corners  
+- **Add to Cart** — styled similarly for continuity and ease  
+- **Wishlist Button** — a red circular icon with a heart, positioned near the product title  
+  - Adds the item to the user’s wishlist with a single tap  
+  - Designed to feel personal and emotionally expressive
+
+- **← Back to Shop** — a subtle link at the bottom for gentle navigation
+
+#### **Design Principles**
+
+- **Color Palette:** Romantic reds, soft greens, and calming blues  
+- **Typography:** Serif for titles and descriptions, sans-serif for buttons and labels  
+- **Layout:** Balanced two-column structure with generous spacing and visual breathing room
+
+The view product page isn’t just informational—it’s experiential. It reflects *Resin Treasures’* commitment to handcrafted storytelling, emotional clarity, and a shopping experience that feels like a quiet celebration of beauty.
+
+![image](doc/view-product-page.png)
+
+### Basket Page
+
+The *Resin Treasures* basket page is designed to feel calm, clear, and emotionally reassuring—giving users a gentle overview of their selected items before checkout.
+
+#### **Item Listing**
+
+Each product added to the basket is displayed with:
+
+- **Thumbnail Image** — a small preview of the resin piece  
+- **Product Name** — e.g., *Rose Figurine*  
+- **Selected Options** — e.g., *Color: Green and Red*  
+- **Price** — e.g., **£5.00**  
+- **Quantity Controls** — plus (+) and minus (–) buttons with a numerical field to adjust quantity
+
+#### **Total Summary**
+
+- **Total:** Displayed clearly beneath the item list  
+  - Example: `Total: £5.00`  
+  - Updates dynamically as quantities change
+
+#### **Action Buttons**
+
+- **Continue Shopping** — returns users to the product gallery  
+- **Empty Basket** — clears all items with a single click  
+- **Proceed to Checkout** — styled in soft blue (`#4C90DA`) with white text and rounded corners  
+  - Hover effect: darkens to `#3571B8` for gentle interactivity
+
+#### **Design Principles**
+
+- **Color Palette:** Light background with blue accents for clarity and calm  
+- **Typography:** Sans-serif fonts for readability and emotional ease  
+- **Layout:** Vertical stack with generous spacing for mobile and desktop responsiveness
+
+The basket page isn’t just a transaction—it’s a moment of reflection. It allows users to review their choices with clarity and care, reinforcing *Resin Treasures’* commitment to thoughtful, emotionally safe shopping.
+
+![image](doc/basket-page.png)
+
+### Checkout Page
+
+The *Resin Treasures* checkout page is designed to feel calm, clear, and emotionally safe—guiding users gently through the final step of their purchase with care and confidence.
+
+#### **Left Side – Order Summary**
+
+- **Header:** *Order Summary (1)*  
+- **Product Listing:**  
+  - Thumbnail image of the selected resin piece  
+  - Product name and selected color (e.g., *Green and Red*)  
+  - Quantity: 1  
+  - Subtotal: **£5.00**
+
+- **Delivery Method:**  
+  - Dropdown menu to select preferred delivery option  
+  - **Delivery Cost:** £0.00  
+  - **Grand Total:** **£5.00**
+
+- **Update Button:** Allows users to confirm or change delivery selections
+
+#### **Right Side – Delivery Form**
+
+> *"Please fill out the form below to complete your order"*
+
+Fields include:
+
+- Full Name  
+- Email Address  
+- House Name or Number  
+- Street Address 1  
+- Street Address 2  
+- Town or City  
+- Postal Code  
+- Country  
+- Phone Number  
+- InPost Locker or Shop *(optional)*
+
+- **Checkbox:**  
+  > *"Save this delivery information to my profile"*  
+  Allows returning users to streamline future purchases
+
+#### **Design Principles**
+
+- **Color Palette:** Soft blues and whites for calm and clarity  
+- **Typography:** Sans-serif fonts for readability and emotional warmth  
+- **Layout:** Two-column structure with generous spacing and mobile responsiveness
+
+The checkout page isn’t just a transaction—it’s a moment of trust. It reflects *Resin Treasures’* commitment to handcrafted care, emotional clarity, and a shopping experience that feels personal, gentle, and secure.
+
+![image](doc/checkout-page.png)
+
+### Delivery Section – Checkout Page
+
+The delivery section of the *Resin Treasures* checkout page is designed to feel clear, calm, and reassuring—guiding users gently through their shipping choices with transparency and trust.
+
+#### **Delivery Method**
+
+- **Dropdown Menu:**  
+  Users can select from available delivery options, such as:  
+  - *Home Delivery*  
+  - *InPost Locker or Shop*  
+  - *Local Pickup* *(if applicable)*
+
+- **Update Button:**  
+  A soft blue button (`#4C90DA`) allows users to confirm or change their selection.  
+  - Hover effect: darkens to `#3571B8` for gentle interactivity
+
+#### **Cost Breakdown**
+
+- **Delivery Cost:** Clearly displayed beneath the selected method  
+  - Example: `Delivery: £2.89`  
+- **Order Total:** Item subtotal before shipping  
+  - Example: `Order Total: £5.00`  
+- **Grand Total:** Final cost including delivery  
+  - Example: `Grand Total: £7.89`
+
+Each figure is spaced for clarity and updated dynamically as selections change.
+
+#### **Design Principles**
+
+- **Color Palette:** Light background with blue accents for calm and clarity  
+- **Typography:** Sans-serif fonts for readability and emotional ease  
+- **Layout:** Vertical stack with generous spacing for mobile and desktop responsiveness
+
+The delivery section isn’t just logistical—it’s relational. It reflects *Resin Treasures’* commitment to transparency, emotional clarity, and a shopping experience that feels thoughtful and trustworthy from start to finish.
+
+![image](doc/delivery.png)
+
+### Complete Order Page
+
+The *Resin Treasures* complete order page is the final, secure step in a heartfelt shopping journey—designed to feel calm, trustworthy, and emotionally affirming.
+
+#### **Left Side – Order Summary**
+
+- **Header:** *Order Summary (1)*  
+- **Product:**  
+  - *Rose Figurine – Green and Red*  
+  - Quantity: 1  
+  - Subtotal: **£5.00**  
+- **Delivery Method:** *Home Delivery*  
+  - Delivery Cost: **£2.89**  
+- **Grand Total:** **£7.89**
+
+This section offers a clear, itemized breakdown of the purchase, reinforcing transparency and trust.
+
+#### **Right Side – Payment Form**
+
+> *"Please fill out the form below to complete your order"*
+
+Fields include:
+
+- **Email Address**  
+- **Card Information** — card number, expiration date, CVC  
+- **Cardholder Name**  
+- **Country or Region** — defaulted to *United Kingdom*  
+- **Checkbox:**  
+  > *"Save this delivery information to my profile"*  
+  Allows for faster checkout in future visits
+
+- **Security Note:**  
+  > *Information is securely saved and encrypted*  
+  This reinforces emotional safety and data protection
+
+- **Pay Button:**  
+  Styled in soft blue (`#4C90DA`) with white text and rounded corners  
+  - Hover effect: darkens to `#3571B8` for gentle interactivity  
+  - Finalizes the order with a single, confident click
+
+#### **Design Principles**
+
+- **Color Palette:** Soft blues and whites for calm and clarity  
+- **Typography:** Sans-serif fonts for readability and emotional warmth  
+- **Layout:** Two-column structure with generous spacing and mobile responsiveness
+
+The complete order page isn’t just a transaction—it’s a moment of trust and transformation. It reflects *Resin Treasures’* commitment to handcrafted care, emotional clarity, and a shopping experience that feels personal, gentle, and secure.
+
+![image](doc/complete-order.png)
+
+### Order Confirmation Page
+
+The *Resin Treasures* order confirmation page is a quiet celebration of trust and connection—designed to affirm the successful completion of a heartfelt purchase with clarity, warmth, and gratitude.
+
+#### **Header Message**
+
+> ✅ **Payment Successful**  
+> *Thank you for your order, Louise Sykes.*
+
+This message is styled in green to signal success and emotional reassurance. It marks the transition from transaction to relationship.
+
+#### **Order Details**
+
+- **Order Number:** `#68`  
+- **Delivery Address:**  
+  Horbury  
+  Wakefield, West Yorkshire  
+  WF4 6JP  
+  United Kingdom
+
+- **Delivery Method:** *Home*  
+- **Parcel Size:** *Small*  
+- **Delivery Cost:** **£2.89**
+
+Each detail is presented clearly, affirming transparency and care.
+
+#### **Navigation**
+
+- **Back to Home** — a soft blue button (`#4C90DA`) with rounded corners  
+  - Allows users to return to the homepage gently and intuitively
+
+#### **Design Principles**
+
+- **Color Palette:** Soft greens and blues for calm and clarity  
+- **Typography:** Sans-serif fonts for readability and emotional warmth  
+- **Layout:** Vertical stack with generous spacing and mobile responsiveness
+
+The order confirmation page isn’t just a receipt—it’s a thank-you note. It reflects *Resin Treasures’* commitment to handcrafted care, emotional clarity, and a shopping experience that feels personal, poetic, and deeply appreciated.
+
+![image](doc/payment-complete.png)
+
+
 ### **Accessibility**  
 
 Accessibility has been a key focus during the development of The Crochet Files, ensuring that all users, including those with disabilities, can comfortably navigate and enjoy the website. Several strategies were implemented to create an inclusive experience:
@@ -1277,6 +1601,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
