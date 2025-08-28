@@ -221,9 +221,13 @@ The wireframes served as the foundation for creating easy navigation, clear call
 
 ### **Logo**
 
-The logo features the text "The Crochet Files" written in a stylish, handwritten script font that gives off a cozy and personal feel. The text is in black against a light blue background, enhancing readability while maintaining a soft, welcoming aesthetic. The playful and artistic style of the font conveys a sense of creativity, fitting well with the handmade, crafty vibe typically associated with crochet.
+The Resin Treasures logo evokes a sense of artisanal elegance and quiet wonder. At its heart, the initials "RT" are rendered in a graceful serif font, standing tall and timeless—an emblem of refinement and craftsmanship. Encircling the monogram is a rope-like border, subtly textured to suggest both strength and softness. Delicate floral motifs bloom on either side, hinting at nature’s influence and the organic beauty of resin artistry.
 
-![image](docs/logo.png)
+The background transitions gently from a soft green to a tranquil blue, echoing the calming hues of sea glass and forest light. Beneath the initials, the brand name RESIN TREASURES appears in spaced-out, minimalist lettering—grounding the design with clarity and intention.
+
+This logo represents a brand that values detail, respects nature, and invites its audience into a world of handcrafted serenity.
+
+![image](staticfiles/images/rt-logo-4.png)
 
 ### **Colour Scheme**  
 
@@ -1193,6 +1197,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
