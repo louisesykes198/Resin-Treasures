@@ -1681,6 +1681,138 @@ The welcome email isn’t just a confirmation—it’s an invitation. It reflect
 
 ![image](doc/confirm-email-open.png)
 
+### Gallery of Reflections – Review Page
+
+The *Gallery of Reflections* is more than a review page—it’s a quiet space for emotional resonance. Each reflection is treated as a ripple in the waters, inviting users to explore beauty, meaning, and connection through shared experiences.
+
+#### Layout & Structure
+
+- **Page Title:** *Gallery of Reflections*  
+- **Subtitle:**  
+  > *Each review is a ripple in the waters – explore values in beauty, meaning, and connection.*
+
+- **Filter Controls:**  
+  - Dropdowns for *All Products* and *All Ratings*  
+  - A **Filter** button to refine displayed entries
+
+#### 💬 Review Cards
+
+Each product reflection is displayed in a soft card layout featuring:
+
+- **Product Name** — e.g., *Car*, *Dog and Girl 9-Piece Puzzle Figurine*  
+- **Rating** — displayed as stars (e.g., 4 out of 5)  
+- **Reflection Text** — user-submitted thoughts, e.g.,  
+  > *"Lovely little car" — JenniferSmith*  
+  > *"What did this piece mean to you?" — KevinAdams*
+
+- **Your Review Indicator** — reflections authored by the current user are labeled  
+- **Text Box** — allows users to write a new reflection  
+- **Respond Button** — styled in soft blue (`#4C90DA`) for gentle interaction
+
+#### Design Principles
+
+- **Color Palette:** Soft neutrals and pastels to evoke calm and emotional safety  
+- **Typography:** Serif for reflections, sans-serif for labels and buttons  
+- **Layout:** Vertical stack with generous spacing and visual breathing room
+
+The review page isn’t just feedback—it’s a dialogue. It reflects *Resin Treasures’* commitment to emotionally literate design, where every voice is honored and every reflection deepens the story of each handcrafted piece.
+
+![image](doc/review-page.png)
+
+### Review by Product – Gallery of Reflections
+
+The *Review by Product* feature allows users to filter reflections based on specific resin pieces—creating a quiet space where each item’s emotional impact can be explored in depth.
+
+#### Filter Controls
+
+- **Dropdown Menu: All Products**  
+  Users can select a specific item to view only its associated reflections.  
+  Available options include:
+
+  - All Products  
+  - Car  
+  - Owl Wall Figurine  
+  - Crystal Tray  
+  - Dogs with Heart Puzzle  
+  - Rose Figurine  
+  - Sea Turtle  
+  - Axolotl Figurine  
+  - Christmas Candle Holders  
+  - Blue Diamond-Cut Jar  
+  - Golden Autumn Leaf Tray  
+  - Personalized Pet Hanging Frame  
+  - Handprint Ornaments  
+  - Dog and Girl 3-Piece Puzzle Figurine  
+  - Dragon  
+  - Lizard Wall Ornament – Sunset Spectrum  
+  - Purple Tray – "Elegance in Profile"
+
+- **Dropdown Menu: All Ratings**  
+  Allows users to filter reflections by star rating (e.g., 5-star only)
+
+- **Filter Button**  
+  Applies the selected filters with a soft transition, maintaining emotional clarity and visual calm
+
+#### Filtered Reflections
+
+Once a product is selected, the page displays:
+
+- **Product Name & Image**  
+- **User Reflections** — each one a personal note of meaning or connection  
+- **Rating** — shown as stars  
+- **Text Box** — for new reflections  
+- **Respond Button** — styled in soft blue (`#4C90DA`) for gentle interaction
+
+#### Design Principles
+
+- **Color Palette:** Soft neutrals and pastels to evoke calm and emotional safety  
+- **Typography:** Serif for reflections, sans-serif for labels and buttons  
+- **Layout:** Vertical stack with generous spacing and visual breathing room
+
+Reviewing by product isn’t just about feedback—it’s about honoring the emotional resonance of each handcrafted piece. It reflects *Resin Treasures’* commitment to slow reflection, shared meaning, and a shopping experience rooted in care.
+
+![image](doc/review-by-product.png)
+
+### Review by Rating – Gallery of Reflections
+
+The *Review by Rating* feature allows users to filter reflections based on emotional resonance—expressed through star ratings. It’s a quiet way to explore how deeply each piece has touched others.
+
+#### Filter Controls
+
+- **Dropdown Menu: All Ratings**  
+  Users can select a specific rating to view only reflections that match that level of sentiment.  
+  Available options include:
+
+  - All Ratings  
+  - 1 Star  
+  - 2 Stars  
+  - 3 Stars  
+  - 4 Stars  
+  - 5 Stars
+
+- **Filter Button**  
+  Applies the selected rating filter with a soft transition, maintaining visual calm and emotional clarity
+
+#### Filtered Reflections
+
+Once a rating is selected, the page displays:
+
+- **Product Name & Image**  
+- **User Reflections** — filtered by the chosen star rating  
+- **Rating Display** — shown as stars  
+- **Text Box** — for new reflections  
+- **Respond Button** — styled in soft blue (`#4C90DA`) for gentle interaction
+
+#### Design Principles
+
+- **Color Palette:** Soft neutrals and pastels to evoke calm and emotional safety  
+- **Typography:** Serif for reflections, sans-serif for labels and buttons  
+- **Layout:** Vertical stack with generous spacing and visual breathing room
+
+Reviewing by rating isn’t just about sorting—it’s about listening. It reflects *Resin Treasures’* commitment to emotionally literate design, where every star is a story, and every reflection deepens the connection between giver and gift.
+
+![image](doc/review-by-rating.png)
+
 ### **Accessibility**
 
 Accessibility has been a key focus during the development of *Resin Treasures*, ensuring that all users—including those with disabilities—can comfortably navigate and enjoy the website. Several strategies were implemented to create an inclusive, emotionally safe experience:
@@ -1818,10 +1950,8 @@ This ensures efficiency, reduces redundancy, and maintains data integrity across
 
 The diagram below shows how data flows through the **Resin Treasures** platform, from browsing products to completing an order and receiving notifications.
 
-<details>
-<summary>Data Flow Diagram</summary>
+Data Flow Diagram
 
-```mermaid
 flowchart LR
     A[User] -->|Browse| B[(Product Catalogue)]
     A -->|Search / Filter| B
@@ -1987,7 +2117,8 @@ I’d like to thank the following resources and communities that supported the d
 - **[Cloudinary](https://cloudinary.com/)** – For hosting and managing media files seamlessly.  
 - **[Font Awesome](https://fontawesome.com/)** – For the icons used throughout the site.  
 - **[Google Fonts](https://fonts.google.com/)** – For the *Quicksand* font that gives the site its clean, modern feel.  
-- **[ChatGPT](https://chatgpt.com/)** – For support in writing, structuring, and testing features such as the newsletter setup.  
+- **[ChatGPT](https://chatgpt.com/)** – For support in writing, structuring, and testing features such as the newsletter setup.
+- **[Copilot](https://copilot.microsoft.com/)** – Helped write the descriptions for the sellers items.   
 - **Open Source Community** – Countless tutorials, Stack Overflow answers, and GitHub repositories that guided the way.  
 
 And of course, a huge thank you to the early supporters of **Resin Treasures**, whose feedback and encouragement helped bring this project to life.
@@ -1997,6 +2128,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
