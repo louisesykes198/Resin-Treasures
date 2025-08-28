@@ -751,6 +751,250 @@ Each email is a moment of connection—whether it’s a custom request, a kind n
 
 ![image](doc/contact-email-open.png)
 
+### My Account Dropdown Menu
+
+The *Resin Treasures* account dropdown is designed to offer logged-in users a calm, intuitive way to manage their personal details, orders, and preferences. It reflects the brand’s commitment to emotional clarity and user empowerment.
+
+#### **Dropdown Options**
+
+When users click on **My Account**, a vertical menu appears with the following options:
+
+- **Profile** — View and update your public-facing profile information  
+- **Personal Details** — Edit your name, email, and password securely  
+- **Order History** — Browse past purchases and track current orders  
+- **Settings** — Customize preferences for communication and account behavior  
+- **Logout** — Safely exit your account with one click
+
+Each item is styled in classic blue (`#0000FF`) and spaced for touch-friendly interaction, with subtle hover effects in soft indigo (`rgb(107, 126, 235)`).
+
+#### **Design Principles**
+
+- **Color Palette:** Light background with blue text for clarity and consistency  
+- **Typography:** Medium-weight sans-serif for readability and warmth  
+- **Layout:** Vertical stack with generous spacing for ease of use on both desktop and mobile
+
+The account dropdown isn’t just a menu—it’s a moment of control and care. It allows users to manage their experience with confidence, reflecting *Resin Treasures’* values of trust, transparency, and handcrafted attention.
+
+![image](doc\account-dropdown.png)
+
+### Profile Page
+
+The *Resin Treasures* profile page offers a simple, secure, and emotionally clear space for users to view and manage their account details. It reflects the brand’s commitment to transparency, trust, and handcrafted care.
+
+#### **Header**
+
+> **My Profile**  
+Displayed in large, bold text to anchor the page and affirm the user’s presence.
+
+#### **Account Details**
+
+- **Username:** ResinAdmin  
+- **Email Address:** resintreasures5@gmail.com  
+
+These fields are presented clearly, allowing users to confirm their login identity and contact information.
+
+#### **Action Links**
+
+Two clickable options are provided in soft blue text (`#0000FF`):
+
+- **Edit Account Settings** — Allows users to update personal details, change passwords, or adjust preferences  
+- **Logout** — A simple, secure way to exit the account
+
+Both links are spaced for clarity and styled for intuitive interaction.
+
+#### **Design Principles**
+
+- **Color Palette:** Light background with blue accents for calm and clarity  
+- **Typography:** Medium-weight sans-serif for readability and emotional warmth  
+- **Layout:** Minimal and centered, ensuring ease of use across devices
+
+The profile page isn’t just informational—it’s affirmational. It gives users a sense of ownership and emotional clarity, reinforcing *Resin Treasures’* values of care, transparency, and user-centered design.
+
+![image](doc/my-profile.png)
+
+### Account Settings Page
+
+The *Resin Treasures* account settings page offers users a calm, intuitive space to manage their personal information, preferences, and privacy. Designed with emotional clarity and user empowerment in mind, it ensures every detail feels easy to update and securely handled.
+
+#### **Navigation Tabs**
+
+A horizontal menu allows users to switch between key account areas:
+
+- **Personal Info** — Update name, email, and phone number  
+- **Security** — Manage passwords and login credentials  
+- **Payment** — Add or edit payment methods  
+- **Notifications** — Choose how and when to receive updates  
+- **Privacy** — Control data sharing and visibility preferences
+
+Each tab is styled in soft blue (`#0000FF`) with clear hover feedback for ease of navigation.
+
+#### **Personal Info Section**
+
+When selected, the **Personal Info** tab displays:
+
+- **Full Name** — text input  
+- **Email Address** — text input  
+- **Phone Number** — text input  
+- **Save Changes** button — soft blue (`#4C90DA`) with white text and rounded corners  
+  - Hover effect: darkens to `#3571B8` for gentle interactivity
+
+#### **Design Principles**
+
+- **Color Palette:** Light background with blue accents for calm and clarity  
+- **Typography:** Medium-weight sans-serif for readability and warmth  
+- **Layout:** Generous spacing and mobile responsiveness for ease of use across devices
+
+The account settings page isn’t just functional—it’s affirmational. It gives users control over their experience while reflecting *Resin Treasures’* values of trust, transparency, and handcrafted care.
+
+![image](doc/account-settings.png)
+
+### Security Page
+
+The *Resin Treasures* security page offers users a calm, intuitive space to manage their login credentials with confidence. Designed to prioritize emotional clarity and digital safety, it ensures that updating sensitive information feels simple and secure.
+
+#### **Navigation Tabs**
+
+Part of the broader **Account Settings** interface, the security tab sits alongside:
+
+- Personal Info  
+- Payment  
+- Notifications  
+- Privacy  
+
+Each tab is styled in soft blue (`#0000FF`) and spaced for ease of navigation.
+
+#### **Password Update Section**
+
+When the **Security** tab is selected, users are presented with:
+
+- **Current Password** — input field for verification  
+- **New Password** — input field for the updated password  
+- **Confirm New Password** — input field to ensure accuracy  
+- **Update Password** button — styled in warm yellow with rounded corners  
+  - Offers gentle visual contrast and signals a meaningful action
+
+#### **Design Principles**
+
+- **Color Palette:** Light background with blue and yellow accents for clarity and warmth  
+- **Typography:** Sans-serif fonts for readability and emotional ease  
+- **Layout:** Vertical stack with generous spacing for mobile and desktop responsiveness
+
+The security page isn’t just a form—it’s a promise. It reflects *Resin Treasures’* commitment to user trust, privacy, and emotional safety. Every field is designed to feel empowering, not intimidating.
+
+![image](doc/security.png)
+
+### Payment Section
+
+The *Resin Treasures* payment section offers users a secure, minimal interface for managing how they pay—designed with emotional clarity and trust at its core.
+
+#### **Navigation Context**
+
+Part of the broader **Account Settings** interface, the **Payment** tab sits alongside:
+
+- Personal Info  
+- Security  
+- Notifications  
+- Privacy  
+
+Each tab is styled in soft blue (`#0000FF`) and spaced for intuitive navigation.
+
+#### **Payment Management**
+
+When the **Payment** tab is selected, users see:
+
+- A message:  
+  > *"No payment methods saved yet."*  
+  This gentle prompt encourages setup without pressure.
+
+- **Add Payment Method** button — outlined in soft blue (`#4C90DA`) with rounded corners  
+  - On click, users can enter card details or link a preferred payment option  
+  - Designed for clarity, with secure input fields and confirmation feedback
+
+#### **Design Principles**
+
+- **Color Palette:** Light background with blue accents for calm and clarity  
+- **Typography:** Sans-serif fonts for readability and emotional ease  
+- **Layout:** Vertical stack with generous spacing for mobile and desktop responsiveness
+
+The payment section isn’t just transactional—it’s relational. It reflects *Resin Treasures’* commitment to secure, emotionally safe commerce, where every detail is handled with care and intention.
+
+![image](doc/payment.png)
+
+### 🔔 Notifications Page
+
+The *Resin Treasures* notifications page offers users a gentle, intuitive way to manage how they stay informed—designed with emotional clarity and respect for personal boundaries.
+
+#### **Navigation Context**
+
+Part of the broader **Account Settings** interface, the **Notifications** tab sits alongside:
+
+- Personal Info  
+- Security  
+- Payment  
+- Privacy  
+
+Each tab is styled in soft blue (`#0000FF`) and spaced for ease of navigation.
+
+#### **Notification Preferences**
+
+Users are presented with two clear options:
+
+- ✅ **Order updates by email** — checked by default, ensuring users receive important updates about their purchases  
+- ⬜ **Promotional emails** — unchecked by default, allowing users to opt in only if they wish to receive offers or news
+
+Each option is displayed with a checkbox and styled for clarity and accessibility.
+
+#### **Save Preferences**
+
+- A soft blue **Save Preferences** button (`#4C90DA`) with white text and rounded corners  
+  - Hover effect: darkens to `#3571B8` for gentle interactivity  
+  - Confirms changes with subtle feedback, reinforcing trust and control
+
+#### **Design Principles**
+
+- **Color Palette:** Light background with blue accents for calm and clarity  
+- **Typography:** Sans-serif fonts for readability and emotional ease  
+- **Layout:** Vertical stack with generous spacing for mobile and desktop responsiveness
+
+The notifications page isn’t just about settings—it’s about consent. It reflects *Resin Treasures’* commitment to emotionally safe communication, giving users full control over how and when they’re contacted.
+
+![image](doc/notifications.png)
+
+### Privacy Page
+
+The *Resin Treasures* privacy page offers users a clear, respectful space to manage their data and account choices. It’s designed to reflect the brand’s commitment to safety, transparency, and emotional integrity.
+
+#### **Navigation Context**
+
+Part of the broader **Account Settings** interface, the **Privacy** tab sits alongside:
+
+- Personal Info  
+- Security  
+- Payment  
+- Notifications  
+
+Each tab is styled in soft blue (`#0000FF`) and spaced for intuitive navigation.
+
+#### **Account Deletion Option**
+
+At the heart of the privacy page is a clear and respectful option for users who wish to leave the platform:
+
+- **Delete Account** button — styled in bold red to signal importance and caution  
+- **Warning Message:**  
+  > *"This action is permanent and cannot be undone."*  
+  This ensures users are fully informed before making a final decision.
+
+The button is intentionally prominent, but not emotionally aggressive—designed to honor user autonomy without pressure.
+
+#### **Design Principles**
+
+- **Color Palette:** Light background with red and blue accents for clarity and emotional weight  
+- **Typography:** Sans-serif fonts for readability and a calm tone  
+- **Layout:** Vertical stack with generous spacing for mobile and desktop responsiveness
+
+The privacy page isn’t just a setting—it’s a promise. It reflects *Resin Treasures’* belief in ethical design, user consent, and emotional safety. Whether users choose to stay or go, their autonomy is respected with care and clarity.
+
+![image](doc/privacy.png)
 
 ### **Accessibility**  
 
@@ -1033,6 +1277,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
