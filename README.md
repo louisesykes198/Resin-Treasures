@@ -1717,8 +1717,6 @@ The design process followed three key phases:
 2. **Data Structuring** – Defining tables and their relationships (products, orders, users, etc.)  
 3. **Normalisation** – Reducing redundancy, ensuring consistency, and maintaining integrity  
 
----
-
 #### Requirements Analysis
 
 The database was designed to support the following core functionalities:
@@ -1729,8 +1727,6 @@ The database was designed to support the following core functionalities:
 - Users can save items for later using a **wishlist**.  
 - A **newsletter system** stores email subscribers.  
 - Admins can manage products, categories, and fulfil customer orders.  
-
----
 
 #### Data Tables & Core Entities
 
@@ -1748,220 +1744,256 @@ Each major feature is represented by a dedicated table:
 | **Newsletter**    | Stores email addresses of subscribers for marketing campaigns          |
 | **ContactMessage**| Captures messages submitted via the contact form                       |
 
-#### 🔁 Relationships Between Tables
+#### Relationships Between Tables
 
 - **One-to-Many**:
-  - A **User** can create many **Projects**
-  - A **Category** can include many **Projects**
+  - A **User** can place many **Orders**
+  - An **Order** can contain many **OrderItems**
+  - A **Category** can include many **Products**
+  - A **User** can have many **Wishlist** items
 
 - **Many-to-Many**:
-  - A **User** can like many **Projects**, and a **Project** can be liked by many users (via the **Like** table)
+  - A **User** can add many **Products** to their Wishlist, and a **Product** can appear in many users' Wishlists  
+  *(Implemented via the Wishlist table)*
 
-#### 📊 Entity Relationship Diagram (ERD)
+#### Entity Relationship Diagram (ERD)
 
 The ERD below visualises how the main entities relate:
 
 <details>
 <summary>ERD</summary>
-<img src="docs\erd-new.png" alt="ERD">
-</details> 
+<img src="docs/erd.png" alt="ERD">
+</details>
 
----
-
-#### 🧹 Normalisation for Integrity
+#### Normalisation for Integrity
 
 The database is normalised up to the **Third Normal Form (3NF)**:
 
-- **1NF**: Each field contains atomic values
-- **2NF**: All non-key attributes fully depend on the primary key
-- **3NF**: No transitive dependencies between non-key attributes
+- **1NF**: Each field contains atomic values (e.g., product name, price, stock are stored separately).  
+- **2NF**: All non-key attributes fully depend on the primary key (e.g., an OrderItem depends on its unique order reference, not partially).  
+- **3NF**: No transitive dependencies between non-key attributes (e.g., category names are stored only in the Category table and referenced via foreign keys).  
 
-Example: Category names are stored once in the Category table and referenced using foreign keys across related tables.
+This ensures efficiency, reduces redundancy, and maintains data integrity across the platform.
 
----
+### Backend Architecture
 
-### 🏗️ Backend Architecture
+#### Technologies Used
 
-#### 🛠️ Technologies Used
+| Tool           | Purpose                                   |
+|----------------|--------------------------------------------|
+| **Django**     | Backend framework with ORM and admin panel |
+| **PostgreSQL** | Relational database                        |
+| **Cloudinary** | Media storage for product images           |
+| **Heroku**     | Hosting and deployment                     |
+| **Gunicorn**   | WSGI server for Heroku                     |
+| **Stripe**     | Payment processing for secure checkout     |
 
-| Tool         | Purpose                                   |
-|--------------|--------------------------------------------|
-| **Django**   | Backend framework with ORM and admin panel |
-| **PostgreSQL** | Relational database                      |
-| **Cloudinary** | Media storage for images and files        |
-| **Heroku**   | Hosting and deployment                     |
-| **Gunicorn** | WSGI server for Heroku                     |
+#### Key Models
 
----
+| Model          | Description                                                        |
+|----------------|--------------------------------------------------------------------|
+| **User**       | Django’s built-in auth system for customers and store owner        |
+| **Product**    | Stores product details including name, description, price, and stock |
+| **Category**   | Organizes products into groups (e.g., Jewellery, Keyrings, Decor)  |
+| **Order**      | Stores user orders including shipping info and Stripe session data |
+| **OrderItem**  | Line items for each order, linking products with quantity & price  |
+| **Wishlist**   | Tracks products users save for later                               |
+| **Newsletter** | Stores email addresses subscribed to updates                       |
 
-#### 📦 Key Models
+#### Model Field Types
 
-| Model        | Description                                             |
-|--------------|---------------------------------------------------------|
-| **User**     | Django's built-in auth system                           |
-| **Project**  | Contains project info (title, images, category, etc.)   |
-| **Category** | Categories like "Blanket", "Hat", "Scarf"               |
-| **Comment**  | Stores user comments on projects                        |
-| **Like**     | Tracks likes from users on projects                     |
+- `CharField` – Names, titles, email addresses  
+- `TextField` – Product descriptions and additional details  
+- `DecimalField` – Prices and totals  
+- `ImageField` / `CloudinaryField` – For storing product images  
+- `ForeignKey` – One-to-many relationships (e.g., category → product, order → items)  
+- `ManyToManyField` – Many-to-many (e.g., user ↔ wishlist items)  
+- `EmailField` – For newsletter subscriptions and user accounts
 
----
+### Data Flow
 
-#### 🧩 Model Field Types
+The diagram below shows how data flows through the **Resin Treasures** platform, from browsing products to completing an order and receiving notifications.
 
-- `CharField` – Titles and names
-- `TextField` – Descriptions, notes, comments
-- `ImageField` / `CloudinaryField` – For media upload
-- `ForeignKey` – One-to-many relationships (e.g., user to projects)
-- `ManyToManyField` – Many-to-many via Like model
+<details>
+<summary>Data Flow Diagram</summary>
 
----
+```mermaid
+flowchart LR
+    A[User] -->|Browse| B[(Product Catalogue)]
+    A -->|Search / Filter| B
+    A -->|Add to Basket| C[(Basket)]
+    C -->|Proceed to Checkout| D[(Checkout Form)]
+    D -->|Payment| E[Stripe API]
+    E -->|Success| F[(Order Confirmation)]
+    F -->|Save| G[(Order Database)]
+    A -->|Subscribe| H[(Newsletter DB)]
+    G -->|Email| I[Confirmation Email]
+    H -->|Email| J[Newsletter Email]
 
-### 🔀 Views & URLs
+### Views & URLs
 
-- **CRUD Operations**:
-  - Users can create, read, update, and delete Projects, Comments, and Likes.
-- **URL Patterns**:
-  - `/files/` – List all crochet projects
-  - `/files/category/<slug>/` – Filter by category
+#### Core E-commerce Views
+- Browse products by category or search
+- View detailed product pages
+- Add, update, and remove items from the basket
+- Proceed through checkout and complete secure payment
+- Subscribe to the newsletter
+- Contact the shop owner
 
----
+#### User Account Views
+- Register a new account
+- Log in and log out securely
+- Manage user profile (update details, view past orders)
+- Delete account if desired
 
-### 🔐 User Authentication & Permissions
+#### Admin Views
+- Add, edit, and delete products
+- Manage categories
+- View and fulfill orders
+- Access contact form submissions
 
-- Utilises Django's built-in **User Authentication**
+#### URL Patterns (Examples)
+
+- `/` – Homepage  
+- `/about/` – About Resin Treasures  
+- `/products/` – All products  
+- `/products/category/<slug>/` – Filter products by category  
+- `/basket/` – View and manage shopping basket  
+- `/checkout/` – Secure checkout process  
+- `/profile/` – User profile and order history  
+- `/newsletter/subscribe/` – Subscribe to newsletter  
+- `/contact/` – Contact form  
+
+### User Authentication & Permissions
+
+- Built on Django’s **User Authentication system**
 - **Permissions**:
-  - Only registered users can post, comment, and like
-  - Anonymous users can browse only
+  - Registered users: place orders, manage profile, add to wishlist
+  - Guests: browse products and add to basket (checkout requires account)
+  - Admins: manage products, categories, and orders via Django admin
 
----
+### Security Measures
 
-### 🔒 Security Measures
+- **Passwords**: Securely hashed via Django’s built-in system  
+- **HTTPS**: Enforced through Heroku with SSL  
+- **Cloudinary**: Secure storage for static and media files  
+- **CSRF Protection**: Enabled by default in Django  
+- **SQL Injection / XSS**: Prevented via Django ORM and validation  
+- **Stripe**: PCI-compliant secure payments  
 
-- **Passwords**: Securely hashed via Django
-- **HTTPS**: Enforced by Heroku settings
-- **Cloudinary**: Authenticated and secure media uploads
-- **Input Validation**: Django handles protection against SQL injection, CSRF, and XSS
+### Deployment
 
----
+The backend is deployed on **Heroku** with the following setup:
 
-### 🚀 Deployment
+- **Database**: PostgreSQL (Heroku add-on)  
+- **Media Hosting**: Cloudinary for static and uploaded images  
+- **Environment Variables**: Configured via Heroku Config Vars  
+- **Scalability**: Optimised queries and ready for dyno scaling  
 
-The backend is deployed on **Heroku** with the following configuration:
+ _For full deployment instructions, see the `DEPLOYMENT.md` file._
 
-- **Database**: PostgreSQL (via Heroku add-on)
-- **Media Hosting**: Cloudinary for static and uploaded files
-- **Environment Variables**: Managed securely via Heroku Config Vars
-- **Scalability**: Ready to scale with additional dynos and optimised queries
+### Logging & Monitoring
 
-📝 _For detailed deployment steps, refer to the `DEPLOYMENT.md` file._
+- **Error Tracking**: Planned integration with **Sentry** for real-time monitoring  
+- **Development Debugging**: Django Debug Toolbar  
+- **Production Monitoring**: Heroku logs for request and error tracking  
 
----
 
-### 📈 Logging & Monitoring
+### Languages & Technologies
 
-- **Planned Tooling**: Integration with Sentry for real-time error tracking
+- **HTML5** – Structure of all pages  
+- **CSS3** – Styling and responsive design  
+- **Python** – Core backend language  
+- **Django** – Web framework for backend logic and ORM  
+- **Heroku** – Cloud hosting and deployment platform  
+- **PostgreSQL** – Relational database for products, orders, and users  
 
----
+### Frameworks, Libraries & Programs
 
-### 🧱 Languages & Technologies
-
-- HTML5  
-- CSS3  
-- Python  
-- Django  
-- Heroku  
-- PostgreSQL  
-
----
-
-### 🧰 Frameworks, Libraries & Programs
-
-- **Bootstrap 5** – For responsive layout and styling  
-- **Hover.css** – Applied to social icons for smooth hover effects  
-- **Google Fonts** – 'Quicksand' font used site-wide for clean typography  
-- **Font Awesome** – Icon library for consistent UI enhancement  
-- **jQuery** – Included with Bootstrap for responsive navbar and scroll effects  
-- **Git** – Version control, commits made in Gitpod and pushed to GitHub  
-- **GitHub** – Repository hosting for versioned project source code  
+- **Bootstrap 5** – Frontend framework for responsive layout and styling  
+- **Hover.css** – Smooth hover transitions (e.g., social icons)  
+- **Google Fonts** – Typography with *Quicksand* font across the site  
+- **Font Awesome** – Icon library for visual enhancements  
+- **jQuery** – Used alongside Bootstrap for navbar and interactive UI elements  
+- **Stripe** – Secure payment processing integration  
+- **Git** – Version control, with commits made in Gitpod and pushed to GitHub  
+- **GitHub** – Repository hosting for the project’s source code  
 - **Heroku** – Cloud platform used for live deployment  
-- **Balsamiq** – Low-fidelity wireframing tool for UI layout planning  
-- **Lucidchart** – Used for diagrams, flowcharts, and visual planning  
+- **Cloudinary** – Media storage for images and static files  
+- **Balsamiq** – Wireframing tool for initial design planning  
+- **Lucidchart** – Diagrams and flowcharts for database and app structure  
 
 ## Future Features
 
-To further improve **Crochet Files**, the following features are planned:
+To further improve **Resin Treasures**, the following features are planned:
 
-- **👤 User Profiles:** Personalized pages showing each user's uploaded files, likes, and comments.
-- **🔒 Password Recovery:** "Forgot Password" functionality with secure email reset.
-- **🔍 Search & Filters:** Quick search and advanced filtering by category, title, or difficulty.
-- **⭐ Favorites:** Option to save favorite crochet files for easy access later.
-- **🔔 Notifications:** Alerts for likes, comments, and new uploads from followed users.
-- **🛠️ Admin Tools:** Backend dashboard for managing users, projects, and content.
-- **📤 Social Sharing:** Easy sharing of crochet files to platforms like Pinterest and Instagram.
+- **👤 Enhanced User Profiles:** Ability for customers to view past orders and manage saved addresses.  
+- **🛍️ Wishlist:** Customers can save favorite products to purchase later.  
+- **🔍 Search & Filters:** Improved filtering by price, category, and product type.  
+- **📧 Newsletter Enhancements:** Automated campaigns and personalized offers.  
+- **⭐ Reviews & Ratings:** Customers can leave feedback on products.  
+- **📦 Order Tracking:** Real-time order status updates for customers.  
+- **📤 Social Sharing:** Quick share options for products to Instagram, Facebook, and Pinterest.  
+- **🛠️ Admin Dashboard:** Enhanced tools for managing orders, users, and inventory.  
 
-These enhancements aim to make Crochet Files a more interactive, user-friendly, and inspiring community for crochet enthusiasts.
+These improvements aim to make **Resin Treasures** an even more engaging and customer-friendly online shop for handmade resin art.  
 
 ### Project Status
 
-Crochet Files is fully functional and has core features in place.  
-Future updates will focus on enhancing user experience, adding social and profile features, and scaling for growth.
+**Resin Treasures** is fully functional with its core e-commerce features in place — customers can browse products, add items to their basket, and securely checkout.  
+Future updates will focus on enhancing customer experience with features like wishlists, order tracking, and improved product filtering.
 
 ## Credits
 
 ### Code
 
-[Bootstrap5](https://getbootstrap.com/docs/5.3.3/getting-started/introduction/): Bootstrap Library used throughout the project mainly to make the site responsive using the Bootstrap Grid System.
+[Bootstrap 5](https://getbootstrap.com/docs/5.3.3/getting-started/introduction/): Used throughout the project to provide a responsive, mobile-first layout with the Bootstrap Grid System.  
 
 ### Content
 
-The developer wrote all the content.
+All content was written by the developer.  
 
-The learn more page information was created by [chatgpt.com](https://chatgpt.com/)
+The newsletter setup and automation were assisted with [ChatGPT](https://chatgpt.com/).  
 
 ### Media
 
-All Images were created by the [fontawesome](https://fontawesome.com/)
+- All product and workshop images were created by the developer.  
+- Icons sourced from [Font Awesome](https://fontawesome.com/).  
 
-### 👤Reviews 
+---
 
-**Lindsey** - The layout of the Crochet Files Project site is beautiful and easy to navigate. 
-The minimalist design lets the patterns shine, and everything is neatly organized into categories. 
-I found what I needed in seconds!
+### Reviews 
 
-**Sarah M** - From the homepage to the downloads section, everything is thoughtfully laid out. 
-The structure makes it easy to follow a crochet journey, and I loved the featured project highlights on the front page
+**Emma W** – “Absolutely love my resin keyring! The colours are stunning and it feels so unique. Delivery was quick and beautifully packaged — you can really tell the care that goes into each piece.”  
 
-**Gemma** - Great patterns and very well-organized files. Loved the aesthetic and how easy everything was to download and follow
+**James P** – “Bought a necklace as a gift, and my partner was over the moon. The craftsmanship is excellent, and it feels so much more personal than something mass-produced.”  
 
-**Netti** - The site is well-organized and easy to navigate, and I’ve enjoyed exploring the patterns. 
-That said, I think it would be even better with a user profile option—somewhere to save favorites, track progress, or keep notes. 
-It’s a small thing, but it would make the experience feel more personal
+**Chloe S** – “I’ve ordered twice no,w and each time the quality has been amazing. I really appreciate the little thank-you note that came with my order — such a lovely touch.”  
 
-**Sarah R** - The visual layout is creative without being overwhelming. 
-I especially liked the little visual previews of each pattern—made browsing super enjoyable. 
-A lot of care went into the design.
+**Hannah R** – “The site is easy to use, and checkout was smooth. The product photos matched exactly what I received, and honestly, it looks even better in person!”  
+
+**Lauren K** – “Beautiful handmade art with so much attention to detail. I love supporting small businesses and Resin Treasures is one of my new favourites.”  
 
 ### Acknowledgements
 
-All images and patterns were from [Love Crafts] (https://www.lovecrafts.com/)
-Barnyard Friends Collection, Snuggle Bunny, Cinnamon Swirl Hat and Scarf Set  By Paintbox Yarns
-Diamond Lattice Blanket By Bernat
-Amigurumi Stitch By Shannen Nicole C
-Pastel Shells Baby Blanket By Vivienne (peach.unicorn) 
-Adult's Crochet Crew Neck Cardigan, Cat & Mouse, Pebbled Texture Crochet Hat By Caron 
-Bumble Bee keyring by Catharina U 
-Beginner Beanie By Caron 
-Peggy Cardigan By Wool and the Gang
-Pikachu By Olka Novytska
-Granny Square Blanket By Annemarie Benthem 
-Iris Cardigan By Adriafil
+I’d like to thank the following resources and communities that supported the development and inspiration of **Resin Treasures**:
 
+- **[Bootstrap 5](https://getbootstrap.com/)** – For providing the responsive grid system and components that helped shape the site’s layout.  
+- **[Django Documentation](https://docs.djangoproject.com/)** – An invaluable resource for building and structuring the backend.  
+- **[Cloudinary](https://cloudinary.com/)** – For hosting and managing media files seamlessly.  
+- **[Font Awesome](https://fontawesome.com/)** – For the icons used throughout the site.  
+- **[Google Fonts](https://fonts.google.com/)** – For the *Quicksand* font that gives the site its clean, modern feel.  
+- **[ChatGPT](https://chatgpt.com/)** – For support in writing, structuring, and testing features such as the newsletter setup.  
+- **Open Source Community** – Countless tutorials, Stack Overflow answers, and GitHub repositories that guided the way.  
+
+And of course, a huge thank you to the early supporters of **Resin Treasures**, whose feedback and encouragement helped bring this project to life.
 
 My Mentor for continuous helpful feedback.
 
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
