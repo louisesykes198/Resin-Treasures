@@ -1,6 +1,6 @@
 # Resin Treasures
 
-![image](docs/all-devices-black.png)
+![image](doc/reponsive-image.png)
 
 # Deployment
 
@@ -223,4 +223,5 @@ In the Deploy tab on Heroku, select the main branch and click Deploy Branch.
 
 Test Your Live App
 Open your deployed app in Heroku. Images should now be served via Cloudinary.
+
 

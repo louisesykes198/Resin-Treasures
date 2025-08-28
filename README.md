@@ -1,5 +1,7 @@
 ﻿# Resin-Treasures
 
+![image](doc/reponsive-image.png)
+
 ## User Experience
 
 ### Project Overview
@@ -1993,6 +1995,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
