@@ -1319,6 +1319,339 @@ The order confirmation page isn’t just a receipt—it’s a thank-you note. It
 
 ![image](doc/payment-complete.png)
 
+### Footer Section
+
+The *Resin Treasures* footer is a quiet anchor at the bottom of each page—designed to offer support, connection, and gentle navigation. It reflects the brand’s commitment to emotional clarity, handcrafted care, and user trust.
+
+#### **Customer Service**
+
+A column dedicated to care and reassurance:
+
+- **Contact Us** — for questions, custom requests, or kind hellos  
+- **Delivery Information** — details on shipping methods and timelines  
+- **Returns & Refunds** — policies written with empathy and fairness  
+- **Help & FAQs** — answers to common questions with emotional clarity
+
+#### **Shop**
+
+A column for continued exploration:
+
+- **All Products** — browse the full collection  
+- **Categories** — curated by theme and occasion  
+- **Wishlist** — revisit saved treasures
+
+#### **Follow Us**
+
+A column for gentle connection:
+
+- **Facebook** — stay updated and inspired  
+- **eBay** — explore listings and reviews  
+  *(Each link includes a recognizable icon for visual clarity)*
+
+#### **Stay Connected**
+
+A column for quiet updates:
+
+- **Email Input Field** — invite users to subscribe  
+- **Subscribe Button** — soft blue (`#4C90DA`) with rounded corners  
+  - Hover effect: darkens to `#3571B8` for gentle interactivity
+
+#### **Footer Note**
+
+> © Resin Treasures. All rights reserved.
+
+This closing line grounds the site in professionalism while maintaining its handcrafted identity.
+
+The footer isn’t just functional—it’s foundational. It reflects *Resin Treasures’* values of care, connection, and emotional clarity, offering users a gentle way to stay informed, supported, and inspired.
+
+![image](doc/footer.png)
+
+### Delivery Information
+
+At *Resin Treasures*, every parcel is handled with care and clarity. Whether you're sending to a home address or an InPost Locker or Shop, our delivery options are designed to be transparent, affordable, and emotionally reassuring.
+
+#### Sending to an InPost Locker or Shop
+
+> *Drop off your parcel at an InPost Point, and we’ll deliver it to your recipient’s chosen location. They’ll receive updates and have 3 days to collect once it arrives.*
+
+| Parcel Size | Dimensions (cm / in)             | Max Weight | Price |
+|-------------|----------------------------------|------------|-------|
+| Small       | 8 × 38 × 64 cm / 3 × 15 × 25 in   | 15kg       | £1.99 |
+| Medium      | 19 × 38 × 64 cm / 7 × 15 × 25 in  | 15kg       | £2.99 |
+| Large       | 41 × 38 × 64 cm / 16 × 15 × 25 in | 15kg       | £3.99 |
+
+#### 🏡 Sending to a Home Address
+
+> *Drop off your parcel at any InPost Point, and we’ll deliver it directly to your recipient’s home. Both you and the recipient will receive updates along the way.*
+
+| Parcel Size | Dimensions (cm / in)             | Max Weight | Price |
+|-------------|----------------------------------|------------|-------|
+| Small       | 8 × 38 × 64 cm / 3 × 15 × 25 in   | 15kg       | £2.99 |
+| Medium      | 19 × 38 × 64 cm / 7 × 15 × 25 in  | 15kg       | £3.99 |
+| Large       | 41 × 38 × 64 cm / 16 × 15 × 25 in | 15kg       | £5.99 |
+
+Delivery isn’t just logistics—it’s part of the experience. These options reflect *Resin Treasures’* commitment to transparency, affordability, and emotional clarity. Whether gifting or receiving, every parcel is a promise handled with care.
+
+![image](doc/del-info.png)
+
+### Returns & Refunds Page
+
+The *Resin Treasures* returns and refunds page is crafted with empathy and transparency—offering customers a clear, emotionally safe path for resolving issues with their orders.
+
+#### **Eligibility**
+
+- Items must be returned within **14 days** of receipt  
+- Must be in **original condition** and packaging  
+- **Sale items** are non-returnable  
+- Damaged or broken returns may not be refunded  
+- Return shipping is the **customer’s responsibility**
+
+#### **Return Process**
+
+1. Email `resinterresources@gmail.com` with your **order number** and reason for return  
+2. Follow the provided instructions, including the **return address**  
+3. Ship the item using a **tracked service** to ensure safe arrival
+
+#### **Refunds**
+
+- Issued to the **original payment method** once the item is received and inspected  
+- Processing time: **7 working days**
+
+#### **Exchanges**
+
+- Accepted for different **sizes, colours, or products**  
+- Contact us first to confirm **availability**  
+- Subject to the same conditions as returns
+
+#### **Faulty or Damaged Items**
+
+- Must be reported within **48 hours** of receipt  
+- Include a **photo of the damage**  
+- A **replacement or refund** will be offered free of charge
+
+#### **Shipping Costs for Returns**
+
+- Customers are responsible for **return postage**  
+- A **tracked service** is strongly recommended for peace of mind
+
+The returns and refunds page isn’t just policy—it’s a promise. It reflects *Resin Treasures’* commitment to fairness, emotional clarity, and handcrafted care. Every resolution is handled with gratitude and respect.
+
+![image](doc/r&r.png)
+
+### Help & FAQs Page
+
+The *Resin Treasures* Help & FAQs page is designed to offer calm, clear answers to common questions—wrapped in a gentle, interactive experience that respects user focus and emotional clarity.
+
+#### **Dropdown Behavior**
+
+Each FAQ category is collapsible and behaves as a single-open accordion:
+
+- When a user **clicks a category**, its questions and answers expand beneath it  
+- If another category is clicked, the **previous one closes automatically**  
+- This ensures the page remains tidy, focused, and emotionally uncluttered
+
+#### **FAQ Categories**
+
+- **Ordering**  
+  - *How do I place an order?*  
+    > Browse the shop, select items, add to basket, and checkout using your preferred payment method.  
+  - *Can I change my order after placing it?*  
+    > Changes are not guaranteed once submitted. Contact us immediately for adjustments.  
+  - *Do you offer gift wrapping?*  
+    > Yes, available at checkout for an additional fee.
+
+- **Shipping & Delivery** *(collapsed by default)*  
+- **Payments** *(collapsed by default)*  
+- **Returns & Refunds** *(collapsed by default)*  
+- **Other Questions** *(collapsed by default)*
+
+Each section is styled in soft blue headers (`#4C90DA`) with smooth transitions and generous spacing for readability.
+
+#### **Design Principles**
+
+- **Color Palette:** Soft blues and whites for calm and clarity  
+- **Typography:** Sans-serif fonts for readability and emotional ease  
+- **Layout:** Accordion-style dropdowns with only one section open at a time
+
+The Help & FAQs page isn’t just informational—it’s intentional. It reflects *Resin Treasures’* commitment to emotional clarity, handcrafted care, and a support experience that feels gentle, focused, and reassuring.
+
+![image](doc/help.png)
+
+### Wishlist Page – Items Added
+
+The *Resin Treasures* wishlist page is a quiet corner of the shop—where admiration lives before commitment. It allows users to save treasures for later, revisit favorites, and reflect on what brings them joy.
+
+#### **Header & Navigation**
+
+- **Page Title:** *My Wishlist*  
+- **Back to Shop Button:**  
+  A soft blue link (`← back to Shop`) in the top left corner, offering gentle navigation back to browsing
+
+#### **Wishlist Items**
+
+Each saved item is displayed in a clean card layout with:
+
+- **Thumbnail Image** — showcasing the resin piece with clarity and charm  
+- **Title** — e.g., *Blue Diamond-Cut Jar*, *Car*, *Dogs with Heart Puzzle*  
+- **Price** — clearly displayed beneath the title  
+  - Example: *£9.00*, *£5.00*, *£8.00*
+
+- **Buttons:**
+  - **View Product** — styled in soft blue (`#4C90DA`) with white text and rounded corners  
+    - Leads to the full product detail page  
+  - **Remove** — allows users to gently declutter their wishlist
+
+#### **Design Principles**
+
+- **Color Palette:** Pastel tones and soft blues to evoke calm and trust  
+- **Typography:** Serif for titles, sans-serif for buttons and labels  
+- **Layout:** Responsive grid with generous spacing and visual breathing room
+
+The wishlist isn’t just a feature—it’s a feeling. It reflects *Resin Treasures’* commitment to emotional clarity, handcrafted storytelling, and a shopping experience that honors pause, preference, and quiet delight.
+
+![image](doc/wishlist-with-items.png)
+
+### Wishlist Page – Empty State
+
+The *Resin Treasures* wishlist page, when empty, offers a soft pause—a gentle reminder that the journey of discovery is just beginning.
+
+#### **Header & Message**
+
+- **Page Title:** *My Wishlist*  
+- **Message:**  
+  > *Your wishlist is empty.*  
+  This line is styled in soft grey, offering quiet clarity without judgment.
+
+#### **Navigation**
+
+- **← Back to Shop** — a soft blue link in the top left corner  
+  - Encourages users to return to browsing with ease and intention
+
+#### **Design Principles**
+
+- **Color Palette:** Light background with muted tones for emotional calm  
+- **Typography:** Sans-serif fonts for readability and warmth  
+- **Layout:** Minimal and centered, with generous spacing for breathing room
+
+An empty wishlist isn’t a void—it’s an invitation. It reflects *Resin Treasures’* belief in slow discovery, emotional clarity, and the joy of finding something worth saving.
+
+![image](doc/wishlist.png)
+
+### Newsletter Section
+
+The *Resin Treasures* newsletter is a quiet thread of connection—offering subscribers gentle updates, behind-the-scenes glimpses, and first looks at new handcrafted pieces. It’s designed to feel like a letter from a friend, not a broadcast.
+
+#### **Stay Connected**
+
+- **Email Input Field** — a single-line field inviting users to enter their email  
+  - Placeholder text: *Enter your email to receive gentle updates*  
+- **Subscribe Button** — soft blue (`#4C90DA`) with rounded corners  
+  - Hover effect: darkens to `#3571B8` for subtle interactivity  
+  - Text: *Subscribe*
+
+#### **Tone & Promise**
+
+> *No spam. No pressure. Just occasional notes filled with resin magic, gifting ideas, and stories from the studio.*
+
+This message is placed just below the form, offering emotional reassurance and clarity.
+
+#### **Design Principles**
+
+- **Color Palette:** Soft pastels and blues to evoke calm and trust  
+- **Typography:** Sans-serif fonts for readability and warmth  
+- **Layout:** Centered with generous spacing, designed to feel like a pause, not a pitch
+
+The newsletter isn’t just a marketing tool—it’s a moment of care. It reflects *Resin Treasures’* commitment to slow commerce, emotional clarity, and a community built on trust, not urgency.
+
+![image](doc/sub.png)
+
+### Newsletter Confirmation Message
+
+After a user subscribes to the *Resin Treasures* newsletter, a soft confirmation message appears—designed to feel like a quiet thank-you, not a transactional alert.
+
+#### **Message Display**
+
+- **Background:** Light green, signaling success and calm  
+- **Text:**  
+  > *Thank you for subscribing. A confirmation email has been sent.*  
+  This message is styled in medium-weight sans-serif, centered for clarity
+
+- **Dismiss Icon:**  
+  A subtle “X” on the right side allows users to close the message gently
+
+#### **Design Principles**
+
+- **Color Palette:** Soft greens and whites for emotional reassurance  
+- **Typography:** Sans-serif fonts for readability and warmth  
+- **Layout:** Horizontal banner with centered text and right-aligned dismiss icon
+
+The confirmation message isn’t just feedback—it’s a gesture of gratitude. It reflects *Resin Treasures’* commitment to emotionally safe communication, where every interaction feels personal, gentle, and appreciated.
+
+![image](doc/confirm-news.png)
+
+### Newsletter Confirmation Email
+
+After a user subscribes to the *Resin Treasures* newsletter, they receive a gentle welcome email—designed to feel like a handwritten note from the studio, not a corporate broadcast.
+
+#### **Sender & Subject Line**
+
+- **From:** `resintrainees@signi...`  
+- **Subject:** *Welcome to Resin Treasures*  
+- **Preview Text:**  
+  > *Hi there! Thanks for subscribing to Resin Treasures. You’ll now be the first...*
+
+This message appears in the **Primary** inbox tab, marked with a soft purple label and a circular “R” icon for brand recognition.
+
+#### **Email Body (Tone & Content)**
+
+> *Hi there!*  
+> *Thanks for subscribing to Resin Treasures. You’ll now be the first to hear about new arrivals, studio stories, and gifting ideas crafted with care.*
+
+- A warm greeting and gentle affirmation  
+- A promise of emotionally resonant updates—not spam  
+- Optional link to **browse the shop** or **update preferences**
+
+#### **Design Principles**
+
+- **Color Palette:** Soft pastels and whites for calm and clarity  
+- **Typography:** Serif headings for elegance, sans-serif body for warmth  
+- **Layout:** Mobile-friendly, with generous spacing and visual breathing room
+
+The confirmation email isn’t just a receipt—it’s a welcome. It reflects *Resin Treasures’* commitment to slow commerce, emotional clarity, and a community built on care, not urgency.
+
+![image](doc/confirm-email.png)
+
+### Newsletter Welcome Email
+
+The *Resin Treasures* welcome email is a soft, heartfelt note—sent moments after a new subscriber joins the mailing list. It’s designed to feel personal, warm, and quietly celebratory.
+
+#### **Sender & Subject Line**
+
+- **From:** `resintreasures5@gmail.com`  
+- **Subject:** *Welcome to Resin Treasures!*  
+- **Sent:** Thursday, August 28 at 13:50  
+- **Inbox Tab:** Primary (marked with a circular “R” icon)
+
+#### **Email Body**
+
+> *Hi there!*  
+> *Thanks for subscribing to Resin Treasures. You’ll now be among the first to hear about our latest creations, exclusive offers, and studio updates—crafted with care and sent with love.*  
+>  
+> *We’re so glad you’re here.*  
+>  
+> — *The Resin Treasures Team*
+
+This message is styled with soft spacing, serif headings, and a gentle tone—designed to feel like a handwritten note from the studio.
+
+#### **Design Principles**
+
+- **Color Palette:** Soft whites and pastels for calm and clarity  
+- **Typography:** Serif for headings, sans-serif for body text  
+- **Layout:** Mobile-friendly with generous breathing room
+
+The welcome email isn’t just a confirmation—it’s an invitation. It reflects *Resin Treasures’* commitment to slow commerce, emotional clarity, and a community built on care, not urgency.
+
+![image](doc/confirm-email-open.png)
 
 ### **Accessibility**  
 
@@ -1601,6 +1934,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
