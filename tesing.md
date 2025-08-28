@@ -1,6 +1,6 @@
 # 🧶 The Crochet Files
 
-![image](docs/all-devices-black.png)
+![image](doc/reponsive-image.png)
 
 ## 🧪 Testing
 
@@ -293,3 +293,4 @@ OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
