@@ -217,7 +217,7 @@ The wireframes served as the foundation for creating easy navigation, clear call
 <img src="doc/rt-contact-mobile.png" alt="Contact Page">
 </details>
 
-## 🎨 Design & Branding  
+## Design & Branding  
 
 ### **Logo**
 
@@ -252,133 +252,285 @@ Provides strong readability for body text and subtle contrast against the bright
 
 The combination of classic blue, soft sky tones, and clean neutrals creates a user experience that’s both intuitive and emotionally safe. It mirrors the artisanal nature of resin gifts while offering a modern, trustworthy interface. Buttons feel like gentle invitations, not demands—perfect for a brand built on care, creativity, and quiet delight.
 
-![image](docs/colour.png)
+![image](doc/color-scheme.png)
 
 ### **Typography** 
 
-The Crochet Files uses a combination of two fonts — Rock Salt and Quicksand — to reflect both personality and readability throughout the site.
+Resin Treasures uses a thoughtful pairing of two fonts — Playfair Display and Open Sans — to reflect both artisanal elegance and modern readability throughout the site.
 
-Rock Salt:
-This playful, hand-drawn font brings a handcrafted, whimsical vibe to the site. Inspired by real handwriting with a slightly rough texture, it's perfect for headings or branding elements that need a personal, artsy touch, fitting the handmade spirit of crochet.
+Playfair Display. This refined serif font brings a sense of timeless craft and sophistication. With its high contrast and graceful curves, it’s perfect for headings, hero sections, and branding elements that need a poetic, handmade touch—echoing the delicate artistry of resin creations.
 
-![image](docs/logo.png)
 
-Quicksand:
-A clean, rounded sans-serif font that’s modern, friendly, and easy to read. Quicksand is used for body text and content areas, providing excellent readability while maintaining a soft and approachable look that complements the cozy aesthetic of the platform.
+Open Sans: A clean, versatile sans-serif font that’s friendly and highly legible. Used for body text, navigation, and buttons, Open Sans ensures clarity across all devices while maintaining a soft, approachable tone that complements the gift-focused nature of the platform.
+
+
+Together, these fonts strike a balance between elegance and ease — one expressive and craft-inspired, the other smooth and practical — enhancing the user experience with both emotional resonance and functional clarity.
+
+![image](doc\home-page.png)
 
 ![image](docs/navbar.png)
 
-Together, these fonts strike a balance between charm and clarity — one expressive and craft-inspired, the other smooth and practical — enhancing the overall user experience with both style and substance.
-
 ### **Layout**
 
-The page layout for The Crochet Files is warm, welcoming, and neatly organized, featuring a grid-style interface with visually appealing images. Here’s a breakdown of the layout:
+The page layout for *Resin Treasures* is calm, curated, and visually inviting, designed to guide users gently through the shopping experience. It features a responsive, grid-based structure with generous spacing and soft visual cues.
 
-Header Section
-- Text: "Welcome to The Crochet Files"
-- Large, bold, and centered at the top.
-- Subtext: "Select a category to explore:"
-- Smaller, friendly instructions just below the main heading.
+#### **Header Section**
 
-Main Content – Category Grid
-- The content is displayed in a 3-column grid layout, with two rows.
-- Each category is shown inside a rounded rectangle box with:
-- A high-quality image of the crochet item.
-- The name of the category is centered beneath the image in a clean, sans-serif font.
+- **Text:** "Handcrafted Resin Art"  
+  Large, bold, and aligned to the right in the hero section.
+
+- **Subtext:** "Free delivery on orders over £50!"  
+  Smaller, friendly message placed above the main call-to-action.
+
+#### **Hero Section**
+
+- Full-screen background image featuring resin art and floral accents.
+- A “Shop Now” button in soft blue (`#4C90DA`) with rounded corners and white text.
+- Button hover effect darkens to `#3571B8` for gentle interactivity.
+
+#### **Main Content – Product Grid**
+
+Products are displayed in a clean, multi-column grid layout. Each item includes:
+
+- A high-quality image of the resin piece.
+- Product name and price in clear, readable fonts.
+- Optional “Add to Basket” button with coral or blue accent depending on context.
+
+This layout prioritizes emotional clarity and visual breathing room—ensuring users feel welcomed, not overwhelmed.
 
 ### **Images & Visuals**  
 
 #### **Registration Page**
 
-Welcome to the registration page for The Crochet Files! Here, new users can create a personal account to start sharing their crochet patterns, explore others’ work, and connect with a creative community.
+The *Resin Treasures* registration page is designed with clarity, warmth, and user trust at its core. It offers a clean, intuitive interface that welcomes new users into the brand’s sanctuary of handcrafted beauty.
 
-The registration form includes fields for a username, a secure password, and password confirmation. Helpful password guidelines are listed to ensure your account stays safe.
+#### **Header Banner**
 
-At the top, the navigation bar allows quick access to key areas of the site:
+- A sleek black banner at the top displays the message:  
+  **"Free delivery on orders over £50!"**  
+  This sets a friendly, value-driven tone right from the start.
 
-Home, Add Patterns, Patterns, Login and Register
+#### **Form Structure**
 
-The page design keeps a soft, welcoming tone with a light blue background, easy-to-read fonts, and a simple, user-friendly layout—just like a cozy crochet files!
+- **Heading:** *Create Account* — centered and bold, inviting users to begin their journey.
+- **Input Fields:**
+  - First Name
+  - Surname
+  - Email (pre-filled for admin preview)
+  - Password
+  - Confirm Password  
+  Each field is clearly labeled and spaced for ease of use.
 
-![image](docs/reg-page.png)
+#### **Password Guidance**
+
+Below the password fields, a helpful checklist outlines the requirements:
+
+- At least one uppercase letter (A–Z)  
+- At least one lowercase letter (a–z)  
+- At least one number (0–9)  
+- At least one special character (!@#$%^&*)  
+- Minimum 8 characters  
+
+This ensures security while gently guiding users through the process.
+
+#### **Call to Action**
+
+- A soft blue **Register** button (`#4C90DA`) with white text and rounded corners encourages completion.
+- A subtle hover effect darkens the button to `#3571B8`, signaling interactivity without pressure.
+- Beneath the button, a link reads:  
+  **"Already have an account? Login here"** — offering a clear path for returning users.
+
+**Why This Matters**
+
+The registration page isn’t just functional—it’s an invitation. With thoughtful spacing, accessible design, and emotionally safe language, it reflects *Resin Treasures’* commitment to user care and artisanal clarity.
+
+
+![image](doc/registration-page.png)
 
 #### **Login Page**
 
-The login page for The Crochet Files allows returning users to securely sign in to their account. With a simple form layout, users can enter their username and password to access their crochet patterns, add new creations, or interact with the crafting community.
+The *Resin Treasures* login page offers a simple, secure, and welcoming interface for returning users. Designed with clarity and ease in mind, it reflects the brand’s commitment to trust and user comfort.
 
-Helpful navigation links are available in the top right corner, making it easy to:
+#### **Form Structure**
 
-- Home page
+- **Username Field**  
+  Clearly labeled and placed at the top for intuitive access.
 
-- Browse Crochet Pattern
+- **Password Field**  
+  Includes a “Show” button to toggle visibility, supporting accessibility and user control.
 
-- Add a New Pattern
+- **Login Button**  
+  A large, soft blue button (`#4C90DA`) with white text and rounded corners.  
+  On hover, the button gently darkens to `#3571B8`, signaling interactivity without pressure.
 
-- Register a new account
+#### **Additional Prompt**
 
-The gentle blue background and clean design make for a peaceful, user-friendly login experience, perfectly matching the warm, handmade vibe of the crochet world.
+- Below the login button, a friendly message reads:  
+  **"Don't have an account? Register here"**  
+  The “Register here” link is clickable, guiding new users toward account creation with ease.
 
-![image](docs/login-page.png)
+#### **Visual Design**
+
+- Background: Light blue, offering a calm and clean visual experience.
+- Layout: Centered form with generous spacing, ensuring readability and emotional clarity.
+
+**Why This Matters**
+
+The login page isn’t just a gateway—it’s a moment of reconnection. With thoughtful design and gentle cues, it invites users back into the *Resin Treasures* experience with warmth and trust.
+
+![image](doc/login-page.png)
 
 #### **Navagation Bar**
 
-##### **Navigation Bar Before Registration**
+### Logged-out Desktop Navigation Bar
 
-For users who have not logged in yet, the navbar presents options to either log in or create a new account. It includes:
+The *Resin Treasures* desktop navigation bar is designed to be clear, elegant, and emotionally intuitive—guiding users gently through the site with ease and trust.
 
-Logo or Site Title on the left, linking back to the homepage.
+#### **Structure & Elements**
 
-##### Core navigation links:
+- **Logo**  
+  A circular emblem featuring the initials **RT**, positioned on the far left. It anchors the brand visually and adds a handcrafted touch.
 
-Home – Directs users to the homepage to explore patterns and other content.
+- **Search Bar**  
+  Centered beside the logo, with a placeholder text: `"Search"`  
+  Accompanied by a soft blue **Go** button (`#4C90DA`) for quick access to products and content.
 
-Add Pattern – Visible only to logged-in users, so this might not be shown on the logged-out navbar.
+- **Navigation Links**  
+  Aligned to the right in a clean horizontal row:
+  - Home  
+  - About Us  
+  - Categories  
+  - Contact  
+  - Login  
+  - Sign Up  
+  Each link is styled in classic blue (`#0000FF`) with hover effects in soft indigo (`rgb(107, 126, 235)`), offering visual feedback without distraction.
 
-Patterns – A page featuring all available crochet patterns from the community.
+- **Shopping Cart Icon**  
+  Positioned next to the “Sign Up” link, signaling e-commerce functionality and easy access to the user’s basket.
 
-##### On the right-hand side:
+#### **Design Principles**
 
-Login – A button that takes users to the login page where they can access their account.
+- **Layout**: Responsive and evenly spaced, ensuring clarity across screen sizes.
+- **Color**: Blue accents convey trust and consistency, while a white background maintains a clean, breathable aesthetic.
+- **Typography**: Medium-weight sans-serif fonts (`font-weight: 500; font-size: 18px`) for readability and emotional warmth.
 
-Register – A button that leads to the registration page, where new users can sign up for an account.
+The navigation bar isn’t just a menu—it’s a moment of orientation. It reflects *Resin Treasures’* commitment to user comfort, clarity, and handcrafted elegance from the very first click.
 
-##### Design Highlights:
+![image](doc/desktop-nav.png)
 
-Same pastel blue background with white text links for a cohesive and welcoming feel.
+### 🖥️ Logged-In Desktop Navigation Bar
 
-Clean and minimal, designed to invite users to join or access their account.
+The *Resin Treasures* desktop navigation for logged-in users is designed to feel personal, polished, and emotionally intuitive—offering returning customers a seamless way to explore, manage, and shop with confidence.
 
-Collapsible on mobile with a hamburger menu, keeping navigation fluid across devices.
+#### **Structure & Elements**
 
-![image](docs/navbar-two.png) 
+- **Logo**  
+  A circular emblem featuring the initials **KM**, set against a soft gradient of light blue and green. It anchors the brand with a sense of calm and artisanal identity.
 
-##### **Navigation Bar After Registration**
+- **Search Bar**  
+  Positioned beside the logo with the placeholder `"Search"` and a soft blue **Go** button (`#4C90DA`). It invites users to explore with ease and intention.
 
-Once a user has successfully logged in, the navbar adapts to provide easy access to their personalized features. It includes:
+- **Navigation Links**  
+  Aligned to the right in a clean horizontal row, styled in classic blue (`#0000FF`):
+  - Home  
+  - About Us  
+  - Categories ⌄ *(dropdown menu for product types)*  
+  - Contact  
+  - My Account ⌄ *(dropdown menu for profile, orders, settings)*  
 
-Logo or Site Title on the left, linking back to the homepage.
+  Each link is spaced for clarity and includes hover effects in soft indigo (`rgb(107, 126, 235)`), offering gentle feedback without visual noise.
 
-##### Core navigation links:
+- **Shopping Cart Icon**  
+  Positioned at the far right, showing the current item count. It provides quick access to the user’s basket while maintaining visual harmony.
 
-Home – Directs to the homepage, featuring a welcoming layout of patterns and content.
+#### **Design Principles**
 
-Add Pattern – Allows users to add their own crochet patterns to share with the community.
+- **Color Palette:** Blue accents convey trust and consistency, while the gradient background adds a touch of serenity and craft.
+- **Typography:** Medium-weight sans-serif fonts (`font-weight: 500; font-size: 18px`) for readability and emotional warmth.
+- **Layout:** Responsive and evenly spaced, ensuring clarity across screen sizes and devices.
 
-Patterns – Leads to a collection of all user-submitted crochet patterns.
+The logged-in desktop navigation reflects *Resin Treasures’* commitment to user care, personalization, and handcrafted elegance. It’s not just a menu—it’s a moment of orientation, connection, and quiet delight.
 
-##### On the right-hand side:
+![image](doc/desktop-nav-in.png)
 
-Logout – A button to log the user out of their account, styled with a soft blue background and clear text.
+### Logged-Out Mobile Navigation
 
-##### Design Highlights:
+The *Resin Treasures* mobile navigation is designed to be intuitive, elegant, and emotionally attuned—offering users a calm entry point into the site, even on smaller screens.
 
-Soft pastel blue background for the navbar with white text links.
+#### **Top Section**
 
-A streamlined layout with easy-to-access buttons, making navigation smooth for logged-in users.
+- **Logo:**  
+  A circular emblem featuring the initials **RT** with the word *LIFESTYLE* beneath, framed by a decorative rope and floral motif. It anchors the brand with artisanal charm and visual identity.
 
-Responsive design that collapses into a hamburger menu on smaller screens, ensuring it works well on mobile.
+- **Hamburger Menu Icon:**  
+  Positioned to the right of the logo, the three-line icon opens the vertical navigation menu. It’s minimal and familiar, ensuring ease of use across devices.
 
-![image](docs/navbar.png)
+#### **Navigation Menu (Expanded)**
+
+Displayed vertically in soft blue text (`#0000FF`) for clarity and consistency:
+
+- Home  
+- About Us  
+- Categories ⌄ *(dropdown indicator)*  
+- Contact  
+- Login  
+- Sign Up  
+
+Each link is spaced for touch-friendly interaction and emotional clarity.
+
+#### **Cart Preview**
+
+- A shopping cart icon appears at the bottom of the menu.
+- Displays item count (e.g., `0`) to gently inform users of their basket status.
+
+#### **Design Notes**
+
+- **Color Palette:** Light blue background with blue text for a clean, breathable feel.
+- **Typography:** Medium-weight sans-serif for readability and warmth.
+- **Spacing:** Generous padding ensures no element feels cramped or overwhelming.
+
+The mobile navigation reflects *Resin Treasures’* commitment to accessibility, emotional ease, and handcrafted elegance. Even in compact form, it invites users into a space of clarity, care, and creative exploration.
+
+![image](doc/mob-nav-out.png)
+
+### Logged-In Mobile Navigation
+
+The *Resin Treasures* mobile navigation for logged-in users is designed to feel personal, intuitive, and emotionally safe—offering returning customers a seamless way to explore, manage, and shop with ease.
+
+#### **Top Section**
+
+- **Logo:**  
+  A circular emblem featuring the initials **RJ** with the word *LUXEARE* beneath, framed by a decorative rope and floral motif. It reinforces brand identity with a handcrafted, lifestyle-inspired aesthetic.
+
+- **Hamburger Menu Icon:**  
+  Positioned to the right of the logo, the familiar three-line icon opens the vertical navigation menu. It’s touch-friendly and visually unobtrusive.
+
+#### **Navigation Menu (Expanded)**
+
+Displayed vertically in classic blue text (`#0000FF`) for consistency and clarity:
+
+- Home  
+- About Us  
+- Categories ⌄ *(dropdown indicator)*  
+- Contact  
+- My Account ⌄ *(dropdown indicator for profile, orders, settings)*  
+
+Each item is spaced for easy tapping and emotional clarity, with dropdowns offering deeper access to personalized features.
+
+#### **Cart Preview**
+
+- A shopping cart icon appears at the bottom of the menu.
+- Displays item count (e.g., `0`) to gently inform users of their basket status.
+
+#### **Design Notes**
+
+- **Color Palette:** Light blue background with blue text for a clean, breathable feel.
+- **Typography:** Medium-weight sans-serif for readability and warmth.
+- **Spacing:** Generous padding ensures no element feels cramped or overwhelming.
+
+The logged-in mobile navigation reflects *Resin Treasures’* commitment to user care, personalization, and emotional clarity. It’s not just functional—it’s a quiet invitation to continue exploring, creating, and connecting.
+
+![image](doc/mob-nav-in.png)
 
 #### **Home Page**
 
@@ -1204,6 +1356,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
