@@ -1537,6 +1537,30 @@ An empty wishlist isn’t a void—it’s an invitation. It reflects *Resin Trea
 
 ![image](doc/wishlist.png)
 
+### Wishlist Button
+
+The wishlist button is a small, circular icon designed to feel personal and expressive—inviting users to save items they love with a single, intuitive tap.
+
+#### **Visual Design**
+
+- **Shape:** Perfect circle  
+- **Color:** Solid red background (`#FF0000`)  
+- **Icon:** White heart centered within the circle  
+  - The heart symbolizes affection, preference, and emotional connection  
+- **Shadow:** Subtle drop shadow gives the button a soft, three-dimensional lift
+
+#### **Behavior**
+
+- **Tap to Save:** Adds the item to the user's wishlist  
+- **Visual Feedback:** May animate or change state to confirm the action  
+- **Placement:** Typically near product titles or images for easy access
+
+#### **Emotional Intent**
+
+This button isn’t just functional—it’s expressive. It reflects *Resin Treasures’* commitment to emotionally resonant design, allowing users to mark items they admire without pressure or urgency.
+
+![image](doc/wishlist-button.png)
+
 ### Newsletter Section
 
 The *Resin Treasures* newsletter is a quiet thread of connection—offering subscribers gentle updates, behind-the-scenes glimpses, and first looks at new handcrafted pieces. It’s designed to feel like a letter from a friend, not a broadcast.
@@ -1653,31 +1677,32 @@ The welcome email isn’t just a confirmation—it’s an invitation. It reflect
 
 ![image](doc/confirm-email-open.png)
 
-### **Accessibility**  
+### **Accessibility**
 
-Accessibility has been a key focus during the development of The Crochet Files, ensuring that all users, including those with disabilities, can comfortably navigate and enjoy the website. Several strategies were implemented to create an inclusive experience:
+Accessibility has been a key focus during the development of *Resin Treasures*, ensuring that all users—including those with disabilities—can comfortably navigate and enjoy the website. Several strategies were implemented to create an inclusive, emotionally safe experience:
 
-Text Contrast
+**Text Contrast**
 
-High Contrast: The site follows the Web Content Accessibility Guidelines (WCAG) by maintaining strong contrast between text and background elements, making content easier to read for users with visual impairments such as low vision or color blindness.
+- **High Contrast:** The site follows the Web Content Accessibility Guidelines (WCAG) by maintaining strong contrast between text and background elements, making content easier to read for users with visual impairments such as low vision or color blindness.
 
-Color Scheme: A soft pastel palette is used thoughtfully, with careful attention to contrast ratios. This ensures that all text remains legible and content stands out clearly against background colors.
+- **Color Scheme:** A soft, handcrafted palette is used thoughtfully, with careful attention to contrast ratios. This ensures that all text remains legible and content stands out clearly against background colors without overwhelming the senses.
 
-Alt Text for Images
+**Alt Text for Images**
 
-Descriptive Alt Text: All images across the website — including project images and category sections — feature meaningful alternative (alt) text. This provides helpful descriptions for users who rely on screen readers or have images disabled.
+- **Descriptive Alt Text:** All images across the website—including product photos, category icons, and decorative elements—feature meaningful alternative (alt) text. This provides helpful descriptions for users who rely on screen readers or have images disabled.
 
-Contextual Relevance: Alt text is kept concise yet descriptive, helping users understand the purpose and content of each image without visual input.
+- **Contextual Relevance:** Alt text is kept concise yet descriptive, helping users understand the purpose and content of each image without visual input.
 
-Keyboard Navigation Support
+**Keyboard Navigation Support**
 
-Keyboard Accessibility: The site is fully navigable using a keyboard alone. Users can move through links, buttons, and form fields using the Tab key, and activate them using the Enter key.
+- **Keyboard Accessibility:** The site is fully navigable using a keyboard alone. Users can move through links, buttons, and form fields using the Tab key, and activate them using the Enter key.
 
-Focus Indicators: Clear visual focus indicators (such as outline borders) are provided to show which element is currently selected, helping users who navigate without a mouse.
+- **Focus Indicators:** Clear visual focus indicators (such as outline borders or soft glows) are provided to show which element is currently selected, helping users who navigate without a mouse.
 
-Accessible Forms: All forms — including login, registration, project submission, and editing forms — are properly labeled and structured to be easily usable with a keyboard.
+- **Accessible Forms:** All forms—including login, checkout, newsletter subscription, and contact forms—are properly labeled and structured to be easily usable with a keyboard and assistive technologies.
 
-By implementing these features, The Crochet Files aims to provide a welcoming and accessible experience for all users, regardless of ability.
+By implementing these features, *Resin Treasures* aims to provide a welcoming, inclusive experience for all users—where handcrafted beauty and emotional clarity are accessible to everyone, regardless of ability.
+
 
 ## 🗄️ Database & Backend
 
@@ -1934,6 +1959,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
