@@ -231,19 +231,26 @@ This logo represents a brand that values detail, respects nature, and invites it
 
 ### **Colour Scheme**  
 
-The Crochet Files features a soft and inviting color palette that reflects the cozy, handcrafted essence of crochet. The site’s background uses a calming pastel blue (#C3E4F8), creating a gentle and welcoming atmosphere.
+Resin Treasures uses a soft, elegant colour palette that reflects the handmade, creative, and gift-focused nature of the store. The scheme is designed to provide a calm and welcoming shopping experience while ensuring strong readability and accessibility.
 
-Content is organized using clean white cards (#FFFFFF) for clarity and contrast. Project cards are enhanced with a delicate pale pink dotted border (#FCDDE8), adding a subtle touch of charm and warmth that complements the overall pastel theme.
+Primary Colour – Classic Blue (#0000FF)
+Used for navigation links and brand elements. This bold, timeless blue evokes trust and clarity, anchoring the site with a sense of reliability and digital craftsmanship.
 
-Each project card includes three pastel-colored buttons designed for clarity and accessibility:
+Button Colour – Soft Sky Blue (#4C90DA)
+Applied to primary call-to-action buttons like “Shop Now.” This gentle blue feels inviting and modern, guiding users with warmth and confidence.
 
-- View Patterns: A light blue button that invites users to explore more.
+Button Hover – Deep Indigo Blue (#3571B8)
+A slightly darker shade is used on hover states to signal interactivity without overwhelming the user. It adds depth and responsiveness to the interface.
 
-- Edit: A soft yellow button that adds a cheerful, approachable tone for updates.
+Secondary Background – Clean White (#FFFFFF)
+Used across the navbar and hero sections to maintain a fresh, minimal canvas that lets resin products shine.
 
-- Delete: A gentle pink button that maintains visual harmony while signaling caution.
+Neutral Text – Charcoal Grey (#333333)
+Provides strong readability for body text and subtle contrast against the brighter blues, ensuring accessibility and visual balance.
 
-This carefully curated palette ensures a cohesive, soothing, and user-friendly experience, aligning perfectly with the comforting and creative spirit of the crochet community. 
+#### Why This Palette?
+
+The combination of classic blue, soft sky tones, and clean neutrals creates a user experience that’s both intuitive and emotionally safe. It mirrors the artisanal nature of resin gifts while offering a modern, trustworthy interface. Buttons feel like gentle invitations, not demands—perfect for a brand built on care, creativity, and quiet delight.
 
 ![image](docs/colour.png)
 
@@ -1197,6 +1204,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
