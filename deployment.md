@@ -1,16 +1,19 @@
-# 🧶 The Crochet Files
+# Resin Treasures
 
 ![image](docs/all-devices-black.png)
 
-# 🚀 Deployment 
+# Deployment
 
-## 🛠️ Setting Up PostgreSQL
+## Setting Up PostgreSQL
 
 To configure your Django project to use PostgreSQL instead of SQLite, follow these steps:
 
-1. Install PostgreSQL Adapter
+### 1. Install PostgreSQL Adapter
 
-Install the PostgreSQL adapter by adding psycopg2-binary to your project dependencies.After installation, make sure to update your requirements.txt file by running:
+Install the PostgreSQL adapter by adding `psycopg2-binary` to your project dependencies. After installation, update your `requirements.txt` file:
+Put these in the terminal one after the other.
+
+pip install psycopg2-binary
 
 pip freeze > requirements.txt
 
@@ -52,19 +55,17 @@ This will set up your database schema using PostgreSQL.
 
 Once your PostgreSQL database is working locally, follow the steps in the Heroku Deployment section to complete deployment using Heroku's PostgreSQL add-on.
 
-
-
-## 🚀 Heroku Deployment
+## Heroku Deployment
 
 Deploying the crochet-files Django App to Heroku
 Note: These instructions assume you have a verified Heroku account and an Eco Dynos plan via the GitHub Student Developer Pack.
 
-🛠️ 1. Create a New Heroku App
+1. Create a New Heroku App
 Go to your Heroku Dashboard and click "New" > "Create new app".
 
 Choose a unique app name and region, then click "Create app".
 
-⚙️ 2. Configure Environment Variables
+2. Configure Environment Variables
 In your app dashboard, go to the Settings tab.
 
 Click "Reveal Config Vars".
@@ -79,7 +80,7 @@ Click Add.
 
 This disables automatic static file collection during deployment, which we’ll configure manually later when HTML/CSS are in place.
 
-🔧 3. Install a Production Web Server
+3. Install a Production Web Server
 Install Gunicorn:
 
 Run pip3 install gunicorn~=20.1.
@@ -90,7 +91,7 @@ Run pip3 freeze --local > requirements.txt.
 
 Gunicorn is a production-ready WSGI server, replacing runserver for live environments.
 
-📁 4. Create a Procfile
+4. Create a Procfile
 At the root of your project directory (same level as requirements.txt), create a file named Procfile (no extension).
 
 Inside, add:
@@ -99,7 +100,7 @@ web: gunicorn my_project.wsgi
 
 Replace my_project with your Django project’s actual name (the one with settings.py).
 
-🔒 5. Update Django Settings
+5. Update Django Settings
 Open settings.py and make the following changes:
 
 a. Add Heroku to Allowed Hosts:
@@ -114,36 +115,36 @@ DEBUG = False
 
 Required for security in production environments.
 
-💾 6. Commit and Push Changes to GitHub
+6. Commit and Push Changes to GitHub
 Run git add .
 
 Run git commit -m "Prepare project for Heroku deployment"
 
 Run git push.
 
-🌐 7. Connect GitHub to Heroku
+7. Connect GitHub to Heroku
 Go back to your Heroku app dashboard and open the Deploy tab.
 
 Under Deployment Method, select GitHub and click Connect to GitHub.
 
 Search for your repository by name, then click Connect.
 
-🚀 8. Deploy the App
+8. Deploy the App
 Scroll to the bottom of the Deploy page and click Deploy Branch.
 
 Wait for the build to complete. You can monitor progress under the Activity tab.
 
-⚙️ 9. Set Up Dyno and Remove Postgres
+9. Set Up Dyno and Remove Postgres
 Go to the Resources tab.
 
 Could you make sure at least one Eco Dyno is enabled?
 
 If there's a Heroku Postgres add-on (not needed for this project), click the three dots next to it and choose Delete Add-on.
 
-🌍 10. View Your Live App
+10. View Your Live App
 Click the Open app at the top right of your dashboard.
 
-## 📸Cloudinary Integration
+## Cloudinary Integration
 
 This project uses Cloudinary to manage and serve image uploads. Follow these steps to integrate Cloudinary with your Django app:
 
@@ -222,3 +223,4 @@ In the Deploy tab on Heroku, select the main branch and click Deploy Branch.
 
 Test Your Live App
 Open your deployed app in Heroku. Images should now be served via Cloudinary.
+
