@@ -2,6 +2,8 @@
 
 ![image](doc/reponsive-image.png)
 
+[View the live project here.](https://resin-treasures-2025-f7167892b201.herokuapp.com/)
+
 ## User Experience
 
 ### Project Overview
@@ -1995,6 +1997,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
