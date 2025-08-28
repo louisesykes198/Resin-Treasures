@@ -1704,44 +1704,49 @@ Accessibility has been a key focus during the development of *Resin Treasures*, 
 By implementing these features, *Resin Treasures* aims to provide a welcoming, inclusive experience for all users—where handcrafted beauty and emotional clarity are accessible to everyone, regardless of ability.
 
 
-## 🗄️ Database & Backend
+## Database & Backend
 
-### 🧩 Data Structure & Relationships
+### Data Structure & Relationships
 
-#### 📐 Database Design Process
+#### Database Design Process
 
-The database for **Crochet Files** was carefully structured to be efficient, scalable, and user-friendly. The design process followed three key phases:
+The database for **Resin Treasures** was carefully structured to provide a secure, scalable, and user-friendly shopping experience.  
+The design process followed three key phases:
 
-1. **Requirements Analysis** – Understanding the needs of the platform
-2. **Data Structuring** – Defining tables and their relationships
-3. **Normalisation** – Eliminating redundancy and enforcing integrity
+1. **Requirements Analysis** – Identifying the needs of both customers and the store owner  
+2. **Data Structuring** – Defining tables and their relationships (products, orders, users, etc.)  
+3. **Normalisation** – Reducing redundancy, ensuring consistency, and maintaining integrity  
 
 ---
 
-#### 📋 Requirements Analysis
+#### Requirements Analysis
 
 The database was designed to support the following core functionalities:
 
-- Users can share crochet projects.
-- Users can like and comment on projects.
-- Projects are organized by category and difficulty.
-- Only registered users can upload, comment, and like projects.
+- Users can register, manage profiles, and log in securely.  
+- Users can browse products, add items to a basket, and complete a checkout process.  
+- Orders are stored with customer, shipping, and payment details.  
+- Users can save items for later using a **wishlist**.  
+- A **newsletter system** stores email subscribers.  
+- Admins can manage products, categories, and fulfil customer orders.  
 
 ---
 
-#### 🧱 Data Tables & Core Entities
+#### Data Tables & Core Entities
 
 Each major feature is represented by a dedicated table:
 
-| Entity         | Purpose                                               |
-|----------------|--------------------------------------------------------|
-| **User**       | Stores user credentials and authentication info       |
-| **Project**    | Stores crochet project details                        |
-| **Category**   | Organizes projects into types like scarves, hats, etc.|
-| **Comment**    | Allows users to comment on projects                   |
-| **Like**       | Tracks which users have liked which projects          |
-
----
+| Entity            | Purpose                                                                 |
+|-------------------|-------------------------------------------------------------------------|
+| **User**          | Stores user authentication and profile information                     |
+| **Product**       | Stores product details such as name, description, price, and stock     |
+| **Category**      | Groups products into categories for easy navigation                    |
+| **Order**         | Stores order information, including user, shipping, and payment status  |
+| **OrderItem**     | Tracks individual products within an order                             |
+| **Basket**        | Temporary storage of the user’s selected items before checkout             |
+| **Wishlist**      | Stores products users have saved for later                             |
+| **Newsletter**    | Stores email addresses of subscribers for marketing campaigns          |
+| **ContactMessage**| Captures messages submitted via the contact form                       |
 
 #### 🔁 Relationships Between Tables
 
@@ -1751,8 +1756,6 @@ Each major feature is represented by a dedicated table:
 
 - **Many-to-Many**:
   - A **User** can like many **Projects**, and a **Project** can be liked by many users (via the **Like** table)
-
----
 
 #### 📊 Entity Relationship Diagram (ERD)
 
@@ -1959,6 +1962,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
