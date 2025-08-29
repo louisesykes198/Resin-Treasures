@@ -121,7 +121,7 @@ The site was tested using Chrome's Lighthouse tool to measure key performance me
 
 <details>
 <summary>Registration Page - Desktop</summary>
-<img src="doc/reg-lighthouse.pngg" alt="Registration Page">
+<img src="doc/reg-lighthouse.png" alt="Registration Page">
 </details>
 
 <details>
@@ -362,6 +362,7 @@ OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
 
 
 
