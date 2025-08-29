@@ -1,74 +1,54 @@
-# 🧶 The Crochet Files
+﻿# Resin-Treasures
 
 ![image](doc/reponsive-image.png)
 
-## 🧪 Testing
+[View the live project here.](https://resin-treasures-2025-f7167892b201.herokuapp.com/)
 
-The website is fully responsive and has been tested on multiple device sizes.
+## Testing
 
 ### Testing User Stories 
 
-#### User Authentication & Profiles
-As a user, I want to create an account to access and contribute to crochet patterns.
+### Authentication & User Profiles
+- As a new user, I want to register for an account so I can make purchases and access my profile.
+- As a returning user, I want to log in and out securely to protect my account.
+- As a user, I want to view and edit my profile so I can keep my information up to date.
+- As a user, I want to delete my account to remove all my data.
 
-![image](docs/reg-page.png)
+### Shopping & Checkout
+- As a user, I want to browse products by category so I can easily find what I’m looking for.
+- As a user, I want to search for products using a search bar so I can quickly find specific items.
+- As a user, I want to view detailed product information before buying.
+- As a user, I want to add products to my basket and update quantities.
+- As a user, I want to remove items from my basket.
+- As a user, I want to proceed to checkout and make a payment securely.
+- As a user, I want to receive confirmation after placing an order.
 
-As a user, I want to log in and out securely to protect my account.
+### Wishlist
+- As a user, I want to add items to my wishlist to save them for later.
+- As a user, I want to view and manage my wishlist from my profile.
+- As a user, I want to remove items I no longer want from my wishlist.
 
-![image](docs/login-page.png)
+### Newsletter
+- As a visitor, I want to enter my email address and subscribe to the newsletter, so that I can receive updates about new products and offers.
+- As a visitor, I want to receive a confirmation email when I subscribe, so that I know my subscription was successful.
+- As a visitor, I want to see a success message on the site after subscribing, so that I know my action was completed.
+- As a visitor, I want to be notified if my email is already subscribed, so that I don’t accidentally subscribe multiple times.
+- As a visitor, I want to be informed if my email address is invalid, so that I can correct it before submitting.
+- As a subscriber, I want the ability to unsubscribe easily via a link in emails, so that I can stop receiving updates if I’m no longer interested.
+- As a subscriber, I want a confirmation email or message after unsubscribing, so that I know I won’t receive further newsletters.
+- As a site admin, I want to view a list of all subscribed emails, so that I can understand my audience and target communications.
+- As a site admin, I want to prevent fake or temporary emails from subscribing, so that the newsletter reaches real users.
+- As a site admin, I want to export subscriber emails (e.g., to CSV), so that I can use them in external marketing tools.
 
-As a user, I want to view crochet patterns shared by others so that I can find inspiration and ideas.
+### Admin & Store Management
+- As the site owner, I want to add, update, or delete product listings to manage my store inventory.
+- As the site owner, I want to create and manage product categories to keep the store organized.
+- As the site owner, I want to view and fulfill customer orders.
+- As the site owner, I want to receive and respond to messages from the Contact form.
 
-![image](docs/view-pattern.png)
-
-As a user, I want to like and comment on crochet patterns so that I can show appreciation and join the community.
-
-![image](docs/mob-com.png)
-
-#### Project Uploads & Management
-
-As a user, I want to add a new crochet pattern with images and text so that I can share my work with others.
-
- ![image](docs/add-page.png)
-
-As a user, I want to edit my crochet pattern so that I can make corrections or updates.
-
-![image](docs/edit-page.png)
-
-If you try to edit a project that you have not added, you will be directed to this page.
-![image](docs/denied_edit.png)
-
-As a user, you may want to delete projects that you no longer need or wish to keep visible. This feature allows you to keep your workspace clean and organized.
-
-On the patterns page, you will find the delete button.
-![image](docs/view-buttons.png)
-
-Clicking Delete will take you to a confirmation page.
-![image](docs/delete-page.png)
-
-If you confirm by clicking "Yes, delete," a success message will appear at the top of the screen.
-![image](docs/delete-message.png)
-
-If you try to delete a project you don’t own, you’ll be redirected to this message.
-![image](docs/denied.png)
-
-As a user, I want to categorize my crochet patterns so that others can easily find them.
-
-![image](docs/landing-page.png)
-
-#### Engagement & Interaction
-
-As a user, I want to like crochet patterns so that I can show appreciation for others' work.
-
-![image](docs/like-button.png)
-
-As a user, I want to comment on crochet patterns so that I can ask questions and give feedback.
-
-![image](docs/mob-com.png)
-
-As a user, I want to see how many likes and comments a project has so that I can gauge its popularity.
-
-![image](docs/one-like.png)
+### Static Pages & Contact
+- As a user, I want to visit the About page to learn about the store and its owner.
+- As a user, I want to use a Contact form to ask questions or request custom orders.
 
 ## 🚀 Lighthouse Performance Report
 
@@ -293,4 +273,5 @@ OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
 
