@@ -110,7 +110,7 @@
 
 ![image](doc/contact-page.png) 
 
-## 🚀 Lighthouse Performance Report
+## Lighthouse Performance Report
 
 The site was tested using Chrome's Lighthouse tool to measure key performance metrics, including accessibility, best practices, and SEO.
 
@@ -169,7 +169,7 @@ The site was tested using Chrome's Lighthouse tool to measure key performance me
 <img src="doc/review-lighthouse.png" alt="Review Page">
 </details>
 
-### 🖥️ Desktop View
+### Desktop View
 
 ✅ The layout scales correctly  
 ✅ Navigation works as expected  
@@ -216,7 +216,7 @@ The site was tested using Chrome's Lighthouse tool to measure key performance me
 
 ---
 
-### 📱 Mobile View
+### Mobile View
 
 ✅ Navigation collapses correctly  
 ✅ Forms are readable and scrollable  
@@ -293,12 +293,9 @@ The following features were manually tested across desktop and mobile devices to
 | 🚫 Block Disposable Emails          | Temporary/fake emails are flagged or blocked                       | ✅ Pass   |
 | 📤 Export Subscriber List           | Admin can export emails to CSV for external use                    | ✅ Pass   |
 
----
 Each test reflects Resin Treasures’ commitment to clarity, care, and a user experience built on trust._
 
-
-
-## 🔒 Debug Off  
+## Debug Off  
 
 The project uses Django’s `DEBUG` setting to manage security between development and production environments.  
 
@@ -319,7 +316,7 @@ The project uses Django’s `DEBUG` setting to manage security between developme
 
 This setup ensures the project is both easy to work on locally and safe when deployed live.  
 
-# 🧰 Validators
+# Validators
 
 The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
 
@@ -327,25 +324,32 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 ## HTML Validation Checks
 
-The following pages were checked with an HTML validator, and no errors were found:
+The following pages were checked using an HTML validator and returned no errors. Each template was reviewed to ensure semantic clarity, accessibility, and emotional consistency across devices.
 
-| **Page**               | **Checked with HTML Validator with no errors** |
-|------------------------|------------------------------------------------|
-| base.html              | ✅ Yes                                        |
-| home.html              | ✅ Yes                                        |
-| add_comment.html       | ✅ Yes                                        |
-| register.html          | ✅ Yes                                        |
-| login.html             | ✅ Yes                                        |
-| add_project.html       | ✅ Yes                                        |
-| category_view.html     | ✅ Yes                                        |
-| delete_project.html    | ✅ Yes                                        |
+| **Page**                      | **Checked with HTML Validator – No Errors Found** |
+|-------------------------------|---------------------------------------------------|
+| base.html                     | ✅ Yes                                             |
+| index.html                    | ✅ Yes                                             |
+| product_detail.html           | ✅ Yes                                             |
+| register.html                 | ✅ Yes                                             |
+| login.html                    | ✅ Yes                                             |
+| wishlist.html                 | ✅ Yes                                             |
+| basket.html                   | ✅ Yes                                             |
+| checkout.html                 | ✅ Yes                                             |
+| order_confirmation.html       | ✅ Yes                                             |
+| profile.html                  | ✅ Yes                                             |
+| order_history.html            | ✅ Yes                                             |
+| newsletter_subscribe.html     | ✅ Yes                                             |
+| newsletter_confirm.html       | ✅ Yes                                             |
+| gallery_of_reflections.html   | ✅ Yes                                             |
 
+Each page reflects Resin Treasures’ commitment to clean structure, emotional clarity, and inclusive design._
 
-![image](docs/base-html-vali.png)
+![image](doc/base-val.png)
 
 [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)
 
-![image](docs/css-vail.png)
+![image](doc/css-val.png)
 
 ## Python Validators
 
@@ -427,6 +431,7 @@ OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
 
 
 
