@@ -115,48 +115,58 @@
 The site was tested using Chrome's Lighthouse tool to measure key performance metrics, including accessibility, best practices, and SEO.
 
 <details>
-<summary>Login Page - Desktop</summary>
+<summary>Login Page </summary>
 <img src="doc/login-lighthouse.png" alt="Login Page">
 </details>
 
 <details>
-<summary>Registration Page - Desktop</summary>
+<summary>Registration Page </summary>
 <img src="doc/reg-lighthouse.png" alt="Registration Page">
 </details>
 
 <details>
-<summary>Home Page - Desktop</summary>
+<summary>Home Page </summary>
 <img src="doc/lh-desktop-home.png" alt="Home Page">
 </details>
 
 <details>
-<summary>About Page - Desktop</summary>
+<summary>About Page </summary>
 <img src="doc/about-lighthouse.png" alt="About Page">
 </details>
 
 <details>
-<summary>Category Page - Desktop</summary>
+<summary>Category Page </summary>
 <img src="doc/product-lighthouse.png" alt="Category Page">
 </details>
 
 <details>
-<summary>Basket Page - Desktop</summary>
+<summary>Basket Page </summary>
 <img src="doc/basket-lighthouse.png" alt="Basket Page">
 </details>
 
 <details>
-<summary>Profile Page - Desktop</summary>
+<summary>Wishlist Page </summary>
+<img src="doc/wishlist-lighthouse.png" alt="Wishlist Page">
+</details>
+
+<details>
+<summary>Profile Page </summary>
 <img src="doc/account-settings-lighthouse.png" alt="Profile Page">
 </details>
 
 <details>
-<summary>Checkout Page - Desktop</summary>
+<summary>Checkout Page </summary>
 <img src="doc/checkout-lighthouse.png" alt="Checkout Page">
 </details>
 
 <details>
-<summary>Complete Page - Desktop</summary>
+<summary>Complete Page </summary>
 <img src="doc/complete-lighthouse.png" alt="Complete Page">
+</details>
+
+<details>
+<summary>Review Page </summary>
+<img src="doc/review-lighthouse.png" alt="Review Page">
 </details>
 
 ### 🖥️ Desktop View
@@ -165,34 +175,44 @@ The site was tested using Chrome's Lighthouse tool to measure key performance me
 ✅ Navigation works as expected  
 ✅ All buttons and forms are accessible  
 
-#### 📸 Screenshots
+#### Login Page 
+<img src="doc/login-page.png" alt="Login Page">
 
- ### Landing Page  
-  ![image](docs/landing-page.png)
+#### Registration Page
+<img src="doc/registration-page.png" alt="Registration Page">
 
- ### Navigation Bar  
-  ![image](docs/navbar.png)
+#### Home Page
+<img src="doc/home-page.png" alt="Home Page">
 
- ### Add New Project  
-  ![image](docs/add-page.png)
+#### About Page 
+<img src="doc/about-page.png" alt="About Page">
 
- ### Edit Project  
-  ![image](docs/edit-page.png)
+#### Category Page 
+<img src="doc/product-lighthouse.png" alt="Category Page">
 
-  ![image](docs/denied_edit.png)
+#### Basket Page 
+<img src="doc/basket-page.png" alt="Basket Page">
 
- ### View Project Page  
-  ![image](docs/project-page.png)
+#### Wishlist Page 
+<img src="doc/wishlist.png" alt="Wishlist Page">
 
- ### Delete Project
-  ![image](docs/delete-page.png)
+#### Profile Page
+<img src="doc/account-settings.png" alt="Profile Page">
 
-  ![image](docs/delete-message.png)
+#### Payment Page 
+<img src="doc\complete-order.png" alt="Payment Page">
 
-  ![image](docs/delete-page.png)
+#### Checkout Page 
+<img src="doc/checkout-page.png" alt="Checkout Page">
 
- No Comments State  
-  ![image](docs/no-comment.png)
+#### Complete Page 
+<img src="doc\payment-complete.png" alt="Complete Page">
+
+#### Review Page 
+<img src="doc/review-page.png" alt="Review Page">
+
+#### Contact Page 
+<img src="doc/contact-page.png" alt="Contact Page">
 
 ---
 
@@ -204,33 +224,44 @@ The site was tested using Chrome's Lighthouse tool to measure key performance me
 
 #### 📸 Screenshots
 
- ### Home View  
-  ![image](docs/mobile-home-view.png)
+#### Login Page 
+<img src="doc/login-mob.png" alt="Login Page">
 
- ### Navigation Menu  
-  ![image](docs/mob-nav.png)
+#### Registration Page
+<img src="doc/reg-mob.png" alt="Registration Page">
 
- ### Add New Project  
-  ![image](docs/mob-new-pat.png)
+#### Home Page
+<img src="doc/home-mob.png" alt="Home Page">
 
- ### Edit Project  
-  ![image](docs/mob-edit.png)
+#### About Page 
+<img src="doc/about-mob.png" alt="About Page">
 
-  ![image](docs/denied_edit_mob.png)
+#### Category Page 
+<img src="doc/product-mob.png" alt="Category Page">
 
- ### View Project  
-  ![image](docs/mob-view.png)
+#### Basket Page 
+<img src="doc/basket-mob.png" alt="Basket Page">
 
- ### Comment Section  
-  ![image](docs/mob-com.png)
+#### Wishlist Page 
+<img src="doc/wishlist-mob.png" alt="Wishlist Page">
 
- ### Delete Project
+#### Profile Page
+<img src="doc/account-mob.png" alt="Profile Page">
 
- ![image](docs/delete-message-mob.png)
+#### Payment Page 
+<img src="doc\payment-mob.png" alt="Payment Page">
 
- ![image](docs/delete-page-mob.png)
+#### Checkout Page 
+<img src="doc/checkout-mob.png" alt="Checkout Page">
 
- ![image](docs/denied-mob.png)
+#### Complete Page 
+<img src="doc/complete-mob.png" alt="Complete Page">
+
+#### Review Page 
+<img src="doc/review-mob.png" alt="Review Page">
+
+#### Contact Page 
+<img src="doc/contact-mob.png" alt="Contact Page">
 
 ## 🧪 Manual Test Cases
 
@@ -362,6 +393,7 @@ OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
 
 
 
