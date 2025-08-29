@@ -114,21 +114,50 @@
 
 The site was tested using Chrome's Lighthouse tool to measure key performance metrics, including accessibility, best practices, and SEO.
 
-### Home Page
+<details>
+<summary>Login Page - Desktop</summary>
+<img src="doc/login-lighthouse.png" alt="Login Page">
+</details>
 
-![image](docs/lighthouse-home.png)
+<details>
+<summary>Registration Page - Desktop</summary>
+<img src="doc/reg-lighthouse.pngg" alt="Registration Page">
+</details>
 
-### Add Patterns
+<details>
+<summary>Home Page - Desktop</summary>
+<img src="doc/lh-desktop-home.png" alt="Home Page">
+</details>
 
-![image](docs/lighthouse-add-pattern.png)
+<details>
+<summary>About Page - Desktop</summary>
+<img src="doc/about-lighthouse.png" alt="About Page">
+</details>
 
-### Patterns Page
+<details>
+<summary>Category Page - Desktop</summary>
+<img src="doc/product-lighthouse.png" alt="Category Page">
+</details>
 
-![image](docs/lighthouse-patterns.png)
+<details>
+<summary>Basket Page - Desktop</summary>
+<img src="doc/basket-lighthouse.png" alt="Basket Page">
+</details>
 
-### Edit Page
+<details>
+<summary>Profile Page - Desktop</summary>
+<img src="doc/account-settings-lighthouse.png" alt="Profile Page">
+</details>
 
-![image](docs/lighthouse-edit.png)
+<details>
+<summary>Checkout Page - Desktop</summary>
+<img src="doc/checkout-lighthouse.png" alt="Checkout Page">
+</details>
+
+<details>
+<summary>Complete Page - Desktop</summary>
+<img src="doc/complete-lighthouse.png" alt="Complete Page">
+</details>
 
 ### 🖥️ Desktop View
 
@@ -333,6 +362,7 @@ OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
 
 
 
