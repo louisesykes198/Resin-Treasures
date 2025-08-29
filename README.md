@@ -779,7 +779,7 @@ Each item is styled in classic blue (`#0000FF`) and spaced for touch-friendly in
 
 The account dropdown isn’t just a menu—it’s a moment of control and care. It allows users to manage their experience with confidence, reflecting *Resin Treasures’* values of trust, transparency, and handcrafted attention.
 
-![image](doc\account-dropdown.png)
+![image](doc/account-dropdown.png)
 
 ### Profile Page
 
@@ -1695,7 +1695,7 @@ The *Gallery of Reflections* is more than a review page—it’s a quiet space f
   - Dropdowns for *All Products* and *All Ratings*  
   - A **Filter** button to refine displayed entries
 
-#### 💬 Review Cards
+#### Review Cards
 
 Each product reflection is displayed in a soft card layout featuring:
 
@@ -2160,6 +2160,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
