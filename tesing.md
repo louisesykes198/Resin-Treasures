@@ -10,65 +10,154 @@
 
 ### Authentication & User Profiles
 - As a new user, I want to register for an account so I can make purchases and access my profile.
+
+![image](doc/registration-page.png)
+
 - As a returning user, I want to log in and out securely to protect my account.
+
+![image](doc/login-page.png)
+
 - As a user, I want to view and edit my profile so I can keep my information up to date.
+
+![image](doc/account-settings.png)
+
 - As a user, I want to delete my account to remove all my data.
 
 ### Shopping & Checkout
 - As a user, I want to browse products by category so I can easily find what I’m looking for.
+
+![image](doc/cat-dropdown.png)
+
 - As a user, I want to search for products using a search bar so I can quickly find specific items.
+
+![image](doc/desktop-nav.png)
+
 - As a user, I want to view detailed product information before buying.
+
+![image](doc/view-product-page.png)
+
 - As a user, I want to add products to my basket and update quantities.
 - As a user, I want to remove items from my basket.
+
+![image](doc/basket-page.png)
+
 - As a user, I want to proceed to checkout and make a payment securely.
+
+![image](doc/checkout-page.png) 
+
+![image](doc/complete-order.png)
+
 - As a user, I want to receive confirmation after placing an order.
+
+![image](doc/payment-complete.png)
 
 ### Wishlist
 - As a user, I want to add items to my wishlist to save them for later.
+
+![image](doc/wishlist-button.png) 
+
+![image](doc/wishlist.png) 
+
 - As a user, I want to view and manage my wishlist from my profile.
 - As a user, I want to remove items I no longer want from my wishlist.
 
+![image](doc/wishlist-with-items.png) 
+
 ### Newsletter
+
 - As a visitor, I want to enter my email address and subscribe to the newsletter, so that I can receive updates about new products and offers.
+
+![image](doc/sub.png) 
+
 - As a visitor, I want to receive a confirmation email when I subscribe, so that I know my subscription was successful.
+
+![image](doc/confirm-email.png) 
+
 - As a visitor, I want to see a success message on the site after subscribing, so that I know my action was completed.
+
+![image](doc/confirm-news.png) 
+
 - As a visitor, I want to be notified if my email is already subscribed, so that I don’t accidentally subscribe multiple times.
-- As a visitor, I want to be informed if my email address is invalid, so that I can correct it before submitting.
-- As a subscriber, I want the ability to unsubscribe easily via a link in emails, so that I can stop receiving updates if I’m no longer interested.
-- As a subscriber, I want a confirmation email or message after unsubscribing, so that I know I won’t receive further newsletters.
+
+ ![image](doc/new-already.png) 
+
 - As a site admin, I want to view a list of all subscribed emails, so that I can understand my audience and target communications.
-- As a site admin, I want to prevent fake or temporary emails from subscribing, so that the newsletter reaches real users.
-- As a site admin, I want to export subscriber emails (e.g., to CSV), so that I can use them in external marketing tools.
+
+![image](doc/admin-user.png) 
+
+![image](doc/admin-change-user.png) 
 
 ### Admin & Store Management
 - As the site owner, I want to add, update, or delete product listings to manage my store inventory.
-- As the site owner, I want to create and manage product categories to keep the store organized.
-- As the site owner, I want to view and fulfill customer orders.
-- As the site owner, I want to receive and respond to messages from the Contact form.
 
+![image](doc/admin-add-item.png) 
+
+- As the site owner, I want to create and manage product categories to keep the store organized.
+
+![image](doc/admin-cat.png) 
+ 
+- As the site owner, I want to view and fulfill customer orders.
+
+![image](doc/admin-order.png) 
+ 
 ### Static Pages & Contact
+
 - As a user, I want to visit the About page to learn about the store and its owner.
+
+![image](doc/about-page.png) 
+
 - As a user, I want to use a Contact form to ask questions or request custom orders.
+
+![image](doc/contact-page.png) 
 
 ## 🚀 Lighthouse Performance Report
 
 The site was tested using Chrome's Lighthouse tool to measure key performance metrics, including accessibility, best practices, and SEO.
 
-### Home Page
+<details>
+<summary>Login Page - Desktop</summary>
+<img src="doc/login-lighthouse.png" alt="Login Page">
+</details>
 
-![image](docs/lighthouse-home.png)
+<details>
+<summary>Registration Page - Desktop</summary>
+<img src="doc/reg-lighthouse.pngg" alt="Registration Page">
+</details>
 
-### Add Patterns
+<details>
+<summary>Home Page - Desktop</summary>
+<img src="doc/lh-desktop-home.png" alt="Home Page">
+</details>
 
-![image](docs/lighthouse-add-pattern.png)
+<details>
+<summary>About Page - Desktop</summary>
+<img src="doc/about-lighthouse.png" alt="About Page">
+</details>
 
-### Patterns Page
+<details>
+<summary>Category Page - Desktop</summary>
+<img src="doc/product-lighthouse.png" alt="Category Page">
+</details>
 
-![image](docs/lighthouse-patterns.png)
+<details>
+<summary>Basket Page - Desktop</summary>
+<img src="doc/basket-lighthouse.png" alt="Basket Page">
+</details>
 
-### Edit Page
+<details>
+<summary>Profile Page - Desktop</summary>
+<img src="doc/account-settings-lighthouse.png" alt="Profile Page">
+</details>
 
-![image](docs/lighthouse-edit.png)
+<details>
+<summary>Checkout Page - Desktop</summary>
+<img src="doc/checkout-lighthouse.png" alt="Checkout Page">
+</details>
+
+<details>
+<summary>Complete Page - Desktop</summary>
+<img src="doc/complete-lighthouse.png" alt="Complete Page">
+</details>
 
 ### 🖥️ Desktop View
 
@@ -273,5 +362,7 @@ OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
+
 
 
