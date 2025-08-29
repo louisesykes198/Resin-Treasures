@@ -265,28 +265,59 @@ The site was tested using Chrome's Lighthouse tool to measure key performance me
 
 ## Manual Test Cases
 
-The following features were manually tested across desktop and mobile devices:
+The following features were manually tested across desktop and mobile devices to ensure a smooth, emotionally safe experience for all users.
 
-| Feature                   | Test Case Description                                     | Status   |
-|---------------------------|-----------------------------------------------------------|----------|
-| 🔐 User Registration      | Sign up with valid and invalid credentials                | ✅ Pass   |
-| 🔓 User Login/Logout      | Login/logout flow works as expected                       | ✅ Pass   |
-| 👤 User Profile           | Profile page displays user info and order history         | ✅ Pass   |
-| 🛒 Add to Basket          | Correct product is added to basket                        | ✅ Pass   |
-| ➕ Update Basket Quantity | Quantity can be increased/decreased, totals update        | ✅ Pass   |
-| ❌ Remove from Basket     | Item removed and basket updates correctly                 | ✅ Pass   |
-| 💳 Checkout & Payment     | Checkout form validates, order is processed successfully  | ✅ Pass   |
-| 💬 Comment on Post        | Comments can be added and displayed under posts           | ✅ Pass   |
-| 📱 Mobile Responsiveness  | Pages adapt correctly to smaller screen sizes             | ✅ Pass   |
-| 🧭 Navbar Functionality   | All links and dropdowns navigate correctly                | ✅ Pass   |
-| 🖼️ Image Uploads (Cloudinary) | Images upload and display as expected                  | ✅ Pass   |
+| Feature                             | Test Case Description                                              | Status   |
+|-------------------------------------|--------------------------------------------------------------------|----------|
+| 🔐 User Registration                | Sign up with valid and invalid credentials                         | ✅ Pass   |
+| 🔓 User Login/Logout                | Login/logout flow works as expected                                | ✅ Pass   |
+| 👤 User Profile                     | Profile page displays user info and order history                  | ✅ Pass   |
+| 🛒 Add to Basket                    | Correct product is added to basket                                 | ✅ Pass   |
+| ➕ Update Basket Quantity           | Quantity can be increased/decreased, totals update                 | ✅ Pass   |
+| ❌ Remove from Basket               | Item removed and basket updates correctly                          | ✅ Pass   |
+| 💳 Checkout & Payment               | Checkout form validates, order is processed successfully           | ✅ Pass   |
+| 📦 Order Confirmation               | Confirmation page displays order details and thank-you message     | ✅ Pass   |
+| 💬 Comment on Post                  | Comments can be added and displayed under posts                    | ✅ Pass   |
+| 📱 Mobile Responsiveness            | Pages adapt correctly to smaller screen sizes                      | ✅ Pass   |
+| 🧭 Navbar Functionality             | All links and dropdowns navigate correctly                         | ✅ Pass   |
+| 🖼️ Image Uploads (Cloudinary)       | Images upload and display as expected                              | ✅ Pass   |
+| 💖 Add to Wishlist                  | Product added to wishlist via heart icon                           | ✅ Pass   |
+| 📂 View & Manage Wishlist           | Wishlist page displays saved items with remove/view options        | ✅ Pass   |
+| ❌ Remove from Wishlist             | Item removed from wishlist and page updates                        | ✅ Pass   |
+| 💌 Newsletter Subscription          | Valid email triggers success message and confirmation email        | ✅ Pass   |
+| 📧 Duplicate Email Warning          | Submitting existing email shows appropriate message                | ✅ Pass   |
+| ❗ Invalid Email Handling           | Malformed email triggers error message                             | ✅ Pass   |
+| 🔗 Unsubscribe via Email            | Unsubscribe link removes user and confirms action                  | ✅ Pass   |
+| 📬 Unsubscribe Confirmation         | Message/email confirms user is unsubscribed                        | ✅ Pass   |
+| 🛠️ Admin View Subscribers           | Admin dashboard lists all subscribed emails                        | ✅ Pass   |
+| 🚫 Block Disposable Emails          | Temporary/fake emails are flagged or blocked                       | ✅ Pass   |
+| 📤 Export Subscriber List           | Admin can export emails to CSV for external use                    | ✅ Pass   |
+
+---
+Each test reflects Resin Treasures’ commitment to clarity, care, and a user experience built on trust._
 
 
-## Debug Off
 
-The project uses an option called DEBUG to help keep the site safe when it is live. This is disabled in production so that sensitive data is not displayed if an issue occurs. Additional security options are enabled when DEBUG is turned off, such as mandating HTTPS and protecting cookies. These help to keep user data protected. When working locally on your PC (DEBUG enabled), these options are disabled to make testing and development easier.
+## 🔒 Debug Off  
 
-![image](docs/debug-two.png) ![image](docs/debug-one.png)
+The project uses Django’s `DEBUG` setting to manage security between development and production environments.  
+
+- **Local Development:**  
+  `DEBUG = True`  
+  This makes it easier to test and debug by showing detailed error messages.
+
+  ![image](doc/debug-true.png)
+
+- **Production (Heroku Deployment):**  
+  `DEBUG = False`  
+  This hides sensitive error details and enables additional security features such as:  
+  - Enforcing HTTPS connections  
+  - Secure handling of cookies  
+  - Protection of user data
+ 
+  ![image](doc/debug-false.png)
+
+This setup ensures the project is both easy to work on locally and safe when deployed live.  
 
 # 🧰 Validators
 
@@ -396,6 +427,7 @@ OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
 
 
 
