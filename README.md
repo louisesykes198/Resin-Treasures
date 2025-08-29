@@ -1813,6 +1813,38 @@ Reviewing by rating isn’t just about sorting—it’s about listening. It refl
 
 ![image](doc/review-by-rating.png)
 
+## Order History Page
+
+The **Order History** page provides users with a clear, emotionally calm overview of their past purchases. Each order is displayed in a structured table format, allowing users to revisit their gifting journey with ease and clarity.
+
+### Table Columns
+
+| Column      | Description                                              |
+|-------------|----------------------------------------------------------|
+| **Order ID**| Unique reference number for each transaction             |
+| **Date**    | The date the order was placed (may be hidden or pending)|
+| **Status**  | Indicates whether the order is *paid* or *pending*       |
+| **Total**   | Total amount paid, displayed in pounds sterling (£)      |
+| **Details** | A "View" button to access full order summary             |
+
+### Features
+
+- Orders are listed in reverse chronological order  
+- Paid orders are clearly marked for reassurance  
+- Pending orders are gently flagged for follow-up  
+- The "View" button allows users to see item-level details and delivery info
+
+### Design Principles
+
+- Minimalist layout with generous spacing  
+- Soft typography and neutral tones for emotional clarity  
+- Table rows feel like quiet ledger entries—simple, respectful, and easy to scan
+
+This page reflects *Resin Treasures’* commitment to transparency, emotional clarity, and a shopping experience that honors every transaction as part of a larger story.
+
+![image](doc/order-history.png)
+
+
 ### **Accessibility**
 
 Accessibility has been a key focus during the development of *Resin Treasures*, ensuring that all users—including those with disabilities—can comfortably navigate and enjoy the website. Several strategies were implemented to create an inclusive, emotionally safe experience:
@@ -2128,6 +2160,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
