@@ -231,7 +231,7 @@ The background transitions gently from a soft green to a tranquil blue, echoing 
 
 This logo represents a brand that values detail, respects nature, and invites its audience into a world of handcrafted serenity.
 
-![image](staticfiles/images/rt-logo-4.png)
+![image](static/images/rt-logo-4.png)
 
 ### **Colour Scheme**  
 
@@ -2160,6 +2160,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
