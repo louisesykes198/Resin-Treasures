@@ -263,21 +263,24 @@ The site was tested using Chrome's Lighthouse tool to measure key performance me
 #### Contact Page 
 <img src="doc/contact-mob.png" alt="Contact Page">
 
-## 🧪 Manual Test Cases
+## Manual Test Cases
 
 The following features were manually tested across desktop and mobile devices:
 
-| Feature                   | Test Case Description                                  | Status   |
-|---------------------------|--------------------------------------------------------|----------|
-| 🔐 User Registration      | Sign up with valid and invalid credentials             | ✅ Pass   |
-| 🔓 User Login/Logout      | Login/logout flow works as expected                    | ✅ Pass   |
-| ➕ Add Project             | Form validates input and displays project on submit    | ✅ Pass   |
-| ✏️ Edit Project           | Changes are saved and reflected on the detail page     | ✅ Pass   |
-| ❌ Delete Project         | Project is removed and no longer accessible            | ✅ Pass   |
-| 💬 Comment on Project     | Adds comment and displays it beneath project           | ✅ Pass   |
-| ❤️ Like Project           | Like counter updates and toggles properly              | ✅ Pass   |
-| 📱 Mobile Responsiveness  | Pages adapt correctly to smaller screen sizes          | ✅ Pass   |
-| 🧭 Navbar Functionality   | All links and dropdowns navigate correctly             | ✅ Pass   |
+| Feature                   | Test Case Description                                     | Status   |
+|---------------------------|-----------------------------------------------------------|----------|
+| 🔐 User Registration      | Sign up with valid and invalid credentials                | ✅ Pass   |
+| 🔓 User Login/Logout      | Login/logout flow works as expected                       | ✅ Pass   |
+| 👤 User Profile           | Profile page displays user info and order history         | ✅ Pass   |
+| 🛒 Add to Basket          | Correct product is added to basket                        | ✅ Pass   |
+| ➕ Update Basket Quantity | Quantity can be increased/decreased, totals update        | ✅ Pass   |
+| ❌ Remove from Basket     | Item removed and basket updates correctly                 | ✅ Pass   |
+| 💳 Checkout & Payment     | Checkout form validates, order is processed successfully  | ✅ Pass   |
+| 💬 Comment on Post        | Comments can be added and displayed under posts           | ✅ Pass   |
+| 📱 Mobile Responsiveness  | Pages adapt correctly to smaller screen sizes             | ✅ Pass   |
+| 🧭 Navbar Functionality   | All links and dropdowns navigate correctly                | ✅ Pass   |
+| 🖼️ Image Uploads (Cloudinary) | Images upload and display as expected                  | ✅ Pass   |
+
 
 ## Debug Off
 
@@ -393,6 +396,7 @@ OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
 
 
 
