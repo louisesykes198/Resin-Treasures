@@ -132,7 +132,11 @@ def add_to_basket(request):
     variant = get_object_or_404(ProductVariant, pk=variant_id)
 
     basket_item, created = Basket.objects.get_or_create(user=request.user, variant=variant)
-    basket_item.quantity += 1
+    
+    if not created:
+        # Only increment if it already existed
+        basket_item.quantity += 1
+    
     basket_item.save()
 
     messages.success(request, "Added to basket. You can continue shopping or view your basket.")
