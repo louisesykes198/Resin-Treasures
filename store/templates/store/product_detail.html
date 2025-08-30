@@ -70,19 +70,19 @@
       {% endif %}
 
       <!-- Action Buttons -->
-<div class="d-flex gap-3">
-  <!-- Buy Now Form -->
-  <form action="{% url 'buy_now' variants.0.id %}" method="post">
+<div class="d-flex gap-2 align-items-center">
+  <form class="d-inline-flex m-0 p-0" action="{% url 'buy_now' variants.0.id %}" method="post">
     {% csrf_token %}
     <button type="submit" class="btn btn-primary btn-sm">Buy it now</button>
   </form>
 
-  <!-- Add to Basket Form -->
-  <form action="{% url 'add_to_basket' variants.0.id %}" method="post">
+  <form class="d-inline-flex m-0 p-0" action="{% url 'add_to_basket' %}" method="post">
     {% csrf_token %}
+    <input type="hidden" id="variant-id" name="variant_id" value="{{ variants.0.id }}">
     <button type="submit" class="btn btn-outline-primary btn-sm">Add to Basket</button>
   </form>
 </div>
+
 
         <form action="{% url 'add_to_wishlist' product.id %}" method="post" class="mt-2 d-inline-block">
           {% csrf_token %}
@@ -118,18 +118,10 @@
 
 <script>
 function switchVariant(imageUrl, price, description, variantId) {
-  if (imageUrl) {
-    document.getElementById('main-image').src = imageUrl;
-  }
-  if (price) {
-    document.getElementById('variant-price').innerText = '£' + parseFloat(price).toFixed(2);
-  }
-  if (description) {
-    document.getElementById('variant-description').innerText = description;
-  }
-  if (variantId) {
-    document.getElementById('variant-id').value = variantId;
-  }
+  if (imageUrl) document.getElementById('main-image').src = imageUrl;
+  if (price) document.getElementById('variant-price').innerText = '£' + parseFloat(price).toFixed(2);
+  if (description) document.getElementById('variant-description').innerText = description;
+  if (variantId) document.getElementById('variant-id').value = variantId;
 }
 </script>
 
