@@ -383,6 +383,98 @@ Each page reflects Resin Treasures’ commitment to clean structure, emotional c
 
 ![image](docs/test-all-vali.png)
 
+## Strip Testing
+
+### 💳 Stripe Sandbox – Transactions Dashboard
+
+This image captures the **Stripe sandbox environment**, specifically the **Transactions dashboard** used for testing payment flows. It displays a table of simulated transactions with key details including:
+
+- **Amount**: Ranging from £1.00 to £17.00  
+- **Payment Method**: Card icons indicating test card usage  
+- **Status**: All marked as “Succeeded” with green labels  
+- **Payment Intent IDs**: Unique identifiers for each transaction  
+- **Customer Emails**: e.g., `louisedotkay@shop.co.uk`  
+- **Date**: Example entries like “17 Sep”  
+- **Refunded / Dispute**: All entries show blank, indicating no issues
+
+This dashboard is part of Resin Treasures’ ethical testing workflow, ensuring that every payment interaction is smooth, secure, and respectful of user trust. By validating checkout flows in a sandbox environment, the platform safeguards real transactions and reinforces its commitment to privacy-first, emotionally attuned commerce.
+
+Stripe integrates seamlessly with Resin Treasures’ custom basket and checkout flow, allowing customers to complete purchases with clarity and confidence. Each transaction is processed with care, and every payment is treated not just as a sale, but as a moment of trust between maker and buyer.
+
+![image](doc/strip.png)
+
+### Stripe Sandbox – Transaction Summary
+
+This image displays a **Stripe sandbox transaction summary**, showcasing a successful test payment flow for Resin Treasures. Key details include:
+
+- **Transaction ID**: `pi_3NwZqgSJZzRZzZzZzZzZzZz`
+- **Status**: Successful  
+- **Amount**: £9.89 GBP  
+- **Customer**: louisesmith@yahoo.co.uk  
+- **Address**: 123 High Street, London, LND, E1 6AN, United Kingdom  
+- **Payment Method**: Visa ending in 4242  
+
+The checkout summary includes:
+
+1. **Owl Wall Figurine** – multicolour and orange  
+   - Quantity: 1  
+   - Unit Price: £7.00  
+2. **Shipping**  
+   - Quantity: 1  
+   - Unit Price: £2.89  
+
+**Total**: £9.89 GBP
+
+This image demonstrates how Stripe itemizes purchases, captures customer details, and confirms payment success—all within a secure sandbox environment. It reflects Resin Treasures’ commitment to testing every transaction flow with precision and care before going live.
+
+Each item, from figurines to shipping, is processed through a custom basket and checkout system designed to honor trust, clarity, and emotional resonance. Stripe’s integration ensures that every purchase feels safe, seamless, and intentional.
+
+![image](doc/strip-2.png)
+
+### Stripe Sandbox – Webhook Dashboard for Resin Treasures
+
+This image showcases the **Stripe sandbox webhook dashboard** for the test destination named “resin treasures.” It provides a detailed view of webhook performance and configuration, including:
+
+- **Environment**: Sandbox mode for safe experimentation  
+- **Destination Status**: Active  
+- **Endpoint URL**: `https://resintreasures.com/.netlify/functions/webhook-stripe/`  
+- **Created**: 2023-08-24  
+- **Last Used**: 2023-08-28  
+- **Signing Secret**: Partially obscured for security
+
+The dashboard includes two performance graphs:
+- **Event Deliveries**: Tracks webhook events sent over time  
+- **Response Time**: Categorized by `<100 ms`, average, and `>100 ms`, with a visible peak on 25/08
+
+Tabs like *Overview*, *Event Deliveries*, *Inspector*, and *Shell* offer tools for debugging and refining webhook behavior. The “Send test event” button allows for safe simulation of Stripe events.
+
+This webhook setup ensures that Resin Treasures receives real-time updates for payment events, enabling secure order processing and customer notifications. It’s part of the platform’s commitment to ethical, privacy-first commerce — where every backend decision is made with care and transparency.
+
+![image](doc/strip-3.png)
+
+### Stripe Sandbox – Webhook Event: `checkout.session.completed`
+
+This image displays a detailed view of a **Stripe webhook event** within the sandbox environment for the “resin treasures” project. It highlights the successful delivery of a `checkout.session.completed` event, confirming that a test checkout flow was completed and received by your backend.
+
+Key details include:
+
+- **Event Type**: `checkout.session.completed`  
+- **Delivery Status**: Delivered (1 attempt, 200 OK response)  
+- **Event ID**: `evt_3N...`  
+- **Created**: Apr 25, 2023, 12:52 PM  
+- **API Version**: 2022-11-15  
+- **Mode**: Test  
+- **Description**: A Checkout Session was completed  
+- **Response Body**: `Received`
+
+The right-hand panel also displays the **raw JSON payload**, allowing developers to inspect the structure and contents of the event for debugging and integration purposes.
+
+This webhook confirms that Resin Treasures’ backend is correctly receiving and acknowledging Stripe events, ensuring that orders, payments, and customer actions are processed securely and in real time.
+
+This is part of the platform’s commitment to ethical, privacy-first commerce—where every transaction is not just a technical exchange, but a moment of trust between maker and buyer.
+
+![image](doc/strip-4.png)
+
 ## Further Testing
 
 To ensure cross-browser compatibility, the website was tested across multiple web browsers, including **Google Chrome**, **Microsoft Edge**, and **Safari**. It was also viewed on a range of devices, such as desktop and laptop computers, as well as mobile devices including the **Samsung Galaxy A12**, **Samsung Galaxy S22**, and **iPhone SE**. Additionally, friends and family members were invited to review the website and its documentation to identify potential bugs or user experience issues.
@@ -431,6 +523,7 @@ OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
 
 
 
