@@ -18,6 +18,7 @@ def home(request):
         'categories': categories,
     })
 
+
 def about(request):
     return render(request, 'store/about.html')
 
@@ -47,6 +48,7 @@ def contact(request):
         form = ContactForm()
 
     return render(request, 'store/contact.html', {'form': form})
+
 
 def shop(request):
     sort = request.GET.get('sort', '')
@@ -97,6 +99,7 @@ def shop(request):
         'sort': sort,
     })
 
+
 def product_detail(request, pk):
     variants_prefetch = Prefetch(
         'variants',
@@ -122,8 +125,10 @@ def basket_context(request):
         basket = []
     return {'basket': basket}
 
+
 @login_required
-def add_to_basket(request, variant_id):
+def add_to_basket(request):
+    variant_id = request.POST.get('variant_id')
     variant = get_object_or_404(ProductVariant, pk=variant_id)
 
     basket_item, created = Basket.objects.get_or_create(user=request.user, variant=variant)
@@ -132,6 +137,7 @@ def add_to_basket(request, variant_id):
 
     messages.success(request, "Added to basket. You can continue shopping or view your basket.")
     return redirect(request.META.get('HTTP_REFERER', 'shop'))
+
 
 @login_required
 def buy_now(request, variant_id):
@@ -142,6 +148,7 @@ def buy_now(request, variant_id):
     basket_item.save()
 
     return redirect('basket')
+
 
 @login_required
 def basket_view(request):
@@ -155,11 +162,14 @@ def basket_view(request):
         "free_delivery_threshold": settings.FREE_DELIVERY_THRESHOLD,
 })
 
+
 def delivery_info(request):
     return render(request, 'store/delivery_info.html')
 
+
 def returns(request):
     return render(request, 'store/returns.html')
+
 
 def help_faqs(request):
     return render(request, 'store/help_faqs.html')
