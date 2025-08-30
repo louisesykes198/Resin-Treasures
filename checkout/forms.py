@@ -6,19 +6,20 @@ DELIVERY_METHOD_CHOICES = [
     ("home", "Home Address"),
 ]
 
+
 class OrderForm(forms.ModelForm):
     delivery_method = forms.ChoiceField(choices=DELIVERY_METHOD_CHOICES)
-    
+
     class Meta:
         model = Order
         fields = (
-            'full_name', 'email', 
+            'full_name', 'email',
             'house_name_or_number',
             'street_address1', 'street_address2', 'town_or_city',
             'postcode', 'county', 'country',
             'phone_number',
             'delivery_method',
-            
+
         )
 
     def __init__(self, *args, **kwargs):

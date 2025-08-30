@@ -11,6 +11,9 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+import re
+from django.core.exceptions import ValidationError
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True)
@@ -35,9 +38,6 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-
-import re
-from django.core.exceptions import ValidationError
 
 class ProductVariant(models.Model):
     product = models.ForeignKey(Product, related_name='variants', on_delete=models.CASCADE)
