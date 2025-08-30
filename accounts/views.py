@@ -19,10 +19,12 @@ from django.http import HttpResponseRedirect
 from .forms import CustomLoginForm
 import random
 from django.core.mail import send_mail
-from .utils import generate_unique_username 
+from .utils import generate_unique_username
+from django.shortcuts import get_object_or_404
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 def register(request):
     if request.method == 'POST':
@@ -48,12 +50,12 @@ def register(request):
 
 Your account has been created successfully.
 
-🪄 Your login username: {user.username}  
-🔐 Your verification code: {code}
+Your login username: {user.username}
+Your verification code: {code}
 
 Enter this code on the verification page to complete your registration.
 
-Warmly,  
+Warmly,
 Resin Treasures""",
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email],
@@ -61,12 +63,14 @@ Resin Treasures""",
             )
 
             login(request, user)
-            messages.success(request, "Welcome! Your account has been created.")
+            messages.success
+            (request, "Welcome! Your account has been created.")
             return redirect('verify_account')
     else:
         form = CustomUserCreationForm()
 
     return render(request, 'accounts/register.html', {'form': form})
+
 
 class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
@@ -74,7 +78,7 @@ class CustomLoginView(LoginView):
     authentication_form = CustomLoginForm
 
     def get_success_url(self):
-        return reverse_lazy('home')  
+        return reverse_lazy('home')
 
 
 def generate_unique_username(first, last):
@@ -85,20 +89,23 @@ def generate_unique_username(first, last):
         username = f"{base_username}_{counter}"
         counter += 1
     return username
-    
+
+
 @login_required
 def my_account(request):
     # If you have orders linked to the user:
     orders = Order.objects.filter(user=request.user).order_by('-date')
 
     context = {
-        "full_name": f"{request.user.first_name} {request.user.last_name}".strip(),
+        "full_name":
+        f"{request.user.first_name} {request.user.last_name}".strip(),
         "email": request.user.email,
         "username": request.user.username,
         "date_joined": localtime(request.user.date_joined),
         "orders": orders,
     }
     return render(request, "accounts/my_account.html", context)
+
 
 def signup(request):
     if request.method == 'POST':
@@ -111,13 +118,15 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'accounts/signup.html', {'form': form})
 
+
 class CustomLogoutView(LogoutView):
     next_page = 'home'
 
     def dispatch(self, request, *args, **kwargs):
         messages.success(request, "You have successfully logged out.")
         return super().dispatch(request, *args, **kwargs)
-    
+
+
 @login_required
 def account_settings(request):
     user = request.user
@@ -139,6 +148,7 @@ def account_settings(request):
         "date_joined": localtime(user.date_joined),
     })
 
+
 @login_required
 def profile(request):
     """
@@ -151,6 +161,7 @@ def profile(request):
     }
     return render(request, 'accounts/profile.html', context)
 
+
 @login_required
 def personal_details(request):
     if request.method == 'POST':
@@ -158,34 +169,36 @@ def personal_details(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
-        
+
         # Update user
         user = request.user
         user.first_name = first_name
         user.last_name = last_name
         user.email = email
         user.save()
-        
+
         messages.success(request, 'Your personal details have been updated.')
         return redirect('personal_details')
 
     return render(request, 'accounts/personal_details.html')
 
+
 @login_required
 def order_history(request):
     user_orders = Order.objects.filter(user=request.user).order_by('-date')
-    return render(request, 'accounts/order_history.html', {'orders': user_orders})
+    return render
+    (request, 'accounts/order_history.html', {'orders': user_orders})
 
-from django.shortcuts import get_object_or_404
 
 @login_required
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
-    order_items = order.items.all()  # assuming a related name 'items' for order products
+    order_items = order.items.all()
     return render(request, 'accounts/order_detail.html', {
         'order': order,
         'order_items': order_items
     })
+
 
 @login_required
 def delete_account(request):
@@ -193,7 +206,7 @@ def delete_account(request):
         user = request.user
         user.delete()
         messages.success(request, "Your account has been permanently deleted.")
-        return redirect('home')  # or a gentle goodbye page
+        return redirect('home')
 
 
 @login_required
@@ -221,7 +234,8 @@ def add_payment_method(request):
     return render(request, 'accounts/add_payment.html', {
         'STRIPE_PUBLIC_KEY': settings.STRIPE_PUBLIC_KEY
     })
-    
+
+
 @login_required
 def delete_payment_method(request, card_id):
     profile = Profile.objects.get(user=request.user)
@@ -234,6 +248,7 @@ def delete_payment_method(request, card_id):
         messages.success(request, "Your card has been removed.")
     return HttpResponseRedirect(reverse('account_settings') + '?tab=payment')
 
+
 @login_required
 def set_default_card(request, card_id):
     profile = Profile.objects.get(user=request.user)
@@ -244,8 +259,10 @@ def set_default_card(request, card_id):
             default_source=card_id
         )
         messages.success(request, "Your default card has been updated.")
-            
-        return HttpResponseRedirect(reverse('account_settings') + '?tab=payment')
+
+        return HttpResponseRedirect
+        (reverse('account_settings') + '?tab=payment')
+
 
 @login_required
 def verify_account(request):
@@ -260,7 +277,6 @@ def verify_account(request):
         else:
             messages.error(request, "Incorrect code. Please try again.")
     return render(request, 'accounts/verify.html')
-
 
 
 
