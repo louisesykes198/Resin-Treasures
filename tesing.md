@@ -355,33 +355,200 @@ Each page reflects Resin Treasures’ commitment to clean structure, emotional c
 
 [CI Python Linter Validator](https://pep8ci.herokuapp.com/)
 
-### Admion.py
+### Accounts App
 
-![image](docs/admin.png)
+<details>
+<summary>Accounts Forms.py </summary>
+<img src="doc/accounts-forms.png" alt="Accounts Forms.py">
+</details>
 
-### Apps.py
+<details>
+<summary>Accounts Models.py </summary>
+<img src="doc/accounts-models.png" alt="Accounts Models.py">
+</details>
 
-![image](docs/apps.png)
+<details>
+<summary>Accounts Views.py </summary>
+<img src="doc/accounts-views.png" alt="Accounts Views.py">
+</details>
 
-### Forms.py
+<details>
+<summary>Accounts URLs.py </summary>
+<img src="doc/accounts-urls.png" alt="Accounts URLs.py">
+</details>
 
-![image](docs/forms.png)
+<details>
+<summary>Accounts Signals.py </summary>
+<img src="doc/accounts-signals.png" alt="Accounts Signals.py">
+</details>
 
-### Models.py
+### Basket App
 
-![image](docs/models.png)
+<details>
+<summary>Basket Views.py </summary>
+<img src="doc/basket-views.png" alt="Basket Views.py">
+</details>
 
-### Urls.py
+<details>
+<summary>Basket URLs.py </summary>
+<img src="doc/basket-urls.png" alt="Basket URLs.py">
+</details>
 
-![image](docs/urls.png)
+### Checkout App
 
-### Views.py
+<details>
+<summary>Checkout Forms.py </summary>
+<img src="doc/checkout-forms.png" alt="Checkout Forms.py">
+</details>
 
-![image](docs/views.png)
+<details>
+<summary>Checkout Admin.py </summary>
+<img src="doc/checkout-admin.png" alt="Checkout Admin.py">
+</details>
+
+<details>
+<summary>Checkout Views.py </summary>
+<img src="doc/checkout-views.png" alt="Checkout Views.py">
+</details>
+
+<details>
+<summary>Checkout URLs.py </summary>
+<img src="doc/checkout-urls.png" alt="Checkout URLs.py">
+</details>
+
+### Newsletter App
+
+<details>
+<summary>Newletter.py </summary>
+<img src="doc/accounts-forms.png" alt="Newletter.py">
+</details>
+
+<details>
+<summary>Newletter.py </summary>
+<img src="doc/accounts-forms.png" alt="Newletter.py">
+</details>
+
+<details>
+<summary>Accounts Views.py </summary>
+<img src="doc/accounts-views.png" alt="Accounts Views.py">
+</details>
+
+<details>
+<summary>Newletter.py </summary>
+<img src="doc/accounts-forms.png" alt="Newletter.py">
+</details>
+
+<details>
+<summary>Newletter.py </summary>
+<img src="doc/accounts-forms.png" alt="Newletter.py">
+</details>
+
+### Resin Treasures App
+
+<details>
+<summary>Resin Treasures URLs.py </summary>
+<img src="doc/resin-urls.png" alt="Resin Treasures URLs.py">
+</details>
+
+### Store App
+
+<details>
+<summary>Store Admin.py </summary>
+<img src="doc/store-admin.png" alt="Store Admin.py">
+</details>
+
+<details>
+<summary>Store Context_processor.py </summary>
+<img src="doc/store-context.png" alt="Store Context_processor.py">
+</details>
+
+<details>
+<summary>Store Forms.py </summary>
+<img src="doc/store-forms.png" alt="Store Forms.py">
+</details>
+
+<details>
+<summary>Store Models.py </summary>
+<img src="doc\store-models.png" alt="Store Models.py">
+</details>
+
+<details>
+<summary>Store URLs.py </summary>
+<img src="doc/store-urls.png" alt="Store URLs.py">
+</details>
+
+<details>
+<summary>Store Views.py </summary>
+<img src="doc/store-views.png" alt="Store Views.py">
+</details>
+
+### Review App
+
+<details>
+<summary>Review URLs.py </summary>
+<img src="doc/review-urls.png" alt="Review URLs.py">
+</details>
+
+<details>
+<summary>Review Models.py </summary>
+<img src="doc/review-models.png" alt="Review Models.py">
+</details>
+
+<details>
+<summary>Review Forms.py </summary>
+<img src="doc/review-forms.png" alt="Review Forms.py">
+</details>
+
+<details>
+<summary>Review Views.py </summary>
+<img src="doc/review-views.png" alt="Review.py">
+</details>
+
+### Wishlist App
+
+<details>
+<summary>Wishlist Models.py </summary>
+<img src="doc/wishlist-models.png" alt="Wishlist Model.py">
+</details>
+
+<details>
+<summary>Wishlist URLs.py </summary>
+<img src="doc/wishlist-urls.png" alt="Wishlist URLs.py">
+</details>
+
+<details>
+<summary>Wishlist Views.py </summary>
+<img src="doc/wishlist-views.png" alt="Wishlist Views.py">
+</details>
+
+### Newsletter App
+
+<details>
+<summary>Newsletter Views.py </summary>
+<img src="doc/newsletter-views.png" alt="Newsletter Views.py">
+</details>
+
+<details>
+<summary>Newsletter Models.py </summary>
+<img src="doc/newsletter-models.png" alt="Newsletter Models.py">
+</details>
+
+<details>
+<summary>Newsletter URLs.py </summary>
+<img src="doc/newsletter-urls.png" alt="Newsletter URLs.py">
+</details>
+
+<details>
+<summary>Newsletter Forms.py </summary>
+<img src="doc/newsletter-forms.png" alt="Newsletter Forms.py">
+</details>
 
 ### Test.py
 
-![image](docs/test-all-vali.png)
+<details>
+<summary>Test.py </summary>
+<img src="doc/test.png" alt="Test.py">
+</details>
 
 ## Strip Testing
 
@@ -534,6 +701,7 @@ OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
 
 
 
