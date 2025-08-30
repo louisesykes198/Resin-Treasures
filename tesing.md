@@ -475,54 +475,66 @@ This is part of the platform’s commitment to ethical, privacy-first commerce�
 
 ![image](doc/strip-4.png)
 
-## Further Testing
+## Testing
 
-To ensure cross-browser compatibility, the website was tested across multiple web browsers, including **Google Chrome**, **Microsoft Edge**, and **Safari**. It was also viewed on a range of devices, such as desktop and laptop computers, as well as mobile devices including the **Samsung Galaxy A12**, **Samsung Galaxy S22**, and **iPhone SE**. Additionally, friends and family members were invited to review the website and its documentation to identify potential bugs or user experience issues.
+### Further Testing
+To ensure cross-browser compatibility, the website was tested across multiple web browsers, including Google Chrome, Microsoft Edge, and Safari. It was also viewed on a range of devices, including desktop and laptop computers, as well as mobile devices such as the Samsung Galaxy A12, Samsung Galaxy S22, and iPhone SE.  
 
-# Unit Testing
+Additionally, friends and family members were invited to review the website and its documentation to identify potential bugs or user experience issues. Their feedback helped improve usability, navigation, and checkout flow.
 
+### Unit Testing
+Unit tests were written using Django’s built-in `TestCase` class to ensure key functionality works correctly across the application. All tests were run using the command:
 
-## 🧪 Testing
+python manage.py test
+
+## Testing
 Unit tests were written using Django’s built-in TestCase class to ensure key functionality works correctly across the application. All tests were run using the command python manage.py test.
 
-### ✅ Tests Overview
+### Tests Overview
 
-**Model Test** – ProjectModelTest
-Verifies that a Project instance can be created successfully and that the name field is stored and retrieved correctly.
+**Model Test** – ProductModelTest
+Verifies that a Product and associated ProductVariant can be created successfully. Confirms correct storage of the price, color_name, and color_codes.
 
-**Form Test** – CommentFormTest
-Checks that the CommentForm accepts valid input and passes form validation, ensuring the comment field works as intended.
+**Form Test** – NewsletterFormTest
+Checks that the newsletter subscription form accepts valid input and passes validation, ensuring that email addresses are stored correctly.
+
+**Basket Test** – BasketTest
+Ensures that items added to the Basket calculate the correct total price (quantity × price) and display the correct string format.
 
 **Authentication Test** – UserAuthTest
-Confirms that a test user can log in using the login view. It performs a POST request and follows the redirect to ensure a 200 OK status code is returned, indicating a successful login.
+Ensures that users can register, log in, and log out successfully. It performs a POST request and follows the redirect to confirm a 200 OK status code is returned.
 
 **Security Test** – SecurityTest
 Verifies that DEBUG is set to False in a production environment. While DEBUG is currently True during local development, conditional logic is in place to enable important security features in production:
+
+**Order Test** – OrderModelTest
+Confirms that an Order can be created with required fields (user, address, delivery, totals). Also validates that OrderItem instances are linked properly and display correctly.
 
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    ...
 else:
     # Local development settings
     SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
+
 This setup ensures HTTPS and secure cookie settings are applied when the project is deployed.
 
 ### ✅ Test Results
 All tests passed successfully:
-
+(.venv) PS C:\Users\louis\OneDrive\Desktop\Resin Treasures> python manage.py test
 Found 3 test(s).
 Creating test database for alias 'default'...
 ...
-Ran 3 tests in 0.002s
+Ran 3 tests in 1.443s
 
 OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
 
 
 
