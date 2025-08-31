@@ -23,6 +23,10 @@
 
 - As a user, I want to delete my account to remove all my data.
 
+![image](doc/delete-account.png)
+
+![image](doc/delete-confirm.png)
+
 ### Shopping & Checkout
 - As a user, I want to browse products by category so I can easily find what I’m looking for.
 
@@ -35,6 +39,16 @@
 - As a user, I want to view detailed product information before buying.
 
 ![image](doc/view-product-page.png)
+
+- As a user, I want to see available color options for a product, so that I can choose the one that matches my preferences.
+- As a user, I want to view a color swatch/preview, so that I can clearly identify what the selected color will look like.
+- As a user, I want to select multiple variants of the same product (e.g., red and blue), so that I can order different colors in one purchase.
+
+![image](doc/colour-change.png)
+
+- As a user, I want to see the selected color and see the color I choose in the basket.
+
+![image](doc/colour-change-order.pngg)
 
 - As a user, I want to add products to my basket and update quantities.
 - As a user, I want to remove items from my basket.
@@ -701,6 +715,7 @@ OK
 Destroying test database for alias 'default'...
 
 ![image](docs/test-all.png)
+
 
 
 
