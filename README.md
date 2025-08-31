@@ -38,6 +38,10 @@ This program is intended to expand with new features, including loyalty incentiv
 - As a user, I want to browse products by category so I can easily find what I’m looking for.
 - As a user, I want to search for products using a search bar so I can quickly find specific items.
 - As a user, I want to view detailed product information before buying.
+- As a user, I want to see available color options for a product, so that I can choose the one that matches my preferences.
+- As a user, I want to view a color swatch/preview, so that I can clearly identify what the selected color will look like.
+- As a user, I want to select multiple variants of the same product (e.g., red and blue), so that I can order different colors in one purchase.
+- As a user, I want to see the selected color and see the color I choose in the basket.
 - As a user, I want to add products to my basket and update quantities.
 - As a user, I want to remove items from my basket.
 - As a user, I want to proceed to checkout and make a payment securely.
@@ -2160,6 +2164,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
