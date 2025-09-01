@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Verify Your Account | Resin Treasures</title>
+
+    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- Inline CSS for page styling -->
     <style>
         body {
             font-family: 'Georgia', serif;
@@ -59,16 +63,22 @@
     </style>
 </head>
 <body>
+    <!-- Verification box container -->
     <div class="verification-box">
         <h2>Verify Your Account</h2>
-        <p>We’ve sent a verification code to your email.<br>Enter it below to complete your registration.</p>
+        <p>
+            We’ve sent a verification code to your email.<br>
+            Enter it below to complete your registration.
+        </p>
 
+        <!-- Display Django messages (e.g. error or success) -->
         {% if messages %}
             {% for message in messages %}
                 <div class="message">{{ message }}</div>
             {% endfor %}
         {% endif %}
 
+        <!-- Verification form -->
         <form method="post">
             {% csrf_token %}
             <input type="text" name="code" placeholder="Enter your code" required>
@@ -78,3 +88,4 @@
     </div>
 </body>
 </html>
+

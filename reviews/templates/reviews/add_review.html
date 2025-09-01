@@ -1,38 +1,56 @@
 {% extends 'base.html' %}
+
 {% block content %}
+<!-- Container for the review form and existing reviews -->
 <div class="container mt-5">
+
+  <!-- Header showing the product being reviewed -->
   <h2>Review: {{ product.name }}</h2>
+
+  <!-- Review submission form -->
   <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_p }}  {# Renders the review form fields as paragraphs #}
     <button type="submit" class="btn btn-primary">Submit Review</button>
   </form>
 </div>
 
+<!-- Loop through all reviews for this product -->
 {% for review in product.reviews.all %}
   <div class="border p-3 mb-2">
+
+    <!-- Display the reviewer's username -->
     <strong>{{ review.user.username }}</strong>
+
+    <!-- Star rating display (1–5 stars) -->
     <div>
       {% for i in "12345" %}
         {% if forloop.counter <= review.rating %}
-          <span style="color: gold;">★</span>
+          <span style="color: gold;">★</span>  {# Filled star #}
         {% else %}
-          <span style="color: #ccc;">☆</span>
+          <span style="color: #ccc;">☆</span>  {# Empty star #}
         {% endif %}
       {% endfor %}
     </div>
+
+    <!-- Prompt and comment text -->
     <p class="fst-italic text-muted">“What did this piece mean to you?”</p>
     <p>{{ review.comment }}</p>
 
+    <!-- Edit/Delete options for the review owner -->
     {% if review.user == request.user %}
       <div class="d-flex gap-2">
+        <!-- Link to edit the review -->
         <a href="{% url 'edit_review' review.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+
+        <!-- Form to delete the review -->
         <form method="POST" action="{% url 'delete_review' review.id %}">
           {% csrf_token %}
           <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
         </form>
       </div>
     {% endif %}
+
   </div>
 {% endfor %}
 {% endblock %}
