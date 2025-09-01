@@ -3,114 +3,115 @@
 {% block content %}
 
 <div class="container my-5">
-  <h1 class="mb-4 text-center">Your Basket</h1>
+    <h1 class="mb-4 text-center">Your Basket</h1>
 
-  {% if basket_items %}
-    <div class="row g-3">
-      {% for item in basket_items %}
-        <div class="col-12">
-          <div class="card shadow-sm border-0 rounded-3">
-            <div class="card-body">
-              <div class="row align-items-center">
+    {% if basket_items %}
+        <div class="row g-3">
+            {% for item in basket_items %}
+                <div class="col-12">
+                    <div class="card shadow-sm border-0 rounded-3">
+                        <div class="card-body">
+                            <div class="row align-items-center">
 
-<!-- LEFT: Image + Details -->
-<div class="col-md-8 d-flex gap-3">
-  {% if item.variant and item.variant.image %}
-    <img src="{{ item.variant.image.url }}" alt="{{ item.product.name }}" class="rounded" style="width: 100px; height: 100%;">
-  {% elif item.product.image %}
-    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="rounded" style="width: 100px; height: 100%;">
-  {% endif %}
+                                <!-- LEFT: Image + Details -->
+                                <div class="col-md-8 d-flex gap-3">
+                                    {% if item.variant and item.variant.image %}
+                                        <img src="{{ item.variant.image.url }}" alt="{{ item.product.name }}" class="rounded" style="width: 100px; height: 100%;">
+                                    {% elif item.product.image %}
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="rounded" style="width: 100px; height: 100%;">
+                                    {% endif %}
 
-  <!-- Details stacked vertically -->
-  <div class="d-flex flex-column">
-    <!-- Product Name -->
-    <h5 class="mb-1">
-      {% if item.variant %}
-        {{ item.variant.product.name }}
-      {% else %}
-        {{ item.product.name }}
-      {% endif %}
-    </h5>
+                                    <!-- Details stacked vertically -->
+                                    <div class="d-flex flex-column">
+                                        <!-- Product Name -->
+                                        <h5 class="mb-1">
+                                            {% if item.variant %}
+                                                {{ item.variant.product.name }}
+                                            {% else %}
+                                                {{ item.product.name }}
+                                            {% endif %}
+                                        </h5>
 
-    <!-- Variant Color -->
-    {% if item.variant %}
-      <p class="mb-1 text-muted small">Color: {{ item.variant.color_name }}</p>
-      <p class="mb-0 fw-bold">Price: £{{ item.variant.price|floatformat:2 }}</p>
-    {% else %}
-      <p class="mb-0 fw-bold">Price: £{{ item.product.price|floatformat:2 }}</p>
-    {% endif %}
-  </div>
-</div>
+                                        <!-- Variant Color -->
+                                        {% if item.variant %}
+                                            <p class="mb-1 text-muted small">Color: {{ item.variant.color_name }}</p>
+                                            <p class="mb-0 fw-bold">Price: £{{ item.variant.price|floatformat:2 }}</p>
+                                        {% else %}
+                                            <p class="mb-0 fw-bold">Price: £{{ item.product.price|floatformat:2 }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
 
-                <!-- RIGHT: Quantity Controls -->
-                <div class="col-md-4 d-flex justify-content-end align-items-center gap-2">
+                                <!-- RIGHT: Quantity Controls -->
+                                <div class="col-md-4 d-flex justify-content-end align-items-center gap-2">
 
-                  <!-- Decrease -->
-                  <form action="{% if item.variant %}{% url 'remove_one_from_basket' item.variant.product.id %}{% else %}{% url 'remove_one_from_basket' item.product.id %}{% endif %}" method="post" class="mb-0">
-                    {% csrf_token %}
-                    {% if item.variant %}
-                      <input type="hidden" name="variant_id" value="{{ item.variant.id }}">
-                    {% endif %}
-                    <button type="submit" class="btn btn-outline-primary btn-sm">-</button>
-                  </form>
+                                    <!-- Decrease -->
+                                    <form action="{% if item.variant %}{% url 'remove_one_from_basket' item.variant.product.id %}{% else %}{% url 'remove_one_from_basket' item.product.id %}{% endif %}" method="post" class="mb-0">
+                                        {% csrf_token %}
+                                        {% if item.variant %}
+                                            <input type="hidden" name="variant_id" value="{{ item.variant.id }}">
+                                        {% endif %}
+                                        <button type="submit" class="btn btn-outline-primary btn-sm">-</button>
+                                    </form>
 
-                  <!-- Qty -->
-                  <span class="mx-2 fw-bold">{{ item.quantity }}</span>
+                                    <!-- Qty -->
+                                    <span class="mx-2 fw-bold">{{ item.quantity }}</span>
 
-                  <!-- Increase -->
-                  <form action="{% if item.variant %}{% url 'add_to_basket' item.variant.product.id %}{% else %}{% url 'add_to_basket' item.product.id %}{% endif %}" method="post" class="mb-0">
-                    {% csrf_token %}
-                    {% if item.variant %}
-                      <input type="hidden" name="variant_id" value="{{ item.variant.id }}">
-                    {% endif %}
-                    <button type="submit" class="btn btn-outline-primary btn-sm">+</button>
-                  </form>
+                                    <!-- Increase -->
+                                    <form action="{% if item.variant %}{% url 'add_to_basket' item.variant.product.id %}{% else %}{% url 'add_to_basket' item.product.id %}{% endif %}" method="post" class="mb-0">
+                                        {% csrf_token %}
+                                        {% if item.variant %}
+                                            <input type="hidden" name="variant_id" value="{{ item.variant.id }}">
+                                        {% endif %}
+                                        <button type="submit" class="btn btn-outline-primary btn-sm">+</button>
+                                    </form>
 
-                  <!-- Remove -->
-                  <form action="{% if item.variant %}{% url 'remove_from_basket' item.variant.product.id %}{% else %}{% url 'remove_from_basket' item.product.id %}{% endif %}" method="post" class="mb-0">
-                    {% csrf_token %}
-                    {% if item.variant %}
-                      <input type="hidden" name="variant_id" value="{{ item.variant.id }}">
-                    {% endif %}
-                    <button type="submit" class="btn btn-outline-danger btn-sm">🗑️</button>
-                  </form>
+                                    <!-- Remove -->
+                                    <form action="{% if item.variant %}{% url 'remove_from_basket' item.variant.product.id %}{% else %}{% url 'remove_from_basket' item.product.id %}{% endif %}" method="post" class="mb-0">
+                                        {% csrf_token %}
+                                        {% if item.variant %}
+                                            <input type="hidden" name="variant_id" value="{{ item.variant.id }}">
+                                        {% endif %}
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">🗑️</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-              </div>
-            </div>
-          </div>
+            {% endfor %}
         </div>
-      {% endfor %}
-    </div>
 
-<!-- Total & Actions -->
-<div class="card shadow-sm border-0 rounded-3 mt-4">
-  <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-center">
-    
-    <!-- Total -->
-    <h4 class="fw-bold mb-3 mb-md-0">Total: £{{ total }}</h4>
-    
-    <!-- Actions -->
-    <div class="d-flex gap-2">
-      <a href="{% url 'shop' %}" class="btn btn-outline-primary btn-sm">Continue Shopping</a>
-      <form action="{% url 'empty_basket' %}" method="post" class="mb-0">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-outline-danger btn-sm">Empty Basket</button>
-      </form>
-      <a href="{% url 'checkout' %}" class="btn btn-primary btn-sm">Proceed to Checkout</a>
-    </div>
-  </div>
-</div>
+        <!-- Total & Actions -->
+        <div class="card shadow-sm border-0 rounded-3 mt-4">
+            <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-center">
+                
+                <!-- Total -->
+                <h4 class="fw-bold mb-3 mb-md-0">Total: £{{ total }}</h4>
+                
+                <!-- Actions -->
+                <div class="d-flex gap-2">
+                    <a href="{% url 'shop' %}" class="btn btn-outline-primary btn-sm">Continue Shopping</a>
+                    <form action="{% url 'empty_basket' %}" method="post" class="mb-0">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Empty Basket</button>
+                    </form>
+                    <a href="{% url 'checkout' %}" class="btn btn-primary btn-sm">Proceed to Checkout</a>
+                </div>
+            </div>
+        </div>
 
-  {% else %}
-    <p class="text-center text-muted">Your basket is currently empty.</p>
-    <div class="text-center">
-      <a href="{% url 'shop' %}" class="btn btn-link mt-4">&larr; Back to Shop</a>
-    </div>
-  {% endif %}
+    {% else %}
+        <p class="text-center text-muted">Your basket is currently empty.</p>
+        <div class="text-center">
+            <a href="{% url 'shop' %}" class="btn btn-link mt-4">&larr; Back to Shop</a>
+        </div>
+    {% endif %}
 </div>
 
 {% endblock %}
+
 
 
 

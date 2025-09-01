@@ -6,33 +6,33 @@
     <hr>
 
     <!-- Bootstrap Nav Tabs -->
-<ul class="nav nav-tabs" id="settingsTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="personal-tab" data-bs-toggle="tab" href="#personal" role="tab">
-      Personal Info
-    </a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="security-tab" data-bs-toggle="tab" href="#security" role="tab">
-      Security
-    </a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="payment-tab" data-bs-toggle="tab" href="#payment" role="tab">
-      Payment
-    </a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="notifications-tab" data-bs-toggle="tab" href="#notifications" role="tab">
-      Notifications
-    </a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="privacy-tab" data-bs-toggle="tab" href="#privacy" role="tab">
-      Privacy
-    </a>
-  </li>
-</ul>
+    <ul class="nav nav-tabs" id="settingsTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="personal-tab" data-bs-toggle="tab" href="#personal" role="tab">
+                Personal Info
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="security-tab" data-bs-toggle="tab" href="#security" role="tab">
+                Security
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="payment-tab" data-bs-toggle="tab" href="#payment" role="tab">
+                Payment
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="notifications-tab" data-bs-toggle="tab" href="#notifications" role="tab">
+                Notifications
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="privacy-tab" data-bs-toggle="tab" href="#privacy" role="tab">
+                Privacy
+            </a>
+        </li>
+    </ul>
 
     <!-- Tab Content -->
     <div class="tab-content mt-3" id="settingsTabContent">
@@ -74,55 +74,51 @@
             </form>
         </div>
 
-<!-- Payment -->
-<div class="tab-pane fade" id="payment" role="tabpanel">
-  {% if cards %}
-    <h5 class="mb-3">Saved Payment Methods</h5>
-    <ul class="list-group">
-      {% for card in cards %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <span>
-            {{ card.brand|title }} ending in {{ card.last4 }}  
-            <small class="text-muted">Exp: {{ card.exp_month }}/{{ card.exp_year }}</small>
-          </span>
-          <div class="d-flex gap-2">
-            {% if card.default_for_currency %}
-              <span class="badge bg-success">Default</span>
+        <!-- Payment -->
+        <div class="tab-pane fade" id="payment" role="tabpanel">
+            {% if cards %}
+                <h5 class="mb-3">Saved Payment Methods</h5>
+                <ul class="list-group">
+                    {% for card in cards %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>
+                                {{ card.brand|title }} ending in {{ card.last4 }}
+                                <small class="text-muted">Exp: {{ card.exp_month }}/{{ card.exp_year }}</small>
+                            </span>
+                            <div class="d-flex gap-2">
+                                {% if card.default_for_currency %}
+                                    <span class="badge bg-success">Default</span>
+                                {% else %}
+                                    <form method="POST" action="{% url 'set_default_card' card.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">Make Default</button>
+                                    </form>
+                                {% endif %}
+                                <form method="POST" action="{% url 'delete_payment_method' card.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                                </form>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
             {% else %}
-              <form method="POST" action="{% url 'set_default_card' card.id %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-sm btn-outline-primary">Make Default</button>
-              </form>
+                <p>No payment methods saved yet.</p>
             {% endif %}
-            <form method="POST" action="{% url 'delete_payment_method' card.id %}">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
-            </form>
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No payment methods saved yet.</p>
-  {% endif %}
 
-  <a href="{% url 'add_payment_method' %}" class="btn btn-outline-primary mt-3">Add Payment Method</a>
-</div>
+            <a href="{% url 'add_payment_method' %}" class="btn btn-outline-primary mt-3">Add Payment Method</a>
+        </div>
 
         <!-- Notifications -->
         <div class="tab-pane fade" id="notifications" role="tabpanel">
             <form>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="orderUpdates" checked>
-                    <label class="form-check-label" for="orderUpdates">
-                        Order updates by email
-                    </label>
+                    <label class="form-check-label" for="orderUpdates">Order updates by email</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="promotions">
-                    <label class="form-check-label" for="promotions">
-                        Promotional emails
-                    </label>
+                    <label class="form-check-label" for="promotions">Promotional emails</label>
                 </div>
                 <button type="submit" class="btn btn-primary mt-2">Save Preferences</button>
             </form>
@@ -130,12 +126,11 @@
 
         <!-- Privacy -->
         <div class="tab-pane fade" id="privacy" role="tabpanel">
-<form method="POST" action="{% url 'delete_account' %}">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Delete Account</button>
-</form>
-<p class="mt-2 text-muted">This action is permanent and cannot be undone.</p>
-
+            <form method="POST" action="{% url 'delete_account' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete Account</button>
+            </form>
+            <p class="mt-2 text-muted">This action is permanent and cannot be undone.</p>
         </div>
     </div>
 </div>
@@ -143,17 +138,18 @@
 {% endblock %}
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const tabName = urlParams.get('tab');
-    if (tabName) {
-      const tabTrigger = document.querySelector(`a[href="#${tabName}"]`);
-      if (tabTrigger) {
-        const tab = new bootstrap.Tab(tabTrigger);
-        tab.show();
-      }
-    }
-  });
+    document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tabName = urlParams.get('tab');
+        if (tabName) {
+            const tabTrigger = document.querySelector(`a[href="#${tabName}"]`);
+            if (tabTrigger) {
+                const tab = new bootstrap.Tab(tabTrigger);
+                tab.show();
+            }
+        }
+    });
 </script>
+
 
 

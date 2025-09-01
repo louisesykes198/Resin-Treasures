@@ -1,22 +1,33 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}  
+
 {% block content %}
+<!-- Main container for the user's personal review gallery -->
 <div class="container mt-5">
-  <h2>Your Reflections</h2>
+  <h2>Your Reflections</h2>  
   {% for review in reviews %}
+    <!-- Individual review card -->
     <div class="border p-3 mb-3">
-      <h5>{{ review.product.name }}</h5>
+      <h5>{{ review.product.name }}</h5> 
+      <!-- Star rating display (out of 5) -->
       <div>
         {% for i in "12345" %}
           {% if forloop.counter <= review.rating %}
-            <span style="color: gold;">★</span>
+            <span style="color: gold;">★</span>  
           {% else %}
-            <span style="color: #ccc;">☆</span>
+            <span style="color: #ccc;">☆</span>  
           {% endif %}
         {% endfor %}
       </div>
+
+      <!-- Review comment text -->
       <p>{{ review.comment }}</p>
+
+      <!-- Edit and delete options for the review owner -->
       <div class="d-flex gap-2">
-        <a href="{% url 'edit_review' review.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+        <a href="{% url 'edit_review' review.id %}" class="btn btn-sm btn-outline-secondary">
+          Edit
+        </a>
+
         <form method="POST" action="{% url 'delete_review' review.id %}">
           {% csrf_token %}
           <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
@@ -24,10 +35,13 @@
       </div>
     </div>
   {% empty %}
+    <!-- Message shown if the user hasn't submitted any reviews yet -->
     <p>You haven’t left any reviews yet. Your gallery awaits.</p>
   {% endfor %}
 </div>
 
+<!-- Navigation button to return to the main shop -->
 <a href="{% url 'shop' %}" class="btn btn-outline-primary mt-3">← Back to Shop</a>
 
 {% endblock %}
+

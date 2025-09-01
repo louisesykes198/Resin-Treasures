@@ -12,13 +12,15 @@
     {% for variant in variants %} 
     {% for img in variant.all_images %} 
     <img src="{{ img.image|cloudinary_url:'w_100,h_100,c_fit' }}" 
-    class="img-thumbnail mb-2 thumb" style="cursor: pointer;" onclick="switchVariant( '{{ img.image|cloudinary_url:'w_600,h_600,c_fit' }}', '{{ variant.price }}', '{{ variant.description|escapejs }}', '{{ variant.id }}' )" alt="Thumbnail for {{ variant.color_name }}" loading="lazy" > 
+    class="img-thumbnail mb-2 thumb" style="cursor: pointer;" onclick="switchVariant( '{{ img.image|cloudinary_url:'w_600,h_600,c_fit' }}', 
+    '{{ variant.price }}', '{{ variant.description|escapejs }}', '{{ variant.id }}' )" alt="Thumbnail for {{ variant.color_name }}" loading="lazy" > 
     {% endfor %} 
      {% endfor %}
   </div> 
   <!-- Main Image --> 
    <div class="flex-grow-1 text-center"> {% if variants and variants.0.image %} 
-    <img id="main-image" src="{{ variants.0.image|cloudinary_url:'w_600,h_600,c_fit' }}" class="img-fluid rounded shadow" alt="{{ product.name }}" loading="lazy" > 
+    <img id="main-image" src="{{ variants.0.image|cloudinary_url:'w_600,h_600,c_fit' }}" class="img-fluid rounded shadow" 
+    alt="{{ product.name }}" loading="lazy" > 
     {% else %} 
     <img id="main-image" src="{% static 'images/no-image.png' %}" class="img-fluid rounded shadow" alt="No image" loading="lazy" > 
     {% endif %} 

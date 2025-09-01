@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container mt-4">
+    <!-- Page title -->
     <h2>Order History</h2>
+
+    <!-- If user has any orders -->
     {% if orders %}
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <!-- Table headers -->
                     <th>Order ID</th>
                     <th>Date</th>
                     <th>Status</th>
@@ -14,19 +18,36 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Loop through all the user's orders -->
                 {% for order in orders %}
                 <tr>
+                    <!-- Order ID -->
                     <td>{{ order.id }}</td>
+
+                    <!-- Order date (formatted as e.g. Jan 01, 2025) -->
                     <td>{{ order.created_at|date:"M d, Y" }}</td>
+
+                    <!-- Current order status -->
                     <td>{{ order.status }}</td>
+
+                    <!-- Order total price -->
                     <td>£{{ order.total }}</td>
-                    <td><a href="{% url 'order_detail' order.id %}" class="btn btn-sm btn-primary">View</a></td>
+
+                    <!-- Link to order detail page -->
+                    <td>
+                        <a href="{% url 'order_detail' order.id %}" 
+                           class="btn btn-sm btn-primary">
+                           View
+                        </a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     {% else %}
+        <!-- If no orders exist for this user -->
         <p>You have no orders yet.</p>
     {% endif %}
 </div>
 {% endblock %}
+

@@ -1,44 +1,67 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} 
+{% load static %} 
 
 {% block extra_css %}
+    {# Include custom CSS for the checkout/payment pages #}
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="overlay"></div>
-<div class="container py-5">
-    <div class="row">
-        <div class="col-md-8">
-            <hr>
-            <h2 class="logo-font mb-4 text-success">
-                <i class="fas fa-check-circle"></i> Payment Successful
-            </h2>
-            <hr>
-            <p class="lead text-muted">Thank you for your order, {{ user.first_name }}.</p>
+    {# Overlay background for styling or loading effect #}
+    <div class="overlay"></div>
 
-{% if order %}
-    <p class="lead text-muted">Thank you for your order, {{ order.full_name }}.</p>
-    <p class="mb-2">Your order number is <strong>#{{ order.id }}</strong>.</p>
-    <p class="mb-4">Delivery to:<br>
-        {{ order.street_address1 }}{% if order.street_address2 %}, {{ order.street_address2 }}{% endif %}<br>
-        {{ order.town_or_city }}, {{ order.county }}<br>
-        {{ order.postcode }}<br>
-        {{ order.country }}<br><br>
+    {# Main container for the payment success message #}
+    <div class="container py-5">
+        <div class="row">
+            {# Centered column for the success content, using 8 of 12 columns #}
+            <div class="col-md-8">
+                <hr>
+                
+                {# Payment success header with icon and styling #}
+                <h2 class="logo-font mb-4 text-success">
+                    <i class="fas fa-check-circle"></i> Payment Successful
+                </h2>
+                <hr>
+                
+                {# Personalized thank you message using logged-in user's first name #}
+                <p class="lead text-muted">Thank you for your order, {{ user.first_name }}.</p>
 
-        <strong>Delivery Method:</strong> {{ order.delivery_method|title }}<br>
-        <strong>Parcel Size:</strong> {{ order.delivery_size }}<br>
-        <strong>Delivery Cost:</strong> £{{ order.delivery|floatformat:2 }}
-    </p>
-{% else %}
-    <p class="text-danger">We couldn’t retrieve your order details. Please check your email for confirmation.</p>
-{% endif %}
+                {# Check if an order object exists before displaying order details #}
+                {% if order %}
+                    {# Display the full name from the order object #}
+                    <p class="lead text-muted">Thank you for your order, {{ order.full_name }}.</p>
+                    
+                    {# Show the order number #}
+                    <p class="mb-2">Your order number is <strong>#{{ order.id }}</strong>.</p>
+                    
+                    {# Delivery information block #}
+                    <p class="mb-4">
+                        Delivery to:<br>
+                        {{ order.street_address1 }}{% if order.street_address2 %}, {{ order.street_address2 }}{% endif %}<br>
+                        {{ order.town_or_city }}, {{ order.county }}<br>
+                        {{ order.postcode }}<br>
+                        {{ order.country }}<br><br>
 
-<a href="{% url 'home' %}" class="btn btn-outline-primary btn-sm">
-    <i class="fas fa-arrow-left"></i> Back to Home
-</a>
+                        {# Display delivery method, parcel size, and cost #}
+                        <strong>Delivery Method:</strong> {{ order.delivery_method|title }}<br>
+                        <strong>Parcel Size:</strong> {{ order.delivery_size }}<br>
+                        <strong>Delivery Cost:</strong> £{{ order.delivery|floatformat:2 }}
+                    </p>
+                {% else %}
+                    {# Fallback message if the order object cannot be found #}
+                    <p class="text-danger">
+                        We couldn’t retrieve your order details. Please check your email for confirmation.
+                    </p>
+                {% endif %}
+
+                {# Button to navigate back to home page #}
+                <a href="{% url 'home' %}" class="btn btn-outline-primary btn-sm">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
     </div>
-</div>
 {% endblock %}
+
 
 

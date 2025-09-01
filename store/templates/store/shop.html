@@ -3,137 +3,135 @@
 {% load cloudinary_extras %}
 
 {% block content %}
-<div class="container py-5">
+  <div class="container py-5">
 
-  <!-- Page Title & Sort Dropdown -->
-  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-    <h1 class="display-5 fw-bold text-peach">All products</h1>
-    <form method="get" class="ms-auto">
-      <select name="sort" class="form-select" style="min-width: 200px;" onchange="this.form.submit()">
-        <option value="">Sort by...</option>
-        <option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
-        <option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
-        <option value="name_asc" {% if sort == 'name_asc' %}selected{% endif %}>A-Z</option>
-        <option value="name_desc" {% if sort == 'name_desc' %}selected{% endif %}>Z-A</option>
-      </select>
-    </form>
-  </div>
+    <!-- Page Title & Sort Dropdown -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+      <h1 class="display-5 fw-bold text-peach">All products</h1>
+      <form method="get" class="ms-auto">
+        <select name="sort" class="form-select" style="min-width: 200px;" onchange="this.form.submit()">
+          <option value="">Sort by...</option>
+          <option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+          <option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+          <option value="name_asc" {% if sort == 'name_asc' %}selected{% endif %}>A-Z</option>
+          <option value="name_desc" {% if sort == 'name_desc' %}selected{% endif %}>Z-A</option>
+        </select>
+      </form>
+    </div>
 
-  <!-- Category Filter Menu -->
-  <div class="mb-4 product-filter">
-    <div class="d-flex flex-wrap gap-2 mb-3">
-      <a href="{% url 'shop' %}" class="btn btn-outline-primary">All Products</a>
+    <!-- Category Filter Menu -->
+    <div class="mb-4 product-filter">
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        <a href="{% url 'shop' %}" class="btn btn-outline-primary">All Products</a>
 
-      <div class="dropdown d-inline-block">
-        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoryToggle"
-                data-bs-toggle="dropdown" aria-expanded="false">
-          Categories
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="categoryToggle">
-          {% for category in categories %}
-            <li>
-              <a class="dropdown-item {% if selected_category == category.slug %}active{% endif %}"
-                 href="{% url 'shop' %}?category={{ category.slug }}">
-                {{ category.name }}
-              </a>
-            </li>
-          {% empty %}
-            <li><span class="dropdown-item-text">No categories found</span></li>
-          {% endfor %}
-        </ul>
+        <div class="dropdown d-inline-block">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoryToggle"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="categoryToggle">
+            {% for category in categories %}
+              <li>
+                <a class="dropdown-item {% if selected_category == category.slug %}active{% endif %}"
+                   href="{% url 'shop' %}?category={{ category.slug }}">
+                  {{ category.name }}
+                </a>
+              </li>
+            {% empty %}
+              <li><span class="dropdown-item-text">No categories found</span></li>
+            {% endfor %}
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <a href="{% url 'all_reviews' %}" class="btn btn-outline-primary">View All Reviews</a>
+    <a href="{% url 'all_reviews' %}" class="btn btn-outline-primary">View All Reviews</a>
 
-  <!-- Product Grid -->
-  {% if products %}
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-      {% for product in products %}
-        {% with variant=product.all_variants.0 %}
-        <div class="col">
-          <div class="card h-100 text-center border-0 shadow position-relative" 
-               style="background-color: #fffaf7; font-family: 'Poppins', sans-serif;">
+    <!-- Product Grid -->
+    {% if products %}
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        {% for product in products %}
+          {% with variant=product.all_variants.0 %}
+            <div class="col">
+              <div class="card h-100 text-center border-0 shadow position-relative" 
+                   style="background-color: #fffaf7; font-family: 'Poppins', sans-serif;">
 
-            <!-- Wishlist Icon -->
-            <a href="{% url 'add_to_wishlist' product.id %}" 
-               class="wishlist-icon position-absolute top-0 end-0 m-2">
-              {% if request.user.is_authenticated and product.id in wishlist_ids %}
-                ❤️
-              {% else %}
-                🤍
-              {% endif %}
-            </a>
+                <!-- Wishlist Icon -->
+                <a href="{% url 'add_to_wishlist' product.id %}" 
+                   class="wishlist-icon position-absolute top-0 end-0 m-2">
+                  {% if request.user.is_authenticated and product.id in wishlist_ids %}
+                    ❤️
+                  {% else %}
+                    🤍
+                  {% endif %}
+                </a>
 
-<div class="product-image-wrapper">
-  {% if variant and variant.image %}
-<img src="{{ variant.image|cloudinary_url:'w_300,h_300,c_fill' }}" 
-     class="product-image" 
-     alt="{{ product.name }}">
+                <!-- Product Image -->
+                <div class="product-image-wrapper">
+                  {% if variant and variant.image %}
+                    <img src="{{ variant.image|cloudinary_url:'w_300,h_300,c_fill' }}" 
+                         class="product-image" 
+                         alt="{{ product.name }}">
+                  {% else %}
+                    <img src="{% static 'images/no-image.png' %}" 
+                         class="product-image" 
+                         alt="No image">
+                  {% endif %}
+                </div>
 
-  {% else %}
-    <img src="{% static 'images/no-image.png' %}" 
-         class="product-image" 
-         alt="No image">
-  {% endif %}
-</div>
+                <!-- Card Body -->
+                <div class="card-body d-flex flex-column">
+                  <h6 class="fw-bold text-dark">{{ product.name }}</h6>
 
-            <!-- Card Body -->
-            <div class="card-body d-flex flex-column">
-              <h6 class="fw-bold text-dark">{{ product.name }}</h6>
+                  {% if product.min_price %}
+                    <p class="text-peach fw-semibold mb-2">£{{ product.min_price }}</p>
+                  {% else %}
+                    <p class="text-peach fw-semibold mb-2">Price not available</p>
+                  {% endif %}
 
-              {% if product.min_price %}
-                <p class="text-peach fw-semibold mb-2">£{{ product.min_price }}</p>
-              {% else %}
-                <p class="text-peach fw-semibold mb-2">Price not available</p>
-              {% endif %}
+                  {% if variant %}
+                    <p class="text-muted small">{{ variant.description|truncatewords:20 }}</p>
+                  {% else %}
+                    <p class="text-muted small">No description available</p>
+                  {% endif %}
 
-              {% if variant %}
-                <p class="text-muted small">{{ variant.description|truncatewords:20 }}</p>
-              {% else %}
-                <p class="text-muted small">No description available</p>
-              {% endif %}
+                  <!-- Add to Basket Form -->
+                  <form method="post" action="{% url 'add_to_basket' product.pk %}" class="d-flex flex-column gap-2">
+                    {% csrf_token %}
+                    {% with variant=product.all_variants.0 %}
+                      {% if variant %}
+                        <input type="hidden" name="variant_id" value="{{ variant.id }}">
+                      {% endif %}
+                    {% endwith %}
 
-<form method="post" action="{% url 'add_to_basket' product.pk %}" class="d-flex flex-column gap-2">
-  {% csrf_token %}
-  {% with variant=product.all_variants.0 %}
-    {% if variant %}
-      <input type="hidden" name="variant_id" value="{{ variant.id }}">
+                    <!-- View Product Button -->
+                    <a href="{% url 'product_detail' product.pk %}" class="btn btn-sm btn-primary">
+                      View Product
+                    </a>
+
+                    <!-- Add to Basket Button -->
+                    <button type="submit" class="btn btn-outline-primary btn-sm w-auto">Add to Basket</button>
+                  </form>
+                </div> 
+              </div> 
+            </div> 
+          {% endwith %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <!-- Empty State -->
+      <div class="text-center text-muted mt-5">
+        <h3>No products available</h3>
+        <p>We’re adding more products soon. Stay tuned!</p>
+        <img src="{% static 'images/coming-soon.svg' %}" 
+             class="img-fluid" 
+             style="max-width: 300px;" 
+             alt="Coming Soon">
+      </div>
     {% endif %}
-  {% endwith %}
-
-  <!-- View Product Button -->
-  <a href="{% url 'product_detail' product.pk %}" class="btn btn-sm btn-primary">
-    View Product
-  </a>
-
-  <!-- Add to Basket Button -->
-  <button type="submit" class="btn btn-outline-primary btn-sm w-auto">Add to Basket</button>
-</form>
-
-
-            </div> <!-- card-body -->
-          </div> <!-- card -->
-        </div> <!-- col -->
-        {% endwith %}
-      {% endfor %}
-    </div> <!-- row -->
-
-  {% else %}
-    <!-- Empty State -->
-    <div class="text-center text-muted mt-5">
-      <h3>No products available</h3>
-      <p>We’re adding more products soon. Stay tuned!</p>
-      <img src="{% static 'images/coming-soon.svg' %}" 
-           class="img-fluid" 
-           style="max-width: 300px;" 
-           alt="Coming Soon">
-    </div>
-  {% endif %}
-
-</div> <!-- container -->
+  </div> 
 {% endblock %}
+
 
 
 
