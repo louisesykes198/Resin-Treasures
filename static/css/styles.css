@@ -19,13 +19,13 @@ body {
 
 .navbar-brand,
 .nav-link {
-  color: #0000FF!important; /* primary blue */
+  color: #0000FF!important; 
   font-weight: 500;
   font-size: 18px !important;
 }
 
 .nav-link:hover {
-  color: rgb(107, 126, 235) !important; /* removed hover color */
+  color: rgb(107, 126, 235) !important; 
   text-decoration: none;    
 }
 
@@ -69,7 +69,7 @@ body {
   font-size: 1.2rem;
   padding: 12px 25px;
   border: none;
-  background-color: #4c90da; /* updated button blue */
+  background-color: #4c90da; 
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -79,7 +79,7 @@ body {
 }
 
 .hero-text a:hover {
-  background-color: #3571b8; /* slightly darker hover */
+  background-color: #3571b8; 
 }
 
 /* === Search Bar === */
@@ -97,14 +97,14 @@ body {
 
 .search-bar button {
   border-radius: 20px;
-  background-color: #4c90da; /* updated button blue */
+  background-color: #4c90da; 
   color: #fff;
   border: none;
   padding: 8px 20px;
 }
 
 .search-bar button:hover {
-  background-color: #3571b8; /* darker hover */
+  background-color: #3571b8; 
 }
 
 .delivery-banner {
@@ -188,7 +188,7 @@ form textarea.form-textarea {
 
 form input:focus,
 form textarea:focus {
-  border-color: #4c90da; /* updated blue */
+  border-color: #4c90da;
   box-shadow: 0 0 0 2px rgba(76, 144, 218, 0.2);
 }
 
@@ -200,7 +200,7 @@ form label {
 form button {
   font-weight: 500;
   cursor: pointer;
-  background-color: #4c90da; /* updated blue */
+  background-color: #4c90da; 
   color: #fff;
   border: 1px solid #3571b8;
   padding: 0.75rem 1.5rem;
@@ -209,7 +209,7 @@ form button {
 }
 
 form button:hover {
-  background-color: #3571b8; /* darker hover */
+  background-color: #3571b8; 
   border-color: #2a5990;
 }
 
@@ -284,7 +284,7 @@ form button:hover {
 }
 
 .btn-pastel {
-  background-color: #4c90da; /* updated button blue */
+  background-color: #4c90da; 
   color: #fff;
   border: none;
 }
@@ -294,12 +294,12 @@ form button:hover {
 }
 
 .footer-link {
-  color: #4c90da; /* matches buttons */
+  color: #4c90da; 
   text-decoration: none;
 }
 
 .footer-social {
-  color: #4c90da; /* matches buttons */
+  color: #4c90da; 
   transition: color 0.3s;
 }
 
