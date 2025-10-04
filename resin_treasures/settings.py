@@ -12,9 +12,6 @@ DATABASES = {
     "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
 }
 
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 from cloudinary_storage.storage import MediaCloudinaryStorage
 from cloudinary_storage.storage import RawMediaCloudinaryStorage
 from django.contrib.messages import constants as messages
