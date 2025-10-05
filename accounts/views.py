@@ -186,8 +186,7 @@ def personal_details(request):
 @login_required
 def order_history(request):
     user_orders = Order.objects.filter(user=request.user).order_by('-date')
-    return render
-    (request, 'accounts/order_history.html', {'orders': user_orders})
+    return render(request, 'accounts/order_history.html', {'orders': user_orders})
 
 
 @login_required
@@ -260,8 +259,7 @@ def set_default_card(request, card_id):
         )
         messages.success(request, "Your default card has been updated.")
 
-        return HttpResponseRedirect
-        (reverse('account_settings') + '?tab=payment')
+        return HttpResponseRedirect(reverse('account_settings') + '?tab=payment')
 
 
 @login_required
