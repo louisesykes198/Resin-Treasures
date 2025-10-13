@@ -1898,7 +1898,7 @@ The database was designed to support the following core functionalities:
 - Orders are stored with customer, shipping, and payment details.  
 - Users can save items for later using a **wishlist**.  
 - A **newsletter system** stores email subscribers.  
-- Admins can manage products, categories, and fulfil customer orders.  
+- Admins can manage products, categories, and fulfill customer orders.  
 
 #### Data Tables & Core Entities
 
@@ -1934,7 +1934,7 @@ The ERD below visualises how the main entities relate:
 
 <details>
 <summary>ERD</summary>
-<img src="docs/erd.png" alt="ERD">
+  <img src="doc/erd.png" alt="ERD">
 </details>
 
 #### Normalisation for Integrity
@@ -2164,6 +2164,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
