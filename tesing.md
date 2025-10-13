@@ -48,7 +48,7 @@
 
 - As a user, I want to see the selected color and see the color I choose in the basket.
 
-![image](doc/colour-change-order.pngg)
+![image](doc/colour-change-order.png)
 
 - As a user, I want to add products to my basket and update quantities.
 - As a user, I want to remove items from my basket.
@@ -714,7 +714,8 @@ Ran 3 tests in 1.443s
 OK
 Destroying test database for alias 'default'...
 
-![image](docs/test-all.png)
+![image](doc/python-test.png)
+
 
 
 
