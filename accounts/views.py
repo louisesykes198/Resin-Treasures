@@ -21,6 +21,8 @@ import random
 from django.core.mail import send_mail
 from .utils import generate_unique_username
 from django.shortcuts import get_object_or_404
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -134,11 +136,21 @@ def account_settings(request):
 
     cards = []
     if profile.stripe_customer_id:
-        sources = stripe.Customer.list_sources(
-            profile.stripe_customer_id,
-            object="card"
-        )
+        sources = stripe.Customer.list_sources(profile.stripe_customer_id, object="card")
         cards = sources.data
+
+    password_form = PasswordChangeForm(user=request.user)
+
+    # Handle password change submission
+    if request.method == 'POST' and 'update_password' in request.POST:
+        password_form = PasswordChangeForm(user=request.user, data=request.POST)
+        if password_form.is_valid():
+            user = password_form.save()
+            update_session_auth_hash(request, user)  # Keep user logged in
+            messages.success(request, "Your password has been updated successfully 🌿")
+            return redirect('account_settings')
+        else:
+            messages.error(request, "Please correct the errors below.")
 
     return render(request, 'accounts/settings.html', {
         "cards": cards,
@@ -146,6 +158,7 @@ def account_settings(request):
         "email": user.email,
         "username": user.username,
         "date_joined": localtime(user.date_joined),
+        "password_form": password_form,
     })
 
 
@@ -276,5 +289,33 @@ def verify_account(request):
             messages.error(request, "Incorrect code. Please try again.")
     return render(request, 'accounts/verify.html')
 
+@login_required
+def update_user(request):
+    if request.method == 'POST':
+        user = request.user
+        user.email = request.POST.get('email')
+        user.first_name = request.POST.get('full_name').split(' ')[0]
+        user.last_name = request.POST.get('full_name').split(' ')[-1]
+        user.profile.phone = request.POST.get('phone')
+        user.save()
+        user.profile.save()
+        messages.success(request, 'Your details have been updated successfully.')
+        return redirect('account_settings')
 
+
+@login_required
+def update_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()  # saves new password
+            update_session_auth_hash(request, user)  # keeps user logged in
+            messages.success(request, 'Your password has been updated successfully.')
+            return redirect('account_settings')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = PasswordChangeForm(user=request.user)
+
+    return render(request, 'accounts/change_password.html', {'form': form})
 

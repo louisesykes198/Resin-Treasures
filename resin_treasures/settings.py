@@ -23,6 +23,9 @@ SECRET_KEY = 'django-insecure-ddc*id7g-t(($2=nqf9fw((_#74e+6%3=26ty1xwsn$0o#)i44
 DEBUG = os.environ.get("DEBUG", "0") == "1"
 ALLOWED_HOSTS = ['resin-treasures-2025-f7167892b201.herokuapp.com', '127.0.0.1', 'localhost']
 
+SITE_URL = os.environ.get("SITE_URL", "http://127.0.0.1:8000")
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -106,17 +109,21 @@ DATABASES = {
 #fallback for tests
 import sys
 if 'test' in sys.argv:
-    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-    DATABASES['default']['NAME'] = os.path.join(BASE_DIR, 'test_db.sqlite3')
-
-    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
+        }
+    }
+  
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = 'resintreasures5@gmail.com'
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
 
 
 # Password validation

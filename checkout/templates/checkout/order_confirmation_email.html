@@ -1,22 +1,30 @@
-Hi {{ full_name }},
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Your Resin Treasures Order</title>
+</head>
+<body>
+  <p>Dear {{ full_name }},</p>
 
-Thank you for ordering from Resin Treasures 🌿
+  <p>Thank you for your order. Here’s a gentle summary of what you’ve chosen:</p>
 
-Your order number is: {{ order.id }}
+<ul>
+  {% for item in items %}
+    <li>
+      {{ item.product_variant.product.name }}
+      {% if item.product_variant.color_name %} ({{ item.product_variant.color_name }}) {% endif %}
+      × {{ item.quantity }} — £{{ item.price }}
+    </li>
+  {% endfor %}
+</ul>
 
-Here’s what you ordered:
+<p>Delivery: £{{ order.delivery }}</p>
+<p>Total: £{{ order.grand_total }}</p>
 
-{% for item in order.items.all %}
-  {% if item.product_variant %}
-    - {{ item.product_variant.product.name }} – “{{ item.product_variant.name }}” ({{ item.product_variant.color_name }}) × {{ item.quantity }}
-  {% else %}
-    - {{ item.product.name }} × {{ item.quantity }}
-  {% endif %}
-{% endfor %}
+  <p>We’ll begin preparing your treasures with care. You’ll receive another message once they’re on their way.</p>
 
-We’ll begin preparing your items and send another email when they’re on their way.
+  <p>Kind regards,<br>Resin Treasures</p>
+</body>
+</html>
 
-If you have any questions, feel free to reply to this email.
-
-Kind regards,  
-Resin Treasures 

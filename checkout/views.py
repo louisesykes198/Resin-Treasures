@@ -4,21 +4,22 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-from store.models import Product, ProductVariant, Basket
-from .models import Order, OrderItem
-from .forms import OrderForm
-from .delivery import DELIVERY_OPTIONS
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
+from store.models import Basket
+from .models import Order, OrderItem
+from .forms import OrderForm
+from .delivery import DELIVERY_OPTIONS
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 @login_required
 def checkout_view(request):
+    """Handles checkout: calculates totals, creates orders, initiates Stripe session."""
     basket_items = Basket.objects.filter(user=request.user)
-
     if not basket_items.exists():
         return redirect("basket")
 
@@ -28,113 +29,27 @@ def checkout_view(request):
         item.subtotal = item.price * item.quantity
 
     total = sum(item.subtotal for item in basket_items)
+    order_form = OrderForm()
 
     if request.method == "POST":
-        # Get form data
-        full_name = request.POST.get("full_name")
-        email = request.POST.get("email")
-        phone_number = request.POST.get("phone_number")
-        street_address1 = request.POST.get("street_address1")
-        street_address2 = request.POST.get("street_address2")
-        town_or_city = request.POST.get("town_or_city")
-        postcode = request.POST.get("postcode")
-        county = request.POST.get("county")
-        country = request.POST.get("country")
-        delivery_method = request.POST.get("delivery_method")
+        try:
+            # Gather form data
+            full_name = request.POST.get("full_name")
+            email = request.POST.get("email")
+            phone_number = request.POST.get("phone_number")
+            street_address1 = request.POST.get("street_address1")
+            street_address2 = request.POST.get("street_address2")
+            town_or_city = request.POST.get("town_or_city")
+            postcode = request.POST.get("postcode")
+            county = request.POST.get("county")
+            country = request.POST.get("country")
+            delivery_method = request.POST.get("delivery_method")
 
-        # Automatically determine parcel size
-        if total < 20:
-            parcel_size = "Small"
-        elif total < 50:
-            parcel_size = "Medium"
-        else:
-            parcel_size = "Large"
+            # Validate delivery method
+            if not delivery_method or delivery_method not in DELIVERY_OPTIONS:
+                raise ValueError("Please select a valid delivery method.")
 
-        # Calculate delivery price
-        if total >= settings.FREE_DELIVERY_THRESHOLD:
-            delivery_price = Decimal("0.00")
-        else:
-            delivery_price = Decimal(str(DELIVERY_OPTIONS[delivery_method][parcel_size]))
-
-        grand_total = total + delivery_price
-
-        # Create order
-        order = Order.objects.create(
-            user=request.user,
-            full_name=full_name,
-            email=email,
-            phone_number=phone_number,
-            street_address1=street_address1,
-            street_address2=street_address2,
-            town_or_city=town_or_city,
-            postcode=postcode,
-            county=county,
-            country=country,
-            delivery_method=delivery_method,
-            delivery_size=parcel_size,
-            delivery=delivery_price,
-            total=total,
-            grand_total=grand_total,
-        )
-
-        # Create order items and Stripe line items
-        line_items = []
-        for item in basket_items:
-            OrderItem.objects.create(
-                order=order,
-                product_variant=item.variant if item.variant else None,
-                product=item.product if not item.variant else None,
-                quantity=item.quantity,
-                price=item.price,
-            )
-
-            product_name = item.variant.product.name if item.variant else item.product.name
-            variant_name = f" - {item.variant.color_name}" if item.variant else ""
-            line_items.append({
-                "price_data": {
-                    "currency": "gbp",
-                    "product_data": {"name": f"{product_name}{variant_name}"},
-                    "unit_amount": int(item.price * 100),
-                },
-                "quantity": item.quantity,
-            })
-
-        # Add delivery as a separate line item
-        if delivery_price > 0:
-            line_items.append({
-                "price_data": {
-                    "currency": "gbp",
-                    "product_data": {"name": "Delivery"},
-                    "unit_amount": int(delivery_price * 100),
-                },
-                "quantity": 1,
-            })
-
-        # ✅ Stripe session creation (correctly indented inside POST)
-        session = stripe.checkout.Session.create(
-            payment_method_types=["card"],
-            line_items=line_items,
-            mode="payment",
-            success_url=f"https://resin-treasures-2025-f7167892b201.herokuapp.com/checkout/success/?order_id={order.id}",
-            cancel_url=f"https://resin-treasures-2025-f7167892b201.herokuapp.com/checkout/cancel/?order_id={order.id}",
-            metadata={"order_id": str(order.id)},
-        )
-
-        order.stripe_payment_intent = session.payment_intent
-        order.save()
-
-        # Clear basket
-        basket_items.delete()
-        request.session['order_id'] = order.id
-
-        return redirect(session.url, code=303)
-
-    else:
-        # GET request — show form and calculate delivery if method is selected
-        order_form = OrderForm()
-        delivery_method = request.GET.get("delivery_method")
-
-        if delivery_method:
+            # Determine parcel size
             if total < 20:
                 parcel_size = "Small"
             elif total < 50:
@@ -142,15 +57,122 @@ def checkout_view(request):
             else:
                 parcel_size = "Large"
 
+            # Calculate delivery price
             if total >= settings.FREE_DELIVERY_THRESHOLD:
                 delivery_price = Decimal("0.00")
             else:
                 delivery_price = Decimal(str(DELIVERY_OPTIONS[delivery_method][parcel_size]))
 
             grand_total = total + delivery_price
+
+            # Create the order
+            order = Order.objects.create(
+                user=request.user,
+                full_name=full_name,
+                email=email,
+                phone_number=phone_number,
+                street_address1=street_address1,
+                street_address2=street_address2,
+                town_or_city=town_or_city,
+                postcode=postcode,
+                county=county,
+                country=country,
+                delivery_method=delivery_method,
+                delivery_size=parcel_size,
+                delivery=delivery_price,
+                total=total,
+                grand_total=grand_total,
+            )
+
+            # Create order items and Stripe line items
+            line_items = []
+            for item in basket_items:
+                OrderItem.objects.create(
+                    order=order,
+                    product_variant=item.variant if item.variant else None,
+                    product=item.product if not item.variant else None,
+                    quantity=item.quantity,
+                    price=item.price,
+                )
+
+                product_name = item.variant.product.name if item.variant else item.product.name
+                variant_name = f" - {item.variant.color_name}" if item.variant else ""
+                line_items.append({
+                    "price_data": {
+                        "currency": "gbp",
+                        "product_data": {"name": f"{product_name}{variant_name}"},
+                        "unit_amount": int(round(item.price * 100)),  # safe integer
+                    },
+                    "quantity": item.quantity,
+                })
+
+            # Add delivery as a line item
+            if delivery_price > 0:
+                line_items.append({
+                    "price_data": {
+                        "currency": "gbp",
+                        "product_data": {"name": "Delivery"},
+                        "unit_amount": int(round(delivery_price * 100)),  # safe integer
+                    },
+                    "quantity": 1,
+                })
+
+            # Create Stripe checkout session
+            session = stripe.checkout.Session.create(
+                payment_method_types=["card"],
+                line_items=line_items,
+                mode="payment",
+                success_url=f"{settings.SITE_URL}/checkout/success/?order_id={order.id}",
+                cancel_url=f"{settings.SITE_URL}/checkout/cancel/?order_id={order.id}",
+                metadata={"order_id": str(order.id)},
+            )
+
+            order.stripe_payment_intent = session.payment_intent
+            order.save()
+            
+            send_order_confirmation_email(order)  
+            notify_seller_of_order(order)        
+
+
+            # Clear basket and store order id in session
+            basket_items.delete()
+            request.session['order_id'] = order.id
+
+            return redirect(session.url, code=303)
+
+        except Exception as e:
+            # Print full traceback to console
+            import traceback
+            print(traceback.format_exc())
+            # Display error to user
+            return render(request, "checkout/checkout.html", {
+                "basket_items": basket_items,
+                "total": total,
+                "order_form": order_form,
+                "delivery_price": None,
+                "grand_total": total,
+                "error": str(e),
+            })
+
+    # GET request: display checkout form
+    delivery_method = request.GET.get("delivery_method")
+    if delivery_method and delivery_method in DELIVERY_OPTIONS:
+        if total < 20:
+            parcel_size = "Small"
+        elif total < 50:
+            parcel_size = "Medium"
         else:
-            delivery_price = None
-            grand_total = total
+            parcel_size = "Large"
+
+        if total >= settings.FREE_DELIVERY_THRESHOLD:
+            delivery_price = Decimal("0.00")
+        else:
+            delivery_price = Decimal(str(DELIVERY_OPTIONS[delivery_method][parcel_size]))
+
+        grand_total = total + delivery_price
+    else:
+        delivery_price = None
+        grand_total = total
 
     return render(request, "checkout/checkout.html", {
         "basket_items": basket_items,
@@ -162,7 +184,9 @@ def checkout_view(request):
     })
 
 
+@login_required
 def success_view(request):
+    # Get order_id from session or query params
     order_id = request.session.get("order_id") or request.GET.get("order_id")
 
     if not order_id:
@@ -177,72 +201,120 @@ def success_view(request):
             "message": "We couldn’t find your order. It may still be processing. Please check your email or try again shortly."
         })
 
+    # Only send emails if order isn't already marked as paid
+    if order.status != "paid":
+        order.status = "paid"
+        order.save()
+
+        try:
+            send_order_confirmation_email(order)
+        except Exception as e:
+            print(f"Failed to send order confirmation email: {e}")
+
+        try:
+            notify_seller_of_order(order)
+        except Exception as e:
+            print(f"Failed to notify seller: {e}")
+
+        print(f"Order #{order.id} marked as paid and emails attempted.")
+
+    # Clear session to avoid duplicate emails if user refreshes
+    request.session.pop("order_id", None)
+
+    # Safely get order items
+    order_items = getattr(order, 'orderitem_set', None)
+    if order_items:
+        order_items = order.orderitem_set.all()
+    else:
+        order_items = []
+
     context = {
         "order": order,
+        "order_items": order_items,
         "user": order.user,
     }
 
-    request.session.pop("order_id", None)
-
     return render(request, "checkout/success.html", context)
 
-def cancel_view(request): 
-    return render(request, "checkout/cancel.html")
 
 @csrf_exempt
 def stripe_webhook(request):
+    """Stripe webhook to mark orders as paid and send transactional emails."""
+    import json
     payload = request.body
     sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
     endpoint_secret = settings.STRIPE_WH_SECRET
 
     try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, endpoint_secret
-        )
+        event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
     except ValueError as e:
-        # Invalid payload
-        print("⚠️ Invalid payload:", e)
+        print("Invalid payload:", e)
         return HttpResponse(status=400)
     except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
-        print("⚠️ Signature verification failed:", e)
+        print("Invalid signature:", e)
         return HttpResponse(status=400)
-
-    print("🔔 Received event:", event["type"])
 
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
-
         order_id = session.get("metadata", {}).get("order_id")
-        print("✅ Checkout session completed for order:", order_id)
 
         if order_id:
             try:
                 order = Order.objects.get(id=order_id)
-                print("🛒 Order items in webhook:", order.items.all())
                 order.status = "paid"
                 order.save()
+                send_order_confirmation_email(order)
+                notify_seller_of_order(order)
+                print(f"Emails sent for order #{order.id}")
             except Order.DoesNotExist:
-                print("⚠️ Order not found:", order_id)
+                print("Order not found:", order_id)
 
     return HttpResponse(status=200)
 
+
 def send_order_confirmation_email(order):
+    """Send transactional order confirmation email to the user."""
     subject = f"Your Resin Treasures Order #{order.id}"
-    message = render_to_string('checkout/order_confirmation_email.html', {
+    from_email = settings.DEFAULT_FROM_EMAIL
+    to = [order.email]
+
+    # Get all order items
+    items = order.items.all()
+
+    # Render HTML version
+    html_content = render_to_string('checkout/order_confirmation_email.html', {
         'order': order,
         'full_name': order.full_name,
+        'items': items,
     })
-    send_mail(
-        subject,
-        message,
-        settings.DEFAULT_FROM_EMAIL,
-        [order.email],
-        fail_silently=False,
+
+    # Generate plain-text fallback
+    items_text = "\n".join([
+        f"- {item.product_variant.product.name if item.product_variant else item.product.name}"
+        f"{f' ({item.product_variant.color_name})' if item.product_variant and item.product_variant.color_name else ''}"
+        f" × {item.quantity} — £{item.price}"
+        for item in items
+    ])
+
+    text_content = (
+        f"Dear {order.full_name},\n\n"
+        f"Thank you for your order from Resin Treasures!\n\n"
+        f"Order #{order.id}\n"
+        f"Items:\n{items_text}\n\n"
+        f"Delivery: £{order.delivery}\n"
+        f"Total: £{order.grand_total}\n\n"
+        f"We’ll begin preparing your treasures with care and will notify you once they’re shipped.\n\n"
+        f"Kind regards,\nResin Treasures"
     )
-       
+
+    # Create and send the email
+    email = EmailMultiAlternatives(subject, text_content, from_email, to)
+    email.attach_alternative(html_content, "text/html")
+    email.send(fail_silently=False)
+
+
 def notify_seller_of_order(order):
-    print(f"📦 Seller email sent for order #{order.id}")
+    """Send notification email to the seller/business."""
     subject = f"New Order Received: #{order.id}"
     message = render_to_string('checkout/seller_notification_email.txt', {
         'order': order,
@@ -254,9 +326,11 @@ def notify_seller_of_order(order):
         subject,
         message,
         settings.DEFAULT_FROM_EMAIL,
-        ['resintreasures5@gmail.com'],  # your business email
+        ['resintreasures5@gmail.com'],  # Business email
         fail_silently=False,
     )
 
-
+@login_required
+def cancel_view(request):
+    return render(request, "checkout/cancel.html")
 

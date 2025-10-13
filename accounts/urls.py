@@ -13,6 +13,9 @@ urlpatterns = [
     path('my-account/', views.my_account, name='my_account'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('account/settings/', views.account_settings, name='account_settings'),
+
+    path('account/update/', views.update_user, name='update_user'),
+
     path('profile/', views.profile, name='profile'),
     path('profile/details/', views.personal_details, name='personal_details'),
     path('profile/orders/', views.order_history, name='order_history'),
@@ -34,6 +37,9 @@ urlpatterns = [
         name='set_default_card'
     ),
     path('verify/', views.verify_account, name='verify_account'),
+    path('account/update-password/', views.update_password, name='update_password'),
+
 ]
+
 
 
