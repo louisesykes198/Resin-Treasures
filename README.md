@@ -928,7 +928,7 @@ The payment section isn’t just transactional—it’s relational. It reflects 
 
 ![image](doc/payment.png)
 
-### 🔔 Notifications Page
+### Notifications Page
 
 The *Resin Treasures* notifications page offers users a gentle, intuitive way to manage how they stay informed—designed with emotional clarity and respect for personal boundaries.
 
@@ -947,8 +947,8 @@ Each tab is styled in soft blue (`#0000FF`) and spaced for ease of navigation.
 
 Users are presented with two clear options:
 
-- ✅ **Order updates by email** — checked by default, ensuring users receive important updates about their purchases  
-- ⬜ **Promotional emails** — unchecked by default, allowing users to opt in only if they wish to receive offers or news
+- **Order updates by email** — checked by default, ensuring users receive important updates about their purchases  
+- **Promotional emails** — unchecked by default, allowing users to opt in only if they wish to receive offers or news
 
 Each option is displayed with a checkbox and styled for clarity and accessibility.
 
@@ -994,25 +994,22 @@ At the heart of the privacy page is a clear and respectful option for users who 
 
 The button is intentionally prominent, but not emotionally aggressive—designed to honor user autonomy without pressure.
 
-## CRUD Functionality
+# CRUD Functionality
 
 ## Security Section — CRUD Functionality
 
 The **Security** section of the Account Settings page implements full **CRUD functionality** — Create, Read, Update, Delete — for user authentication and account management.
 
 ### Create
-
 Users create secure credentials (username and password) during registration. Passwords are stored securely using Django’s built-in authentication system, which **hashes and salts** passwords before saving them to the database.
 
 ### Read
-
 Authenticated users can access their account security settings via the Account Settings page. The system reads and displays the current authenticated user's information, allowing them to:
 
 - Review their security status
 - Access options such as password updates and account deletion
 
 ### Update
-
 Users can update their password directly within the Security tab. The update form:
 
 - Requires the current password for verification
@@ -1025,19 +1022,102 @@ Users can update their password directly within the Security tab. The update for
 - Users remain logged in after a successful update for a smooth experience
 
 ### Delete
-
 Users can permanently delete their account via the **Privacy tab**, linked from the Security section. The deletion process:
 
 - Removes the user instance and all associated data from the database
 - Ensures compliance with data protection and privacy requirements
 
 ### Security Highlights
-
 - CSRF protection for all forms
 - Server-side validation of current and new passwords
 - Secure password hashing via Django’s `User` model
 - Persistent login session after password updates
-- Direct link to account deletion for transparent privacy management
+- Direct link to account deletion for transparent privacy
+
+## Personal Info Section — CRUD Functionality
+
+The **Personal Info** section allows users to manage their full name, email, and phone number.
+
+### Create
+Users provide their full name, email, and phone number during registration. Information is stored in Django’s `User` model and the `Profile` model (for phone number).
+
+### Read
+Users can view their personal info in the **Personal Info tab**. The system reads data from both `User` and `Profile` models to populate the form fields.
+
+### Update
+Users can update their full name, email, and phone number. Changes are saved to the `User` and `Profile` models.
+
+**Implementation details:**
+
+- Form validation ensures correct input
+- CSRF protection secures the form submission
+- Updates are reflected throughout the account pages (profile, orders, etc.)
+
+### Delete
+Personal details cannot be individually deleted. They are removed only when the user deletes their account.
+
+## Payment Section — CRUD Functionality
+
+The **Payment** section allows users to manage saved credit/debit cards securely via Stripe.
+
+### Create
+Users can add new cards. Cards are securely attached to their Stripe customer account.
+
+### Read
+Users can view all saved cards in the **Payment tab**, including:
+
+- Card brand and last 4 digits
+- Expiry date
+- Default card indicator
+
+### Update
+Users can set a default card for payments. The default card is updated in Stripe and reflected in the Account Settings page.
+
+**Implementation details:**
+
+- CSRF protection is enabled for all forms
+- Users receive feedback messages after updates
+- Changes are reflected immediately on the page
+
+### Delete
+Users can remove saved cards. The deletion removes the card from Stripe and from the user's list of saved cards.
+
+## Notifications Section — CRUD Functionality
+
+The **Notifications** section allows users to manage their email preferences for order updates and promotions.
+
+### Create
+Notification preferences are created automatically when a user registers.
+
+### Read
+Users can view current preferences in the **Notifications tab**, showing options for:
+
+- Order updates by email
+- Promotional emails
+
+### Update
+Users can update their preferences by toggling checkboxes and submitting the form. Updates are saved to the `Profile` model.
+
+**Implementation details:**
+
+- Changes are validated server-side
+- CSRF protection ensures secure submission
+- Users immediately see updated preferences on reload
+
+### Delete
+Individual preferences cannot be deleted separately; they are removed only when the user deletes their account.
+
+---
+
+## Summary of CRUD Coverage
+
+| Tab             | Create | Read | Update | Delete |
+|-----------------|--------|------|--------|--------|
+| Security        | ✅      | ✅    | ✅      | ✅      |
+| Personal Info   | ✅      | ✅    | ✅      | ❌      |
+| Payment         | ✅      | ✅    | ✅      | ✅      |
+| Notifications   | ✅      | ✅    | ✅      | ❌      |
+
 
 
 #### **Design Principles**
@@ -2210,6 +2290,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
