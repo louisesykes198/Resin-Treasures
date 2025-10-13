@@ -994,6 +994,52 @@ At the heart of the privacy page is a clear and respectful option for users who 
 
 The button is intentionally prominent, but not emotionally aggressive—designed to honor user autonomy without pressure.
 
+## CRUD Functionality
+
+## Security Section — CRUD Functionality
+
+The **Security** section of the Account Settings page implements full **CRUD functionality** — Create, Read, Update, Delete — for user authentication and account management.
+
+### Create
+
+Users create secure credentials (username and password) during registration. Passwords are stored securely using Django’s built-in authentication system, which **hashes and salts** passwords before saving them to the database.
+
+### Read
+
+Authenticated users can access their account security settings via the Account Settings page. The system reads and displays the current authenticated user's information, allowing them to:
+
+- Review their security status
+- Access options such as password updates and account deletion
+
+### Update
+
+Users can update their password directly within the Security tab. The update form:
+
+- Requires the current password for verification
+- Ensures the new password and confirmation match before applying changes
+
+**Implementation details:**
+
+- Password validation rules enforce strong, secure credentials
+- Updates occur through a dedicated view (`update_password`) with CSRF protection
+- Users remain logged in after a successful update for a smooth experience
+
+### Delete
+
+Users can permanently delete their account via the **Privacy tab**, linked from the Security section. The deletion process:
+
+- Removes the user instance and all associated data from the database
+- Ensures compliance with data protection and privacy requirements
+
+### Security Highlights
+
+- CSRF protection for all forms
+- Server-side validation of current and new passwords
+- Secure password hashing via Django’s `User` model
+- Persistent login session after password updates
+- Direct link to account deletion for transparent privacy management
+
+
 #### **Design Principles**
 
 - **Color Palette:** Light background with red and blue accents for clarity and emotional weight  
@@ -2164,6 +2210,7 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
+
 
 
 
