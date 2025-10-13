@@ -16,9 +16,6 @@ from cloudinary_storage.storage import MediaCloudinaryStorage
 from cloudinary_storage.storage import RawMediaCloudinaryStorage
 from django.contrib.messages import constants as messages
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-ddc*id7g-t(($2=nqf9fw((_#74e+6%3=26ty1xwsn$0o#)i44'
 
@@ -106,7 +103,7 @@ DATABASES = {
 }
 
 
-# Optional: fallback for tests
+#fallback for tests
 import sys
 if 'test' in sys.argv:
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
@@ -180,9 +177,8 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Where to send users after login
-LOGIN_REDIRECT_URL = 'home'  # or a path name from your urls.py
+LOGIN_REDIRECT_URL = 'home'  
 
-# Optional: Where to send users if they are not logged in and try to visit a protected page
 LOGIN_URL = 'login'
 
 MESSAGE_TAGS = {
