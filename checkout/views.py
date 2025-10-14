@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 
-from store.models import Basket, Product, ProductVariant
+from store.models import Basket
 from .models import Order, OrderItem
 from .forms import OrderForm
 from .delivery import DELIVERY_OPTIONS
@@ -131,8 +131,8 @@ def checkout_view(request):
 
             # Clear basket
             basket_items.delete()
-            request.session['order_id'] = order.id
 
+            # Redirect to Stripe Checkout
             return redirect(session.url, code=303)
 
         except Exception as e:
@@ -175,29 +175,27 @@ def checkout_view(request):
 
 @login_required
 def success_view(request):
-    order_id = request.session.get("order_id") or request.GET.get("order_id")
-    order = None
-    order_items = []
+    """Success page: only uses GET parameter for order_id."""
+    order_id = request.GET.get("order_id")
+    if not order_id:
+        return render(request, "checkout/order_not_found.html", {
+            "message": "We couldn’t find your order. Please check your email for confirmation."
+        })
 
-    if order_id:
-        order = Order.objects.filter(id=order_id).first()
-        if order:
-            order_items = order.items.all()
-            # Mark paid if not already
-            if order.status != "paid":
-                order.status = "paid"
-                order.save()
-                send_order_confirmation_email(order)
-                notify_seller_of_order(order)
-
+    order = Order.objects.filter(id=order_id).first()
     if not order:
         return render(request, "checkout/order_not_found.html", {
             "message": "We couldn’t find your order. Please check your email for confirmation."
         })
 
-    # Clear session to avoid stale order_id
-    request.session.pop("order_id", None)
+    # Mark as paid if not already
+    if order.status != "paid":
+        order.status = "paid"
+        order.save()
+        send_order_confirmation_email(order)
+        notify_seller_of_order(order)
 
+    order_items = order.items.all()
     return render(request, "checkout/success.html", {
         "order": order,
         "order_items": order_items,
@@ -292,5 +290,6 @@ def notify_seller_of_order(order):
         ['resintreasures5@gmail.com'],  # business email
         fail_silently=False,
     )
+
 
 
