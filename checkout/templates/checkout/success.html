@@ -13,7 +13,7 @@
     {# Main container for the payment success message #}
     <div class="container py-5">
         <div class="row">
-            {# Centered column for the success content, using 8 of 12 columns #}
+            {# Centered column for the success content #}
             <div class="col-md-8">
                 <hr>
                 
@@ -54,21 +54,30 @@
                     </p>
                 {% endif %}
 
+                {# Check if order_items exist before looping through them #}
                 {% if order_items %}
-    <hr>
-    <h5 class="mt-4">Your Treasures:</h5>
-    <ul class="list-unstyled">
-        {% for item in order_items %}
-            <li class="mb-2">
-                {{ item.product_variant.product.name if item.product_variant else item.product.name }}
-                {% if item.product_variant.color_name %} ({{ item.product_variant.color_name }}){% endif %}
-                × {{ item.quantity }} — £{{ item.price }}
-            </li>
-        {% endfor %}
-    </ul>
-    <p><strong>Total:</strong> £{{ order.grand_total }}</p>
-{% endif %}
-
+                    <hr>
+                    <h5 class="mt-4">Your Treasures:</h5>
+                    <ul class="list-unstyled">
+                        {% for item in order_items %}
+                            <li class="mb-2">
+                                {# If the item has a product variant, display its name and color #}
+                                {% if item.product_variant %}
+                                    {{ item.product_variant.product.name }}
+                                    {% if item.product_variant.color_name %}
+                                        ({{ item.product_variant.color_name }})
+                                    {% endif %}
+                                {% else %}
+                                    {# Otherwise, display the main product name #}
+                                    {{ item.product.name }}
+                                {% endif %}
+                                × {{ item.quantity }} — £{{ item.price }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    {# Display the total order cost #}
+                    <p><strong>Total:</strong> £{{ order.grand_total }}</p>
+                {% endif %}
 
                 {# Button to navigate back to home page #}
                 <a href="{% url 'home' %}" class="btn btn-outline-primary btn-sm">
@@ -78,6 +87,7 @@
         </div>
     </div>
 {% endblock %}
+
 
 
 

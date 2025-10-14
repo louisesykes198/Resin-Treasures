@@ -9,22 +9,33 @@
 
   <p>Thank you for your order. Here’s a gentle summary of what you’ve chosen:</p>
 
-<ul>
-  {% for item in items %}
-    <li>
-      {{ item.product_variant.product.name }}
-      {% if item.product_variant.color_name %} ({{ item.product_variant.color_name }}) {% endif %}
-      × {{ item.quantity }} — £{{ item.price }}
-    </li>
-  {% endfor %}
-</ul>
+  <ul>
+    {% for item in items %}
+      <li>
+        {% if item.product_variant %}
+          {{ item.product_variant.product.name }}
+          {% if item.product_variant.color_name %}
+            ({{ item.product_variant.color_name }})
+          {% endif %}
+        {% else %}
+          {{ item.product.name }}
+        {% endif %}
+        × {{ item.quantity }} — £{{ item.price }}
+      </li>
+    {% endfor %}
+  </ul>
 
-<p>Delivery: £{{ order.delivery }}</p>
-<p>Total: £{{ order.grand_total }}</p>
+  <p>Delivery: £{{ order.delivery }}</p>
+  <p>Total: £{{ order.grand_total }}</p>
+
+  {% if order.notes %}
+    <p>Notes: {{ order.notes }}</p>
+  {% endif %}
 
   <p>We’ll begin preparing your treasures with care. You’ll receive another message once they’re on their way.</p>
 
   <p>Kind regards,<br>Resin Treasures</p>
 </body>
 </html>
+
 
