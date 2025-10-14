@@ -16,9 +16,6 @@ from cloudinary_storage.storage import MediaCloudinaryStorage
 from cloudinary_storage.storage import RawMediaCloudinaryStorage
 from django.contrib.messages import constants as messages
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ddc*id7g-t(($2=nqf9fw((_#74e+6%3=26ty1xwsn$0o#)i44'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "0") == "1"
 ALLOWED_HOSTS = ['resin-treasures-2025-f7167892b201.herokuapp.com', '127.0.0.1', 'localhost']

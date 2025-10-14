@@ -129,11 +129,7 @@ def checkout_view(request):
 
             order.stripe_payment_intent = session.payment_intent
             order.save()
-            
-            send_order_confirmation_email(order)  
-            notify_seller_of_order(order)        
-
-
+              
             # Clear basket and store order id in session
             basket_items.delete()
             request.session['order_id'] = order.id
