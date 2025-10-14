@@ -21,8 +21,11 @@ import random
 from django.core.mail import send_mail
 from .utils import generate_unique_username
 from django.shortcuts import get_object_or_404
+<<<<<<< HEAD
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+=======
+>>>>>>> heroku/main
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -136,6 +139,7 @@ def account_settings(request):
 
     cards = []
     if profile.stripe_customer_id:
+<<<<<<< HEAD
         sources = stripe.Customer.list_sources(profile.stripe_customer_id, object="card")
         cards = sources.data
 
@@ -152,13 +156,24 @@ def account_settings(request):
         else:
             messages.error(request, "Please correct the errors below.")
 
+=======
+        sources = stripe.Customer.list_sources(
+            profile.stripe_customer_id,
+            object="card"
+        )
+        cards = sources.data
+
+>>>>>>> heroku/main
     return render(request, 'accounts/settings.html', {
         "cards": cards,
         "full_name": f"{user.first_name} {user.last_name}".strip(),
         "email": user.email,
         "username": user.username,
         "date_joined": localtime(user.date_joined),
+<<<<<<< HEAD
         "password_form": password_form,
+=======
+>>>>>>> heroku/main
     })
 
 
@@ -199,7 +214,12 @@ def personal_details(request):
 @login_required
 def order_history(request):
     user_orders = Order.objects.filter(user=request.user).order_by('-date')
+<<<<<<< HEAD
     return render(request, 'accounts/order_history.html', {'orders': user_orders})
+=======
+    return render
+    (request, 'accounts/order_history.html', {'orders': user_orders})
+>>>>>>> heroku/main
 
 
 @login_required
@@ -272,7 +292,12 @@ def set_default_card(request, card_id):
         )
         messages.success(request, "Your default card has been updated.")
 
+<<<<<<< HEAD
         return HttpResponseRedirect(reverse('account_settings') + '?tab=payment')
+=======
+        return HttpResponseRedirect
+        (reverse('account_settings') + '?tab=payment')
+>>>>>>> heroku/main
 
 
 @login_required
@@ -289,6 +314,7 @@ def verify_account(request):
             messages.error(request, "Incorrect code. Please try again.")
     return render(request, 'accounts/verify.html')
 
+<<<<<<< HEAD
 @login_required
 def update_user(request):
     if request.method == 'POST':
@@ -319,3 +345,7 @@ def update_password(request):
 
     return render(request, 'accounts/change_password.html', {'form': form})
 
+=======
+
+
+>>>>>>> heroku/main

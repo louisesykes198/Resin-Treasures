@@ -6,10 +6,16 @@ class Profile(models.Model):
     stripe_customer_id = models.CharField(max_length=255, blank=True, null=True)
     verification_code = models.CharField(max_length=6, blank=True)
     is_verified = models.BooleanField(default=False)
+<<<<<<< HEAD
     phone = models.CharField(max_length=20, blank=True, null=True)  # ✅ add this line
+=======
+>>>>>>> heroku/main
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> heroku/main
 

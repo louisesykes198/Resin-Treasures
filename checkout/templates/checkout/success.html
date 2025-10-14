@@ -13,7 +13,11 @@
     {# Main container for the payment success message #}
     <div class="container py-5">
         <div class="row">
+<<<<<<< HEAD
             {# Centered column for the success content #}
+=======
+            {# Centered column for the success content, using 8 of 12 columns #}
+>>>>>>> heroku/main
             <div class="col-md-8">
                 <hr>
                 
@@ -54,6 +58,7 @@
                     </p>
                 {% endif %}
 
+<<<<<<< HEAD
                 {# Check if order_items exist before looping through them #}
                 {% if order_items %}
                     <hr>
@@ -79,6 +84,8 @@
                     <p><strong>Total:</strong> £{{ order.grand_total }}</p>
                 {% endif %}
 
+=======
+>>>>>>> heroku/main
                 {# Button to navigate back to home page #}
                 <a href="{% url 'home' %}" class="btn btn-outline-primary btn-sm">
                     <i class="fas fa-arrow-left"></i> Back to Home
@@ -90,5 +97,8 @@
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> heroku/main

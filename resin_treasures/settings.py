@@ -1,5 +1,8 @@
 import dj_database_url
 import os
+from cloudinary_storage.storage import MediaCloudinaryStorage
+from cloudinary_storage.storage import RawMediaCloudinaryStorage
+from django.contrib.messages import constants as messages
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -12,18 +15,28 @@ DATABASES = {
     "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
 }
 
-from cloudinary_storage.storage import MediaCloudinaryStorage
-from cloudinary_storage.storage import RawMediaCloudinaryStorage
-from django.contrib.messages import constants as messages
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "0") == "1"
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
 
-
 SITE_URL = os.environ.get("SITE_URL", "http://127.0.0.1:8000")
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / '.env')
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+DATABASES = {
+    "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
+}
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.environ.get("DEBUG", "0") == "1"
+ALLOWED_HOSTS = ['resin-treasures-2025-f7167892b201.herokuapp.com', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -115,6 +128,14 @@ if 'test' in sys.argv:
         }
     }
   
+
+# Optional: fallback for tests
+import sys
+if 'test' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+    DATABASES['default']['NAME'] = os.path.join(BASE_DIR, 'test_db.sqlite3')
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -122,7 +143,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
-
 
 
 # Password validation

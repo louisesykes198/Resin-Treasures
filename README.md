@@ -928,7 +928,11 @@ The payment section isn’t just transactional—it’s relational. It reflects 
 
 ![image](doc/payment.png)
 
+<<<<<<< HEAD
 ### Notifications Page
+=======
+### 🔔 Notifications Page
+>>>>>>> heroku/main
 
 The *Resin Treasures* notifications page offers users a gentle, intuitive way to manage how they stay informed—designed with emotional clarity and respect for personal boundaries.
 
@@ -947,8 +951,13 @@ Each tab is styled in soft blue (`#0000FF`) and spaced for ease of navigation.
 
 Users are presented with two clear options:
 
+<<<<<<< HEAD
 - **Order updates by email** — checked by default, ensuring users receive important updates about their purchases  
 - **Promotional emails** — unchecked by default, allowing users to opt in only if they wish to receive offers or news
+=======
+- ✅ **Order updates by email** — checked by default, ensuring users receive important updates about their purchases  
+- ⬜ **Promotional emails** — unchecked by default, allowing users to opt in only if they wish to receive offers or news
+>>>>>>> heroku/main
 
 Each option is displayed with a checkbox and styled for clarity and accessibility.
 
@@ -994,6 +1003,7 @@ At the heart of the privacy page is a clear and respectful option for users who 
 
 The button is intentionally prominent, but not emotionally aggressive—designed to honor user autonomy without pressure.
 
+<<<<<<< HEAD
 # CRUD Functionality
 
 ## Security Section — CRUD Functionality
@@ -1120,6 +1130,8 @@ Individual preferences cannot be deleted separately; they are removed only when 
 
 
 
+=======
+>>>>>>> heroku/main
 #### **Design Principles**
 
 - **Color Palette:** Light background with red and blue accents for clarity and emotional weight  
@@ -2024,7 +2036,11 @@ The database was designed to support the following core functionalities:
 - Orders are stored with customer, shipping, and payment details.  
 - Users can save items for later using a **wishlist**.  
 - A **newsletter system** stores email subscribers.  
+<<<<<<< HEAD
 - Admins can manage products, categories, and fulfill customer orders.  
+=======
+- Admins can manage products, categories, and fulfil customer orders.  
+>>>>>>> heroku/main
 
 #### Data Tables & Core Entities
 
@@ -2060,7 +2076,11 @@ The ERD below visualises how the main entities relate:
 
 <details>
 <summary>ERD</summary>
+<<<<<<< HEAD
   <img src="doc/erd.png" alt="ERD">
+=======
+<img src="docs/erd.png" alt="ERD">
+>>>>>>> heroku/main
 </details>
 
 #### Normalisation for Integrity
@@ -2316,7 +2336,10 @@ Family and Friends for feedback.
 
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> heroku/main
 

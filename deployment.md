@@ -57,7 +57,11 @@ Once your PostgreSQL database is working locally, follow the steps in the Heroku
 
 ## Heroku Deployment
 
+<<<<<<< HEAD
 Deploying the Resin Treasures Django App to Heroku
+=======
+Deploying the crochet-files Django App to Heroku
+>>>>>>> heroku/main
 Note: These instructions assume you have a verified Heroku account and an Eco Dynos plan via the GitHub Student Developer Pack.
 
 1. Create a New Heroku App
@@ -225,4 +229,7 @@ Test Your Live App
 Open your deployed app in Heroku. Images should now be served via Cloudinary.
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> heroku/main
