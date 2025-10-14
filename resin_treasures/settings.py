@@ -144,6 +144,8 @@ CLOUDINARY_STORAGE = {
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # persistent sessions
+
 
 # Login redirect
 LOGIN_REDIRECT_URL = 'home'

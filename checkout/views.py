@@ -175,31 +175,33 @@ def checkout_view(request):
 
 @login_required
 def success_view(request):
-    """User lands here after Stripe payment."""
     order_id = request.session.get("order_id") or request.GET.get("order_id")
+    order = None
+    order_items = []
 
-    if not order_id:
-        return render(request, "checkout/order_not_found.html", {
-            "message": "We couldn't find your order. If you completed a purchase, please check your email or contact support."
-        })
+    if order_id:
+        order = Order.objects.filter(id=order_id).first()
+        if order:
+            order_items = order.items.all()
+            # Mark paid if not already
+            if order.status != "paid":
+                order.status = "paid"
+                order.save()
+                send_order_confirmation_email(order)
+                notify_seller_of_order(order)
 
-    order = Order.objects.filter(id=order_id).first()
     if not order:
         return render(request, "checkout/order_not_found.html", {
-            "message": "We couldn’t find your order. It may still be processing. Please check your email or try again shortly."
+            "message": "We couldn’t find your order. Please check your email for confirmation."
         })
 
-    # Mark paid and send emails if not done
-    if order.status != "paid":
-        order.status = "paid"
-        order.save()
-        send_order_confirmation_email(order)
-        notify_seller_of_order(order)
-
-    order_items = order.items.all()
+    # Clear session to avoid stale order_id
     request.session.pop("order_id", None)
 
-    return render(request, "checkout/success.html", {"order": order, "order_items": order_items})
+    return render(request, "checkout/success.html", {
+        "order": order,
+        "order_items": order_items,
+    })
 
 
 @login_required
