@@ -1,32 +1,22 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.views import LoginView
-from django.urls import reverse_lazy
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import login, authenticate, update_session_auth_hash
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.timezone import localtime
 from store.models import Order
 from django.contrib import messages
-from django.contrib.auth.views import LogoutView
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomLoginForm
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 import stripe
 from django.conf import settings
 from .models import Profile
-from django.urls import reverse
 from django.http import HttpResponseRedirect
-from .forms import CustomLoginForm
 import random
 from django.core.mail import send_mail
 from .utils import generate_unique_username
-from django.shortcuts import get_object_or_404
-<<<<<<< HEAD
-from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
-=======
->>>>>>> heroku/main
-
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -42,13 +32,9 @@ def register(request):
             user.set_password(form.cleaned_data['password1'])
             user.save()
 
-            # Generate verification code
             code = str(random.randint(100000, 999999))
-
-            # Create profile and store code
             profile = Profile.objects.create(user=user, verification_code=code)
 
-            # Send welcome email with username and verification code
             send_mail(
                 'Welcome to Resin Treasures 🌿',
                 f"""Hello {user.first_name},
@@ -68,8 +54,7 @@ Resin Treasures""",
             )
 
             login(request, user)
-            messages.success
-            (request, "Welcome! Your account has been created.")
+            messages.success(request, "Welcome! Your account has been created.")
             return redirect('verify_account')
     else:
         form = CustomUserCreationForm()
@@ -98,12 +83,9 @@ def generate_unique_username(first, last):
 
 @login_required
 def my_account(request):
-    # If you have orders linked to the user:
     orders = Order.objects.filter(user=request.user).order_by('-date')
-
     context = {
-        "full_name":
-        f"{request.user.first_name} {request.user.last_name}".strip(),
+        "full_name": f"{request.user.first_name} {request.user.last_name}".strip(),
         "email": request.user.email,
         "username": request.user.username,
         "date_joined": localtime(request.user.date_joined),
@@ -139,104 +121,67 @@ def account_settings(request):
 
     cards = []
     if profile.stripe_customer_id:
-<<<<<<< HEAD
         sources = stripe.Customer.list_sources(profile.stripe_customer_id, object="card")
         cards = sources.data
 
     password_form = PasswordChangeForm(user=request.user)
 
-    # Handle password change submission
     if request.method == 'POST' and 'update_password' in request.POST:
         password_form = PasswordChangeForm(user=request.user, data=request.POST)
         if password_form.is_valid():
             user = password_form.save()
-            update_session_auth_hash(request, user)  # Keep user logged in
+            update_session_auth_hash(request, user)
             messages.success(request, "Your password has been updated successfully 🌿")
             return redirect('account_settings')
         else:
             messages.error(request, "Please correct the errors below.")
 
-=======
-        sources = stripe.Customer.list_sources(
-            profile.stripe_customer_id,
-            object="card"
-        )
-        cards = sources.data
-
->>>>>>> heroku/main
     return render(request, 'accounts/settings.html', {
         "cards": cards,
         "full_name": f"{user.first_name} {user.last_name}".strip(),
         "email": user.email,
         "username": user.username,
         "date_joined": localtime(user.date_joined),
-<<<<<<< HEAD
         "password_form": password_form,
-=======
->>>>>>> heroku/main
     })
 
 
 @login_required
 def profile(request):
-    """
-    Display the user's profile page.
-    """
     user = request.user
-    context = {
-        'user': user,
-        # Add any other context info you want on the profile page
-    }
-    return render(request, 'accounts/profile.html', context)
+    return render(request, 'accounts/profile.html', {'user': user})
 
 
 @login_required
 def personal_details(request):
     if request.method == 'POST':
-        # Get data from form
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        email = request.POST.get('email')
-
-        # Update user
         user = request.user
-        user.first_name = first_name
-        user.last_name = last_name
-        user.email = email
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        user.email = request.POST.get('email')
         user.save()
-
         messages.success(request, 'Your personal details have been updated.')
         return redirect('personal_details')
-
     return render(request, 'accounts/personal_details.html')
 
 
 @login_required
 def order_history(request):
     user_orders = Order.objects.filter(user=request.user).order_by('-date')
-<<<<<<< HEAD
     return render(request, 'accounts/order_history.html', {'orders': user_orders})
-=======
-    return render
-    (request, 'accounts/order_history.html', {'orders': user_orders})
->>>>>>> heroku/main
 
 
 @login_required
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
     order_items = order.items.all()
-    return render(request, 'accounts/order_detail.html', {
-        'order': order,
-        'order_items': order_items
-    })
+    return render(request, 'accounts/order_detail.html', {'order': order, 'order_items': order_items})
 
 
 @login_required
 def delete_account(request):
     if request.method == 'POST':
-        user = request.user
-        user.delete()
+        request.user.delete()
         messages.success(request, "Your account has been permanently deleted.")
         return redirect('home')
 
@@ -244,39 +189,26 @@ def delete_account(request):
 @login_required
 def add_payment_method(request):
     user = request.user
-
-    # Ensure profile exists
-    profile, created = Profile.objects.get_or_create(user=user)
+    profile, _ = Profile.objects.get_or_create(user=user)
 
     if request.method == 'POST':
         token = request.POST.get('stripeToken')
-
-        # Create Stripe customer if needed
         if not profile.stripe_customer_id:
             customer = stripe.Customer.create(email=user.email)
             profile.stripe_customer_id = customer.id
             profile.save()
-
-        # Attach card to customer
         stripe.Customer.create_source(profile.stripe_customer_id, source=token)
-
         messages.success(request, "Your card has been saved securely.")
         return redirect('account_settings')
 
-    return render(request, 'accounts/add_payment.html', {
-        'STRIPE_PUBLIC_KEY': settings.STRIPE_PUBLIC_KEY
-    })
+    return render(request, 'accounts/add_payment.html', {'STRIPE_PUBLIC_KEY': settings.STRIPE_PUBLIC_KEY})
 
 
 @login_required
 def delete_payment_method(request, card_id):
     profile = Profile.objects.get(user=request.user)
-
     if profile.stripe_customer_id:
-        stripe.Customer.delete_source(
-            profile.stripe_customer_id,
-            card_id
-        )
+        stripe.Customer.delete_source(profile.stripe_customer_id, card_id)
         messages.success(request, "Your card has been removed.")
     return HttpResponseRedirect(reverse('account_settings') + '?tab=payment')
 
@@ -284,20 +216,10 @@ def delete_payment_method(request, card_id):
 @login_required
 def set_default_card(request, card_id):
     profile = Profile.objects.get(user=request.user)
-
     if profile.stripe_customer_id:
-        stripe.Customer.modify(
-            profile.stripe_customer_id,
-            default_source=card_id
-        )
+        stripe.Customer.modify(profile.stripe_customer_id, default_source=card_id)
         messages.success(request, "Your default card has been updated.")
-
-<<<<<<< HEAD
-        return HttpResponseRedirect(reverse('account_settings') + '?tab=payment')
-=======
-        return HttpResponseRedirect
-        (reverse('account_settings') + '?tab=payment')
->>>>>>> heroku/main
+    return HttpResponseRedirect(reverse('account_settings') + '?tab=payment')
 
 
 @login_required
@@ -314,7 +236,7 @@ def verify_account(request):
             messages.error(request, "Incorrect code. Please try again.")
     return render(request, 'accounts/verify.html')
 
-<<<<<<< HEAD
+
 @login_required
 def update_user(request):
     if request.method == 'POST':
@@ -334,18 +256,12 @@ def update_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
-            user = form.save()  # saves new password
-            update_session_auth_hash(request, user)  # keeps user logged in
+            user = form.save()
+            update_session_auth_hash(request, user)
             messages.success(request, 'Your password has been updated successfully.')
             return redirect('account_settings')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
         form = PasswordChangeForm(user=request.user)
-
     return render(request, 'accounts/change_password.html', {'form': form})
-
-=======
-
-
->>>>>>> heroku/main
