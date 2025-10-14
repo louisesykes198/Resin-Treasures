@@ -37,17 +37,18 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'neondb',
-            'USER': 'neondb_owner',
-            'PASSWORD': 'npg_dF4Y6qgGTBfy',
-            'HOST': 'ep-green-pine-abx09asi-pooler.eu-west-2.aws.neon.tech',
-            'PORT': '5432',
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': os.getenv('DB_PORT'),
             'OPTIONS': {
                 'sslmode': 'require',
                 'channel_binding': 'require',
-            },
-        }
+        },
     }
+}
+
 
 # Application definition
 INSTALLED_APPS = [
