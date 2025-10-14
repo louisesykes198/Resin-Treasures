@@ -5,9 +5,9 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
-from django.core.mail import EmailMultiAlternatives
+
 from store.models import Basket
 from .models import Order, OrderItem
 from .forms import OrderForm
@@ -18,22 +18,22 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 @login_required
 def checkout_view(request):
-    """Handles checkout: calculates totals, creates orders, initiates Stripe session."""
+    """Handle checkout: create order, Stripe session, redirect to Stripe."""
     basket_items = Basket.objects.filter(user=request.user)
     if not basket_items.exists():
         return redirect("basket")
 
-    # Calculate subtotal for each item and total
+    # Calculate subtotal per item
     for item in basket_items:
         item.price = item.variant.price if item.variant else item.product.min_price
         item.subtotal = item.price * item.quantity
-
     total = sum(item.subtotal for item in basket_items)
+
     order_form = OrderForm()
 
     if request.method == "POST":
         try:
-            # Gather form data
+            # Collect form data
             full_name = request.POST.get("full_name")
             email = request.POST.get("email")
             phone_number = request.POST.get("phone_number")
@@ -45,7 +45,6 @@ def checkout_view(request):
             country = request.POST.get("country")
             delivery_method = request.POST.get("delivery_method")
 
-            # Validate delivery method
             if not delivery_method or delivery_method not in DELIVERY_OPTIONS:
                 raise ValueError("Please select a valid delivery method.")
 
@@ -57,15 +56,11 @@ def checkout_view(request):
             else:
                 parcel_size = "Large"
 
-            # Calculate delivery price
-            if total >= settings.FREE_DELIVERY_THRESHOLD:
-                delivery_price = Decimal("0.00")
-            else:
-                delivery_price = Decimal(str(DELIVERY_OPTIONS[delivery_method][parcel_size]))
-
+            # Delivery cost
+            delivery_price = Decimal("0.00") if total >= settings.FREE_DELIVERY_THRESHOLD else Decimal(str(DELIVERY_OPTIONS[delivery_method][parcel_size]))
             grand_total = total + delivery_price
 
-            # Create the order
+            # Create Order
             order = Order.objects.create(
                 user=request.user,
                 full_name=full_name,
@@ -84,7 +79,7 @@ def checkout_view(request):
                 grand_total=grand_total,
             )
 
-            # Create order items and Stripe line items
+            # Create order items & Stripe line items
             line_items = []
             for item in basket_items:
                 OrderItem.objects.create(
@@ -94,30 +89,28 @@ def checkout_view(request):
                     quantity=item.quantity,
                     price=item.price,
                 )
-
                 product_name = item.variant.product.name if item.variant else item.product.name
                 variant_name = f" - {item.variant.color_name}" if item.variant else ""
                 line_items.append({
                     "price_data": {
                         "currency": "gbp",
                         "product_data": {"name": f"{product_name}{variant_name}"},
-                        "unit_amount": int(round(item.price * 100)),  # safe integer
+                        "unit_amount": int(round(item.price * 100)),
                     },
                     "quantity": item.quantity,
                 })
 
-            # Add delivery as a line item
             if delivery_price > 0:
                 line_items.append({
                     "price_data": {
                         "currency": "gbp",
                         "product_data": {"name": "Delivery"},
-                        "unit_amount": int(round(delivery_price * 100)),  # safe integer
+                        "unit_amount": int(round(delivery_price * 100)),
                     },
                     "quantity": 1,
                 })
 
-            # Create Stripe checkout session
+            # Create Stripe session
             session = stripe.checkout.Session.create(
                 payment_method_types=["card"],
                 line_items=line_items,
@@ -129,113 +122,59 @@ def checkout_view(request):
 
             order.stripe_payment_intent = session.payment_intent
             order.save()
-              
-            # Clear basket and store order id in session
+
+            # Clear basket
             basket_items.delete()
-            request.session['order_id'] = order.id
 
             return redirect(session.url, code=303)
 
         except Exception as e:
-            # Print full traceback to console
             import traceback
             print(traceback.format_exc())
-            # Display error to user
             return render(request, "checkout/checkout.html", {
                 "basket_items": basket_items,
                 "total": total,
                 "order_form": order_form,
-                "delivery_price": None,
-                "grand_total": total,
+                "delivery_price": delivery_price if 'delivery_price' in locals() else None,
+                "grand_total": grand_total if 'grand_total' in locals() else total,
                 "error": str(e),
             })
 
-    # GET request: display checkout form
-    delivery_method = request.GET.get("delivery_method")
-    if delivery_method and delivery_method in DELIVERY_OPTIONS:
-        if total < 20:
-            parcel_size = "Small"
-        elif total < 50:
-            parcel_size = "Medium"
-        else:
-            parcel_size = "Large"
-
-        if total >= settings.FREE_DELIVERY_THRESHOLD:
-            delivery_price = Decimal("0.00")
-        else:
-            delivery_price = Decimal(str(DELIVERY_OPTIONS[delivery_method][parcel_size]))
-
-        grand_total = total + delivery_price
-    else:
-        delivery_price = None
-        grand_total = total
-
+    # GET request: show checkout form
     return render(request, "checkout/checkout.html", {
         "basket_items": basket_items,
         "total": total,
         "order_form": order_form,
         "free_delivery_threshold": settings.FREE_DELIVERY_THRESHOLD,
-        "delivery_price": delivery_price,
-        "grand_total": grand_total,
     })
 
 
 @login_required
 def success_view(request):
-    # Get order_id from session or query params
-    order_id = request.session.get("order_id") or request.GET.get("order_id")
-
+    """User lands here after Stripe payment."""
+    order_id = request.GET.get("order_id")
     if not order_id:
-        return render(request, "checkout/order_not_found.html", {
-            "message": "We couldn't find your order. If you completed a purchase, please check your email or contact support."
-        })
+        return render(request, "checkout/order_not_found.html", {"message": "Order not found."})
 
-    order = Order.objects.filter(id=order_id).first()
+    try:
+        order = Order.objects.get(id=order_id)
+    except Order.DoesNotExist:
+        return render(request, "checkout/order_not_found.html", {"message": "Order not found."})
 
-    if not order:
-        return render(request, "checkout/order_not_found.html", {
-            "message": "We couldn’t find your order. It may still be processing. Please check your email or try again shortly."
-        })
-
-    # Only send emails if order isn't already marked as paid
+    # Mark paid and send emails only if not done
     if order.status != "paid":
         order.status = "paid"
         order.save()
+        send_order_confirmation_email(order)
+        notify_seller_of_order(order)
 
-        try:
-            send_order_confirmation_email(order)
-        except Exception as e:
-            print(f"Failed to send order confirmation email: {e}")
-
-        try:
-            notify_seller_of_order(order)
-        except Exception as e:
-            print(f"Failed to notify seller: {e}")
-
-        print(f"Order #{order.id} marked as paid and emails attempted.")
-
-    # Clear session to avoid duplicate emails if user refreshes
-    request.session.pop("order_id", None)
-
-    # Safely get order items
-    order_items = getattr(order, 'orderitem_set', None)
-    if order_items:
-        order_items = order.orderitem_set.all()
-    else:
-        order_items = []
-
-    context = {
-        "order": order,
-        "order_items": order_items,
-        "user": order.user,
-    }
-
-    return render(request, "checkout/success.html", context)
+    order_items = order.items.all() 
+    return render(request, "checkout/success.html", {"order": order, "order_items": order_items})
 
 
 @csrf_exempt
 def stripe_webhook(request):
-    """Stripe webhook to mark orders as paid and send transactional emails."""
+    """Mark orders as paid via webhook (for backend safety)."""
     import json
     payload = request.body
     sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
@@ -243,29 +182,27 @@ def stripe_webhook(request):
 
     try:
         event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
-    except ValueError as e:
-        print("Invalid payload:", e)
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
-        print("Invalid signature:", e)
+    except (ValueError, stripe.error.SignatureVerificationError) as e:
+        print("Webhook error:", e)
         return HttpResponse(status=400)
 
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
         order_id = session.get("metadata", {}).get("order_id")
-
         if order_id:
             try:
                 order = Order.objects.get(id=order_id)
-                order.status = "paid"
-                order.save()
-                send_order_confirmation_email(order)
-                notify_seller_of_order(order)
-                print(f"Emails sent for order #{order.id}")
+                if order.status != "paid":
+                    order.status = "paid"
+                    order.save()
+                    send_order_confirmation_email(order)
+                    notify_seller_of_order(order)
+                    print(f"Order #{order.id} marked as paid via webhook.")
             except Order.DoesNotExist:
-                print("Order not found:", order_id)
+                print("Webhook: Order not found", order_id)
 
     return HttpResponse(status=200)
+
 
 
 def send_order_confirmation_email(order):
