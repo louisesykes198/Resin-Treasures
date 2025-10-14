@@ -20,7 +20,7 @@ from django.contrib.messages import constants as messages
 os.environ["DEBUG"] = "1"  # Add this at the top of settings.py (only for local dev)
 DEBUG = os.environ.get("DEBUG", "0") == "1"
 
-ALLOWED_HOSTS = ['resin-treasures-2025-f7167892b201.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['resin-treasures-2025.herokuapp.com', 'resin-treasures-2025-f7167892b201.herokuapp.com']
 
 SITE_URL = os.environ.get("SITE_URL", "http://127.0.0.1:8000")
 
