@@ -1465,6 +1465,10 @@ The order confirmation page isn’t just a receipt—it’s a thank-you note. It
 
 ![image](doc/payment-complete.png)
 
+### Email Confirmation 
+
+
+
 ### Footer Section
 
 The *Resin Treasures* footer is a quiet anchor at the bottom of each page—designed to offer support, connection, and gentle navigation. It reflects the brand’s commitment to emotional clarity, handcrafted care, and user trust.
@@ -2342,4 +2346,5 @@ Family and Friends for feedback.
 
 =======
 >>>>>>> heroku/main
+
 
