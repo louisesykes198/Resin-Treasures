@@ -1,16 +1,10 @@
-<<<<<<< HEAD
 {% extends "base.html" %}
-=======
-{% extends "base.html" %} 
 <!-- Inherits the main layout from base.html -->
->>>>>>> heroku/main
-
 {% block content %}
     <!-- Page heading -->
     <h1>My Profile</h1>
 
     <!-- Display logged-in user's username -->
-<<<<<<< HEAD
     <p><strong>Username:</strong> {{ user.username }}</p>
 
     <!-- Display logged-in user's email -->
@@ -26,8 +20,6 @@
     <a href="{% url 'logout' %}" class="btn btn-outline-danger">Logout</a>
 {% endblock %}
 
-
-=======
     <p>Username: {{ user.username }}</p>
 
     <!-- Display logged-in user's email -->
@@ -40,4 +32,3 @@
     <a href="{% url 'logout' %}">Logout</a>
 {% endblock %}
 
->>>>>>> heroku/main

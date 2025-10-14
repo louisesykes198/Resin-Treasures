@@ -37,15 +37,7 @@ urlpatterns = [
         name='set_default_card'
     ),
     path('verify/', views.verify_account, name='verify_account'),
-<<<<<<< HEAD
     path('account/update-password/', views.update_password, name='update_password'),
 
 ]
 
-
-
-=======
-]
-
-
->>>>>>> heroku/main

@@ -137,10 +137,7 @@
             {% else %}
                 <p>No payment methods saved yet.</p>
             {% endif %}
-<<<<<<< HEAD
-=======
 
->>>>>>> heroku/main
             <a href="{% url 'add_payment_method' %}" class="btn btn-outline-primary mt-3">Add Payment Method</a>
         </div>
 
@@ -161,11 +158,8 @@
 
         <!-- Privacy -->
         <div class="tab-pane fade" id="privacy" role="tabpanel">
-<<<<<<< HEAD
             <h5>Privacy & Account Management</h5>
             <p class="text-muted">You can permanently delete your account below.</p>
-=======
->>>>>>> heroku/main
             <form method="POST" action="{% url 'delete_account' %}">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Delete Account</button>
@@ -190,10 +184,3 @@
         }
     });
 </script>
-
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> heroku/main

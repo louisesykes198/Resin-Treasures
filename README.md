@@ -928,11 +928,7 @@ The payment section isn’t just transactional—it’s relational. It reflects 
 
 ![image](doc/payment.png)
 
-<<<<<<< HEAD
 ### Notifications Page
-=======
-### 🔔 Notifications Page
->>>>>>> heroku/main
 
 The *Resin Treasures* notifications page offers users a gentle, intuitive way to manage how they stay informed—designed with emotional clarity and respect for personal boundaries.
 
@@ -951,13 +947,10 @@ Each tab is styled in soft blue (`#0000FF`) and spaced for ease of navigation.
 
 Users are presented with two clear options:
 
-<<<<<<< HEAD
 - **Order updates by email** — checked by default, ensuring users receive important updates about their purchases  
 - **Promotional emails** — unchecked by default, allowing users to opt in only if they wish to receive offers or news
-=======
-- ✅ **Order updates by email** — checked by default, ensuring users receive important updates about their purchases  
-- ⬜ **Promotional emails** — unchecked by default, allowing users to opt in only if they wish to receive offers or news
->>>>>>> heroku/main
+- **Order updates by email** — checked by default, ensuring users receive important updates about their purchases  
+- **Promotional emails** — unchecked by default, allowing users to opt in only if they wish to receive offers or news
 
 Each option is displayed with a checkbox and styled for clarity and accessibility.
 
@@ -1003,7 +996,6 @@ At the heart of the privacy page is a clear and respectful option for users who 
 
 The button is intentionally prominent, but not emotionally aggressive—designed to honor user autonomy without pressure.
 
-<<<<<<< HEAD
 # CRUD Functionality
 
 ## Security Section — CRUD Functionality
@@ -2040,11 +2032,9 @@ The database was designed to support the following core functionalities:
 - Orders are stored with customer, shipping, and payment details.  
 - Users can save items for later using a **wishlist**.  
 - A **newsletter system** stores email subscribers.  
-<<<<<<< HEAD
 - Admins can manage products, categories, and fulfill customer orders.  
-=======
 - Admins can manage products, categories, and fulfil customer orders.  
->>>>>>> heroku/main
+
 
 #### Data Tables & Core Entities
 
@@ -2080,11 +2070,10 @@ The ERD below visualises how the main entities relate:
 
 <details>
 <summary>ERD</summary>
-<<<<<<< HEAD
   <img src="doc/erd.png" alt="ERD">
-=======
+
 <img src="docs/erd.png" alt="ERD">
->>>>>>> heroku/main
+
 </details>
 
 #### Normalisation for Integrity
@@ -2247,14 +2236,14 @@ The backend is deployed on **Heroku** with the following setup:
 
 To further improve **Resin Treasures**, the following features are planned:
 
-- **👤 Enhanced User Profiles:** Ability for customers to view past orders and manage saved addresses.  
-- **🛍️ Wishlist:** Customers can save favorite products to purchase later.  
-- **🔍 Search & Filters:** Improved filtering by price, category, and product type.  
-- **📧 Newsletter Enhancements:** Automated campaigns and personalized offers.  
-- **⭐ Reviews & Ratings:** Customers can leave feedback on products.  
-- **📦 Order Tracking:** Real-time order status updates for customers.  
-- **📤 Social Sharing:** Quick share options for products to Instagram, Facebook, and Pinterest.  
-- **🛠️ Admin Dashboard:** Enhanced tools for managing orders, users, and inventory.  
+- **Enhanced User Profiles:** Ability for customers to view past orders and manage saved addresses.  
+- **Wishlist:** Customers can save favorite products to purchase later.  
+- **Search & Filters:** Improved filtering by price, category, and product type.  
+- **Newsletter Enhancements:** Automated campaigns and personalized offers.  
+- **Reviews & Ratings:** Customers can leave feedback on products.  
+- **Order Tracking:** Real-time order status updates for customers.  
+- **Social Sharing:** Quick share options for products to Instagram, Facebook, and Pinterest.  
+- **Admin Dashboard:** Enhanced tools for managing orders, users, and inventory.  
 
 These improvements aim to make **Resin Treasures** an even more engaging and customer-friendly online shop for handmade resin art.  
 
@@ -2314,37 +2303,3 @@ My Mentor for continuous helpful feedback.
 Tutor support at Code Institute for their support.
 
 Family and Friends for feedback.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> heroku/main
-
-

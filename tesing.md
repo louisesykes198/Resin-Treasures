@@ -48,12 +48,6 @@
 
 - As a user, I want to see the selected color and see the color I choose in the basket.
 
-<<<<<<< HEAD
-![image](doc/colour-change-order.png)
-=======
-![image](doc/colour-change-order.pngg)
->>>>>>> heroku/main
-
 - As a user, I want to add products to my basket and update quantities.
 - As a user, I want to remove items from my basket.
 
@@ -717,14 +711,6 @@ Ran 3 tests in 1.443s
 
 OK
 Destroying test database for alias 'default'...
-
-<<<<<<< HEAD
-![image](doc/python-test.png)
-
-=======
-![image](docs/test-all.png)
->>>>>>> heroku/main
-
 
 
 
