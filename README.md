@@ -1121,9 +1121,6 @@ Individual preferences cannot be deleted separately; they are removed only when 
 | Notifications   | ✅      | ✅    | ✅      | ❌      |
 
 
-
-=======
->>>>>>> heroku/main
 #### **Design Principles**
 
 - **Color Palette:** Light background with red and blue accents for clarity and emotional weight  
@@ -1422,7 +1419,7 @@ The *Resin Treasures* order confirmation page is a quiet celebration of trust an
 
 #### **Header Message**
 
-> ✅ **Payment Successful**  
+> **Payment Successful**  
 > *Thank you for your order, Louise Sykes.*
 
 This message is styled in green to signal success and emotional reassurance. It marks the transition from transaction to relationship.
@@ -1522,7 +1519,7 @@ At *Resin Treasures*, every parcel is handled with care and clarity. Whether you
 | Medium      | 19 × 38 × 64 cm / 7 × 15 × 25 in  | 15kg       | £2.99 |
 | Large       | 41 × 38 × 64 cm / 16 × 15 × 25 in | 15kg       | £3.99 |
 
-#### 🏡 Sending to a Home Address
+#### Sending to a Home Address
 
 > *Drop off your parcel at any InPost Point, and we’ll deliver it directly to your recipient’s home. Both you and the recipient will receive updates along the way.*
 
@@ -2269,7 +2266,6 @@ The newsletter setup and automation were assisted with [ChatGPT](https://chatgpt
 - All product and workshop images were created by the developer.  
 - Icons sourced from [Font Awesome](https://fontawesome.com/).  
 
----
 
 ### Reviews 
 
