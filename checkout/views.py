@@ -117,6 +117,8 @@ def checkout_view(request):
                 })
 
             # Stripe session creation
+            print("⚙️ Active SITE_URL:", settings.SITE_URL)
+
             session = stripe.checkout.Session.create(
                 payment_method_types=["card"],
                 line_items=line_items,
