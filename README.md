@@ -1456,7 +1456,69 @@ The order confirmation page isn’t just a receipt—it’s a thank-you note. It
 
 ### Email Confirmation 
 
+Order Confirmation Resin Treasures
+When a customer places an order through Resin Treasures, they receive a gentle confirmation email that reflects the nature of the shop. 
 
+The email includes:
+
+**Sender**: resintreasures65@gmail.com
+
+**Subject Line**: Your Resin Treasures Order #[Order Number]
+
+**Recipient Name**: Personalized with the customer's name (e.g., louise skyes)
+
+**Item Summary**: A clear breakdown of the purchased item(s), such as:
+
+Pumpkin Jar (Orange) × 1 — £6.00
+
+**Delivery Cost**: Listed separately (e.g., £2.89)
+
+**Total Cost**: Summed clearly (e.g., £8.89)
+
+**Next Steps**: A soft message confirming that the order will be shipped soon, followed by a promise of a second email once the parcel is on its way.
+
+Tone: Warm, reassuring, and emotionally safe—signed off simply as Resin Treasures.
+
+This flow ensures clarity, trust, and emotional resonance at every step, aligning with the sanctuary-first philosophy of the brand.
+
+![image](doc/email-conformation.png)
+
+![image](doc/email-conformation-1.png)
+
+### Resin Treasures Confirmation Email
+
+Resin Treasures — Order Confirmation Email Overview
+When a customer places an order through Resin Treasures, they receive a gentle, sanctuary-first confirmation email that affirms their purchase and sets expectations with clarity and care.
+
+Email Details:
+
+**Sender**: resintreasures65@gmail.com
+
+**Subject Line**: Your Resin Treasures Order #35
+
+**Recipient Name**: Personalized (e.g., Louise Skyes)
+
+**Item Summary**:
+
+Pumpkin Jar (Orange) × 1 — £6.00
+
+**Delivery Cost**: £2.89
+
+**Total Cost**: £8.89
+
+Message Content:
+
+A warm thank-you note confirming the order has been received.
+
+A gentle assurance that the item will be shipped soon.
+
+A promise of a follow-up email once the parcel is on its way.
+
+Signed off simply and kindly as Resin Treasures, maintaining clarity and trust.
+
+![image](doc/email-conformation-2.png)
+
+![image](doc/email-conformation-3.png)
 
 ### Footer Section
 
@@ -2300,3 +2362,4 @@ Tutor support at Code Institute for their support.
 
 
 Family and Friends for feedback.
+
