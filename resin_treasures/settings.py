@@ -18,7 +18,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.environ.get("DEBUG", "0") == "1"
 
 # Allowed hosts
-ALLOWED_HOSTS = ['resin-treasures-2025-f7167892b201.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 # Site URL
 SITE_URL = os.getenv("SITE_URL", "http://127.0.0.1:8000")

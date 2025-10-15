@@ -126,6 +126,8 @@ def checkout_view(request):
                 metadata={"order_id": str(order.id)},
             )
 
+            print("Stripe success URL:", session.success_url)
+
             order.stripe_payment_intent = session.payment_intent
             order.save()
 
