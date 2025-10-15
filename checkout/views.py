@@ -117,9 +117,6 @@ def checkout_view(request):
                 })
 
             # Stripe session creation
-            print("⚙️ Stripe success_url:", f"{settings.SITE_URL}/checkout/success/?order_id={order.id}")
-            print("⚙️ Stripe cancel_url:", f"{settings.SITE_URL}/checkout/cancel/?order_id={order.id}")
-
 
             session = stripe.checkout.Session.create(
                 payment_method_types=["card"],
@@ -128,7 +125,7 @@ def checkout_view(request):
                 success_url=f"{settings.SITE_URL}/checkout/success/?order_id={order.id}",
                 cancel_url=f"{settings.SITE_URL}/checkout/cancel/?order_id={order.id}",
                 metadata={"order_id": str(order.id)},
-            )
+    )
 
             order.stripe_payment_intent = session.payment_intent
             order.save()
