@@ -13,6 +13,7 @@ urlpatterns = [
         name='remove_one_from_basket'),
     path('empty/', views.empty_basket, name='empty_basket'),
     path('', views.basket_summary, name='basket_summary'),
+    path('buy-now/<int:product_id>/', views.buy_now, name='buy_now'),
 ]
 
 

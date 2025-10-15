@@ -21,9 +21,7 @@
                                         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="rounded" style="width: 100px; height: 100%;">
                                     {% endif %}
 
-                                    <!-- Details stacked vertically -->
                                     <div class="d-flex flex-column">
-                                        <!-- Product Name -->
                                         <h5 class="mb-1">
                                             {% if item.variant %}
                                                 {{ item.variant.product.name }}
@@ -32,7 +30,6 @@
                                             {% endif %}
                                         </h5>
 
-                                        <!-- Variant Color -->
                                         {% if item.variant %}
                                             <p class="mb-1 text-muted small">Color: {{ item.variant.color_name }}</p>
                                             <p class="mb-0 fw-bold">Price: £{{ item.variant.price|floatformat:2 }}</p>
@@ -42,7 +39,7 @@
                                     </div>
                                 </div>
 
-                                <!-- RIGHT: Quantity Controls -->
+                                <!-- RIGHT: Quantity Controls + Buy Now -->
                                 <div class="col-md-4 d-flex justify-content-end align-items-center gap-2">
 
                                     <!-- Decrease -->
@@ -54,7 +51,7 @@
                                         <button type="submit" class="btn btn-outline-primary btn-sm">-</button>
                                     </form>
 
-                                    <!-- Qty -->
+                                    <!-- Quantity -->
                                     <span class="mx-2 fw-bold">{{ item.quantity }}</span>
 
                                     <!-- Increase -->
@@ -74,6 +71,18 @@
                                         {% endif %}
                                         <button type="submit" class="btn btn-outline-danger btn-sm">🗑️</button>
                                     </form>
+
+                                    <!-- Buy Now -->
+                                    {% if item.variant %}
+                                    <form action="{% url 'buy_now' item.variant.product.id %}" method="post" class="mb-0 ms-2">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="variant_id" value="{{ item.variant.id }}">
+                                        <button type="submit" class="btn btn-success btn-sm">Buy Now</button>
+                                    </form>
+                                    {% else %}
+                                    <span class="text-muted small ms-2">Select a variant to Buy Now</span>
+                                    {% endif %}
+
                                 </div>
 
                             </div>
@@ -86,11 +95,7 @@
         <!-- Total & Actions -->
         <div class="card shadow-sm border-0 rounded-3 mt-4">
             <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-center">
-                
-                <!-- Total -->
                 <h4 class="fw-bold mb-3 mb-md-0">Total: £{{ total }}</h4>
-                
-                <!-- Actions -->
                 <div class="d-flex gap-2">
                     <a href="{% url 'shop' %}" class="btn btn-outline-primary btn-sm">Continue Shopping</a>
                     <form action="{% url 'empty_basket' %}" method="post" class="mb-0">
@@ -111,6 +116,9 @@
 </div>
 
 {% endblock %}
+
+
+
 
 
 

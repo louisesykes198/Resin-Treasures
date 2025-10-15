@@ -4,6 +4,7 @@ from django.views.decorators.http import require_POST
 from store.models import Basket
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def basket_summary(request):
     basket_items = []
@@ -156,6 +157,48 @@ def basket_view(request):
         "basket_items": basket_items,
         "total": total
     })
+
+@require_POST
+def buy_now(request, product_id):
+    variant_id = request.POST.get("variant_id")
+    user = request.user
+
+    if not user.is_authenticated:
+        messages.error(request, "You must be logged in to buy now.")
+        return redirect("shop")
+
+    product = get_object_or_404(Product, id=product_id)
+
+    # Determine the variant
+    if variant_id:
+        variant = get_object_or_404(ProductVariant, id=variant_id)
+    else:
+        # If no variant is passed, get the first variant of the product
+        variant = ProductVariant.objects.filter(product=product).first()
+        if not variant:
+            messages.error(request, "This product has no available variants.")
+            return redirect("basket_summary")
+
+    # Create or update basket
+    basket_item, created = Basket.objects.get_or_create(
+        user=user,
+        variant=variant,
+        defaults={'quantity': 1}
+    )
+
+    if not created:
+        basket_item.quantity = 1  # Reset quantity to 1 for Buy Now
+        basket_item.save()
+
+    # Redirect directly to checkout
+    return redirect("checkout")
+
+
+
+ 
+
+
+
 
 
 
